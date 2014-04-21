@@ -1,4 +1,4 @@
 require 'pdr_client/engine'
 
-module PDRClient; end
+module PdrClient; end
 

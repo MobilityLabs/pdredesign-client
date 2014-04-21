@@ -1,3 +1,3 @@
-PDRClient::Engine.routes.draw do
-    root to: 'PDRClient#index', as: :pdr_client
+PdrClient::Engine.routes.draw do
+  root to: 'pdr_client#index'
 end

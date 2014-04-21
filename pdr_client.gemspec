@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.homepage      = ""
   s.description   = "A mountable engine for the PD Redesign server"
   s.summary       = ""
-  s.version       = PDRClient::Version
+  s.version       = PdrClient::Version
   s.date          = Time.now.strftime("%Y-%m-%d")
   s.files         = `git ls-files`.split("\n") | Dir.glob("{lib}/**/*")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
