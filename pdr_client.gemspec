@@ -23,6 +23,18 @@ Gem::Specification.new do |s|
   s.add_dependency("sass-rails", "~> 4.0.0")
   s.add_dependency("uglifier", ">= 1.3.0")
   s.add_dependency("jquery-rails")
+  s.add_dependency("rails-assets")
+
+  s.add_dependency('font-awesome-rails')
+  s.add_dependency('rails-assets-moment')
+  s.add_dependency('rails-assets-underscore')
+  s.add_dependency('rails-assets-angular')
+  s.add_dependency('rails-assets-angular-resource')
+  s.add_dependency('rails-assets-angular-sanitize')
+  s.add_dependency('rails-assets-angular-ui-select2')
+  s.add_dependency('rails-assets-select2')
+  s.add_dependency('rails-assets-select2-bootstrap-css')
+  s.add_dependency('rails-assets-bootstrap3-datetimepicker')
 
   s.add_development_dependency("pry")
   s.add_development_dependency("jasmine")
