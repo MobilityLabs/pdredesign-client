@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html ng-app="PDRClient">
+  <head>
+    <title></title>
+    <%= stylesheet_link_tag    "pdr_client", media: "all" %>
+    <%= javascript_include_tag "pdr_client" %>
+
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="content">
+      <%= yield %>
+    </div>
+  </body>
+</html>
