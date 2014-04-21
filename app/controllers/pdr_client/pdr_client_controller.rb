@@ -1,7 +1,6 @@
 class PdrClient::PdrClientController < ActionController::Base
-  layout :application
+  layout 'pdr_client/layouts/application'
 
   def index
-    render text: 'in client' 
   end
 end
