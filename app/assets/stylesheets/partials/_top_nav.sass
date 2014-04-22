@@ -1,6 +1,10 @@
-$disabled-link-color: #898784
-$enabled-link-color: #e1e1d5
+$nav-background-color: #2D3A40
+$navbar-default-link-disabled-color: #898784
+$navbar-default-link-color: #e1e1d5
+$navbar-default-link-hover-color: $navbar-default-link-color
 $link-hover-background-color: #0071bc
+$dropdown-background-color: #4E5E66
+$dropdown-open-color: #080808
 $font-size: 1.1em
 
 #main-nav
@@ -9,13 +13,26 @@ $font-size: 1.1em
     border-color: $nav-background-color
     border-radius: 0
     min-height: 1em
+    i
+      color: $navbar-default-link-color 
     li
+      &:first-child
+        border-left: 1px solid #3d4c53
       border-right: 1px solid #3d4c53
-      a:hover
-        background-color: $link-hover-background-color
+      &.open a
+        background-color: $dropdown-open-color
+        color: $navbar-default-link-color
       a
-        color: $enabled-link-color
         font-size: $font-size
         padding: .5em 1em
-    li.disabled a
-      color: $disabled-link-color
+        &:hover
+          background-color: $link-hover-background-color
+    ul.dropdown-menu
+      background-color: $nav-background-color
+      li
+        background-color: $dropdown-background-color
+        &:hover, a:hover
+          background-color: $link-hover-background-color
+        a
+          color: $navbar-default-link-color
+          background-color: $nav-background-color
