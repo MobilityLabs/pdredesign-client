@@ -28,8 +28,8 @@
   </div>
 
   <div class="container">
-    <div class="row toolkits">
-      <div class="col-md-9">
+    <div class="row">
+      <div class="col-md-9 toolkits">
         <div class="col-md-4" ng-repeat="toolKit in toolKits">
           <div class="row title title-{{$index}}">
             {{toolKit.title}}
@@ -43,8 +43,11 @@
               <div class="subcategories" ng-repeat="(title, subcategory) in category">
                 {{title}}
 
-                <ul class="tool" ng-repeat="key in notSorted(subcategory)" ng-init="tool = data[key]">
-                  <li>{{tool.title}}</li>
+                <ul class="tool" ng-repeat="tool in subcategory">
+                  <li>
+                    <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
+                    {{tool.title}}
+                  </li>
                 </ul> 
 
               </div>

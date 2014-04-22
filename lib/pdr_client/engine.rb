@@ -10,6 +10,7 @@ module PdrClient
     require 'rails-assets-angular-route'
     require 'rails-assets-angular-resource'
     require 'rails-assets-angular-sanitize'
+    require 'rails-assets-angular-ui-router'
 
     initializer "PDRClient.assets.precompile" do |app|
       app.config.angular_templates.ignore_prefix = true

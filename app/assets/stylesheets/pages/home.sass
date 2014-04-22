@@ -1,10 +1,13 @@
 .home-controller
+  margin-top: -1.45em
   .row
-    margin-top: 1em
+    margin-bottom: 1em
 
   .design-principles
     background-color: #C5DCE2
     margin: 1em
+    font-size: 1.2em
+    font-weight: bold
     h1
       margin-top: .3em
       text-transform: uppercase
@@ -16,6 +19,7 @@
     .fa-stack-1x
       color: #C5DCE2 
   .toolkits
+    padding-right: 0
     .triangle-right
       border-top: 15px solid #D4E5E9
       border-left: 10px solid #C5DCE2
@@ -32,10 +36,10 @@
     .title.title-2
       background-color: #E2EEF1
       .triangle-right
-        display: none
+        visibility: hidden
     .row.title 
       padding: 0 0 0 .3em
-      font-size: 1.2em
+      font-size: 1.5em
       text-transform: uppercase
     .goal
       font-size: 1.1em
@@ -45,8 +49,27 @@
       min-height: 4em
     .categories
       font-size: 1.2em
-      margin-right: 1em
+      padding: .5em
+      margin-right: .5em
+      margin-bottom: 1em
       background-color: #D4D2C8
       .title
         font-weight: bold
 
+      .tool
+        margin-bottom: 0
+        padding: .1em
+        li
+          font-size: .9em
+          list-style: none
+          background-color: #fff
+          padding: .2em
+          .fa
+            color: #fff
+            padding: .2em
+            margin-right: .2em
+            font-size: 1.2em
+            &.active
+              background-color: #1273BA 
+            &.inactive
+              background-color: #D4D2C8
