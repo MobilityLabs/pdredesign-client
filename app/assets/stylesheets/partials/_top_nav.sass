@@ -1,0 +1,21 @@
+$disabled-link-color: #898784
+$enabled-link-color: #e1e1d5
+$link-hover-background-color: #0071bc
+$font-size: 1.1em
+
+#main-nav
+  .navbar-default
+    background-color: $nav-background-color
+    border-color: $nav-background-color
+    border-radius: 0
+    min-height: 1em
+    li
+      border-right: 1px solid #3d4c53
+      a:hover
+        background-color: $link-hover-background-color
+      a
+        color: $enabled-link-color
+        font-size: $font-size
+        padding: .5em 1em
+    li.disabled a
+      color: $disabled-link-color

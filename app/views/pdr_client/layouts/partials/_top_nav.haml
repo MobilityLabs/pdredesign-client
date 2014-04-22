@@ -1,0 +1,33 @@
+%nav.navbar.navbar-default
+  .container
+    .navbar-header
+      %ul.nav.navbar-nav
+        %li
+          %a(href="#") Home
+        %li
+          %a.data-toggle(data-toggle="dropdown")
+            Current State
+            %ul.dropdown-menu
+              %li
+                %a(href="#") Readiness Assessment
+
+        %li.disabled
+          %a(href="#") Future State
+        %li.disabled
+          %a(href="#") Planning
+        %li.disabled
+          %a(href="#") Procurement
+        %li.disabled
+          %a(href="#") Implementation
+        %li.disabled
+          %a(href="#") Rollout
+
+    %ul.nav.navbar-nav.navbar-right
+      %li
+        %a.data-toggle(data-toggle="dropdown")
+          Admin User
+          %ul.dropdown-menu
+            %li
+              %a(href="#") Settings
+            %li
+              %a(href="#") Sign Out

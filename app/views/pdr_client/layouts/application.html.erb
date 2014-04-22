@@ -8,7 +8,10 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="content">
+    <header id="main-nav">
+      <%= render 'pdr_client/layouts/partials/top_nav' %>
+    </header>
+    <div class="container">
       <%= yield %>
     </div>
   </body>

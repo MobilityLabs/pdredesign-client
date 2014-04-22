@@ -1,6 +1,8 @@
 module PdrClient
   class Engine < ::Rails::Engine
     isolate_namespace PdrClient
+    require 'bootstrap-sass'
+    require 'haml'
     require 'rails-assets'
     require 'rails-assets-angular'
     require 'rails-assets-angular-resource'
