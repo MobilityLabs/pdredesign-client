@@ -37,13 +37,11 @@
           </div>
           <div class="row goal">Goal: {{toolKit.goal}}</div>
 
-          <div class="row" ng-repeat="c in toolKit.categories">
-            <div class="categories" ng-repeat="(title, category) in c">
-              <div class="title">{{title}}</div>
-              <div class="subcategories" ng-repeat="(title, subcategory) in category">
-                {{title}}
-
-                <ul class="tool" ng-repeat="tool in subcategory">
+            <div class="categories" ng-repeat="category in toolKit.categories">
+              <div class="title">{{category.title}}</div>
+              <div class="subcategories" ng-repeat="subcategory in category.categories">
+                {{subcategory.title}}
+                <ul class="tool" ng-repeat="tool in subcategory.categories">
                   <li>
                     <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
                     {{tool.title}}
@@ -52,7 +50,6 @@
 
               </div>
             </div>
-          </div>
         </div>
 
       </div>
