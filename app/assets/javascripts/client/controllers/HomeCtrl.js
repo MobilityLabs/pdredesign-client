@@ -6,5 +6,6 @@ PDRClient.controller('HomeCtrl', ['$scope','ToolKit',
       ToolKit.query({}, function(t) {
         $scope.toolKits = t;
       });
+
     }
 ]);
