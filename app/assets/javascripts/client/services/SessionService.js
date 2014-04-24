@@ -1,8 +1,9 @@
 PDRClient.factory('SessionService', function() {
   var userIsAuthenticated   = false;
-  return {
-    getUserAuthenticated: function() {
-      return userIsAuthenticated;
-    }
+  var service = {};
+  service.getUserAuthenticated = function() {
+    return userIsAuthenticated;
   };
+
+  return service;
 });
