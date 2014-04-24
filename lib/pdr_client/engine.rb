@@ -1,9 +1,11 @@
+require 'rails' unless defined?(Rails)
+require 'action_view' unless defined?(ActionView)
+
 module PdrClient
   class Engine < ::Rails::Engine
     isolate_namespace PdrClient
     require 'bootstrap-sass'
     require 'font-awesome-rails'
-    require 'haml'
     require 'angular-rails-templates'
     require 'rails-assets'
     require 'rails-assets-angular'

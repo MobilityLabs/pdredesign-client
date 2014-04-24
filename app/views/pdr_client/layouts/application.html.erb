@@ -9,7 +9,14 @@
   </head>
   <body>
     <%= render 'pdr_client/layouts/partials/top_nav' %>
-    <%= yield %>
-    <%= render 'pdr_client/layouts/partials/footer' %>
+    <div class="container-fluid">
+      <div class="row">
+        <%= yield %>
+      </div>
+
+      <%= render 'pdr_client/layouts/partials/sidebar' %>
+
+    </div>
+        <%= render 'pdr_client/layouts/partials/footer' %>
   </body>
 </html>

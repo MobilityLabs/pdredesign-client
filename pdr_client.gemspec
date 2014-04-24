@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
 
 
+  s.add_dependency('rails')
   s.add_dependency('sass-rails')
   s.add_dependency('uglifier', '>= 1.3.0')
   s.add_dependency('jquery-rails')
@@ -41,9 +42,10 @@ Gem::Specification.new do |s|
   s.add_dependency('rails-assets-select2-bootstrap-css')
   s.add_dependency('rails-assets-bootstrap3-datetimepicker')
 
-  s.add_development_dependency("pry")
   s.add_development_dependency("jasmine")
-  s.add_development_dependency("jasmine-rails")
+  s.add_development_dependency('combustion')
+  s.add_development_dependency('rails-assets-angular-mocks')
+  s.add_development_dependency("pry")
   s.add_development_dependency("rake")
   s.add_development_dependency("rspec")
 end

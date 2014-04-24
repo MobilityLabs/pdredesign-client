@@ -5,6 +5,7 @@
 #Example: using a different boot file.
 Jasmine.configure do |config|
 #  config.browser = :phantomjs
+  config.ci_port = 9191 
 end
 #
 

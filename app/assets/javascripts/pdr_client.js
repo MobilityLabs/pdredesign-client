@@ -6,4 +6,3 @@
 //= require angular-sanitize
 //= require angular-route
 //= require_tree ./client
-//= require_tree ./client/views
