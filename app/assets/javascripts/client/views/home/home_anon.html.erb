@@ -1,0 +1,42 @@
+<div class="home anon">
+  <div class="row row-landing-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="text-center">
+            <%= image_tag "logo_lg.png" %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-body" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="text-center" >
+            <%= image_tag 'bubbles_crop.png', class: "hidden-xs" %>
+            <%= image_tag 'bubbles_crop.png', class: "visible-xs", width: '100%' %>
+          </div>
+
+          <p id="landing-header" class="text-center">
+            Professional Development Redesigned
+          </p>
+          <p id="landing-text" class="text-center">
+            To learn more about the PD redesign effort or to get notified when the BCG Market Research Study is publicly available, please sign up here.
+          </p>
+          <div ng-controller="ProspectiveUserCtrl" 
+            ng-include 
+            src="'client/views/prospective_user/prospective_user.html'">
+          </div>
+
+       </div>
+      </div>
+    </div>
+  </div>
+
+</div>

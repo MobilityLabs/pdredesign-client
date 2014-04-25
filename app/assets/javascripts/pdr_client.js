@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap/dropdown
+//= require bootstrap/alert
 //= require angular
 //= require angular-resource
 //= require angular-sanitize

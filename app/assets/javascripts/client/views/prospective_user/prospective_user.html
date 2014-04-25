@@ -1,0 +1,34 @@
+          <div class="row" >
+            <div class="col-md-6 col-md-offset-3">
+            
+            <div ng-show="success" id="ajax_message" class="alert alert-dismissable alert-success" style="display: block;">
+              {{success}}
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            </div>
+            <div ng-show="errors" id="ajax_message" class="alert alert-dismissable alert-danger" style="display: block;">
+              <div ng-repeat="(field, errorList) in errors">
+                <span ng-repeat="error in errorList">
+                {{field}}: {{error}}
+                </span>
+              </div>
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            </div>
+
+
+              <form accept-charset="UTF-8" class="new_prospective_user ng-pristine ng-valid" data-remote="true" id="new_prospective_user" method="post" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+                <input id="prospective_user_ip_address" name="prospective_user[ip_address]" type="hidden" value="50.246.91.65">
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-8 col-xs-offset-1">
+                    <div class="form-group">
+                      <label class="sr-only" for="email">Email address</label>
+                      <input ng-model="prospectiveUser.email" class="form-control" id="prospective_user_email" name="prospective_user[email]" placeholder="Email Address" type="email" value="">
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-xs-3" >
+                    <input class="btn btn-primary" name="commit" ng-click="submit(prospectiveUser)" value="Stay in Touch">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+ 
