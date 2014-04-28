@@ -13,6 +13,26 @@ PDRClient.service('SessionService',
       return user;
     }
     
+    this.clear = function() {
+      user = null;
+      userIsAuthenticated = false;
+    };
+
+    this.logout = function() {
+      var deferred = $q.defer();
+
+      $http({ 
+        method: 'DELETE', 
+        url:     UrlService.url('users/sign_out') ,
+        data: {}
+      }).then(function(response) {
+        service.clear();
+        deferred.resolve(true);
+      });
+     
+      return deferred.promise;
+    };
+
     this.authenticate = function(email, password) {
       var deferred = $q.defer();
 
@@ -25,8 +45,7 @@ PDRClient.service('SessionService',
         userIsAuthenticated = true;
         deferred.resolve(user);
       }, function(response){
-        user = null;
-        userIsAuthenticated = false;
+        service.clear();
         deferred.reject(false);
       });
      

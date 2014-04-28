@@ -55,14 +55,13 @@ describe('Directive: userLogin', function() {
         expect($location.path).toHaveBeenCalledWith('/');
     }));
 
-    xit('emits user_logged_in', inject(
-      function() {
-        spyOn(scope, '$emit');
-
+    it('emits session_updated', 
+      function(done) {
+        scope.$on('session_updated', function(){
+          done();
+        });
         submitForm();
-        expect(scope.$emit)
-          .toHaveBeenCalledWith('user_logged_in');
-    }));
+    });
 
   });
 });

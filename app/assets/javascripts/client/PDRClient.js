@@ -13,6 +13,18 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
         },
       }
     })
+    .state('logout', {
+      url: '/logout',
+      controller: ['$rootScope', '$scope', 'SessionService', '$location', 
+        function($rootScope, $scope, SessionService, $location) {
+          SessionService
+            .logout()
+            .then(function(){
+              $rootScope.$broadcast('session_updated');
+              $location.path('/');
+            });
+      }],
+    })
     .state('login', {
       url: '/login',
       views: {

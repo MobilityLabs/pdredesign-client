@@ -14,7 +14,7 @@ PDRClient.directive('userLogin', ['SessionService',
               SessionService.authenticate(email, password)
                 .then(function(user) {
                   $location.path('/');
-                  $rootScope.$broadcast('user_logged_in');
+                  $rootScope.$broadcast('session_updated');
                 });
             }
           }],

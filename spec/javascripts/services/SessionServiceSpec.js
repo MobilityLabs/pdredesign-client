@@ -52,6 +52,32 @@ describe('Service: SessionService', function() {
       $httpBackend.verifyNoOutstandingRequest();
     });
 
+    it('logs a user out', function() {
+      $httpBackend
+        .expectDELETE(url.url('users/sign_out'))
+        .respond(200, '');
+
+      subject.logout();
+      $httpBackend.flush();
+
+      var user = subject.getCurrentUser();
+      expect(user).toEqual(null);
+      expect(subject.getUserAuthenticated()).toEqual(false);
+    });
+  });
+
+  describe('#authenticate', function() {
+    var $httpBackend;
+
+    beforeEach(inject(function($injector) {
+      $httpBackend = $injector.get('$httpBackend');
+    }));
+
+    afterEach(function() {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    });
+
     it('requests to authenticates a user', function() {
       $httpBackend
         .expectPOST(url.url('users/sign_in'))
