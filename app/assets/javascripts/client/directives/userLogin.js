@@ -10,11 +10,19 @@ PDRClient.directive('userLogin', ['SessionService',
             $scope.email    = null; 
             $scope.password = null; 
 
+            $scope.showError = function() { 
+              $scope.errors = {
+                'error': 'Invalid email or password.',
+              };
+            };
+
             $scope.authenticate = function(email, password) {
               SessionService.authenticate(email, password)
                 .then(function(user) {
                   $location.path('/');
                   $rootScope.$broadcast('session_updated');
+                }, function() {
+                  $scope.showError();  
                 });
             }
           }],

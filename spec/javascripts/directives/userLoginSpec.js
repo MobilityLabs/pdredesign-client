@@ -47,6 +47,23 @@ describe('Directive: userLogin', function() {
           .toHaveBeenCalledWith('test@user.com', 'somepass');
     }));
 
+    it('shows errors on invalid login', inject(
+      function(SessionService, $q){
+        SessionService.authenticate = null;
+
+        spyOn(SessionService, 'authenticate')
+          .and.callFake(function() {
+            var deferred = $q.defer();
+            deferred.reject(false);
+            return deferred.promise;
+          });
+        
+        submitForm();
+        expect(element.find(".error").html())
+          .toMatch(/Invalid email or password/);
+
+    }));
+
     it('redirects to the homepage', inject(
       function(SessionService, $location, $q) {
         spyOn($location, 'path');
