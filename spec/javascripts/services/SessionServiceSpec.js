@@ -6,9 +6,9 @@ describe('Service: SessionService', function() {
   beforeEach(module('PDRClient'));
 
   beforeEach(inject(function($injector, $rootScope) {
-    subject = $injector.get('SessionService');
-    url     = $injector.get('UrlService');
-    scope   = $rootScope;
+    url      = $injector.get('UrlService');
+    scope    = $rootScope;
+    subject  = $injector.get('SessionService');
   }));
 
   describe('#userIsAuthenticated', function() {
@@ -54,21 +54,21 @@ describe('Service: SessionService', function() {
 
     it('requests to authenticates a user', function() {
       $httpBackend
-        .when('POST', url.url('session'))
-        .respond({ username: 'some_user' });
+        .expectPOST(url.url('users/sign_in'))
+        .respond({ email: 'some_user' });
 
       subject.authenticate('some_user', 'some_password')
       $httpBackend.flush();
 
       var user = subject.getCurrentUser();
 
-      expect(user.username).toEqual('some_user');
+      expect(user.email).toEqual('some_user');
       expect(subject.getUserAuthenticated()).toEqual(true);
     });
 
     it('fails when authentication fails', function() {
       $httpBackend
-        .when('POST', url.url('session'))
+        .expectPOST(url.url('users/sign_in'))
         .respond(403, '');
 
       subject.authenticate('some_user', 'some_password')
@@ -77,6 +77,40 @@ describe('Service: SessionService', function() {
       var user = subject.getCurrentUser();
       expect(user).toEqual(null);
       expect(subject.getUserAuthenticated()).toEqual(false);
+    });
+
+    it('resolves a promise', function() {
+      $httpBackend
+        .expectPOST(url.url('users/sign_in'))
+        .respond({ email: 'some_user' });
+
+      var user;
+
+      subject
+        .authenticate('some_user', 'some_password')
+        .then(function(u) {
+          user = u;
+        });
+      $httpBackend.flush();
+      expect(user.email).toEqual('some_user');
+    });
+
+    it('rejects a promise', function() {
+      $httpBackend
+        .expectPOST(url.url('users/sign_in'))
+        .respond(403, '');
+
+      var failed = false;
+      subject
+        .authenticate('some_user', 'some_password')
+        .then(function(u) {
+          failed = false;
+        }, function(reason) { 
+          failed = true;
+        });
+      $httpBackend.flush();
+
+      expect(failed).toEqual(true);
     });
 
   });

@@ -4,7 +4,7 @@ PDRClient.directive('startAssessment', [
         restrict: 'E',
         replace: true,
         scope: {},
-        templateUrl: 'client/views/directives/start-assessment.html',
+        templateUrl: 'client/views/directives/start_assessment.html',
         link: function(scope, elm, attrs) {
 
         }

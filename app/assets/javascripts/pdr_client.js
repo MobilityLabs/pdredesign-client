@@ -6,4 +6,5 @@
 //= require angular-resource
 //= require angular-sanitize
 //= require angular-route
+//= require angular-ui-router
 //= require_tree ./client
