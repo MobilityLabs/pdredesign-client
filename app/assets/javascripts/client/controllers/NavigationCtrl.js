@@ -1,10 +1,18 @@
-PDRClient.controller('NavigationCtrl', ['$scope', 'SessionService',
-    function($scope, SessionService) {
-      $scope.template = 'client/views/navigation/navigation_anon.html';
+PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService',
+    function($rootScope, $scope, SessionService) {
 
-      if(SessionService.getUserAuthenticated()) {
-        $scope.template = 'client/views/navigation/navigation_user.html';
-      }
+      $scope.updateTemplate = function() {
+        SessionService.setUserTemplate(
+          $scope, 
+          'client/views/navigation/navigation_user.html', 
+          'client/views/navigation/navigation_anon.html'
+        );
+      };
 
+      $scope.updateTemplate();
+
+      $rootScope.$on('user_logged_in', function() {
+        $scope.updateTemplate();
+      });
     }
 ]);

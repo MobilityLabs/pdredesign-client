@@ -4,7 +4,7 @@ describe('Directive: userLogin', function() {
 
   beforeEach(module('PDRClient'));
   beforeEach(inject(function($rootScope, $compile) {
-    scope   = $rootScope;
+    scope   = $rootScope.$new();
     element = angular.element('<user-login></user-login>');
     $compile(element)(scope);
     scope.$digest();
@@ -22,10 +22,7 @@ describe('Directive: userLogin', function() {
           deferred.resolve({});
           return deferred.promise;
         });
-    }));
 
-    it('calls authenticate on SessionService', 
-      inject(function(SessionService, $q) {
         element
           .find("#email")
           .val('test@user.com')
@@ -35,10 +32,16 @@ describe('Directive: userLogin', function() {
           .find("#password")
           .val('somepass')
           .trigger('input');
-
+    }));
+    function submitForm() {
        element
           .find("input#authenticate")
           .click();
+    };
+
+    it('calls authenticate on SessionService', 
+      inject(function(SessionService, $q) {
+        submitForm();
 
         expect(session.authenticate)
           .toHaveBeenCalledWith('test@user.com', 'somepass');
@@ -46,24 +49,20 @@ describe('Directive: userLogin', function() {
 
     it('redirects to the homepage', inject(
       function(SessionService, $location, $q) {
-        element
-          .find("#email")
-          .val('test@user.com')
-          .trigger('input');
-
-        element
-          .find("#password")
-          .val('somepass')
-          .trigger('input');
-
         spyOn($location, 'path');
-        element
-          .find("input#authenticate")
-          .click();
+        submitForm();
 
         expect($location.path).toHaveBeenCalledWith('/');
-      }));
+    }));
+
+    xit('emits user_logged_in', inject(
+      function() {
+        spyOn(scope, '$emit');
+
+        submitForm();
+        expect(scope.$emit)
+          .toHaveBeenCalledWith('user_logged_in');
+    }));
 
   });
-
 });
