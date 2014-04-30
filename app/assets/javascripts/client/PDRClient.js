@@ -38,6 +38,19 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
         }
       }
     })
+    .state('signup', {
+      url: '/signup',
+      views: {
+        '': {
+          controller: 'SignupCtrl',
+          templateUrl: 'client/views/signup/signup.html'
+        },
+        'sidebar': {
+          controller: 'SidebarCtrl',
+          templateUrl: 'client/views/sidebar/sidebar_login.html'
+        }
+      }
+    })
     .state('settings', {
       url: '/settings',
       views: {

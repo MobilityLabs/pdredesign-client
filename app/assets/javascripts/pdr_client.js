@@ -8,3 +8,4 @@
 //= require angular-route
 //= require angular-ui-router
 //= require_tree ./client
+//= require_tree ./client/views
