@@ -41,7 +41,7 @@ PDRClient.service('SessionService',
         url:     UrlService.url('users/sign_in') ,
         data: {email: email, password: password}
       }).then(function(response) {
-        user = response.data;
+        user = response.data.user;
         userIsAuthenticated = true;
         deferred.resolve(user);
       }, function(response){

@@ -1,0 +1,73 @@
+<div class="row secondary top">
+  <div class="container">
+    <div class="col-md-9">
+      <h1>Hi {{user_name}}</h1>
+      <p>Welcome to PD Redesign. Please review the information below to get started.</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 col-md-offset-1 col-sm-7 col-sm-offset-1">
+
+      <p class="form-header">Account Settings</p>
+
+      <div class="row" style="margin-bottom:15px">
+        <div class="col-md-5 col-sm-5 col-xs-5">
+          <label for="user_first_name">First name</label>
+          <input class="form-control"  placeholder="First Name" type="text" ng-model="user.first_name">
+        </div>
+        <div class="col-md-7 col-sm-7 col-xs-7" style="padding-left:0px">
+          <label for="user_last_name">Last name</label>
+          <input class="form-control"  placeholder="Last Name" type="text" ng-model="user.last_name">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="user_email">E-mail address</label>
+        <input class="form-control"  placeholder="Email" type="email" ng-model="user.last_name">
+      </div>
+
+      <div ng-init="user_district_ids=[1];user_districts_json=[{&quot;id&quot;:1,&quot;name&quot;:&quot;Alabama Youth Services&quot;,&quot;city&quot;:&quot;Mt. Meigs&quot;,&quot;state&quot;:&quot;AL&quot;}]"></div>
+      <div class="form-group  ng-scope" ng-controller="DistrictCtrl">
+        <label for="user_District">District</label>
+        <div class="select2-container select2-container-multi form-control ng-valid ng-dirty" id="s2id_user_district_ids"><ul class="select2-choices">  <li class="select2-search-choice">    <div>Alabama Youth Services (Mt. Meigs, AL)</div>    <a href="#" class="select2-search-choice-close" tabindex="-1"></a></li><li class="select2-search-field">    <label for="s2id_autogen1" class="select2-offscreen"></label>    <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" id="s2id_autogen1" placeholder="" style="width: 34px;">  </li></ul><div class="select2-drop select2-drop-multi select2-display-none">   <ul class="select2-results">   <li class="select2-no-results">No matches found</li><li class="select2-no-results">No matches found</li><li class="select2-no-results">No matches found</li></ul></div></div><input class="form-control ng-valid select2-offscreen ng-dirty" id="user_district_ids" multiple="multiple" name="user[district_ids][]" ng-model="user_district_ids" type="hidden" ui-select-2="facilitatorOptions" value="1" tabindex="-1">
+      </div>
+
+      <div class="form-group">
+        <label for="user_team_role">Team role</label>
+        <input class="form-control" id="user_team_role" name="user[team_role]" type="text">
+      </div>
+
+      <div class="form-group">
+        <label for="user_twitter">Twitter</label>
+        <div class="input-group">
+          <span class="input-group-addon">@</span>
+          <input class="form-control" id="user_twitter" name="user[twitter]" type="text">
+        </div>
+      </div>
+
+      <p class="form-header">Change Password</p>
+
+      <div class="form-group">
+        <label for="user_current_password">Current password</label>
+        <input class="form-control" id="user_current_password" name="user[current_password]" type="password" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QsPDhss3LcOZQAAAU5JREFUOMvdkzFLA0EQhd/bO7iIYmklaCUopLAQA6KNaawt9BeIgnUwLHPJRchfEBR7CyGWgiDY2SlIQBT/gDaCoGDudiy8SLwkBiwz1c7y+GZ25i0wnFEqlSZFZKGdi8iiiOR7aU32QkR2c7ncPcljAARAkgckb8IwrGf1fg/oJ8lRAHkR2VDVmOQ8AKjqY1bMHgCGYXhFchnAg6omJGcBXEZRtNoXYK2dMsaMt1qtD9/3p40x5yS9tHICYF1Vn0mOxXH8Uq/Xb389wff9PQDbQRB0t/QNOiPZ1h4B2MoO0fxnYz8dOOcOVbWhqq8kJzzPa3RAXZIkawCenHMjJN/+GiIqlcoFgKKq3pEMAMwAuCa5VK1W3SAfbAIopum+cy5KzwXn3M5AI6XVYlVt1mq1U8/zTlS1CeC9j2+6o1wuz1lrVzpWXLDWTg3pz/0CQnd2Jos49xUAAAAASUVORK5CYII=); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat no-repeat;">
+      </div>
+
+      <div class="form-group">
+        <label for="user_password">Password</label>
+        <input autocomplete="off" class="form-control" id="user_password" name="user[password]" type="password" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACIUlEQVQ4EX2TOYhTURSG87IMihDsjGghBhFBmHFDHLWwSqcikk4RRKJgk0KL7C8bMpWpZtIqNkEUl1ZCgs0wOo0SxiLMDApWlgOPrH7/5b2QkYwX7jvn/uc//zl3edZ4PPbNGvF4fC4ajR5VrNvt/mo0Gr1ZPOtfgWw2e9Lv9+chX7cs64CS4Oxg3o9GI7tUKv0Q5o1dAiTfCgQCLwnOkfQOu+oSLyJ2A783HA7vIPLGxX0TgVwud4HKn0nc7Pf7N6vV6oZHkkX8FPG3uMfgXC0Wi2vCg/poUKGGcagQI3k7k8mcp5slcGswGDwpl8tfwGJg3xB6Dvey8vz6oH4C3iXcFYjbwiDeo1KafafkC3NjK7iL5ESFGQEUF7Sg+ifZdDp9GnMF/KGmfBdT2HCwZ7TwtrBPC7rQaav6Iv48rqZwg+F+p8hOMBj0IbxfMdMBrW5pAVGV/ztINByENkU0t5BIJEKRSOQ3Aj+Z57iFs1R5NK3EQS6HQqF1zmQdzpFWq3W42WwOTAf1er1PF2USFlC+qxMvFAr3HcexWX+QX6lUvsKpkTyPSEXJkw6MQ4S38Ljdbi8rmM/nY+CvgNcQqdH6U/xrYK9t244jZv6ByUOSiDdIfgBZ12U6dHEHu9TpdIr8F0OP692CtzaW/a6y3y0Wx5kbFHvGuXzkgf0xhKnPzA4UTyaTB8Ph8AvcHi3fnsrZ7Wore02YViqVOrRXXPhfqP8j6MYlawoAAAAASUVORK5CYII=); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat no-repeat;">
+      </div>
+
+      <div class="form-group">
+        <label for="user_password_confirmation">Password confirmation</label>
+        <input class="form-control" id="user_password_confirmation" name="user[password_confirmation]" type="password" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACIUlEQVQ4EX2TOYhTURSG87IMihDsjGghBhFBmHFDHLWwSqcikk4RRKJgk0KL7C8bMpWpZtIqNkEUl1ZCgs0wOo0SxiLMDApWlgOPrH7/5b2QkYwX7jvn/uc//zl3edZ4PPbNGvF4fC4ajR5VrNvt/mo0Gr1ZPOtfgWw2e9Lv9+chX7cs64CS4Oxg3o9GI7tUKv0Q5o1dAiTfCgQCLwnOkfQOu+oSLyJ2A783HA7vIPLGxX0TgVwud4HKn0nc7Pf7N6vV6oZHkkX8FPG3uMfgXC0Wi2vCg/poUKGGcagQI3k7k8mcp5slcGswGDwpl8tfwGJg3xB6Dvey8vz6oH4C3iXcFYjbwiDeo1KafafkC3NjK7iL5ESFGQEUF7Sg+ifZdDp9GnMF/KGmfBdT2HCwZ7TwtrBPC7rQaav6Iv48rqZwg+F+p8hOMBj0IbxfMdMBrW5pAVGV/ztINByENkU0t5BIJEKRSOQ3Aj+Z57iFs1R5NK3EQS6HQqF1zmQdzpFWq3W42WwOTAf1er1PF2USFlC+qxMvFAr3HcexWX+QX6lUvsKpkTyPSEXJkw6MQ4S38Ljdbi8rmM/nY+CvgNcQqdH6U/xrYK9t244jZv6ByUOSiDdIfgBZ12U6dHEHu9TpdIr8F0OP692CtzaW/a6y3y0Wx5kbFHvGuXzkgf0xhKnPzA4UTyaTB8Ph8AvcHi3fnsrZ7Wore02YViqVOrRXXPhfqP8j6MYlawoAAAAASUVORK5CYII=); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat no-repeat;">
+      </div>
+
+      <input class="btn btn-success" name="commit" type="submit" value="Update">
+
+    </div>
+  </div>
+</div>

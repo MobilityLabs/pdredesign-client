@@ -1,7 +1,7 @@
 PDRClient.controller('HomeCtrl', ['$scope','ToolKit', 'SessionService', 
     function($scope, ToolKit, SessionService) {
       $scope.toolKits  = [] 
-      $scope.user_name = "Sumeet";
+      $scope.user = SessionService.getCurrentUser();
 
       ToolKit.query({}, function(t) {
         $scope.toolKits = t;

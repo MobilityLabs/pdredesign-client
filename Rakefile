@@ -19,7 +19,7 @@ namespace :jasmine do
 end
 
 def start_server
-  system 'rackup -p 9292 -D -P rack.pid'
+  system 'rackup -p 3000 -D -P rack.pid'
 end
 
 def kill_server

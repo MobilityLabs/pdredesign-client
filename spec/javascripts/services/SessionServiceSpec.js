@@ -81,7 +81,7 @@ describe('Service: SessionService', function() {
     it('requests to authenticates a user', function() {
       $httpBackend
         .expectPOST(url.url('users/sign_in'))
-        .respond({ email: 'some_user' });
+        .respond({ user: { email: 'some_user' } });
 
       subject.authenticate('some_user', 'some_password')
       $httpBackend.flush();
@@ -108,7 +108,7 @@ describe('Service: SessionService', function() {
     it('resolves a promise', function() {
       $httpBackend
         .expectPOST(url.url('users/sign_in'))
-        .respond({ email: 'some_user' });
+        .respond({ user: { email: 'some_user' } });
 
       var user;
 

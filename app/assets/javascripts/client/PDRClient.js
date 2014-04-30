@@ -37,7 +37,19 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
           templateUrl: 'client/views/sidebar/sidebar_login.html'
         }
       }
-
+    })
+    .state('settings', {
+      url: '/settings',
+      views: {
+        '': {
+          controller: 'SettingsCtrl',
+          templateUrl: 'client/views/settings/settings.html'
+        },
+        'sidebar': {
+          controller: 'SidebarCtrl',
+          templateUrl: 'client/views/sidebar/sidebar_generic.html'
+        }
+      }
     });
   }
 ]);
