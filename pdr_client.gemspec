@@ -37,10 +37,11 @@ Gem::Specification.new do |s|
   s.add_dependency('rails-assets-angular-sanitize')
   s.add_dependency('rails-assets-angular-resource')
   s.add_dependency('rails-assets-angular-ui-router')
-  s.add_dependency('rails-assets-angular-ui-select2')
 
   s.add_dependency('rails-assets-select2')
-  s.add_dependency('rails-assets-select2-bootstrap-css')
+  s.add_dependency('rails-assets-select2-bootstrap3-css')
+  s.add_dependency('rails-assets-angular-ui-select2')
+
   s.add_dependency('rails-assets-bootstrap3-datetimepicker')
 
   s.add_development_dependency("jasmine")

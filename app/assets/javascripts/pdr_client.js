@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require underscore
 //= require bootstrap/dropdown
 //= require bootstrap/alert
 //= require angular
@@ -8,5 +9,6 @@
 //= require angular-route
 //= require angular-ui-router
 //= require angular-ui-select2
+//= require select2
 //= require_tree ./client
 //= require_tree ./client/views

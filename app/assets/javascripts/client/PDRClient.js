@@ -1,4 +1,10 @@
-PDRClient = angular.module("PDRClient", ['ngResource', 'ngRoute', 'ngSanitize', 'templates', 'ui.router']);
+PDRClient = angular.module("PDRClient", [
+  'ngResource', 
+  'ngRoute', 
+  'ngSanitize', 
+  'templates', 
+  'ui.router',
+  'ui.select2']);
 
 PDRClient.config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {

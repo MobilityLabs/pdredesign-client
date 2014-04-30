@@ -14,6 +14,9 @@ module PdrClient
     require 'rails-assets-angular-sanitize'
     require 'rails-assets-angular-ui-router'
 
+    require 'rails-assets-select2'
+    require 'rails-assets-angular-ui-select2'
+
     initializer "PDRClient.assets.precompile", :group => :all do |app|
       app.config.angular_templates.ignore_prefix = true
       app.config.assets.precompile += %w(pdr_client.css pdr_client.js)

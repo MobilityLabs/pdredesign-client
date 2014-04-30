@@ -1,6 +1,6 @@
 <ng-include src="'client/views/shared/header.html'"> </ng-include>
 
-<div class="container">
+<div class="container settings">
   <div class="row">
     <div class="col-md-7 col-md-offset-1 col-sm-7 col-sm-offset-1">
 
@@ -24,10 +24,8 @@
 
       <div class="form-group">
         <label for="user_District">District</label>
-        <select id="districts">
-          <option value="AL">Alabama</option>
-          ...
-          <option value="WY">Wyoming</option>
+        <input type="hidden" id="districts" multiple="true" ui-select2="{{role}}Selector" ng-model="user.districts">
+        {{currentUser}}
         </select>
       </div>
 
