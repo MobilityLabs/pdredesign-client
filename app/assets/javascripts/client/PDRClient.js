@@ -19,7 +19,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
         function($rootScope, $scope, SessionService, $location) {
           SessionService
             .logout()
-            .then(function(){
+            .then(function() {
               $rootScope.$broadcast('session_updated');
               $location.path('/');
             });

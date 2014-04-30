@@ -7,5 +7,6 @@
 //= require angular-sanitize
 //= require angular-route
 //= require angular-ui-router
+//= require angular-ui-select2
 //= require_tree ./client
 //= require_tree ./client/views

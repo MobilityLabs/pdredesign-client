@@ -1,7 +1,8 @@
 PDRClient.controller('SettingsCtrl', ['$scope', 'User',
     function($scope, User) {
       $scope.user = {};
-      debugger;
-
+      $(document).ready(function() { 
+        $("#districts").select2();
+      });
     }
 ]);
