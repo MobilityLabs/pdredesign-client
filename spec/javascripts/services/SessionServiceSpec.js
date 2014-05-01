@@ -6,14 +6,26 @@ describe('Service: SessionService', function() {
   beforeEach(module('PDRClient'));
 
   beforeEach(inject(function($injector, $rootScope) {
+    localStorage.clear();
+
     url      = $injector.get('UrlService');
     scope    = $rootScope;
     subject  = $injector.get('SessionService');
   }));
 
   describe('#softLogin', function() {
-    it('assigns the localstorage user', function() {
+    it('logs the localstorage user in', function() {
+      var expectedUser = { email: 'some@email.com' }
+      spyOn(localStorage, 'getItem').and.returnValue(expectedUser);
 
+      subject.softLogin();
+      expect(subject.getCurrentUser().email).toEqual('some@email.com');
+    });
+
+    it('doesnt log a previously logged out user', function(){
+      spyOn(localStorage, 'getItem').and.returnValue(null);
+      subject.softLogin();
+      expect(subject.getCurrentUser()).toEqual(null);
     });
   });
 
@@ -46,7 +58,21 @@ describe('Service: SessionService', function() {
 
   });
 
-  describe('#authenticate', function() {
+  describe('#clear', function() {
+    it('clears localStorage', function() {
+      spyOn(localStorage, 'setItem');
+      subject.clear(); 
+      expect(localStorage.setItem).toHaveBeenCalledWith('user', null);
+    });
+
+    it('sets user and userIsAuthorized', function() {
+      subject.clear(); 
+      expect(subject.getCurrentUser()).toEqual(null);
+      expect(subject.getUserAuthenticated()).toEqual(false);
+    });
+  });
+
+  describe('#logout', function() {
     var $httpBackend;
 
     beforeEach(inject(function($injector) {
@@ -110,6 +136,23 @@ describe('Service: SessionService', function() {
       expect(user).toEqual(null);
       expect(subject.getUserAuthenticated()).toEqual(false);
     });
+
+    it('assigns a user', function() {
+      $httpBackend
+        .expectPOST(url.url('users/sign_in'))
+        .respond({ user: { email: 'some_user' } });
+
+      spyOn(localStorage, 'setItem');
+
+      subject
+        .authenticate('some_user', 'some_password')
+        .then(function(u) {
+          expect(localStorage.setItem)
+            .toHaveBeenCalledWith('user', { email: 'some_user' })
+        });
+      $httpBackend.flush();
+    });
+
 
     it('resolves a promise', function() {
       $httpBackend

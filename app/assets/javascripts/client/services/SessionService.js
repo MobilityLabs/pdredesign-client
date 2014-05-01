@@ -5,7 +5,6 @@ PDRClient.service('SessionService',
     var service = this;
     var user = null;
 
-    softLogin();
 
     function assignCurrentUser(usr) {
       user = usr;
@@ -13,13 +12,12 @@ PDRClient.service('SessionService',
       localStorage.setItem('user', user);
     }
 
-    function softLogin() {
+    this.softLogin = function() {
       var localUser = localStorage.getItem('user');   
-      if(localUser == null || typeof localUser !== 'undefined')
+      if(localUser !== null && typeof localUser !== 'undefined')
         assignCurrentUser(localUser);
     }
-
-    
+    this.softLogin();
 
     this.getUserAuthenticated = function() {
       return userIsAuthenticated;
