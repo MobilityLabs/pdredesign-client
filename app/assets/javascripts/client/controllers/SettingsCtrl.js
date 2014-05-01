@@ -1,25 +1,29 @@
 PDRClient.controller('SettingsCtrl', ['$scope', 'User', 'SessionService', 'UrlService',
     function($scope, User, SessionService, UrlService) {
-      if(!$scope.$$phase) {
-        $scope.$apply(function(){
-          $scope.currentUser = SessionService.getCurrentUser();
-        });
-      }
-      $scope.role        = 'member';
+      $scope.currentUser = SessionService.getCurrentUser();
+
+      if($scope.currentUser)
+        $scope.role = $scope.currentUser.role;
+      else
+        $scope.role = 'member';
 
       $scope.user = {};
+      window.user = $scope.user;
 
       $scope.facilitatorSelector = {
         allowClear: true,
-        maximumSelectionSize: 1,
         placeholder: "District*",
         ajax: {
           url: UrlService.url('districts/search'),
           data: function (term) { return { query: term }; },
-          results: function (data) { console.debug(data); return data; }
+          results: function (data) { return data; }
         },
       };
 
-      $scope.memberSelector = $scope.facilitatorSelector;
+      $scope.memberSelector = {};
+      for(key in $scope.facilitatorSelector) {
+        $scope.memberSelector[key] = $scope.facilitatorSelector[key];
+      }
+      $scope.memberSelector.maximumSelectionSize =  1;
     }
 ]);
