@@ -11,6 +11,12 @@ describe('Service: SessionService', function() {
     subject  = $injector.get('SessionService');
   }));
 
+  describe('#softLogin', function() {
+    it('assigns the localstorage user', function() {
+
+    });
+  });
+
   describe('#userIsAuthenticated', function() {
     it('defaults to logged out', function() {
       expect(subject.getUserAuthenticated()).toEqual(false); 

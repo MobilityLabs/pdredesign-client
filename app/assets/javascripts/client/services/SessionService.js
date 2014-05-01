@@ -5,6 +5,22 @@ PDRClient.service('SessionService',
     var service = this;
     var user = null;
 
+    softLogin();
+
+    function assignCurrentUser(usr) {
+      user = usr;
+      userIsAuthenticated = true;
+      localStorage.setItem('user', user);
+    }
+
+    function softLogin() {
+      var localUser = localStorage.getItem('user');   
+      if(localUser == null || typeof localUser !== 'undefined')
+        assignCurrentUser(localUser);
+    }
+
+    
+
     this.getUserAuthenticated = function() {
       return userIsAuthenticated;
     }
@@ -16,6 +32,7 @@ PDRClient.service('SessionService',
     this.clear = function() {
       user = null;
       userIsAuthenticated = false;
+      localStorage.setItem('user', null);
     };
 
     this.logout = function() {
@@ -41,9 +58,9 @@ PDRClient.service('SessionService',
         url:     UrlService.url('users/sign_in') ,
         data: {email: email, password: password}
       }).then(function(response) {
-        user = response.data.user;
-        userIsAuthenticated = true;
-        deferred.resolve(user);
+        var responseUser = response.data.user;
+        assignCurrentUser(responseUser);
+        deferred.resolve(responseUser);
       }, function(response){
         service.clear();
         deferred.reject(false);
