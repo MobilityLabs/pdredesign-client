@@ -10,5 +10,6 @@
 //= require angular-ui-router
 //= require angular-ui-select2
 //= require select2
+//= require angular-rails-templates
 //= require_tree ./client
 //= require_tree ./client/views
