@@ -60,9 +60,9 @@ describe('Service: SessionService', function() {
 
   describe('#clear', function() {
     it('clears localStorage', function() {
-      spyOn(localStorage, 'setItem');
+      spyOn(localStorage, 'clear');
       subject.clear(); 
-      expect(localStorage.setItem).toHaveBeenCalledWith('user', null);
+      expect(localStorage.clear).toHaveBeenCalled();
     });
 
     it('sets user and userIsAuthorized', function() {
@@ -152,7 +152,6 @@ describe('Service: SessionService', function() {
         });
       $httpBackend.flush();
     });
-
 
     it('resolves a promise', function() {
       $httpBackend

@@ -1,13 +1,6 @@
 <div>
   <h3 class="heading">Sign in to PD Redesign</h3>
-  <div ng-show="errors" id="ajax_message" class="alert alert-dismissable alert-danger" style="display: block;">
-    <div ng-repeat="error in errors">
-      <div class="error">
-        {{error}}
-      </div>
-    </div>
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-  </div>
+  <ng-include src="'client/views/shared/errors.html'"> </ng-include>
 
 
   <div class"row">

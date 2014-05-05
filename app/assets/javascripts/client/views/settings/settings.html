@@ -1,9 +1,9 @@
-<ng-include src="'client/views/shared/header.html'"> </ng-include>
+<user-header></user-header>
 
 <div class="container settings">
   <div class="row">
     <div class="col-md-7 col-md-offset-1 col-sm-7 col-sm-offset-1">
-
+      <ng-include src="'client/views/shared/errors.html'"> </ng-include>
       <p class="form-header">Account Settings</p>
 
       <div class="row" style="margin-bottom:15px">
@@ -19,12 +19,13 @@
 
       <div class="form-group">
         <label for="user_email">E-mail address</label>
-        <input class="form-control"  placeholder="Email" type="email" ng-model="user.email">
+        <input class="form-control"  placeholder="Email" ng-model="user.email">
       </div>
 
       <div class="form-group">
         <label for="district">District</label>
-        <district-select data-role="member"></district-select>
+        <district-select data-role="{{user.role}}" ng-model="user.district_ids">
+        </district-select>
       </div>
 
       <div class="form-group">
@@ -43,21 +44,16 @@
       <p class="form-header">Change Password</p>
 
       <div class="form-group">
-        <label for="user_current_password">Current password</label>
-        <input class="form-control" id="user_current_password" name="user[current_password]" type="password" ng-model="user.current_password">
-      </div>
-
-      <div class="form-group">
         <label for="user_password">Password</label>
-        <input autocomplete="off" class="form-control" id="user_password" name="user[password]" type="password" ng-model="password">
+        <input autocomplete="off" class="form-control" id="user_password" name="user[password]" type="password" ng-model="user.password">
       </div>
 
       <div class="form-group">
         <label for="user_password_confirmation">Password confirmation</label>
-        <input class="form-control" id="user_password_confirmation" name="user[password_confirmation]" type="password" ng-model="password_repeat">
+        <input class="form-control" id="user_password_confirmation" name="user[password_confirmation]" type="password" ng-model="user.password_confirmation">
       </div>
 
-      <input class="btn btn-success" name="commit" type="submit" value="Update">
+      <input class="btn btn-success" name="commit" type="submit" value="Update" ng-click="update(user)">
 
     </div>
   </div>

@@ -1,12 +1,11 @@
 PDRClient.service('SessionService', 
   ['UrlService', '$http', '$location', '$q', 
   function(UrlService, $http, $location, $q) {
-    var userIsAuthenticated   = false;
+    var userIsAuthenticated = false;
     var service = this;
-    var user = null;
+    var user    = null;
 
-
-    function assignCurrentUser(usr) {
+    function setCurrentUser(usr) {
       user = usr;
       userIsAuthenticated = true;
       localStorage.setItem('user', user);
@@ -15,7 +14,7 @@ PDRClient.service('SessionService',
     this.softLogin = function() {
       var localUser = localStorage.getItem('user');   
       if(localUser !== null && typeof localUser !== 'undefined')
-        assignCurrentUser(localUser);
+        setCurrentUser(localUser);
     }
     this.softLogin();
 
@@ -30,7 +29,7 @@ PDRClient.service('SessionService',
     this.clear = function() {
       user = null;
       userIsAuthenticated = false;
-      localStorage.setItem('user', null);
+      localStorage.clear();
     };
 
     this.logout = function() {
@@ -57,7 +56,7 @@ PDRClient.service('SessionService',
         data: {email: email, password: password}
       }).then(function(response) {
         var responseUser = response.data.user;
-        assignCurrentUser(responseUser);
+        setCurrentUser(responseUser);
         deferred.resolve(responseUser);
       }, function(response){
         service.clear();

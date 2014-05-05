@@ -1,20 +1,6 @@
           <div class="row" >
             <div class="col-md-6 col-md-offset-3">
-            
-            <div ng-show="success" id="ajax_message" class="alert alert-dismissable alert-success" style="display: block;">
-              {{success}}
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            </div>
-            <div ng-show="errors" id="ajax_message" class="alert alert-dismissable alert-danger" style="display: block;">
-              <div ng-repeat="(field, errorList) in errors">
-                <span ng-repeat="error in errorList">
-                {{field}}: {{error}}
-                </span>
-              </div>
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            </div>
-
-
+              <ng-include src="'client/views/shared/errors.html'"> </ng-include>
               <form accept-charset="UTF-8" class="new_prospective_user ng-pristine ng-valid" data-remote="true" id="new_prospective_user" method="post" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
                 <input id="prospective_user_ip_address" name="prospective_user[ip_address]" type="hidden" value="50.246.91.65">
                 <div class="row">
