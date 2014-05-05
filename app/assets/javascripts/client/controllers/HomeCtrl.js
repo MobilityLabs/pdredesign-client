@@ -1,6 +1,6 @@
-PDRClient.controller('HomeCtrl', ['$scope','ToolKit', 'SessionService', 
+PDRClient.controller('HomeCtrl', ['$scope','ToolKit', 'SessionService',
     function($scope, ToolKit, SessionService) {
-      $scope.toolKits  = [] 
+      $scope.toolKits  = []
       $scope.user = SessionService.getCurrentUser();
 
       ToolKit.query({}, function(t) {
@@ -8,8 +8,8 @@ PDRClient.controller('HomeCtrl', ['$scope','ToolKit', 'SessionService',
       });
 
       SessionService.setUserTemplate(
-        $scope, 
-        'client/views/home/home_user.html', 
+        $scope,
+        'client/views/home/home_user.html',
         'client/views/home/home_anon.html'
       );
 

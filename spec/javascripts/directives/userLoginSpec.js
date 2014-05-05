@@ -39,7 +39,7 @@ describe('Directive: userLogin', function() {
           .click();
     };
 
-    it('calls authenticate on SessionService', 
+    it('calls authenticate on SessionService',
       inject(function(SessionService, $q) {
         submitForm();
 
@@ -49,6 +49,7 @@ describe('Directive: userLogin', function() {
 
     it('shows errors on invalid login', inject(
       function(SessionService, $q){
+        // Reset Service
         SessionService.authenticate = null;
 
         spyOn(SessionService, 'authenticate')
@@ -57,7 +58,7 @@ describe('Directive: userLogin', function() {
             deferred.reject(false);
             return deferred.promise;
           });
-        
+
         submitForm();
         expect(element.find(".error").html())
           .toMatch(/Invalid email or password/);
@@ -72,7 +73,7 @@ describe('Directive: userLogin', function() {
         expect($location.path).toHaveBeenCalledWith('/');
     }));
 
-    it('emits session_updated', 
+    it('emits session_updated',
       function(done) {
         scope.$on('session_updated', function(){
           done();

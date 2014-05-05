@@ -1,8 +1,8 @@
 PDRClient = angular.module("PDRClient", [
-  'ngResource', 
-  'ngRoute', 
-  'ngSanitize', 
-  'templates', 
+  'ngResource',
+  'ngRoute',
+  'ngSanitize',
+  'templates',
   'ui.router',
   'ui.select2']);
 
@@ -21,7 +21,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
     })
     .state('logout', {
       url: '/logout',
-      controller: ['$rootScope', '$scope', 'SessionService', '$location', 
+      controller: ['$rootScope', '$scope', 'SessionService', '$location',
         function($rootScope, $scope, SessionService, $location) {
           SessionService
             .logout()
@@ -57,6 +57,20 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
         }
       }
     })
+    .state('assessments', {
+      url: '/assessments',
+      views: {
+        '': {
+          controller: 'AssessmentsCtrl',
+          templateUrl: 'client/views/assessments/index.html'
+        },
+        'sidebar': {
+          controller: 'SidebarCtrl',
+          templateUrl: 'client/views/sidebar/sidebar_generic.html'
+        }
+      }
+    })
+
     .state('settings', {
       url: '/settings',
       views: {
@@ -70,5 +84,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
         }
       }
     });
+
+
   }
 ]);

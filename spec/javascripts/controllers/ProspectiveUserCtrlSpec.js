@@ -11,7 +11,7 @@ describe('Controller: ProspectiveUserCtrl', function() {
     scope    = $rootScope;
     user     = ProspectiveUser;
     subject  = $controller('ProspectiveUserCtrl', {
-      $scope: scope, 
+      $scope: scope,
       ProspectiveUser: user
     });
 
@@ -24,7 +24,7 @@ describe('Controller: ProspectiveUserCtrl', function() {
         var deferred = q.defer();
         deferred.resolve('test');
         return {$promise: deferred.promise};
-      });  
+      });
 
       scope.submit({email: 'some_user_email@gmail.com'});
 
@@ -43,7 +43,7 @@ describe('Controller: ProspectiveUserCtrl', function() {
           }
         });
         return {$promise: deferred.promise};
-      });  
+      });
 
       scope.submit({email: 'some_user_email@gmail.com'});
 

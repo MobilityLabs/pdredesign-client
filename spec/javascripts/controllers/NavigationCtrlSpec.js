@@ -6,7 +6,7 @@ describe('Controller: NavigationCtrl', function() {
   beforeEach(inject(function($controller, $rootScope) {
     scope    = $rootScope.$new();
     subject  = $controller('NavigationCtrl', {
-      $scope: scope, 
+      $scope: scope,
     });
 
   }));
@@ -17,6 +17,7 @@ describe('Controller: NavigationCtrl', function() {
 
       $rootScope.$broadcast('session_updated');
       expect(scope.updateTemplate).toHaveBeenCalled();
+
   }));
 
 });

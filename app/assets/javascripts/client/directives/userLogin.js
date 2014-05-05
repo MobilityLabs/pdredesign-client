@@ -5,12 +5,12 @@ PDRClient.directive('userLogin', ['SessionService',
         replace: true,
         scope: {},
         templateUrl: 'client/views/directives/user_login.html',
-        controller: ['$scope', '$rootScope', '$location', 
+        controller: ['$scope', '$rootScope', '$location',
           function($scope, $rootScope, $location) {
-            $scope.email    = null; 
-            $scope.password = null; 
+            $scope.email    = null;
+            $scope.password = null;
 
-            $scope.showError = function() { 
+            $scope.showError = function() {
               $scope.errors = {
                 'error': 'Invalid email or password.',
               };
@@ -22,7 +22,7 @@ PDRClient.directive('userLogin', ['SessionService',
                   $location.path('/');
                   $rootScope.$broadcast('session_updated');
                 }, function() {
-                  $scope.showError();  
+                  $scope.showError();
                 });
             }
           }],

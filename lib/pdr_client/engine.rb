@@ -13,6 +13,7 @@ module PdrClient
     require 'rails-assets-angular-resource'
     require 'rails-assets-angular-sanitize'
     require 'rails-assets-angular-ui-router'
+    require 'rails-assets-momentjs'
 
     require 'rails-assets-select2'
     require 'rails-assets-angular-ui-select2'

@@ -19,7 +19,6 @@ PDRClient.directive('districtSelect', ['SessionService', 'UrlService', '$timeout
               results: function(data) { return data; },
             },
           };
-
           scope.memberSelector = {};
 
           for(key in scope.facilitatorSelector)

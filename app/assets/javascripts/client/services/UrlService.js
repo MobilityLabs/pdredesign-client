@@ -1,5 +1,5 @@
 PDRClient.factory('UrlService', [function() {
-  
+
   var basePath = '/v1/'
   var service = {};
 

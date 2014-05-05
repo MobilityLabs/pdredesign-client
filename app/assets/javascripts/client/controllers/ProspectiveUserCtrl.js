@@ -3,7 +3,7 @@ PDRClient.controller('ProspectiveUserCtrl', ['$scope', 'ProspectiveUser',
       $scope.prospectiveUser = {};
       $scope.errors  = null;
       $scope.success = null;
-      
+
       $scope.submit = function(prospectiveUser) {
         $scope.errors = null;
         $scope.success = null;

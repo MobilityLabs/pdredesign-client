@@ -1,5 +1,5 @@
-PDRClient.service('SessionService', 
-  ['UrlService', '$http', '$location', '$q', 
+PDRClient.service('SessionService',
+  ['UrlService', '$http', '$location', '$q',
   function(UrlService, $http, $location, $q) {
     var userIsAuthenticated = false;
     var service = this;
@@ -25,7 +25,7 @@ PDRClient.service('SessionService',
     this.getCurrentUser = function() {
       return user;
     }
-    
+
     this.clear = function() {
       user = null;
       userIsAuthenticated = false;
@@ -35,23 +35,23 @@ PDRClient.service('SessionService',
     this.logout = function() {
       var deferred = $q.defer();
 
-      $http({ 
-        method: 'DELETE', 
+      $http({
+        method: 'DELETE',
         url:     UrlService.url('users/sign_out') ,
         data: {}
       }).then(function(response) {
         service.clear();
         deferred.resolve(true);
       });
-     
+
       return deferred.promise;
     };
 
     this.authenticate = function(email, password) {
       var deferred = $q.defer();
 
-      $http({ 
-        method: 'POST', 
+      $http({
+        method: 'POST',
         url:     UrlService.url('users/sign_in') ,
         data: {email: email, password: password}
       }).then(function(response) {
@@ -62,7 +62,7 @@ PDRClient.service('SessionService',
         service.clear();
         deferred.reject(false);
       });
-     
+
       return deferred.promise;
     }
 
