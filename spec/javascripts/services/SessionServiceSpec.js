@@ -148,7 +148,7 @@ describe('Service: SessionService', function() {
         .authenticate('some_user', 'some_password')
         .then(function(u) {
           expect(localStorage.setItem)
-            .toHaveBeenCalledWith('user', { email: 'some_user' })
+            .toHaveBeenCalledWith('user', JSON.stringify({ "email": "some_user" }));
         });
       $httpBackend.flush();
     });

@@ -1,3 +1,35 @@
-<div class="sidebar">
-  Generic sidebar
+<div class="row" ng-show="visible">
+  <div class="sidebar">
+    <div class="user">
+      <div class="col-md-3">
+        <span class="avatar">
+          <img src="{{avatar}}">
+        </span>
+      </div>
+
+      <div class="col-md-6">
+        <div class="information">
+          <p id="name">
+          {{name}}
+        </span>
+        <p id="role">
+        {{role}}
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="links">
+        <li>
+        <a href="#/settings">Edit profile</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="content">
+  <ng-include src="'client/views/sidebar/why_pd_redesign.html'"></ng-include>
 </div>

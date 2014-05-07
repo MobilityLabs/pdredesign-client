@@ -8,13 +8,16 @@ PDRClient.service('SessionService',
     function setCurrentUser(usr) {
       user = usr;
       userIsAuthenticated = true;
-      localStorage.setItem('user', user);
+      var stringy = JSON.stringify(user);
+      localStorage.setItem('user', stringy);
     }
 
     this.softLogin = function() {
       var localUser = localStorage.getItem('user');   
-      if(localUser !== null && typeof localUser !== 'undefined')
-        setCurrentUser(localUser);
+      if(localUser !== null && typeof localUser !== 'undefined'){
+        object = JSON.parse(localUser);
+        setCurrentUser(object);
+      }
     }
     this.softLogin();
 

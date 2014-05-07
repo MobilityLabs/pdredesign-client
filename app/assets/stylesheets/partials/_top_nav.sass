@@ -8,6 +8,9 @@ $dropdown-open-color: #080808
 $font-size: 1.1em
 
 #main-nav
+  cursor: hand
+  cursor: pointer
+
   nav
     z-index: 2
   .navbar-default
@@ -18,9 +21,9 @@ $font-size: 1.1em
     i
       color: $navbar-default-link-color 
     li
+      border-right: 1px solid #3d4c53
       &:first-child
         border-left: 1px solid #3d4c53
-      border-right: 1px solid #3d4c53
       &.open a
         background-color: $dropdown-open-color
         color: $navbar-default-link-color
@@ -31,6 +34,7 @@ $font-size: 1.1em
           background-color: $link-hover-background-color
     ul.dropdown-menu
       background-color: $nav-background-color
+      padding: 0
       li
         background-color: $dropdown-background-color
         &:hover, a:hover

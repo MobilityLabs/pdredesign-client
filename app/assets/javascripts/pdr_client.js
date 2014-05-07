@@ -4,6 +4,7 @@
 //= require bootstrap/dropdown
 //= require bootstrap/alert
 //= require bootstrap/tooltip
+//= require bootstrap/modal
 
 //= require momentjs
 //= require angular
