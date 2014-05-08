@@ -27,6 +27,9 @@ PDRClient.controller('AssessmentAssignCtrl', [
           .then(function(_data) {
             $scope.saving = false;
             $scope.success('Assessment Saved!');
+          }, function(){
+            $scope.saving = false;
+            $scope.error('Could not save assessment');
           });
       }
 
@@ -34,6 +37,12 @@ PDRClient.controller('AssessmentAssignCtrl', [
         $scope.alerts.push({type: 'success', msg: message });
         $anchorScroll();
       };
+
+      $scope.error   = function(message) {
+        $scope.alerts.push({type: 'danger', msg: message });
+        $anchorScroll();
+      };
+
 
       $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
