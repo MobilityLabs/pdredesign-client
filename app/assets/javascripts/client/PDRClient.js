@@ -3,8 +3,9 @@ PDRClient = angular.module("PDRClient", [
   'ngRoute',
   'ngSanitize',
   'templates',
-  'ui.router',
   'angular-redactor',
+  'ui.router',
+  'ui.bootstrap',
   'ui.select2']);
 
 PDRClient.config(['$stateProvider', '$urlRouterProvider',

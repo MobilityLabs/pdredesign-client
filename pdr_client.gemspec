@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
   s.add_dependency('rails-assets-angular-ui-router')
   s.add_dependency('rails-assets-momentjs')
   s.add_dependency('rails-assets-angular-redactor')
+  s.add_dependency('rails-assets-angular-bootstrap')
   s.add_dependency('redactor-rails')
 
   s.add_dependency('rails-assets-select2')

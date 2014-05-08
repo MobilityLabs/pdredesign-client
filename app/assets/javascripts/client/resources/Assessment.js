@@ -1,3 +1,5 @@
 PDRClient.factory('Assessment', ['$resource', 'UrlService', function($resource, UrlService) {
-    return $resource(UrlService.url('assessments/:id'));
+    return $resource(UrlService.url('assessments/:id'), null,
+    { 'save': { method: 'PUT'},
+    });
 }]);

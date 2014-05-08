@@ -1,76 +1,78 @@
 <div class="row secondary top">
   <div class="container">
     <div class="col-md-9">
-      <h1>Hi </h1>
+      <h1>Hi {{user.first_name}}</h1>
       <p>These are the readiness assessments. Select an assessment or create a new one to proceed.</p>
     </div>
   </div>
 </div>
 
 <div class="container">
-  <div class="col-md-9">
-    <start-assessment></start-assessment>
-    <div class='assessments' style="margin-top: 3em;">
-      <div ng-repeat="assessment in assessments">
-        <div class='row row-assessment'>
-          <div class='col-md-1 col-sm-1' style='background-color: {{backGroundColor(assessment)}};'>
-            <p class='assessment-type'>{{assessment.status}}</p>
-            <p class="assessment-stat"><i style="line-height: 0.9em; color: white; font-size: 1em" class="fa fa-check" ng-if="assessment.status ==
-              'consensus' "></i></p>
-            <p class="assessment-stat" ng-if="assessment.status ==
+  <div class="row">
+    <div class="col-md-9">
+      <start-assessment></start-assessment>
+      <div class='assessments' style="margin-top: 3em;">
+        <div ng-repeat="assessment in assessments">
+          <div class='row row-assessment'>
+            <div class='col-md-1 col-sm-1' style='background-color: {{backgroundColor(assessment)}};'>
+              <p class='assessment-type'>{{assessment.status}}</p>
+              <p class="assessment-stat"><i style="line-height: 0.9em; color: white; font-size: 1em" class="fa fa-check" ng-if="assessment.status ==
+                'consensus' "></i></p>
+              <p class="assessment-stat" ng-if="assessment.status ==
               'assessment' ">{{roundNumber(assessment.percent_completed)}}%</p>
-            <p class="assessment-stat" ng-if="assessment.status ==
+              <p class="assessment-stat" ng-if="assessment.status ==
               'draft' ">N/A</p>
-          </div>
-          <a class="disabled" id="row-link">
-            <div class='col-md-9 col-sm-9'>
-              <p class='assessment-name'>{{assessment.name}}</p>
-              <div class='row'>
-                <div class='col-md-3 col-sm-3'>
-                  <p class='assessment-stat'>
+            </div>
+            <a class="disabled" id="row-link">
+              <div class='col-md-9 col-sm-9'>
+                <p class='assessment-name'>{{assessment.name}}</p>
+                <div class='row'>
+                  <div class='col-md-3 col-sm-3'>
+                    <p class='assessment-stat'>
                     <span class='category'>Participants</span>
                     <span class='stat'>{{assessment.participant_count}}</span>
-                  </p>
-                </div>
-                <div class='col-md-4 col-sm-4'>
-                  <p class='assessment-stat'>
+                    </p>
+                  </div>
+                  <div class='col-md-4 col-sm-4'>
+                    <p class='assessment-stat'>
                     <span class='category'>Completed</span>
                     <span class='stat'>{{assessment.completed_responses}}</span>
-                  </p>
-                </div>
-                <div class='col-md-5 col-sm-5'>
-                  <p class='assessment-stat'>
+                    </p>
+                  </div>
+                  <div class='col-md-5 col-sm-5'>
+                    <p class='assessment-stat'>
                     <span class='category'>Meeting</span>
-                    <span class='stat'>{{meetingTime(assessment)}}</span>
-                  </p>
+                    <span class='stat'>{{meetingTime(assessment.meeting_date)}}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
+            </a>
+            <div ng-repeat="link in assessment.links">
+              <assessmentlinks
+                data-link="{{link}}"
+                data-title="{{link.title}}"
+                data-active="{{link.active}}"
+                data-type="{{link.type}}"
+                data-id="{{assessment.id}}"
+                data-role="{{role}}">
+              </assessmentlinks>
             </div>
-          </a>
-          <div ng-repeat="link in assessment.links">
-            <assessmentlinks
-              data-link="{{link}}"
-              data-title="{{link.title}}"
-              data-active="{{link.active}}"
-              data-type="{{link.type}}"
-              data-id="{{assessment.id}}"
-              data-role="{{role}}">
-            </assessmentlinks>
           </div>
-        </div>
-        <div class='row row-assessment-addon' style='margin-bottom:15px;'>
-          <div class='col-md-1 col-sm-1' style='background-color: {{backGroundColor(assessment)}};'>
-            <avatar  data-imgclass="pull-left media-object img-circle" data-width="28" data-tooltip="true" data-name="{{assessment.facilitator.full_name}}" data-avatar="{{assessment.facilitator.avatar}}" data-role="{{assessment.facilitator.team_role}}">
-            </avatar>
-          </div>
-          <div class='col-md-11 col-sm-11'>
-            <div class="media">
-              <div>
-                <p class="pull-left subheading-text">{{assessment.subheading.text}}</p>
+          <div class='row row-assessment-addon' style='margin-bottom:15px;'>
+            <div class='col-md-1 col-sm-1' style='background-color: {{backgroundColor(assessment)}};'>
+              <avatar  data-imgclass="pull-left media-object img-circle" data-width="28" data-has-tooltip="true" data-name="{{assessment.facilitator.full_name}}" data-avatar="{{assessment.facilitator.avatar}}" data-role="{{assessment.facilitator.team_role}}">
+              </avatar>
+            </div>
+            <div class='col-md-11 col-sm-11'>
+              <div class="media">
+                <div>
+                  <p class="pull-left subheading-text">{{assessment.subheading.text}}</p>
                   <div ng-repeat="p in assessment.subheading.participants">
-                      <avatar data-tooltip="true" data-style="margin-right:6px;" data-name="{{p.full_name}}" data-avatar="{{p.avatar}}" data-role="{{p.team_role}}" data-width="28" data-toolplacement="bottom" data-imgclass="pull-left media-object img-circle">
-                      </avatar>
+                    <avatar data-has-tooltip="true" data-style="margin-right:6px;" data-name="{{p.full_name}}" data-avatar="{{p.avatar}}" data-role="{{p.team_role}}" data-width="28" data-toolplacement="bottom" data-imgclass="pull-left media-object img-circle">
+                    </avatar>
                   </div>
+                </div>
               </div>
             </div>
           </div>

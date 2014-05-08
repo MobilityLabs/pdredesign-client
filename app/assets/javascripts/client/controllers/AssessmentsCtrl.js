@@ -2,59 +2,40 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'Assessment
     function($scope, SessionService, Assessment) {
 
       $scope.assessments = Assessment.query();
-      $scope.currentUser = SessionService.getCurrentUser();
-      $scope.role        = "facilitator";
+      $scope.user        = SessionService.getCurrentUser();
+      $scope.role        = $scope.user.role;
 
       $scope.roundNumber = function(number) {
-          return Math.floor(number);
+        return Math.floor(number);
       }
 
-      $scope.meetingTime = function(assessment){
-        if (assessment.meeting_date !== null){
-          return convertDate(assessment.meeting_date)
+      $scope.meetingTime = function(date) {
+        if (date !== null) {
+          return moment(date).format("Do MMM YYYY");
         }
-        else {
-          return "TBD"
-        }
+        return "TBD"
       }
 
-      $scope.backGroundColor = function(assessment){
-
-        if(assessment.status == "draft"){
+      $scope.backgroundColor = function(assessment) {
+        if(assessment.status == "draft")
           return '#b1bbbf';
-        } else if (assessment.status == 'assessment') {
-
-
-            if (assessment.percent_completed < 20) {
-              return '#f7bcb9';
-            };
-            if (assessment.percent_completed < 40) {
-              return '#f29b95';
-            };
-            if (assessment.percent_completed < 60) {
-              return '#ee7972';
-            };
-            if (assessment.percent_completed < 80) {
-              return '#046262';
-            }
-              else{
-                return  '#884541';
-              };
-        }
-        else
-        {
-          return '#4e5e66';
-        }
+        else if(assessment.status == "assessment")
+          return $scope.percentBackgroundColor(assessment.percent_completed);
+        return "#4e5e66";
       }
-
-      function convertDate(inputFormat) {
-        var monthNames = [ "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December" ];
-        function pad(s) { return (s < 10) ? '0' + s : s; }
-        var d = new Date(inputFormat);
-        var month =  monthNames[d.getMonth()]
-        return [pad(d.getDate()+1), month, d.getFullYear()].join(' ');
-      }
-
-    }
+     $scope.percentBackgroundColor = function(percent) {
+       switch(true) {
+         case percent < 20:
+           return '#f7bcb9';
+         case percent  < 40:
+           return '#f29b95';
+         case percent < 60:
+           return '#ee7972';
+         case percent < 80:
+           return '#046262';
+         default:
+           return '#884541';
+       } 
+     }
+  }
 ]);
