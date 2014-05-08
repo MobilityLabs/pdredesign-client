@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
   s.add_dependency('rails-assets-select2-bootstrap3-css')
   s.add_dependency('rails-assets-angular-ui-select2')
 
-  s.add_dependency('rails-assets-bootstrap3-datetimepicker')
+  s.add_dependency('bootstrap3-datetimepicker-rails')
 
   s.add_development_dependency("jasmine")
   s.add_development_dependency('combustion')

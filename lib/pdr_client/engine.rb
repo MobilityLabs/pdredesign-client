@@ -21,7 +21,7 @@ module PdrClient
 
     require 'rails-assets-select2'
     require 'rails-assets-angular-ui-select2'
-    require 'rails-assets-bootstrap3-datetimepicker'
+    require 'bootstrap3-datetimepicker-rails'
 
     initializer "PDRClient.assets.precompile", :group => :all do |app|
       app.config.angular_templates.ignore_prefix = true
