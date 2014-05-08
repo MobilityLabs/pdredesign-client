@@ -21,6 +21,8 @@ PDRClient.controller('AssessmentAssignCtrl', [
 
       $scope.save = function(assessment) {
         $scope.saving = true;
+        assessment.due_date = moment($("#due-date").val()).toISOString();
+
         Assessment
           .save({ id: assessment.id }, assessment)
           .$promise
@@ -56,14 +58,16 @@ PDRClient.controller('AssessmentAssignCtrl', [
             $timeout(function() {
               $scope.participants = data
             }, 2900);
-          }, function(){
-            console.log("error")
+          }, function() {
+            $scope.error('Could not update participants list');
           });
 
         Participant.all({assessment_id: $scope.id}).$promise.then(function(data) {
             $timeout(function() {
               $scope.nonDistrictParticipants = data;
             }, 2900);
+        }, function() {
+            $scope.error('Could not update participants list');
         });
       }
 
@@ -83,6 +87,16 @@ PDRClient.controller('AssessmentAssignCtrl', [
         return moment(date).format("Do MMM YYYY");
       }
 
+      $timeout(function() {
+        $(function() {
+          $scope.datetime = $('.datetime').datetimepicker({
+            minuteStepping:15,
+            useSeconds: false,
+            icons: { time: "fa fa-clock-o", date: "fa fa-calendar",
+                     up: "fa fa-arrow-up", down: "fa fa-arrow-down" }
+          });
+        });
+      });
 
     }
 ]);

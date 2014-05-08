@@ -18,5 +18,6 @@
 //= require angular-bootstrap
 //= require select2
 //= require angular-rails-templates
+//= require bootstrap3-datetimepicker
 //= require_tree ./client/views
 //= require_tree ./client

@@ -39,7 +39,12 @@
               <div class="control-group">
                 <label for="assessment_Due Date">Due date</label>
                 <div class="input-group date datetime">
-                  <input class="form-control" ng-model="assessment.due_date" ng-attr-value="formattedDate(assessment.due_date)">
+                  <input 
+                    class="form-control" 
+                    ng-model="assessment.due_date" 
+                    data-format="dd/MM/yyyy hh:mm:ss" 
+                    id="due-date"
+                    name="due-date">
                   <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                 </div>
               </div>
@@ -144,7 +149,6 @@
 
                 <div class='form-group'>
                   <textarea ng-model="assessment.message" redactor></textarea>
-
                 </div>
 
                 <p class='hello'>Please complete this assessment by {{formattedDate(assessment.due_date)}}.</p>
