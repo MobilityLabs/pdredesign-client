@@ -1,7 +1,13 @@
-<user-header></user-header>
+<div class="row secondary top">
+  <div class="container">
+    <div class="col-md-9">
+      <h1>Hi </h1>
+      <p>These are the readiness assessments. Select an assessment or create a new one to proceed.</p>
+    </div>
+  </div>
+</div>
 
 <div class="container">
-<div class="row">
   <div class="col-md-9">
     <start-assessment></start-assessment>
     <div class='assessments' style="margin-top: 3em;">
@@ -42,13 +48,19 @@
             </div>
           </a>
           <div ng-repeat="link in assessment.links">
-            <assessmentlinks data-link="{{link}}"  data-title="{{link.title}}" data-active="{{link.active}}"  data-type="{{link.type}}" >
+            <assessmentlinks
+              data-link="{{link}}"
+              data-title="{{link.title}}"
+              data-active="{{link.active}}"
+              data-type="{{link.type}}"
+              data-id="{{assessment.id}}"
+              data-role="{{role}}">
             </assessmentlinks>
           </div>
         </div>
         <div class='row row-assessment-addon' style='margin-bottom:15px;'>
           <div class='col-md-1 col-sm-1' style='background-color: {{backGroundColor(assessment)}};'>
-            <avatar data-name="{{assessment.facilitator.full_name}}" data-avatar="{{assessment.facilitator.avatar}}" data-role="{{assessment.facilitator.team_role}}">
+            <avatar  data-imgclass="pull-left media-object img-circle" data-width="28" data-tooltip="true" data-name="{{assessment.facilitator.full_name}}" data-avatar="{{assessment.facilitator.avatar}}" data-role="{{assessment.facilitator.team_role}}">
             </avatar>
           </div>
           <div class='col-md-11 col-sm-11'>
@@ -56,7 +68,7 @@
               <div>
                 <p class="pull-left subheading-text">{{assessment.subheading.text}}</p>
                   <div ng-repeat="p in assessment.subheading.participants">
-                      <avatar data-name="{{p.full_name}}" data-avatar="{{p.avatar}}" data-role="{{p.team_role}}">
+                      <avatar data-tooltip="true" data-style="margin-right:6px;" data-name="{{p.full_name}}" data-avatar="{{p.avatar}}" data-role="{{p.team_role}}" data-width="28" data-toolplacement="bottom" data-imgclass="pull-left media-object img-circle">
                       </avatar>
                   </div>
               </div>
@@ -66,5 +78,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>

@@ -15,6 +15,8 @@ module PdrClient
     require 'rails-assets-angular-sanitize'
     require 'rails-assets-angular-ui-router'
     require 'rails-assets-momentjs'
+    require 'rails-assets-angular-redactor'
+    require 'redactor-rails'
 
     require 'rails-assets-select2'
     require 'rails-assets-angular-ui-select2'

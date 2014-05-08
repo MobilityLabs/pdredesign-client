@@ -13,6 +13,8 @@
 //= require angular-route
 //= require angular-ui-router
 //= require angular-ui-select2
+//= require redactor-rails
+//= require angular-redactor
 //= require select2
 //= require angular-rails-templates
 //= require_tree ./client/views

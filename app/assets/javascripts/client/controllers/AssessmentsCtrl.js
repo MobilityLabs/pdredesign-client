@@ -2,6 +2,8 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'Assessment
     function($scope, SessionService, Assessment) {
 
       $scope.assessments = Assessment.query();
+      $scope.currentUser = SessionService.getCurrentUser();
+      $scope.role        = "facilitator";
 
       $scope.roundNumber = function(number) {
           return Math.floor(number);
@@ -55,5 +57,4 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'Assessment
       }
 
     }
-
 ]);

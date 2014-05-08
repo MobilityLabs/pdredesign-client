@@ -11,7 +11,7 @@ describe('Controller: NavigationCtrl', function() {
 
   }));
 
-  xit('update template when $emit session_updated', inject(
+  it('update template when $emit session_updated', inject(
     function($rootScope) {
       spyOn(scope, 'updateTemplate');
 
@@ -21,5 +21,3 @@ describe('Controller: NavigationCtrl', function() {
   }));
 
 });
-
-

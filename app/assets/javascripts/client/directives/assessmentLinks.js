@@ -9,28 +9,46 @@ PDRClient.directive('assessmentlinks', [
           scope.active = attrs.active;
           scope.title = attrs.title;
           scope.type = attrs.type;
+          scope.id = attrs.id;
+          scope.role = attrs.role;
         },
         controller: ['$scope', '$rootScope', '$location', '$timeout',
           function($scope, $rootScope, $location, $timeout) {
             $scope.linkIcon = function(type){
-              switch (type) {
-                case 'dashboard':
-                  return  "dashboard";
+              icons = {
+                  "dashboard": "dashboard",
+                  "consensus": "group",
+                  "edit_report": "group",
+                  "show_report": "group",
+                  "finish": "pencil",
+                  "report": "file-text-o",
+              }
+              return icons[type];
+            };
 
-                case 'consensus':
-                case 'edit_report':
-                case 'show_report':
-                  return "group";
+            $scope.assessmentLink = function(type, role, active) {
+              if(typeof type === 'undefined' || typeof role === 'undefined' || active == "false")
+                return "#";
 
-                case 'finish':
-                  return "pencil";
-
-                case 'report':
-                  return "file-text-o";
-                default:
-                  return 'group';
+              routes = {
+                "facilitator": {
+                  "dashboard": "#/dashboard/" + $scope.id,
+                  "consensus": "group",
+                  "edit_report": "group",
+                  "show_report": "/reports",
+                  "finish": "#/assessments/" + $scope.id + "/assign",
+                  "report": "file-text-o",
+                },
+                "member": {
+                  "consensus": "group",
+                  "edit_report": "group",
+                  "show_report": "group",
+                  "finish": "pencil",
+                  "report": "file-text-o",
+                }
               }
 
+              return routes[role][type];
             }
 
             $scope.linkActive = function(link){

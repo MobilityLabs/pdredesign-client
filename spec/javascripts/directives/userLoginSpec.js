@@ -8,10 +8,12 @@ describe('Directive: userLogin', function() {
     element = angular.element('<user-login></user-login>');
     $compile(element)(scope);
     scope.$digest();
+
+
   }));
 
   describe('#authenticate', function() {
-    var session;
+
 
     beforeEach(inject(function(SessionService, $q) {
       session = SessionService;

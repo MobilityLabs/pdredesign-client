@@ -1,0 +1,42 @@
+<div class="modal fade" id="inviteUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3 class="modal-title" id="myModalLabel">Add New Participant</h3>
+      </div>
+      <div class="modal-body" id="modal-invite-participant">
+        <form  name="formInviteParticipant"  novalidate>
+          <div class='row'>
+            <div class='col-md-4 col-sm-4'>
+              <div class="form-group">
+                <input placeholder="First Name" type="text" class="form-control" ng-model="participant.participant.first_name" required>
+              </div>
+            </div>
+
+            <div class='col-md-8 col-sm-8'>
+              <div class="form-group">
+                <input placeholder="Last Name" type="text" class="form-control" ng-model="participant.participant.last_name" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input placeholder="Email Address" type="email" name="input" ng-model="participant.participant.email" class="form-control" required>
+            <span class="error" ng-show="formInviteParticipant.input.$error.email">Not valid email!</span>
+          </div>
+
+          <div class="form-group">
+            <input placeholder="Team Role (e.g. Finance, HR)" class="form-control" type="text" ng-model="participant.participant.team_role">
+          </div>
+
+          <div class="form-group">
+            <div class="btn btn-primary pull-left" ng-disabled="formInviteParticipant.$invalid" ng-click="createParticipant(participant.participant)" data-dismiss="modal">Add to My District</div>
+          </div>
+          <div class='clearfix'>
+          </div>
+        </form>
+      </div>
+  </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

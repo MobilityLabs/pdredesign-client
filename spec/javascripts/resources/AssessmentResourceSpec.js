@@ -18,4 +18,3 @@ describe('Resource: Assessment', function() {
 
 });
 
-

@@ -1,0 +1,165 @@
+<div class="assign_assessment">
+  <form class="simple-form">
+    <div class='row row-wizard'>
+        <div class='col-md-3'>
+          <p class='wizard-step'>Step <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-text fa-stack-1x">1</i></span></p>
+          <p class='wizard-instruction'> This is the name others will see for this assessment.</p>
+        </div>
+        <div class='col-md-9'>
+          <p class='greeting'>{{assessment.name}}</p>
+          <p class='byline' style='margin-bottom:20px'>organized by: {{assessment.user_name}}  on {{assessment.createad_at}}</p>
+
+          <div class='row row--0-settings'>
+            <div class='col-md-5 col-sm-5'>
+              <div class='control-group'>
+                <label for="assessment_name">Assessment Name</label>
+                <input class="form-control" ng-model="assessment.name" id="assessment_name" name="assessment[name]" type="text" value="{{assessment.name}}">
+              </div>
+            </div>
+
+            <div class='col-md-3 col-sm-3'>
+              <div class='control-group'>
+                <label for="assessment_Rubric">Rubric</label>
+                  <select class="form-control" id="assessment_rubric_id" name="assessment[rubric_id]"><option selected="selected" value="2">{{assessment.rubric.name}}</option></select>
+              </div>
+            </div>
+
+            <div class='col-md-3 col-sm-3'>
+              <div class="control-group">
+                <label for="assessment_Due Date">Due date</label>
+                <div class="input-group date datetime">
+                  <input class="form-control" id="assessment_due_date" name="assessment[due_date]" type="text" value="04/29/2014 04:19 PM">
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
+              </div>
+            </div>
+
+            <div class='col-md-1 col-sm-1' style='padding:0px'>
+              <div class='control-group'>
+                <label>&nbsp;</label>
+                 <div class='btn btn-primary form-control'>Update</div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class='row row-wizard'>
+      <div class='col-md-3'>
+        <p class='wizard-step'>Step <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-text fa-stack-1x">2</i></span></p>
+        <p class='wizard-instruction'> These are the individuals from your district who will receive an invite to participate in the assessment.</p>
+      </div>
+      <div class='col-md-9'>
+        <p class='section-header'>Participants</p>
+        <p class='section-subheader'>Assign this assessment to team members in your district.</p>
+
+        <div class='row row-participant-headers'>
+          <div class='col-md-1 col-sm-1'>&nbsp;</div>
+          <div class='col-md-3 col-sm-3'>Name</div>
+          <div class='col-md-3 col-sm-3'>Email Address</div>
+          <div class='col-md-1 col-sm-1'>Team Role</div>
+        </div>
+
+          <div ng-repeat="user in participants" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+            <div  ng-class="{removeParticipantAnimation: user.hide == 'yes' }" class='row row-participant'>
+              <div class='col-md-1 col-sm-1 '>
+                <avatar data-avatar="{{user.avatar}}" data-width="57">
+
+                </avatar>
+
+              </div>
+              <div class='col-md-3 col-sm-3' style="margin-left: -8px;">
+                <p class='name'>{{ user.full_name}}</p>
+              </div>
+              <div class='col-md-3 col-sm-3'>
+                <p class='info'>{{ user.email }}</p>
+              </div>
+              <div class='col-md-2 col-sm-2'>
+                <p class='info'>{{ user.team_role || "N/A" }}</p>
+              </div>
+              <div class='col-md-1 col-sm-1 text-center'>
+                <div class="btn btn-primary remove_user_button" ng-click="removeParticipant(user)">Remove</div>
+              </div>
+            </div>
+          </div>
+
+        <a data-target="#currentUsers" data-toggle="modal" href="">
+          <div class='row row-invite  add_participant_modal_row'>
+            <div class='col-md-1 col-sm-1'><div class='plus'><i class='fa fa-plus'></i></div></div>
+            <div class='col-md-11 col-sm-11'>Add Participant</div>
+          </div>
+        </a>
+        <a data-target="#inviteUser" data-toggle="modal" href="">
+          <div class='row row-invite'>
+            <div class='col-md-1 col-sm-1'><div class='plus'><i class='fa fa-envelope'></i></div></div>
+            <div class='col-md-11 col-sm-11'>Add New Participants</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class='row row-wizard'>
+      <div class='col-md-3'>
+        <p class='wizard-step'>Step <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-text fa-stack-1x">3</i></span></p>
+        <p class='wizard-instruction'> Each participant will receive an email invite. You can customize the email message here.</p>
+      </div>
+      <div class='col-md-9'>
+        <p class='section-header'>Invite Message</p>
+        <p class='section-subheader'>You can customize the message to all participants. This is the initial invite they'll receive. You can send additional reminders later.</p>
+
+        <div class='row' style='margin-left:0px'>
+          <div class='col-md-11 col-sm-11 message'>
+
+            <div class='row' style='margin-left:0px'>
+              <div class='col-md-10 col-sm-10'>
+                <p class='hello'>Hello (Participant Name),</p>
+
+                <div class='media'>
+                  <avatar data-imgclass="img-circle pull-left media-object"  data-width="54" data-avatar="https://pd-redesign-dev.s3.amazonaws.com/user/4/avatar/9453dcea4577ef14e893c5ea2ac73755_bigger.png">
+                  </avatar>
+
+                  <div class='media-body'>
+                    <p class='media-heading'>
+                      <span class='name'>{{assessment.user_name}}</span>
+                      has invited you to participate in {{assessment.name}}
+                    </p>
+                  </div>
+                </div>
+
+                <div class='form-group'>
+                  <textarea ng-model="content" redactor></textarea>
+
+                </div>
+
+                <p class='hello'>Please complete this assessment by {{assessment.due_date}}.</p>
+
+                <button class="btn btn-primary" name="commit" type="submit" id='assign_assessment'><i class='fa fa-envelope-o' style="color: white;"></i> Send</button>
+
+                <button class="btn" name="commit" type="submit" style='margin-left:10px'><i class='fa fa-save'></i> Save</button>
+
+                <script>
+                  $('#assign_assessment').click(function(e){
+                    e.preventDefault();
+                    if (confirm("Are you sure you want to send out the assessment and invite all your participants?")) {
+                      var time = new Date((new Date()).getTime());
+                      var $assigned = $('<input id="assessment_assigned_at" name="assessment[assigned_at]" type="hidden">').val(time);
+                      $('#edit_assessment_<%= @assessment.id %>').append($assigned);
+                      $('#edit_assessment_<%= @assessment.id %>')[0].submit();
+                    }
+                  });
+                </script>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+
+<ng-include src="'client/views/assessments/participant_modal.html'">
+</ng-include>
+
+<ng-include src="'client/views/assessments/invite_participant_modal.html'">
+</ng-include>

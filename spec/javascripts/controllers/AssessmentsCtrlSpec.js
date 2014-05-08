@@ -19,7 +19,7 @@ describe('Controller: AssessmentsCtrl', function() {
       .respond(data);
   }
 
-it('resource loads query', inject(
+  it('resource loads query', inject(
     function($rootScope) {
       // Json backend tested.
 
