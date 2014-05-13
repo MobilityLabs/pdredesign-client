@@ -18,6 +18,7 @@ module PdrClient
     require 'rails-assets-angular-redactor'
     require 'redactor-rails'
     require 'rails-assets-angular-bootstrap'
+    require 'rails-assets-angular-moment'
 
     require 'rails-assets-select2'
     require 'rails-assets-angular-ui-select2'

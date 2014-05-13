@@ -3,16 +3,16 @@
           <i class="fa fa-info-circle"></i> Why Readiness Assessment?
         </p>
 
-        <p class="sidebar-text modal-text">
+        <p data-toggle="modal" class="sidebar-text modal-text" data-target="#overview">
         <a href="#">Learn more about PD Redesign</a>
         process and how this Readiness Assessment fits into the larger picture.
         </p>
 
-        <ng-include src="'client/views/sidebar/facilitator_pdf.html'" ng-hide="role == member"></ng-include> 
+        <ng-include src="'client/views/sidebar/facilitator_pdf.html'" ng-hide="role == member"></ng-include>
       </div>
 
 <!-- Modal -->
-<div class="modal fade" id="overview" tabindex="-1" role="dialog" aria-labelledby="overview-title" aria-hidden="true">
+<div class="modal fade" id="overview" tabindex="-1" role="dialog" aria-labelledby="overview-title" aria-hidden="true" data-backdrop="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -54,18 +54,3 @@
   </div>
 </div>
 
-<script>
-  $(document).ready(function(){
-    setupModal();
-  });
-
-  function setupModal() {
-    $('#overview').on('hide.bs.modal', function(){
-      $('.modal-backdrop').remove();
-    });
-
-    $('.modal-text').on('click', function() {
-      $('#overview').modal({ backdrop: false });
-    });
-  }
-</script>

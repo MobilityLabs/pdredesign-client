@@ -1,0 +1,120 @@
+<div class='row-bg row-header' style="margin-top: -2em;">
+  <div class='container'>
+    <div class='row'>
+      <div class="col-md-9">
+        <p class="greeting">{{currentUser.first_name}}</p>
+        <p class="byline" style="">organized by: <a href="#">{{assessment.facilitator.full_name}} </a> 
+        on {{assessment.created_at | amDateFormat:'MMMM Do, YYYY'}}</p>
+
+        <p id="report-header">
+          {{assessment.overview.text}} {{assessment.overview.link}}
+        </p>
+
+        <div id="report" class="row">
+
+          <div id="strengths" class="col-md-4 col-sm-4" style="background-color:#163f1e">
+            <p class="title">Strengths</p>
+            <p class="area" ng-repeat="strength in assessment.strengths">{{strength}}</p>
+          </div>
+
+          <div id="limits" class="col-md-4 col-sm-4" style="background-color:#e38a25">
+            <p class="title">Limitations</p>
+            <p class="area" ng-repeat="limitation in assessment.limitations">{{limitation}}</p>
+          </div>
+
+          <div id="profile" class="col-md-4 col-sm-4">
+            <p class="title">
+              Readiness Assessment Profile
+              <a 
+                data-toggle="popover" 
+                data-placement="right"
+                data-container="body" 
+                data-html="true" 
+                data-trigger="hover" 
+                data-title="Chart Legend" 
+                data-content='<p><b>TE:</b> Teacher Engagement<br><b>PP:</b> PD Process<br><b>LC:</b> Leadership Capacity<br><b>RO:</b> Resource Optimization<br><b>SP:</b> Supportive Policies<br><b>DI:</b> Delivery Infrastructure<br><b>DTI:</b> Data Infrastructure<br><b>HQ:</b> High Quality Content and Tools<br></p>'
+                style="color:#7a7e7f" 
+                title="">
+                  <i class="fa fa-info-circle"></i>
+                </a>
+            </p>
+
+            <div>
+              <canvas id="assessment_radar_graph" data-type="Radar" width="175" height="175" style="width: 175px; height: 175px;"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row-bg row-body'>
+  <div class='container'>
+    <div class='row' style='margin:0px'>
+      <div class='col-md-9'>
+        <div id='participants'>
+          <div class='row'>
+            <p class='header'><span class='stat'>{{assessment.participant_count}} </span> Participants </p>
+              <div class='col-md-6 col-sm-6' ng-repeat="user in assessment.participants">
+                <div class='row row-participant' >
+                  <div class='col-md-2 col-sm-2 col-xs-2'>
+                    <avatar data-avatar="{{user.avatar}}"  data-width="100%" ></avatar>
+                  </div>
+                  <div class='col-md-6 col-sm-6 col-xs-6'>
+                    <p class='name'>{{user.full_name}}</p>
+                  </div>
+                  <div class='col-md-4 col-sm-4 col-xs-4'>
+                    <div class='status'>
+                      {{user.status_human}}
+                      <p class="date">{{user.status_date | amDateFormat:'MMMM Do, YYYY'}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a data-target="#currentUsers" data-toggle="modal" href="">
+                <div class="col-md-6 col-sm-6">
+                  <div class="row row-participant-action">
+                      <div class="col-md-2 col-sm-2 col-xs-2">
+                        <i class="fa fa-plus"></i>
+                      </div>
+                      <div class="col-md-10 col-sm-10 col-xs-10">
+                        Add New Participant
+                      </div>
+                  </div>
+                </div>
+              </a>
+          </div>
+        </div>
+        <div id='messages' ng-show="assessment.messages">
+          <p class='header'><span class='stat'>{{assessment.messages.length}}</span> Sent Messages</p>
+
+          <div ng-repeat="message in assessment.messages">
+            <div class='row'>
+              <div class="col-md-12 col-sm-12">
+                <div class="row row-message">
+                  <a href="">
+                    <div class="col-md-1 col-sm-1 col-xs-2">
+                      <i class="fa {{messageIcon(message.category)}}"></i>
+                    </div>
+                    <div class="col-md-11 col-sm-11 col-xs-10" style="padding-left: 0.6em">
+                      <h4 class="subject">
+                        {{messageTitle(message.category)}}
+                        <small class="date">- {{message.sent_at| amDateFormat:'MMMM Do, YYYY'}}</small>
+                      </h4>
+                      <p class="content">{{message.teaser}}</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-include src="'client/views/assessments/assign/participant_modal.html'">
+</ng-include>

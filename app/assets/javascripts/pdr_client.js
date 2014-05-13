@@ -5,9 +5,10 @@
 //= require bootstrap/alert
 //= require bootstrap/tooltip
 //= require bootstrap/modal
-
-//= require momentjs
+//= require bootstrap/popover
+//= require chart.min
 //= require angular
+//= require moment
 //= require angular-resource
 //= require angular-sanitize
 //= require angular-route
@@ -16,6 +17,7 @@
 //= require redactor-rails
 //= require angular-redactor
 //= require angular-bootstrap
+//= require angular-moment
 //= require select2
 //= require angular-rails-templates
 //= require bootstrap-datetimepicker

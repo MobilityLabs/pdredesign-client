@@ -16,7 +16,7 @@
             <div ng-repeat="user in nonDistrictParticipants ">
               <div ng-class="{addParticipantAnimation: user.hide == 'yes' }" class='row row-participant-add'>
                 <div class='col-md-1 col-sm-1'>
-                  <img alt="fgsdgf gdasdf" class="img-polaroid pull-right" src="{{user.avatar}}" width="47"></div>
+                  <img alt="" class="img-polaroid pull-right" ng-src="{{user.avatar}}" width="47"></div>
                 <div class='col-md-4 col-sm-4'>
                   <p class='name'>{{user.full_name}}</p>
                 </div>

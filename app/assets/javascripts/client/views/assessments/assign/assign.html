@@ -25,9 +25,9 @@
               <div class='control-group'>
                 <label for="assessment_Rubric">Rubric</label>
                   <select class="form-control" ng-model="assessment.rubric_id">
-                    <option 
-                      ng-repeat="rubric in rubrics" 
-                      value="{{rubric.id}}" 
+                    <option
+                      ng-repeat="rubric in rubrics"
+                      value="{{rubric.id}}"
                       ng-attr-selected="rubric.id == assessment.rubric_id">
                         {{rubric.name}} v{{rubric.version}}
                     </option>
@@ -131,9 +131,9 @@
 
                 <div class='media'>
                  <avatar
-                    data-imgclass="pull-left media-object img-circle" 
-                    data-width="57" 
-                    data-has-tooltip="true" 
+                    data-imgclass="pull-left media-object img-circle"
+                    data-width="57"
+                    data-has-tooltip="true"
                     data-name="{{assessment.facilitator.full_name}}"
                     data-avatar="{{assessment.facilitator.avatar}}"
                     data-role="{{assessment.facilitator.team_role}}">
@@ -182,8 +182,8 @@
     </div>
 </div>
 
-<ng-include src="'client/views/assessments/participant_modal.html'">
+<ng-include src="'client/views/assessments/assign/participant_modal.html'">
 </ng-include>
 
-<ng-include src="'client/views/assessments/invite_participant_modal.html'">
+<ng-include src="'client/views/assessments/assign/invite_participant_modal.html'">
 </ng-include>

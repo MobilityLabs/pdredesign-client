@@ -4,6 +4,7 @@ PDRClient = angular.module("PDRClient", [
   'ngSanitize',
   'templates',
   'angular-redactor',
+  'angularMoment',
   'ui.router',
   'ui.bootstrap',
   'ui.select2']);
@@ -76,12 +77,25 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
         }
       }
    })
+    .state('assessment_dashboard', {
+      url: '/assessments/:id/dashboard',
+      views: {
+        '': {
+          controller: 'AssessmentDashboardCtrl',
+          templateUrl: 'client/views/assessments/dashboard.html'
+        },
+        'sidebar': {
+          controller: 'SidebarCtrl',
+          templateUrl: 'client/views/sidebar/assessment_dashboard.html'
+        }
+      }
+    })
     .state('assessment_assign', {
       url: '/assessments/:id/assign',
       views: {
         '': {
           controller: 'AssessmentAssignCtrl',
-          templateUrl: 'client/views/assessments/assign.html'
+          templateUrl: 'client/views/assessments/assign/assign.html'
         }
       }
     })

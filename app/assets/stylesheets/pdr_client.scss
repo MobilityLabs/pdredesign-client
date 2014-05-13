@@ -7,6 +7,7 @@
 @import 'partials/sidebar';
 @import 'partials/home';
 @import 'partials/tooltip';
+@import 'partials/assessment_dashboard';
 @import 'directives/start-assessment';
 @import 'bootstrap';
 @import 'font-awesome.css';
@@ -20,3 +21,4 @@
 @import 'select2';
 @import 'pages/assessments';
 @import 'pages/assessment_assign';
+@import 'pages/assessment_dashboard';

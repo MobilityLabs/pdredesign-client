@@ -32,7 +32,7 @@ PDRClient.directive('assessmentlinks', [
 
               routes = {
                 "facilitator": {
-                  "dashboard": "#/dashboard/" + $scope.id,
+                  "dashboard": "#/assessments/" + $scope.id + "/dashboard",
                   "consensus": "group",
                   "edit_report": "group",
                   "show_report": "/reports",
