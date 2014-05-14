@@ -3,15 +3,13 @@
     <div class='row'>
       <div class="col-md-9">
         <p class="greeting">{{currentUser.first_name}}</p>
-        <p class="byline" style="">organized by: <a href="#">{{assessment.facilitator.full_name}} </a> 
+        <p class="byline" style="">organized by: <a href="#">{{assessment.facilitator.full_name}} </a>
         on {{assessment.created_at | amDateFormat:'MMMM Do, YYYY'}}</p>
 
         <p id="report-header">
           {{assessment.overview.text}} {{assessment.overview.link}}
         </p>
-
         <div id="report" class="row">
-
           <div id="strengths" class="col-md-4 col-sm-4" style="background-color:#163f1e">
             <p class="title">Strengths</p>
             <p class="area" ng-repeat="strength in assessment.strengths">{{strength}}</p>
@@ -25,15 +23,15 @@
           <div id="profile" class="col-md-4 col-sm-4">
             <p class="title">
               Readiness Assessment Profile
-              <a 
-                data-toggle="popover" 
+              <a
+                data-toggle="popover"
                 data-placement="right"
-                data-container="body" 
-                data-html="true" 
-                data-trigger="hover" 
-                data-title="Chart Legend" 
+                data-container="body"
+                data-html="true"
+                data-trigger="hover"
+                data-title="Chart Legend"
                 data-content='<p><b>TE:</b> Teacher Engagement<br><b>PP:</b> PD Process<br><b>LC:</b> Leadership Capacity<br><b>RO:</b> Resource Optimization<br><b>SP:</b> Supportive Policies<br><b>DI:</b> Delivery Infrastructure<br><b>DTI:</b> Data Infrastructure<br><b>HQ:</b> High Quality Content and Tools<br></p>'
-                style="color:#7a7e7f" 
+                style="color:#7a7e7f"
                 title="">
                   <i class="fa fa-info-circle"></i>
                 </a>
@@ -65,8 +63,8 @@
                     <p class='name'>{{user.full_name}}</p>
                   </div>
                   <div class='col-md-4 col-sm-4 col-xs-4'>
-                    <div class='status'>
-                      {{user.status_human}}
+                    <div class='status' style="color: #515c5e;">
+                      <i style="color: #515c5e; margin-right: 0.2em; margin-bottom: 0.3em;" class="fa fa-fa {{statusMessageIcon(user.status)}}"></i>{{user.status_human}}
                       <p class="date">{{user.status_date | amDateFormat:'MMMM Do, YYYY'}}</p>
                     </div>
                   </div>
@@ -106,6 +104,7 @@
                     </div>
                   </a>
                 </div>
+
               </div>
             </div>
 

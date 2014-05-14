@@ -8,7 +8,7 @@ PDRClient.controller('AssessmentDashboardCtrl', ['$scope', '$timeout', 'SessionS
         .get({id: $scope.id})
         .$promise
         .then(function(data){
-          $scope.assessment = data; 
+          $scope.assessment = data;
           var averages = [];
           var labels   = [];
 
@@ -91,6 +91,19 @@ PDRClient.controller('AssessmentDashboardCtrl', ['$scope', '$timeout', 'SessionS
             return 'fa-envelope-o';
           case 'reminder':
             return 'fa-clock-o';
+          default:
+            return 'fa-envelope-o';
+        }
+      }
+
+      $scope.statusMessageIcon = function(status) {
+        switch(status) {
+          case 'invited':
+            return 'fa-envelope-o';
+          case 'completed':
+            return 'fa-check';
+          case 'in_progress':
+            return 'fa-spinner';
           default:
             return 'fa-envelope-o';
         }
