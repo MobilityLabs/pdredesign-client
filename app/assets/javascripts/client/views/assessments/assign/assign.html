@@ -24,13 +24,7 @@
             <div class='col-md-3 col-sm-3'>
               <div class='control-group'>
                 <label for="assessment_Rubric">Rubric</label>
-                  <select class="form-control" ng-model="assessment.rubric_id">
-                    <option
-                      ng-repeat="rubric in rubrics"
-                      value="{{rubric.id}}"
-                      ng-attr-selected="rubric.id == assessment.rubric_id">
-                        {{rubric.name}} v{{rubric.version}}
-                    </option>
+                  <select class="form-control" ng-model="assessment.rubric_id" ng-options="rubric.name for rubric in rubrics">
                   </select>
               </div>
             </div>

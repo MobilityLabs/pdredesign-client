@@ -1,12 +1,59 @@
-<div class="row start-assessment">
-    <a href="#">
-      <div class="col-md-1">
-        <i class="fa fa-plus"></i>
+<div>
+  <div class="row start-assessment">
+      <a href="" data-toggle="modal" data-target="#startAssessment">
+        <div class="col-md-1">
+          <i class="fa fa-plus"></i>
+        </div>
+        <div class="col-md-11 heading">
+          <h1>
+            Start a New Assessment
+          </h1>
+        </div>
+      </a>
+  </div>
+  <div class="modal fade" id="startAssessment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Create New Assessment</h4>
+        </div>
+        <div class="modal-body">
+          <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+          <form>
+            <div class="row">
+              <div class="col-md-12">
+                <input class="form-control" type="text" ng-model="assessment.name" placeholder="Name*" required>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <select class="form-control" ng-model="assessment.rubric_id" ng-options="rubric.name for rubric in rubrics" required>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group date datetime">
+                  <input 
+                    type="text"
+                    placeholder="Due Date*"
+                    class="form-control" 
+                    ng-model="assessment.due_date" 
+                    data-format="dd/MM/yyyy hh:mm:ss" 
+                    id="due-date"
+                    name="due-date">
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input  type="submit" class="btn btn-primary" value="Create" ng-click="create(assessment)">
+        </div>
+      </form>
       </div>
-      <div class="col-md-11 heading">
-        <h1>
-          Start a New Assessment
-        </h1>
-      </div>
-    </a>
+    </div>
+  </div>
 </div>

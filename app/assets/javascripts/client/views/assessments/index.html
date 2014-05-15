@@ -1,6 +1,6 @@
-<div class="row secondary top">
+<div class="row secondary top user-header">
   <div class="container">
-    <div class="col-md-9">
+    <div class="col-md-9 body">
       <h1>Hi {{user.first_name}}</h1>
       <p>These are the readiness assessments. Select an assessment or create a new one to proceed.</p>
     </div>
@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-md-9">
       <start-assessment></start-assessment>
-      <div class='assessments' style="margin-top: 3em;">
+      <div class='assessments'>
         <div ng-repeat="assessment in assessments">
           <div class='row row-assessment'>
             <div class='col-md-1 col-sm-1' style='background-color: {{backgroundColor(assessment)}};'>
