@@ -9,6 +9,7 @@ PDRClient.directive('districtSelect', ['SessionService', 'UrlService', '$timeout
         },
         templateUrl: 'client/views/directives/district_select.html',
         link: function(scope, elm, attrs) {
+
           scope.facilitatorSelector = {
             allowClear: true,
             multiple: true,
