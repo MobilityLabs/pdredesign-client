@@ -146,27 +146,15 @@
                 </div>
 
                 <p class='hello'>Please complete this assessment by {{formattedDate(assessment.due_date)}}.</p>
-
-                <button class="btn btn-primary" name="commit" type="submit" id='assign_assessment'><i class='fa fa-envelope-o' style="color: white;"></i> Send</button>
-
+                <button class="btn btn-primary" name="commit" type="submit" id='assign_assessment' ng-click='assignAndSave(assessment)'>
+                  <i class='fa fa-spinner fa-spin' ng-show="saving"></i>
+                  <i class='fa fa-envelope-o' style="color: white;"></i> Send
+                </button>
                 <button class="btn" name="commit" type="submit" style='margin-left:10px' ng-click='save(assessment)'>
                   <i class='fa fa-spinner fa-spin' ng-show="saving"></i>
                   <i class='fa fa-save'></i> Save
                 </button>
-
-                <script>
-                  $('#assign_assessment').click(function(e){
-                    e.preventDefault();
-                    if (confirm("Are you sure you want to send out the assessment and invite all your participants?")) {
-                      var time = new Date((new Date()).getTime());
-                      var $assigned = $('<input id="assessment_assigned_at" name="assessment[assigned_at]" type="hidden">').val(time);
-                      $('#edit_assessment_<%= @assessment.id %>').append($assigned);
-                      $('#edit_assessment_<%= @assessment.id %>')[0].submit();
-                    }
-                  });
-                </script>
-
-              </div>
+             </div>
             </div>
 
           </div>

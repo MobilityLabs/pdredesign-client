@@ -17,9 +17,17 @@ PDRClient.controller('AssessmentAssignCtrl', [
 
       $scope.alerts = [];
 
-      $scope.save = function(assessment) {
+      $scope.assignAndSave = function(assessment) {
+        if (confirm("Are you sure you want to send out the assessment and invite all your participants?")) {
+          $scope.save(assessment, true);
+        }
+      };
+
+      $scope.save = function(assessment, assign) {
         $scope.saving = true;
         assessment.due_date = moment($("#due-date").val()).toISOString();
+
+        if(assign) assessment.assign = true;
 
         Assessment
           .save({ id: assessment.id }, assessment)

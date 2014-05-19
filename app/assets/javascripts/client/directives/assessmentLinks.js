@@ -7,10 +7,10 @@ PDRClient.directive('assessmentlinks', [
         templateUrl: 'client/views/directives/assessment_index_links.html',
         link: function(scope, elm, attrs) {
           scope.active = attrs.active;
-          scope.title = attrs.title;
-          scope.type = attrs.type;
-          scope.id = attrs.id;
-          scope.role = attrs.role;
+          scope.title  = attrs.title;
+          scope.type   = attrs.type;
+          scope.role   = attrs.role;
+          scope.id     = attrs.id;
         },
         controller: ['$scope', '$rootScope', '$location', '$timeout',
           function($scope, $rootScope, $location, $timeout) {
@@ -52,7 +52,6 @@ PDRClient.directive('assessmentlinks', [
             }
 
             $scope.linkActive = function(link){
-
                 if (link == "true") {
                   return "active";
                 }
