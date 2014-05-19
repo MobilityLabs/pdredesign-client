@@ -1,60 +1,34 @@
-<div class="row" ng-show="visible">
-  <div class="sidebar">
-    <div class="user">
-      <div class="col-md-3">
-        <span class="avatar">
-          <img ng-src="{{avatar}}">
-        </span>
-      </div>
+<div class="sidebar">
 
-      <div class="col-md-6">
-        <div class="information">
-          <p id="name">
-          {{name}}
-        </span>
-        <p id="role">
-        {{role}}
-      </span>
-    </div>
-  </div>
+  <div id="assessment_dashboard_consensus_sidebar" ng-controller="AssessmentDashboardSidebarCtrl">
+    <div class='consensus'>
+      <p class='header'>Consensus Meeting for
 
-  <div class="row">
-    <div class="col-md-12">
-      <ul class="links">
-        <li>
-        <a href="#/settings">Edit profile</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div id="assessment_dashboard_consensus_sidebar" ng-controller="AssessmentDashboardSidebarCtrl">
-  <div class='consensus'>
-    <p class='header'>Consensus Meeting for
-
-    </p>
-    <div class='outer'>
-      <div class='inner'>
+      </p>
+      <div class='outer'>
+        <div class='inner'>
           <p class='day'>{{meetingDayName(assessment.meeting_date)}}</p>
-          <p class='date'>{{meetingDayNumber(assessment.meeting_date)}}</p>
+          <p class='date' ng-show="assessment.meeting_date">{{meetingDayNumber(assessment.meeting_date)}}</p>
+          <p class='date' ng-hide="assessment.meeting_date">?</p>
           <p class='month'>{{meetingMonthName(assessment.meeting_date)}}</p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="links">
-    <a  class="active" href="/assessments/36">Dashboard</a>
+    <div class="links">
+      <a  class="active" href="/assessments/36">Dashboard</a>
       <a data-target="#createConsensus" data-toggle="modal" href="">Create Consensus</a>
-        <a data-target="#modifySchedule" data-toggle="modal" href="">Modify Schedule</a>
-        <a data-target="#newReminder" data-toggle="modal" href="">Send Reminder</a>
+      <a data-target="#modifySchedule" data-toggle="modal" href="">Modify Schedule</a>
+      <a data-target="#newReminder" data-toggle="modal" href="">Send Reminder</a>
+    </div>
   </div>
+
+
+
+  <div class="content">
+    <ng-include src="'client/views/sidebar/why_pd_redesign.html'"></ng-include>
+  </div>
+
+  <ng-include src="'client/views/assessments/dashboard/consensus_modal.html'"></ng-include>
+  <ng-include src="'client/views/assessments/dashboard/new_reminder_modal.html'"></ng-include>
+  <ng-include src="'client/views/assessments/dashboard/modify_schedule_modal.html'"></ng-include>
 </div>
-
-
-
-<div class="content">
-  <ng-include src="'client/views/sidebar/why_pd_redesign.html'"></ng-include>
-</div>
-
-<ng-include src="'client/views/assessments/dashboard/consensus_modal.html'"></ng-include>
-<ng-include src="'client/views/assessments/dashboard/new_reminder_modal.html'"></ng-include>
-<ng-include src="'client/views/assessments/dashboard/modify_schedule_modal.html'"></ng-include>
