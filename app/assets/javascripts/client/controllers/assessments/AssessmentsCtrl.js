@@ -5,6 +5,17 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'Assessment
       $scope.user        = SessionService.getCurrentUser();
       $scope.role        = $scope.user.role;
 
+
+      $scope.determineConsensusReportIcon = function(assessment) {
+        if (assessment.links['report']['active'] == true) {
+          return 'fa-check';
+        }
+        else {
+          return 'fa-spinner';
+        }
+
+      }
+
       $scope.roundNumber = function(number) {
         return Math.floor(number);
       }

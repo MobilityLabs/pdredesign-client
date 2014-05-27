@@ -16,10 +16,8 @@
           <div class='row row-assessment'>
             <div class='col-md-1 col-sm-1' style='background-color: {{backgroundColor(assessment)}};'>
               <p class='assessment-type'>{{assessment.status}}</p>
-              <p class="assessment-stat"><i style="line-height: 0.9em; color: white; font-size: 1em" class="fa fa-spinner" ng-if="assessment.status ==
-                'consensus'  && assessment.links['report']['active'] == false  "></i></p>
-              <p class="assessment-stat"><i style="line-height: 0.9em; color: white; font-size: 1em" class="fa fa-check" ng-if="assessment.status ==
-                'consensus' && assessment.links['report']['active'] == true "></i></p>
+              <p class="assessment-stat"><i style="line-height: 0.9em; color: white; font-size: 1em" class="fa {{determineConsensusReportIcon(assessment)}}" ng-if="assessment.status ==
+                'consensus' "></i></p>
               <p class="assessment-stat" ng-if="assessment.status ==
               'assessment' ">{{roundNumber(assessment.percent_completed)}}%</p>
               <p class="assessment-stat" ng-if="assessment.status ==
