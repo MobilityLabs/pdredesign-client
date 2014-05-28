@@ -6,7 +6,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'Assessment
       $scope.role        = $scope.user.role;
 
 
-      $scope.determineConsensusReportIcon = function(assessment) {
+      $scope.consensusReportIcon = function(assessment) {
         if (assessment.links['report']['active'] == true) {
           return 'fa-check';
         }
