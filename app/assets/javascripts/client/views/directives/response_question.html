@@ -1,0 +1,78 @@
+<div class="categories" >
+  <div class="category" ng-repeat="category in categories">
+    <div class="row">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="category-label">{{category.name}}</p>
+        </div>
+        <div class="row question-container question-{{question.id}}" ng-repeat="question in category.questions">
+
+          <div class="col-md-12 question-row" ng-click="toggleAnswers(question)">
+            <div class="col-md-1 question">
+              <p class="question-id scored-{{question.score.value}}" ng-show="question.loading">
+                <i class="fa fa-spinner fa-spin"></i>
+              </p>
+              <p class="question-id scored-{{question.score.value}}" ng-hide="question.loading">
+                <a href="#question-{{question.id}}"></a>
+                {{question.number}}
+              </p>
+            </div>
+            <div class="row question-content">
+              <div class="col-md-11">
+                <p class="question">{{question.headline}}</p>
+              </div>
+              <div class="col-md-11">
+                <p class="content">{{question.content}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-11 answers" ng-show="question.answersVisible">
+            <div class="answer" ng-repeat="answer in question.answers" ng-click="assignAnswerToQuestion(answer, question)">
+              <div class="col-md-12 answer-row valueColor-{{answer.value}}" ng-class="{scored{{answer.value}}: question.score.value == answer.value}">
+                <div class="answer-info-row">
+                  <div class="col-md-1 scored-{{answer.value}} answer-value">
+                    <span>{{answer.value}}</span>
+                  </div>
+                  <div class="col-md-3 answer-title title-{{answer.value}}">
+                    {{answerTitle(answer.value)}}
+                  </div>
+                  <div class="col-md-8 answer-description">
+                    {{answer.content}}
+                  </div>
+                </div>
+                <div class="row score-evidence" ng-show="question.score.value == answer.value">
+                  <div class="col-md-9">
+                    <div ng-hide="question.score.editMode">
+                      <textarea redactor ng-model="question.score.evidence"></textarea>
+                      <div class="save-holder">
+                        <button class='btn btn-primary'
+                          ng-click="saveEvidence(question.score)">
+                          <i class='fa fa-save'></i>SAVE
+                        </button>
+                      </div>
+                    </div>
+                    <div ng-show="question.score.editMode ">
+                      <div class="evidence-read">
+                        <div ng-bind-html="question.score.evidence"></div>
+                        <div class="edit-holder">
+
+                          <button class='btn btn-primary edit-button'
+                            ng-click="editAnswer(question.score)">
+                            <i class='fa fa-save'></i>Edit
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="sidebar">
+    <div id='response-sidebar' data-spy="affix" data-offset-top="40" data-offset-bottom="200">
+      <div class='punchcard'>
+        <p class="sidebar-title" style='padding-left:15px'>
+          Saved Answers
+          <span class='score-count'>
+            ({{answeredQuestions()}}/{{questions.length}})
+          </span>
+        </p>
+        <div class='card'>
+          <span>
+            <a href="" ng-click="scrollTo(question.id)" ng-repeat="question in questions" >
+              <span class="fa-stack fa-md">
+                <i class="fa fa-circle fa-stack-2x scored-{{question.score.value}}"></i>
+                <i class="fa fa-text fa-stack-1x fa-inverse">{{$index+1}}</i>
+              </span>
+            </a>
+          </span>
+        </div>
+      </div>
+      <div class="content">
+        <ng-include src="'client/views/sidebar/minimal.html'"></ng-include>
+      </div>
+    </div>
+  </div>
+</div>
+

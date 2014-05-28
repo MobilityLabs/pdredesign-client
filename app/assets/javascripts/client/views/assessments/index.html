@@ -23,7 +23,7 @@
               <p class="assessment-stat" ng-if="assessment.status ==
               'draft' ">N/A</p>
             </div>
-            <a class="disabled" id="row-link">
+            <a class="{{responseLinkDisabled(assessment)}}" href="{{responseLink(assessment)}}" id="row-link">
               <div class='col-md-9 col-sm-9'>
                 <p class='assessment-name'>{{assessment.name}}</p>
                 <div class='row'>
@@ -61,7 +61,13 @@
           </div>
           <div class='row row-assessment-addon' style='margin-bottom:15px;'>
             <div class='col-md-1 col-sm-1' style='background-color: {{backgroundColor(assessment)}};'>
-              <avatar  data-imgclass="pull-left media-object img-circle" data-width="28" data-has-tooltip="true" data-name="{{assessment.facilitator.full_name}}" data-avatar="{{assessment.facilitator.avatar}}" data-role="{{assessment.facilitator.team_role}}">
+              <avatar 
+                data-imgclass="pull-left media-object img-circle" 
+                data-width="28" 
+                data-has-tooltip="true" 
+                data-name="{{assessment.facilitator.full_name}}" 
+                data-avatar="{{assessment.facilitator.avatar}}" 
+                data-role="{{assessment.facilitator.team_role}}">
               </avatar>
             </div>
             <div class='col-md-11 col-sm-11'>
@@ -69,7 +75,15 @@
                 <div>
                   <p class="pull-left subheading-text">{{assessment.subheading.text}}</p>
                   <div ng-repeat="p in assessment.subheading.participants">
-                    <avatar data-has-tooltip="true" data-style="margin-right:6px;" data-name="{{p.full_name}}" data-avatar="{{p.avatar}}" data-role="{{p.team_role}}" data-width="28" data-toolplacement="bottom" data-imgclass="pull-left media-object img-circle">
+                    <avatar 
+                      data-has-tooltip="true" 
+                      data-style="margin-right:6px;" 
+                      data-name="{{p.full_name}}" 
+                      data-avatar="{{p.avatar}}"
+                      data-role="{{p.team_role}}" 
+                      data-width="28" 
+                      data-toolplacement="bottom" 
+                      data-imgclass="pull-left media-object img-circle">
                     </avatar>
                   </div>
                 </div>

@@ -6,6 +6,7 @@
 //= require bootstrap/tooltip
 //= require bootstrap/modal
 //= require bootstrap/popover
+//= require bootstrap/affix
 //= require chart.min
 //= require angular
 //= require moment

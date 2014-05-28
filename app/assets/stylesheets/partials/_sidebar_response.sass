@@ -1,0 +1,60 @@
+$unscored:  #b3b3b3
+$scored1:   #e38a25
+$scored2:   #6a9539
+$scored3:   #2d7f3d
+$scored4:   #163f1e
+
+.sidebar
+  #response-sidebar
+    height: 100%
+    box-shadow: 0px 0px 10px #A09f98
+
+    .affix
+      top: 0
+      width: 18em
+
+    .punchcard
+      max-width: 100%
+      background-color: whitesmoke
+      border-top: 2px solid #d3d3cb
+      border-bottom: 2px solid #d3d3cb
+      z-index: 2
+      .card
+        padding: 0px 11px 20px
+        .fa-stack
+          margin: 2px
+        .fa-circle
+          color: $unscored
+          font-size: 2.1em
+        .fa-text
+          font-family: "Yanone Kaffeesatz", sans-serif, Helvetica, Arial
+          font-weight: bold
+          font-size: 18px
+        .fa
+          &.scored-1
+            color: $scored1
+            background-color: transparent
+          &.scored-2
+            color: $scored2
+            background-color: transparent
+          &.scored-3
+            color: $scored3
+            background-color: transparent
+          &.scored-4
+            color: $scored4
+            background-color: transparent
+
+
+      .btn
+        border-radius: 0px
+        margin: 0px
+    .padded
+      padding-top: 15px
+    .sidebar-title
+      margin-top: 20px
+      font-size: 20px
+      font-weight: bold
+      color: #4b616f
+      .score-count
+        color: #4b616f
+        font-weight: lighter

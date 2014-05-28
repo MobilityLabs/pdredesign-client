@@ -112,6 +112,19 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
         }
       }
     })
+    .state('response_edit', {
+      url: '/assessments/:assessment_id/responses/:response_id',
+      views: {
+        '': {
+          controller: 'ResponseCtrl',
+          templateUrl: 'client/views/responses/edit.html'
+        },
+        'sidebar': {
+          controller: 'SidebarResponseCardCtrl',
+          templateUrl: 'client/views/sidebar/response_card.html'
+        }
+      }
+   })
     .state('settings', {
       url: '/settings',
       views: {
