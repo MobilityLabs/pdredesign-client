@@ -62,7 +62,7 @@ describe('Directive: userLogin', function() {
           });
 
         submitForm();
-        expect(element.find(".error").html())
+        expect(element.html())
           .toMatch(/Invalid email or password/);
 
     }));

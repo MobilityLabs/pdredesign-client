@@ -5,15 +5,11 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'Assessment
       $scope.user        = SessionService.getCurrentUser();
       $scope.role        = $scope.user.role;
 
-
       $scope.consensusReportIcon = function(assessment) {
-        if (assessment.links['report']['active'] == true) {
+        if (assessment.links['report']['active'] == true)
           return 'fa-check';
-        }
-        else {
-          return 'fa-spinner';
-        }
 
+        return 'fa-spinner';
       }
 
       $scope.roundNumber = function(number) {
@@ -21,9 +17,9 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'Assessment
       }
 
       $scope.meetingTime = function(date) {
-        if (date !== null) {
+        if(date)
           return moment(date).format("Do MMM YYYY");
-        }
+
         return "TBD"
       }
 

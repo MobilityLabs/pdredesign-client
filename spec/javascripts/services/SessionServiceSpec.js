@@ -16,7 +16,9 @@ describe('Service: SessionService', function() {
   describe('#softLogin', function() {
     it('logs the localstorage user in', function() {
       var expectedUser = { email: 'some@email.com' }
-      spyOn(localStorage, 'getItem').and.returnValue(expectedUser);
+      spyOn(localStorage, 'getItem')
+        .and
+        .returnValue(JSON.stringify(expectedUser));
 
       subject.softLogin();
       expect(subject.getCurrentUser().email).toEqual('some@email.com');

@@ -1,23 +1,25 @@
 describe('Controller: NavigationCtrl', function() {
-  var subject, scope;
+  var subject, scope, rootScope;
 
   beforeEach(module('PDRClient'));
 
-  beforeEach(inject(function($controller, $rootScope) {
-    scope    = $rootScope.$new();
-    subject  = $controller('NavigationCtrl', {
+  beforeEach(inject(function($controller, $injector) {
+    rootScope = $injector.get('$rootScope');
+    scope     = rootScope.$new();
+    subject   = $controller('NavigationCtrl', {
       $scope: scope,
     });
 
   }));
 
   it('update template when $emit session_updated', inject(
-    function($rootScope) {
-      spyOn(scope, 'updateTemplate');
+    function(SessionService) {
+      spyOn(SessionService, 'setUserTemplate');
 
-      $rootScope.$broadcast('session_updated');
-      expect(scope.updateTemplate).toHaveBeenCalled();
+      rootScope.$emit('session_updated');
 
+      expect(SessionService.setUserTemplate)
+        .toHaveBeenCalled();
   }));
 
 });

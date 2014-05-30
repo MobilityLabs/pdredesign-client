@@ -1,10 +1,14 @@
 describe('Controller: AssessmentsCtrl', function() {
-  var subject, scope, $httpBackend;
+  var subject, scope, $httpBackend, SessionService;
 
   beforeEach(module('PDRClient'));
 
   beforeEach(inject(function($controller, $rootScope, $injector) {
-    $httpBackend = $injector.get('$httpBackend');
+    $httpBackend   = $injector.get('$httpBackend');
+    SessionService = $injector.get('SessionService');
+
+    spyOn(SessionService, 'getCurrentUser')
+      .and.returnValue({role: 'member'});
 
     scope    = $rootScope.$new();
     subject  = $controller('AssessmentsCtrl', {
@@ -13,23 +17,34 @@ describe('Controller: AssessmentsCtrl', function() {
 
   }));
 
-  function mock_assessments(data) {
-    $httpBackend
-      .expectGET('/v1/assessments')
-      .respond(data);
-  }
+  it('#roundNumber rounds', function(){
+    expect(scope.roundNumber(50.999)).toEqual(50);
+  });
 
-  it('resource loads query', inject(
-    function($rootScope) {
-      // Json backend tested.
+  it('#meetingTime returns formattd date', function(){
+    expect(scope.meetingTime(null))
+      .toEqual("TBD");
 
-      mock_assessments([{first_name: 'test'},
-                        {first_name: 'test2'}]);
-      $httpBackend.flush();
+    expect(scope.meetingTime("Jan 1, 1999"))
+      .toEqual("1st Jan 1999");
+  });
 
+  it('#consensusReportIcon returns correct icon', function() {
+    var assessment = {
+      links: {
+        'report': {
+          'active' : true
+        }
+      }
+    };
 
-      expect(scope.assessments.length).toEqual(2);
-  }));
+    expect(scope.consensusReportIcon(assessment))
+      .toEqual("fa-check");
+
+    assessment.links['report']['active'] = false;
+    expect(scope.consensusReportIcon(assessment))
+      .toEqual("fa-spinner");
+  });
 
 });
 

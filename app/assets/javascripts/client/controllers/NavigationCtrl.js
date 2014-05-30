@@ -11,7 +11,7 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
 
       $scope.updateTemplate();
 
-      $rootScope.$on('session_updated', function() {
+      $scope.$on('session_updated', function() {
         $scope.updateTemplate();
       });
     }
