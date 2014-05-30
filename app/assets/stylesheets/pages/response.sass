@@ -50,51 +50,53 @@ $scored4:   #163f1e
 .question-container
   margin-bottom: 1.1em
 
-.question-row
-  &:hover
-    cursor: pointer
+  .question-row
+    display: table
+    &:hover
+      cursor: pointer
 
-
-.question
-  margin: 0
-  padding: 0
-
-.question-id
-  background-color: $unscored
-  color:  white
-  text-align: center
-  vertical-align: middle
-  font-size: 3em
-  margin: 0em
-
-  i.fa
-    font-size: 1em
-    color: #fff
-
-  &.scored-1
-    background-color: $scored1
-  &.scored-2
-    background-color: $scored2
-  &.scored-3
-    background-color: $scored3
-  &.scored-4
-    background-color: $scored4
-
-
-.question-content
-  border-top: 0em
-  background-color: #f8f9fb
-  border-bottom:  0.1em solid #e2e1dc
 
   .question
-    font-size: 1.3em
-    margin-bottom: 0em
-    font-weight: bold
-  .content
-    font-size: 1.0em
-    margin-bottom: 0em
-  &:hover
-    box-shadow:  0em 0.2em 0em #d4d2c8
+    margin: 0
+    padding: 0
+
+  .question-id
+    background-color: $unscored
+    color:  white
+    text-align: center
+    vertical-align: middle
+    font-size: 3em
+    margin: 0em
+    min-height: 1.6em
+
+    i.fa
+      font-size: 1em
+      color: #fff
+
+    &.scored-1
+      background-color: $scored1
+    &.scored-2
+      background-color: $scored2
+    &.scored-3
+      background-color: $scored3
+    &.scored-4
+      background-color: $scored4
+
+
+  .question-content
+    border-top: 0em
+    background-color: #f8f9fb
+    border-bottom:  0.1em solid #e2e1dc
+
+    .question
+      font-size: 1.3em
+      margin-bottom: 0em
+      font-weight: bold
+    .content
+      font-size: 1.0em
+      margin-bottom: 0em
+    &:hover
+      box-shadow:  0em 0.2em 0em #d4d2c8
 
 
 .category-label
@@ -111,23 +113,34 @@ $scored4:   #163f1e
 
 
 .answer-row
+  display: table
+  padding-left: 0em
   .answer-info-row
     .answer-value
       width: 2%
       font-size: 1.2em
       height: 3em
       margin-left: -0.75em
+      float: none
+      display: table-cell
+      vertical-align: top
       span
         color: white
         vertical-align: -0.75em
         margin-left: -0.14em
 
     .answer-title
+      float: none
+      display: table-cell
+      vertical-align: top
       width: 22%
       font-size: 1.2em
       min-height: 3.01em
       line-height: 2.8em
     .answer-description
+      float: none
+      display: table-cell
+      vertical-align: top
       font-size:  1em
       font-weight: lighter
 
