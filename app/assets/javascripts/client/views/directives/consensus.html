@@ -1,0 +1,121 @@
+<div class="categories">
+
+  <div class="category" ng-repeat="category in categories">
+    <div class="row">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="category-label">{{category.name}}</p>
+        </div>
+        <div class="row question-container question-{{question.id}}" ng-repeat="question in category.questions">
+
+          <div class="col-md-12 question-row" ng-click="toggleAnswers(question)">
+            <div class="col-md-1 question">
+              <p class="question-id scored-{{question.score.value}}" ng-show="question.loading">
+                <i class="fa fa-spinner fa-spin"></i>
+              </p>
+              <p class="question-id scored-{{question.score.value}}" ng-hide="question.loading">
+                <a href="#question-{{question.id}}"></a>
+                {{question.number}}
+              </p>
+            </div>
+            <div class="row question-content">
+              <div class="col-md-11">
+                <p class="question">{{question.headline}}</p>
+              </div>
+              <div class="col-md-11">
+                <p class="content">{{question.content}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 answers" ng-show="question.answersVisible">
+            <div class="answer" ng-repeat="answer in question.answers">
+              <div class="col-md-1">
+                <modeanswer data-scores="4" data-responses="10" data-modeanswer="{{question}}" data-scorevalue="{{question.score.value}}" data-coloranswervalue="scored-{{answer.value}}" data-answervalue="{{answer.value}}">
+                </modeanswer>
+              </div>
+              <div class="col-md-11 answer-row valueColor-{{answer.value}}" ng-class="{scored{{answer.value}}: question.score.value == answer.value}">
+
+                <div class="answer-info-row">
+                  <div class="col-md-1 scored-{{answer.value}} answer-value">
+                    <span>{{answer.value}}</span>
+                  </div>
+                  <div class="col-md-3 answer-title title-{{answer.value}}">
+                    {{answerTitle(answer.value)}}
+                  </div>
+                  <div class="col-md-8 answer-description">
+                    {{answer.content}}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="evidence-discussion col-md-12">
+              <span>Evidence Discussion</span>
+            </div>
+            <div class="col-md-12 evidence-holder">
+              <div class="col-md-1"></div>
+              <div class="col-md-11">
+                <div class="evidence-list box-scroll">
+                  <div ng-repeat="score in scores">
+                    <div class="evidence-score-holder">
+                      <div>
+                        <div class="col-md-1 scored-{{score.value}} evidence-colorbox">
+                          <div>{{score.value}}</div>
+                          <div class="row">
+                            <div class="col-md-1" >
+                              <img style="margin-left: -2em0;" alt="Default" src="http://staging.pdredesign.org/fallback/default.png" width="34">
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          {{score.evidence}}
+                        </div>
+                        <div>
+                          <div>
+                            <p>by:  on: </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="evidence-discussion col-md-12">
+              <span>Consensus Scoring</span>
+            </div>
+            <div class="col-md-12 evidence-holder">
+              <span class="consensus-header">Notes</span>
+              <div class="consensus-notes">
+                <textarea redactor ng-model="question.score.evidence"></textarea>
+              </div>
+                <div class="consensus-header">Score</div>
+              <div class='col-md-10'>
+                 <div class='row row-values'>
+                  <div ng-repeat="answer in question.answers">
+                    <div class="col-md-3">
+                      <button class='btn btn-block btn-value-{{answer.value}}' ng-click="
+                      assignAnswerToQuestion(answer, question)" ng-class="">
+                        {{answer.value}}
+                      </button>
+                    </div>
+                  </div>
+                 </div>
+
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-block"><i class="fa fa-save"></i>Save</button>
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

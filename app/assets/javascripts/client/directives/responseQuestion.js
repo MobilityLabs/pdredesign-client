@@ -4,13 +4,13 @@ PDRClient.directive('responsequestion', [
       restrict: 'E',
       replace: true,
       scope: {},
-      templateUrl: 'client/views/directives/response_question.html',
+      templateUrl: 'client/views/directives/consensus.html',
       link: function(scope, element, attrs) {
         scope.assessmentId = attrs.assessmentId;
         scope.responseId   = attrs.responseId;
       },
       controller: [
-        '$scope', 
+        '$scope',
         '$timeout',
         '$stateParams',
         'SessionService',
@@ -64,7 +64,7 @@ PDRClient.directive('responsequestion', [
                 $scope.categories = data.categories;
               });
           });
-          
+
         }]
     }
 }]);
