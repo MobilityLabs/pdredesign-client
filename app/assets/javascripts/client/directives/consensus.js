@@ -18,15 +18,15 @@ PDRClient.directive('consensus', [
         'Score',
         function($scope, $timeout, $stateParams, SessionService, Response, Score) {
           $scope.toggleAnswers = function(question) {
-            question.answersVisible = !question.answersVisible
+            question.answersVisible = !question.answersVisible;
           };
 
           $scope.saveEvidence = function(score) {
-            score.editMode = true
+            score.editMode = true;
           };
 
           $scope.editAnswer = function(score) {
-            score.editMode = false
+            score.editMode = false;
           };
 
           $scope.assignAnswerToQuestion = function(answer, question) {
@@ -41,7 +41,7 @@ PDRClient.directive('consensus', [
                 question.loading = false;
                 question.score.value = answer.value;
               });
-          }
+          };
 
           $scope.answerTitle = function(value) {
             switch(value) {
@@ -54,7 +54,7 @@ PDRClient.directive('consensus', [
               case 4:
                 return 'Optimizing';
             }
-          }
+          };
 
           $timeout(function(){
             Response
@@ -66,5 +66,5 @@ PDRClient.directive('consensus', [
           });
 
         }]
-    }
+    };
 }]);
