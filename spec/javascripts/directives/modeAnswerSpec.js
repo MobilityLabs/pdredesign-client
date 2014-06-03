@@ -5,7 +5,7 @@ describe('Directive: modeAnswer', function() {
   beforeEach(module('PDRClient'));
   beforeEach(inject(function($rootScope, $compile) {
     scope   = $rootScope.$new();
-    element = angular.element('<mode-answer></mode-answer>');
+    element = angular.element('<modeanswer></modeanswer>');
     $compile(element)(scope);
     scope.$digest();
 

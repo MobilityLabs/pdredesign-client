@@ -17,4 +17,3 @@ describe('Resource: Assessment', function() {
   });
 
 });
-
