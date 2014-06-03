@@ -30,11 +30,10 @@
           <div class="col-md-12 answers" ng-show="question.answersVisible">
             <div class="answer" ng-repeat="answer in question.answers">
               <div class="col-md-1">
-                <modeanswer data-scores="4" data-responses="10" data-modeanswer="{{question}}" data-scorevalue="{{question.score.value}}" data-coloranswervalue="scored-{{answer.value}}" data-answervalue="{{answer.value}}">
+                <modeanswer>
                 </modeanswer>
               </div>
               <div class="col-md-11 answer-row valueColor-{{answer.value}}" ng-class="{scored{{answer.value}}: question.score.value == answer.value}">
-
                 <div class="answer-info-row">
                   <div class="col-md-1 scored-{{answer.value}} answer-value">
                     <span>{{answer.value}}</span>
@@ -49,70 +48,11 @@
               </div>
             </div>
 
-            <div class="evidence-discussion col-md-12">
-              <span>Evidence Discussion</span>
-            </div>
-            <div class="col-md-12 evidence-holder">
-              <div class="col-md-1"></div>
-              <div class="col-md-11">
-                <div class="evidence-list box-scroll">
-                  <div ng-repeat="score in scores">
-                    <div class="evidence-score-holder">
-                      <div>
-                        <div class="col-md-1 scored-{{score.value}} evidence-colorbox">
-                          <div>{{score.value}}</div>
-                          <div class="row">
-                            <div class="col-md-1" >
-                              <img style="margin-left: -2em0;" alt="Default" src="http://staging.pdredesign.org/fallback/default.png" width="34">
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          {{score.evidence}}
-                        </div>
-                        <div>
-                          <div>
-                            <p>by:  on: </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="evidence-discussion col-md-12">
-              <span>Consensus Scoring</span>
-            </div>
-            <div class="col-md-12 evidence-holder">
-              <span class="consensus-header">Notes</span>
-              <div class="consensus-notes">
-                <textarea redactor ng-model="question.score.evidence"></textarea>
-              </div>
-                <div class="consensus-header">Score</div>
-              <div class='col-md-10'>
-                 <div class='row row-values'>
-                  <div ng-repeat="answer in question.answers">
-                    <div class="col-md-3">
-                      <button class='btn btn-block btn-value-{{answer.value}}' ng-click="
-                      assignAnswerToQuestion(answer, question)" ng-class="">
-                        {{answer.value}}
-                      </button>
-                    </div>
-                  </div>
-                 </div>
-
-              </div>
-              <div class="col-md-2">
-                <button class="btn btn-block"><i class="fa fa-save"></i>Save</button>
-              </div>
-            </div>
-
+              <evidencediscussion>
+              </evidencediscussion>
+              <consensusscoring>
+              </consensusscoring>
           </div>
-
-
-
-
 
         </div>
       </div>

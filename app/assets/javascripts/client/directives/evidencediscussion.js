@@ -1,7 +1,7 @@
 PDRClient.directive('evidencediscussion', [
   function() {
   return {
-    require: '^responsequestion',
+    require: '^consensus',
     restrict: 'E',
     replace: true,
 

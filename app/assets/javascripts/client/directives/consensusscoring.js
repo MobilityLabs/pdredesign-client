@@ -1,7 +1,7 @@
 PDRClient.directive('consensusscoring', [
   function() {
   return {
-    require: '^responsequestion',
+    require: '^consensus',
     restrict: 'E',
     replace: true,
 
@@ -10,11 +10,6 @@ PDRClient.directive('consensusscoring', [
       scope.elm    = elm;
     },
 
-  //   controller: ['$scope', '$rootScope', '$location', '$timeout',
-  //     function($scope, $rootScope, $location, $timeout) {
-  //       $timeout(function() {
-  //       });
-  //     }],
   }
 }
 ]);

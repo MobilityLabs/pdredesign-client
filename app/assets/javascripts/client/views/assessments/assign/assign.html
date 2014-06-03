@@ -24,8 +24,8 @@
             <div class='col-md-3 col-sm-3'>
               <div class='control-group'>
                 <label for="assessment_Rubric">Rubric</label>
-                  <select 
-                    class="form-control" 
+                  <select
+                    class="form-control"
                     ng-model="assessment.rubric_id">
                     <option ng-repeat="rubric in rubrics" ng-selected="{{rubric.id == assessment.rubric_id}}">{{rubric.name}}</option>
                   </select>
@@ -36,10 +36,10 @@
               <div class="control-group">
                 <label for="assessment_Due Date">Due date</label>
                 <div class="input-group date datetime">
-                  <input 
-                    class="form-control" 
-                    ng-model="assessment.due_date" 
-                    data-format="dd/MM/yyyy hh:mm:ss" 
+                  <input
+                    class="form-control"
+                    ng-model="assessment.due_date"
+                    data-format="dd/MM/yyyy hh:mm:ss"
                     id="due-date"
                     name="due-date">
                   <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -132,7 +132,8 @@
                     data-width="57"
                     data-has-tooltip="true"
                     data-name="{{assessment.facilitator.full_name}}"
-                    data-avatar="{{assessment.facilitator.avatar}}"
+                    data-avatar="https://avatars1.githubusercontent.com/u/221008?s=140"
+
                     data-role="{{assessment.facilitator.team_role}}">
                  </avatar>
 

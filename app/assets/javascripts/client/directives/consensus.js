@@ -1,10 +1,10 @@
-PDRClient.directive('responsequestion', [
+PDRClient.directive('consensus', [
   function() {
     return {
       restrict: 'E',
       replace: true,
       scope: {},
-      templateUrl: 'client/views/directives/response_question.html',
+      templateUrl: 'client/views/directives/consensus.html',
       link: function(scope, element, attrs) {
         scope.assessmentId = attrs.assessmentId;
         scope.responseId   = attrs.responseId;
