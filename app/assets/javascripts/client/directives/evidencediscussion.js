@@ -1,4 +1,4 @@
-PDRClient.directive('evidencediscussion', [
+PDRClient.directive('evidenceDiscussion', [
   function() {
   return {
     require: '^consensus',

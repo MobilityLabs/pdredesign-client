@@ -1,4 +1,4 @@
-PDRClient.directive('consensusscoring', [
+PDRClient.directive('consensusScoring', [
   function() {
   return {
     require: '^consensus',

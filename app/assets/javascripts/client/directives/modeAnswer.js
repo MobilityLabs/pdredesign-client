@@ -1,4 +1,4 @@
-PDRClient.directive('modeanswer', [
+PDRClient.directive('modeAnswer', [
   function() {
   return {
     require: '^consensus',
