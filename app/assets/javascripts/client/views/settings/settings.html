@@ -2,59 +2,61 @@
 
 <div class="container settings">
   <div class="row">
-    <div class="col-md-7 col-md-offset-1 col-sm-7 col-sm-offset-1">
-      <ng-include src="'client/views/shared/errors.html'"> </ng-include>
-      <p class="form-header">Account Settings</p>
+    <div class="col-md-7">
+      <ng-include src="'client/views/shared/errors.html'"></ng-include>
+      <h3>Account Settings</h3>
 
-      <div class="row" style="margin-bottom:15px">
-        <div class="col-md-5 col-sm-5 col-xs-5">
+      <div class="row">
+        <div class="flush col-md-5">
           <label for="user_first_name">First name</label>
           <input class="form-control"  placeholder="First Name" type="text" ng-model="user.first_name">
         </div>
-        <div class="col-md-7 col-sm-7 col-xs-7" style="padding-left:0px">
+
+        <div class="flush col-md-7">
           <label for="user_last_name">Last name</label>
           <input class="form-control"  placeholder="Last Name" type="text" ng-model="user.last_name">
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="user_email">E-mail address</label>
-        <input class="form-control"  placeholder="Email" ng-model="user.email">
-      </div>
-
-      <div class="form-group">
-        <label for="district">District</label>
-        <district-select data-role="{{user.role}}" ng-model="user.district_ids">
-        </district-select>
-      </div>
-
-      <div class="form-group">
-        <label for="user_team_role">Team role</label>
-        <input class="form-control" id="user_team_role" name="user[team_role]" type="text" ng-model="user.team_role">
-      </div>
-
-      <div class="form-group">
-        <label for="user_twitter">Twitter</label>
-        <div class="input-group">
-          <span class="input-group-addon">@</span>
-          <input class="form-control" id="user_twitter" name="user[twitter]" type="text" ng-model="user.twitter">
+      <div class="row">
+        <div class="form-group">
+          <label for="user_email">E-mail address</label>
+          <input class="form-control"  placeholder="Email" ng-model="user.email">
         </div>
+
+        <div class="form-group">
+          <label for="district">District</label>
+          <district-select data-role="{{user.role}}" ng-model="user.district_ids"></district-select>
+        </div>
+
+        <div class="form-group">
+          <label for="user_team_role">Team role</label>
+          <input class="form-control" id="user_team_role" type="text" ng-model="user.team_role">
+        </div>
+
+        <div class="form-group">
+          <label for="user_twitter">Twitter</label>
+          <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <input class="form-control" id="user_twitter" type="text" ng-model="user.twitter">
+          </div>
+        </div>
+
+        <p class="form-header">Change Password</p>
+
+        <div class="form-group">
+          <label for="user_password">Password</label>
+          <input autocomplete="off" class="form-control" id="user_password" type="password" ng-model="user.password">
+        </div>
+
+        <div class="form-group">
+          <label for="user_password_confirmation">Password confirmation</label>
+          <input class="form-control" id="user_password_confirmation" type="password" ng-model="user.password_confirmation">
+        </div>
+
+        <input class="btn btn-success" name="commit" type="submit" value="Update" ng-click="update(user)">
+
       </div>
-
-      <p class="form-header">Change Password</p>
-
-      <div class="form-group">
-        <label for="user_password">Password</label>
-        <input autocomplete="off" class="form-control" id="user_password" name="user[password]" type="password" ng-model="user.password">
-      </div>
-
-      <div class="form-group">
-        <label for="user_password_confirmation">Password confirmation</label>
-        <input class="form-control" id="user_password_confirmation" name="user[password_confirmation]" type="password" ng-model="user.password_confirmation">
-      </div>
-
-      <input class="btn btn-success" name="commit" type="submit" value="Update" ng-click="update(user)">
-
     </div>
   </div>
 </div>

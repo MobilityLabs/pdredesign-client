@@ -5,10 +5,23 @@ PDRClient.directive('startAssessment', [
         replace: true,
         scope: {},
         templateUrl: 'client/views/directives/start_assessment.html',
-        controller: ['$scope', '$timeout', '$location', 'Rubric', 'Assessment', function($scope, $timeout, $location, Rubric, Assessment){
+        controller: [
+          '$scope',
+          '$timeout',
+          '$location',
+          'Rubric',
+          'Assessment',
+          'SessionService',
+          function($scope, $timeout, $location, Rubric, Assessment, SessionService){
           $scope.rubrics = Rubric.query({});
           $scope.alerts  = [];
           $scope.assessment = {};
+
+          $scope.isAdmin = function() {
+            var user = SessionService.getCurrentUser();
+            if(user && user.role != 'member') { return true }
+            return false;
+          };
 
           $scope.hideModal = function() { 
             $('#startAssessment').modal('hide');

@@ -1,6 +1,8 @@
 PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService',
     function($rootScope, $scope, SessionService) {
 
+      $scope.user = SessionService.getCurrentUser();
+
       $scope.updateTemplate = function() {
         SessionService.setUserTemplate(
           $scope, 

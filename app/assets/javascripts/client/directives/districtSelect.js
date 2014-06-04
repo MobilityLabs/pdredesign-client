@@ -2,14 +2,13 @@ PDRClient.directive('districtSelect', ['SessionService', 'UrlService', '$timeout
     function(SessionService, UrlService, $timeout) {
       return {
         restrict: 'E',
-        replace: true,
+        replace: false,
         require: 'ngModel',
         scope: {
-          districts: '=ngModel',
+          ngModel: '='
         },
         templateUrl: 'client/views/directives/district_select.html',
         link: function(scope, elm, attrs) {
-
           scope.facilitatorSelector = {
             allowClear: true,
             multiple: true,

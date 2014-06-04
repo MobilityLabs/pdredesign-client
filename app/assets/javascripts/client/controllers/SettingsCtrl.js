@@ -4,8 +4,10 @@ PDRClient.controller('SettingsCtrl', ['$scope', 'User', 'SessionService', 'UrlSe
       $scope.user    = User.get();
       $scope.errors  = null;
       $scope.success = null;
-      
+
       $scope.update = function(editedUser) {
+        editedUser["district_ids[]"] = editedUser.district_ids;
+
         editedUser
           .$save()
           .then(
