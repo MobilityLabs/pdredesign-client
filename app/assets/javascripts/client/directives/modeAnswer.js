@@ -6,7 +6,7 @@ PDRClient.directive('modeAnswer', [
     replace: true,
 
     templateUrl: 'client/views/directives/mode_answer.html',
-    link: function(scope, elm, attrs) {
+    link: function(scope, elm) {
       scope.elm    = elm;
     },
 
@@ -15,9 +15,9 @@ PDRClient.directive('modeAnswer', [
         $timeout(function() {
           if ($scope.answer.value == $scope.question.score.value) {
             $scope.elm.addClass("scored-" + $scope.answer.value);
-          };
+          }
         });
       }],
-  }
+  };
 }
 ]);
