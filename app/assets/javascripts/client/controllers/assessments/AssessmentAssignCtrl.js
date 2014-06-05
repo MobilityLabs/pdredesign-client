@@ -63,17 +63,13 @@ PDRClient.controller('AssessmentAssignCtrl', [
           .query({assessment_id: $scope.id})
           .$promise
           .then(function(data){
-            $timeout(function() {
-              $scope.participants = data
-            }, 2900);
+            $scope.participants = data
           }, function() {
             $scope.error('Could not update participants list');
           });
 
         Participant.all({assessment_id: $scope.id}).$promise.then(function(data) {
-            $timeout(function() {
-              $scope.nonDistrictParticipants = data;
-            }, 2900);
+          $scope.nonDistrictParticipants = data;
         }, function() {
             $scope.error('Could not update participants list');
         });
@@ -81,13 +77,11 @@ PDRClient.controller('AssessmentAssignCtrl', [
 
       $scope.removeParticipant = function(user) {
         Participant.delete({assessment_id: $scope.id, id: user.participant_id}, {user_id: user.id})
-        user.hide = true;
         updateParticipantsList();
       }
 
       $scope.addParticipant = function(user) {
         Participant.save({assessment_id: $scope.id}, {user_id: user.id})
-        user.hide = true;
         updateParticipantsList();
       }
 

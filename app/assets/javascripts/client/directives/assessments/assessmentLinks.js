@@ -22,7 +22,10 @@ PDRClient.directive('assessmentLinks', [
                   "new_consensus": "group",
                   "edit_report": "group",
                   "show_report": "group",
+                  "show_response": "group",
+                  "none": "group",
                   "finish": "pencil",
+                  "messages": "messages",
                   "report": "file-text-o",
               }
               return icons[type];
@@ -43,7 +46,9 @@ PDRClient.directive('assessmentLinks', [
                   "show_report": "#/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
                 },
                 "member": {
+                  "messages": "#/assessments/" + $scope.id + "/dashboard",
                   "consensus": "#/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
+                  "show_response": "#/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
                   "edit_report": "group",
                   "show_report": "group",
                   "finish": "pencil",

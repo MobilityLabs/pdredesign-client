@@ -8,7 +8,8 @@ PDRClient.controller('SidebarResponseCardCtrl', [
   'SessionService',
   'Score',
   'Consensus',
-  function($scope, $rootScope, $stateParams, $location, $anchorScroll, $timeout, SessionService, Score, Consensus) {
+  'Assessment',
+  function($scope, $rootScope, $stateParams, $location, $anchorScroll, $timeout, SessionService, Score, Consensus, Assessment) {
     $scope.assessmentId = $stateParams.assessment_id;
     $scope.responseId   = $stateParams.response_id;
     $scope.questions = [];
@@ -39,7 +40,16 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       return !$scope.isReadOnly;
     };
 
-    Consensus 
+    $scope.isAssessment = function(){
+      $location.url().indexOf("responses") > -1
+    };
+
+    $scope.subject = function() {
+      if($scope.isAssessment()) return Assessment;
+      return Consensus;
+    };
+
+    $scope.subject()
     .get({assessment_id: $scope.assessmentId, id: $scope.responseId})
     .$promise
     .then(function(data){
