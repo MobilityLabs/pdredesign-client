@@ -1,0 +1,28 @@
+<div class="row score-evidence" ng-show="question.score.value == answer.value">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div ng-hide="question.score.editMode">
+      <textarea redactor ng-model="question.score.evidence"></textarea>
+      <div class="save-holder">
+        <button class='btn btn-primary'
+          ng-click="saveEvidence(question.score)">
+          <i class='fa fa-save'></i>SAVE
+        </button>
+      </div>
+    </div>
+    <div ng-show="question.score.editMode ">
+      <div class="evidence-read">
+        <div ng-bind-html="question.score.evidence"></div>
+        <div class="edit-holder">
+
+          <button class='btn btn-primary edit-button'
+            ng-click="editAnswer(question.score)">
+            <i class='fa fa-save'></i>Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

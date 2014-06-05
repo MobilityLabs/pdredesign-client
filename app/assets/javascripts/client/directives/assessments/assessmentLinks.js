@@ -1,4 +1,4 @@
-PDRClient.directive('assessmentlinks', [
+PDRClient.directive('assessmentLinks', [
     function() {
       return {
         restrict: 'E',
@@ -11,6 +11,7 @@ PDRClient.directive('assessmentlinks', [
           scope.type   = attrs.type;
           scope.role   = attrs.role;
           scope.id     = attrs.id;
+          scope.consensusId = attrs.consensusId;
         },
         controller: ['$scope', '$rootScope', '$location', '$timeout',
           function($scope, $rootScope, $location, $timeout) {
@@ -18,6 +19,7 @@ PDRClient.directive('assessmentlinks', [
               icons = {
                   "dashboard": "dashboard",
                   "consensus": "group",
+                  "new_consensus": "group",
                   "edit_report": "group",
                   "show_report": "group",
                   "finish": "pencil",
@@ -33,14 +35,15 @@ PDRClient.directive('assessmentlinks', [
               routes = {
                 "facilitator": {
                   "dashboard": "#/assessments/" + $scope.id + "/dashboard",
-                  "consensus": "group",
-                  "edit_report": "group",
-                  "show_report": "/reports",
+                  "new_consensus": "#/assessments/" + $scope.id + "/consensus",
+                  "consensus": "#/assessments/" + $scope.id + "/consensus",
                   "finish": "#/assessments/" + $scope.id + "/assign",
-                  "report": "file-text-o",
+                  "report": "#/assessments/" + $scope.id + "/report",
+                  "edit_report": "#/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
+                  "show_report": "#/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
                 },
                 "member": {
-                  "consensus": "group",
+                  "consensus": "#/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
                   "edit_report": "group",
                   "show_report": "group",
                   "finish": "pencil",

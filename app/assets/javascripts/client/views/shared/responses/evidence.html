@@ -1,0 +1,28 @@
+<div class="evidence-discussion">
+  <h3>Evidence Discussion</h3>
+
+  <div class="evidence" ng-repeat="score in scores| filter: {question_id: question.id}">
+    <div class="row">
+      <div class="col-md-1 score scored-{{score.value}}">
+        <span class="ng-binding">{{score.value}}</span>
+      </div>
+      <div class="col-md-11" ng-bind-html="score.evidence"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1">
+        <avatar
+        data-width="100%"
+        data-avatar="{{score.participant.avatar}}"
+        />
+      </div>
+
+      <div class="col-md-11 secondary">
+        by: {{score.participant.full_name}}
+        on: {{score.participant.updated_at | amDateFormat:'MMMM Do, YYYY'}}
+      </div>
+    </div>
+
+  </div>
+</div>
+

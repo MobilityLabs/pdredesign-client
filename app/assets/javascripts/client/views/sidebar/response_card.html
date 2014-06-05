@@ -18,10 +18,18 @@
             </a>
           </span>
         </div>
+
+      <button
+        ng-show="canSubmit()"
+        class="submit btn btn-primary btn-block btn-lg"
+        data-toggle="modal"
+        data-target="#assessmentReview"
+        ng-click="submitResponse()">
+        Submit Response
+      </button>
       </div>
-      <div class="content">
-        <ng-include src="'client/views/sidebar/minimal.html'"></ng-include>
-      </div>
+
+    <ng-include src="'client/views/sidebar/minimal.html'"></ng-include> 
     </div>
   </div>
 </div>

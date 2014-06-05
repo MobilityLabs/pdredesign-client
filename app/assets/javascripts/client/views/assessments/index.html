@@ -49,14 +49,15 @@
               </div>
             </a>
             <div ng-repeat="link in assessment.links">
-              <assessmentlinks
+              <assessment-links
                 data-link="{{link}}"
                 data-title="{{link.title}}"
                 data-active="{{link.active}}"
                 data-type="{{link.type}}"
                 data-id="{{assessment.id}}"
+                data-consensus-id="{{assessment.consensus_id}}"
                 data-role="{{role}}">
-              </assessmentlinks>
+              </assessment-links>
             </div>
           </div>
           <div class='row row-assessment-addon' style='margin-bottom:15px;'>

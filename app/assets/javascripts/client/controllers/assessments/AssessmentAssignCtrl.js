@@ -2,12 +2,13 @@ PDRClient.controller('AssessmentAssignCtrl', [
   '$scope', 
   '$timeout', 
   '$anchorScroll',
+  '$location', 
+  '$stateParams', 
   'SessionService', 
   'Assessment', 
-  '$stateParams', 
   'Participant',
   'Rubric',
-    function($scope, $timeout, $anchorScroll, SessionService, Assessment, $stateParams, Participant, Rubric) {
+    function($scope, $timeout, $anchorScroll, $location, $stateParams, SessionService, Assessment, Participant, Rubric) {
 
       $scope.id = $stateParams.id;
       $scope.assessment = Assessment.get({id: $scope.id});
@@ -20,6 +21,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
       $scope.assignAndSave = function(assessment) {
         if (confirm("Are you sure you want to send out the assessment and invite all your participants?")) {
           $scope.save(assessment, true);
+          $location.path('/'); 
         }
       };
 
@@ -56,7 +58,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
         $scope.alerts.splice(index, 1);
       };
 
-      function updateAssessmentList () {
+      function updateParticipantsList() {
         Participant
           .query({assessment_id: $scope.id})
           .$promise
@@ -79,14 +81,14 @@ PDRClient.controller('AssessmentAssignCtrl', [
 
       $scope.removeParticipant = function(user) {
         Participant.delete({assessment_id: $scope.id, id: user.participant_id}, {user_id: user.id})
-        user.hide = "yes";
-        updateAssessmentList();
+        user.hide = true;
+        updateParticipantsList();
       }
 
       $scope.addParticipant = function(user) {
         Participant.save({assessment_id: $scope.id}, {user_id: user.id})
-        user.hide = "yes";
-        updateAssessmentList();
+        user.hide = true;
+        updateParticipantsList();
       }
 
       $scope.formattedDate = function(date) {

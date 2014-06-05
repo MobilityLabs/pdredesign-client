@@ -4,7 +4,7 @@ PDRClient.directive('consensus', [
       restrict: 'E',
       replace: true,
       scope: {},
-      templateUrl: 'client/views/directives/consensus.html',
+      templateUrl: 'client/views/directives/response_question.html',
       link: function(scope, element, attrs) {
         scope.assessmentId = attrs.assessmentId;
         scope.responseId   = attrs.responseId;
@@ -13,12 +13,23 @@ PDRClient.directive('consensus', [
         '$scope',
         '$timeout',
         '$stateParams',
+        '$location',
         'SessionService',
-        'Response',
+        'Consensus',
         'Score',
-        function($scope, $timeout, $stateParams, SessionService, Response, Score) {
+        function($scope, $timeout, $stateParams, $location, SessionService, Consensus, Score) {
+
+          $scope.isConsensus = true;
+          $scope.isReadOnly  = true;
+
           $scope.toggleAnswers = function(question) {
             question.answersVisible = !question.answersVisible;
+          };
+
+          $scope.toggleCategoryAnswers = function(category) {
+            angular.forEach(category.questions, function(question, key) {
+              $scope.toggleAnswers(question);
+            });
           };
 
           $scope.saveEvidence = function(score) {
@@ -30,9 +41,12 @@ PDRClient.directive('consensus', [
           };
 
           $scope.assignAnswerToQuestion = function(answer, question) {
+            if($scope.isReadOnly) return;
             var params = {response_id: $scope.responseId, assessment_id: $scope.assessmentId};
-            var score = {question_id: question.id, value: answer.value, evidence: answer.evidence};
+            var score = {question_id: question.id, value: answer.value, evidence: question.score.evidence};
+
             question.loading = true;
+
             Score
               .save(params, score)
               .$promise
@@ -56,12 +70,27 @@ PDRClient.directive('consensus', [
             }
           };
 
+          $scope.viewModes = [{label: "Category"}, {label: "Variance"}];
+          $scope.viewMode  = $scope.viewModes[0];
+          $scope.$on('submit_response', function(){
+            Consensus
+              .submit({assessment_id: $scope.assessmentId, id: $scope.responseId}, {submit: true})
+              .$promise
+              .then(function(data){
+                $location.path('/assessments');
+              });
+          });
+
+
           $timeout(function(){
-            Response
+            Consensus 
               .get({assessment_id: $scope.assessmentId, id: $scope.responseId})
               .$promise
               .then(function(data){
+                $scope.scores     = data.scores;
                 $scope.categories = data.categories;
+                $scope.isReadOnly = data.is_completed || false;
+                $scope.participantCount = data.participant_count;
               });
           });
 
