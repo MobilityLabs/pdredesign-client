@@ -77,7 +77,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
        }
      }
    })
-   .state('assessment_dashboard', {
+   .state('assessment_report', {
      url: '/assessments/:id/report',
      views: {
        '': {
