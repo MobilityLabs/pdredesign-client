@@ -17,7 +17,7 @@
               <p class="question-id scored-{{question.score.value}}" ng-show="question.loading">
                 <i class="fa fa-spinner fa-spin"></i>
               </p>
-              <p class="question-id scored-{{question.score.value}}" ng-hide="question.loading">
+              <p id="question-{{question.number}}" class="question-id scored-{{question.score.value}}" ng-hide="question.loading">
                 <a href="#question-{{question.id}}"></a>
                 {{question.number}}
               </p>
@@ -37,7 +37,7 @@
                 <ng-include
                   ng-show="isConsensus"
                   src="'client/views/shared/responses/score_count.html'">
-                </ng-include> 
+                </ng-include>
               </div>
 
 
@@ -58,19 +58,19 @@
                   ng-hide="isConsensus"
                   src="'client/views/shared/responses/member_question.html'" >
                 </ng-include>
-          
+
               </div>
             </div>
 
             <ng-include
               ng-show="isConsensus"
               src="'client/views/shared/responses/evidence.html'" >
-            </ng-include> 
+            </ng-include>
 
             <ng-include
               ng-show="isConsensus"
               src="'client/views/shared/responses/consensus_score_entry.html'" >
-            </ng-include> 
+            </ng-include>
 
           </div>
         </div>
