@@ -15,10 +15,16 @@
       </div>
     </div>
     <div class="links">
-      <a  class="active" href="/assessments/36">Dashboard</a>
-      <a data-target="#createConsensus" data-toggle="modal" href="">Create Consensus</a>
-      <a data-target="#modifySchedule" data-toggle="modal" href="">Modify Schedule</a>
-      <a data-target="#newReminder" data-toggle="modal" href="">Send Reminder</a>
+      <a  class="active" href="#/assessments/{{assessment.id}}/dashboard">Dashboard</a>
+      <a ng-show="showConsensusCreateLink()" data-target="#createConsensus" data-toggle="modal" href="" >Create Consensus</a>
+      <a ng-show="showConsensusViewLink()" data-target="#createConsensus" data-toggle="modal" href="" >View Consensus</a>
+      <a ng-show="showConsensusViewLink()" href="" >Report</a>
+      <a ng-show="showConsensusViewLink()" href="" class="">Recommendations</a>
+      <a ng-show="showConsensusViewLink()" href="" class="">Send Followup Reminder</a>
+      <a ng-show="showConsensusViewLink()" href="" class="">Create Followup Assessment</a>
+
+      <a ng-show="showModifyScheduleLink()" data-target="#modifySchedule" data-toggle="modal" href="">Modify Schedule</a>
+      <a ng-show="showModifyScheduleLink()" data-target="#newReminder" data-toggle="modal" href="">Send Reminder</a>
     </div>
   </div>
 
