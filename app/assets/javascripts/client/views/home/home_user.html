@@ -31,9 +31,13 @@
               <div class="subcategories" ng-repeat="subcategory in category.categories">
                 {{subcategory.title}}
                 <ul class="tool" ng-repeat="tool in subcategory.categories">
-                  <li>
+                  <li
+                    data-html="true"
+                    data-placement="right"
+                    data-content="{{setPopovers(tool)}}"
+                    data-toggle="tooltip">
                     <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
-                    {{tool.title}}
+                      {{tool.title}}
                   </li>
                 </ul>
 
