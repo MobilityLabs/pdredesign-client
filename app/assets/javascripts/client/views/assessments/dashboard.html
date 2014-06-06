@@ -7,7 +7,9 @@
         on {{assessment.created_at | amDateFormat:'MMMM Do, YYYY'}}</p>
 
         <p id="report-header">
-          {{assessment.overview.text}} {{assessment.overview.link}}
+          {{assessment.overview.text}}
+          <a  ng-if="assessment.overview.link == 'view_consensus' " href="">View Consensus</a>
+          <a  ng-if="assessment.overview.link == 'edit_consensus' " href="">Edit Consensus</a>
         </p>
         <div id="report" class="row">
           <div id="strengths" class="col-md-4 col-sm-4" style="background-color:#163f1e">
