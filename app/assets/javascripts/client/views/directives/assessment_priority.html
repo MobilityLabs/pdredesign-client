@@ -1,0 +1,60 @@
+<div class="assessment-priority" class="col-md-9">
+  <div class="header row">
+    <div class="priority col-md-8 col-sm-8">
+      <table class="table table-diagnostic" ng-hide="loading">
+        <thead>
+          <tr>
+            <td class="category-header">Priority</td>
+            <td>PD Category</td>
+            <td>Consensus Score</td>
+            <td>Diagnostic Min</td>
+            <td>Diagnostic Suggested</td>
+          </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="category in categories"
+            class="category scored-{{scoredAverage(category)}}"
+            id="{{category.id}}">
+          <td class="centered">{{category.order}}</td>
+          <td>{{category.name}}</td>
+          <td>{{roundedAverage(category.average)}}</td>
+          <td>{{category.diagnostic_min}}</td>
+          <td ng-show="category.diagnostic_suggested">Yes</td>
+          <td ng-hide="category.diagnostic_suggested">No</td>
+        </tr>
+        </tbody>
+      </table>
+      <div ng-show="editable">
+        <button
+          class="btn btn-primary"
+          ng-click="savePriority()">
+          <i ng-hide="loading" class="fa fa-save"></i>
+          <i ng-show="loading" class="fa fa-spinner fa-spin"></i>
+          Save Priority
+        </button>
+      </div>
+
+  </div>
+    <div id="profile" class="col-md-4 col-sm-4">
+      <p class="title">
+      Readiness Assessment Profile
+      <a
+        data-toggle="popover"
+        data-placement="right"
+        data-container="body"
+        data-html="true"
+        data-trigger="hover"
+        data-title="Chart Legend"
+        data-content='<p><b>TE:</b> Teacher Engagement<br><b>PP:</b> PD Process<br><b>LC:</b> Leadership Capacity<br><b>RO:</b> Resource Optimization<br><b>SP:</b> Supportive Policies<br><b>DI:</b> Delivery Infrastructure<br><b>DTI:</b> Data Infrastructure<br><b>HQ:</b> High Quality Content and Tools<br></p>'
+        style="color:#7a7e7f"
+        title="">
+        <i class="fa fa-info-circle"></i>
+      </a>
+      </p>
+
+      <div>
+      </div>
+    </div>
+  </div>
+</div>
+

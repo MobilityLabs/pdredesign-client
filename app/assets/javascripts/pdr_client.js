@@ -22,5 +22,6 @@
 //= require select2
 //= require angular-rails-templates
 //= require bootstrap-datetimepicker
+//= require jquery.tablednd
 //= require_tree ./client/views
 //= require_tree ./client

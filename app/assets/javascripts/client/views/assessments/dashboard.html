@@ -11,39 +11,10 @@
           <a  ng-if="assessment.overview.link == 'view_consensus' " href="">View Consensus</a>
           <a  ng-if="assessment.overview.link == 'edit_consensus' " href="">Edit Consensus</a>
         </p>
-        <div id="report" class="row">
-          <div id="strengths" class="col-md-4 col-sm-4" style="background-color:#163f1e">
-            <p class="title">Strengths</p>
-            <p class="area" ng-repeat="strength in assessment.strengths">{{strength}}</p>
-          </div>
-
-          <div id="limits" class="col-md-4 col-sm-4" style="background-color:#e38a25">
-            <p class="title">Limitations</p>
-            <p class="area" ng-repeat="limitation in assessment.limitations">{{limitation}}</p>
-          </div>
-
-          <div id="profile" class="col-md-4 col-sm-4">
-            <p class="title">
-              Readiness Assessment Profile
-              <a
-                data-toggle="popover"
-                data-placement="right"
-                data-container="body"
-                data-html="true"
-                data-trigger="hover"
-                data-title="Chart Legend"
-                data-content='<p><b>TE:</b> Teacher Engagement<br><b>PP:</b> PD Process<br><b>LC:</b> Leadership Capacity<br><b>RO:</b> Resource Optimization<br><b>SP:</b> Supportive Policies<br><b>DI:</b> Delivery Infrastructure<br><b>DTI:</b> Data Infrastructure<br><b>HQ:</b> High Quality Content and Tools<br></p>'
-                style="color:#7a7e7f"
-                title="">
-                  <i class="fa fa-info-circle"></i>
-                </a>
-            </p>
-
-            <div>
-              <canvas id="assessment_radar_graph" data-type="Radar" width="175" height="175" style="width: 175px; height: 175px;"></canvas>
-            </div>
-          </div>
-        </div>
+        <assessment-priority
+          data-editable="false"
+          data-assessment-id="{{assessment.id}}">
+        </assessment-priority>
       </div>
     </div>
   </div>
