@@ -31,8 +31,6 @@ PDRClient.controller('AssessmentDashboardCtrl', ['$scope', '$timeout', 'SessionS
               labels.push(shortnames[key]);
               averages.push(value);
             });
-
-            $scope.createChart(labels, averages);
         });
       };
 
@@ -80,48 +78,5 @@ PDRClient.controller('AssessmentDashboardCtrl', ['$scope', '$timeout', 'SessionS
             return 'fa-envelope-o';
         }
       }
-
-      $scope.createChart = function(labels, averages){
-        var data = {
-          labels: labels,
-          datasets: [
-            {
-              fillColor: "#f9e8ea",
-              strokeColor: "#ecb0b5",
-              pointColor: "#ecb0b5",
-              pointStrokeColor: "#ecb0b5",
-              data: [2,2,2,2,2,2,2,2]
-            },
-            {
-              fillColor: "transparent",
-              strokeColor: "#5e8e9e",
-              pointColor: "#5e8e9e",
-              pointStrokeColor: "#5e8e9e",
-              data: averages
-            }
-          ]
-        };
-
-        options = {
-          scaleOverlay : true,
-          scaleOverride : true,
-          scaleSteps : 4,
-          scaleStepWidth : 1,
-          scaleStartValue : 0,
-          scaleShowLabels : true,
-          scaleFontFamily : "'Yanone Kaffeesatz'",
-          scaleFontSize : 12,
-          scaleFontStyle : "normal",
-          scaleFontColor : "#7a7e7f",
-          scaleShowLabelBackdrop : false,
-          pointLabelFontFamily : "'Yanone Kaffeesatz'",
-          pointLabelFontStyle : "normal",
-          pointLabelFontSize : 12,
-          pointLabelFontColor : "#7a7e7f",
-        };
-
-        var ctx = document.getElementById("assessment_radar_graph").getContext('2d');
-        var chart = new Chart(ctx).Radar(data, options);
-      };
     }
 ]);
