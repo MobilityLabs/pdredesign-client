@@ -8,6 +8,8 @@ $dropdown-open-color: #080808
 $font-size: 1.1em
 
 #main-nav
+  .activeLocation
+    background-color: #A21E2B
   cursor: hand
   cursor: pointer
 
@@ -19,9 +21,11 @@ $font-size: 1.1em
     border-radius: 0
     min-height: 1em
     i
-      color: $navbar-default-link-color 
+      color: $navbar-default-link-color
     li
       border-right: 1px solid #3d4c53
+
+
       &:first-child
         border-left: 1px solid #3d4c53
       &.open a

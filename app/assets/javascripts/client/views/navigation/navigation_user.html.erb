@@ -5,10 +5,10 @@
         <div class='col-md-12'>
           <div class='navbar-header'>
             <ul class='nav navbar-nav'>
-              <li>
+              <li ng-class="{activeLocation: locationHolder == 'home'}">
               <a href='#'>Home</a>
               </li>
-              <li>
+              <li  ng-class="{activeLocation: locationHolder == 'currentStates'}">
               <a class='data-toggle' data-toggle='dropdown'>Current State</a>
               <ul class='dropdown-menu'>
                 <li>
@@ -36,26 +36,29 @@
           </div>
           <ul class='nav navbar-nav navbar-right'>
             <li>
-            <a class='data-toggle' data-toggle='dropdown'>
-              <i class='fa fa-caret-down'></i>
-              {{user.full_name}}
-            </a>
-            <ul class='dropdown-menu'>
-              <li>
-              <a href='#/settings'>
-                <i class='fa fa-gears'></i>
-                Settings
+              <a class='data-toggle' data-toggle='dropdown'>
+                <i class='fa fa-caret-down'></i>
+                {{user.full_name}}
               </a>
-              </li>
-              <li>
-              <a href='#/logout'>
-                <i class='fa fa-sign-out'></i>
-                Sign Out
-              </a>
-              </li>
-            </ul>
-            </li>
 
+              <ul class='dropdown-menu'>
+                <li>
+                <a href='#/settings'>
+                  <i class='fa fa-gears'></i>
+                  Settings
+                </a>
+                </li>
+                <li>
+                <a href='#/logout'>
+                  <i class='fa fa-sign-out'></i>
+                  Sign Out
+                </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <img alt="{{user.name}}" class="img-polaroid" height="40" ng-src="{{user.avatar}}">
+            </li>
             <li>
             <a class='home' href='#/'>
               <%= image_tag 'logo.png' %>
