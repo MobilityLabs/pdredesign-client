@@ -8,6 +8,7 @@ PDRClient.controller('HomeCtrl', ['$scope','ToolKit', 'SessionService', '$timeou
         setToolTip();
       });
 
+
       function setToolTip() {
         $timeout(function() {
           $('ul.tool').find('li')
