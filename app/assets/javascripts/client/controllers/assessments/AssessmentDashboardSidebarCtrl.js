@@ -4,14 +4,19 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', ['$scope', '$timeout', 'S
 
       $scope.assessment = Assessment.get({id: $scope.id});
 
-      $scope.meetingDateHeld = function(date) {
+      $scope.meetingDateHeld = function() {
         return moment().isAfter($scope.assessment.meeting_date)
       }
 
-      $scope.meetingDayNumber = function(date) {
-        if (date !== null) {
-          return moment(date).format("D");
-        }
+      $scope.meetingDateNotHeld = function() {
+        return moment().isBefore($scope.assessment.meeting_date)
+      }
+      $scope.meetingDateNone = function() {
+        return $scope.assessment.meeting_date == null
+      }
+
+      $scope.meetingDayNumber = function() {
+        return moment($scope.assessment.meeting_date).format("D");
       }
 
       $scope.showConsensusCreateLink = function() {
@@ -26,22 +31,20 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', ['$scope', '$timeout', 'S
         }
       }
 
-
       $scope.showModifyScheduleLink = function() {
+        return moment().isBefore($scope.assessment.meeting_date)
+     }
+
+      $scope.showScheduleConsensusMeeting = function() {
         return moment().isBefore($scope.assessment.meeting_date)
       }
 
-
-      $scope.meetingDayName = function(date) {
-        if (date !== null) {
-          return moment(date).format("dddd");
-        }
+      $scope.meetingDayName = function() {
+          return moment($scope.assessment.meeting_date).format("dddd");
       }
 
-      $scope.meetingMonthName = function(date) {
-        if (date !== null) {
-          return moment(date).format("MMM");
-        }
+      $scope.meetingMonthName = function() {
+          return moment($scope.assessment.meeting_date).format("MMM");
       }
 
     }
