@@ -83,7 +83,7 @@ PDRClient.directive('consensus', [
 
 
           $timeout(function(){
-            Consensus 
+            Consensus
               .get({assessment_id: $scope.assessmentId, id: $scope.responseId})
               .$promise
               .then(function(data){
