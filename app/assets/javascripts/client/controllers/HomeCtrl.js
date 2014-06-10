@@ -1,30 +1,34 @@
 PDRClient.controller('HomeCtrl', ['$scope','ToolKit', 'SessionService', '$timeout',
     function($scope, ToolKit, SessionService, $timeout) {
-      $scope.toolKits  = []
+      $scope.toolKits  = [];
       $scope.user = SessionService.getCurrentUser();
-
-      ToolKit.query({}, function(t) {
-        $scope.toolKits = t;
-        setToolTip();
+      $timeout(function() {
+        $scope.updateToolKits();
       });
 
+      $scope.updateToolKits = function() {
+        ToolKit.query({}, function(t) {
+          $scope.toolKits = t;
+          $scope.setToolTip();
+        });
+      };
 
-      function setToolTip() {
-        $timeout(function() {
+      $scope.setToolTip = function() {
+        $timeout(function(){
           $('ul.tool').find('li')
               .popover({
               placement: 'right',
               html: true,
               trigger: 'manual'
             }).on('show.bs.popover', function(){
-            $('ul.tool').find('li').not(this).popover('hide');
+              $('ul.tool').find('li').not(this).popover('hide');
             }).mouseenter(function(e) {
               $(this).popover('show');
             }).on('click', function(){
-             $('ul.tool').find('li').popover('hide');
+              $('ul.tool').find('li').popover('hide');
             });
         });
-      }
+      };
 
       $scope.setPopovers = function(tool){
         if(typeof tool.description === "undefined") {
