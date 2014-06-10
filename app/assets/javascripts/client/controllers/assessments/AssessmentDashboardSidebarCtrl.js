@@ -4,6 +4,10 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', ['$scope', '$timeout', 'S
 
       $scope.assessment = Assessment.get({id: $scope.id});
 
+      $scope.meetingDateHeld = function(date) {
+        return moment().isAfter($scope.assessment.meeting_date)
+      }
+
       $scope.meetingDayNumber = function(date) {
         if (date !== null) {
           return moment(date).format("D");
