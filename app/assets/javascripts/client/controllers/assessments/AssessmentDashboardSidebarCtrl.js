@@ -8,6 +8,13 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', ['$scope', '$timeout', 'S
         return moment().isAfter($scope.assessment.meeting_date)
       }
 
+      $scope.meetingDateNotHeld = function() {
+        return moment().isBefore($scope.assessment.meeting_date)
+      }
+      $scope.meetingDateNone = function() {
+        return $scope.assessment.meeting_date == null
+      }
+
       $scope.meetingDayNumber = function() {
         return moment($scope.assessment.meeting_date).format("D");
       }
@@ -24,13 +31,12 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', ['$scope', '$timeout', 'S
         }
       }
 
-
       $scope.showModifyScheduleLink = function() {
         return moment().isBefore($scope.assessment.meeting_date)
      }
 
       $scope.showScheduleConsensusMeeting = function() {
-        return $scope.assessment.meeting_date == null
+        return moment().isBefore($scope.assessment.meeting_date)
       }
 
       $scope.meetingDayName = function() {
