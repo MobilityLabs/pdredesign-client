@@ -9,7 +9,7 @@
         <p id="report-header">
           {{assessment.overview.text}}
           <a  ng-if="assessment.overview.link == 'view_consensus' " href="#/assessments/{{assessment.id}}/consensus/{{assessment.consensus.id}}">View Consensus</a>
-          <a  ng-if="assessment.overview.link == 'edit_consensus' " href="">Edit Consensus</a>
+          <a  ng-if="assessment.overview.link == 'edit_consensus' " href="#/assessments/{{assessment.id}}/consensus/{{assessment.consensus.id}}">Edit Consensus</a>
         </p>
         <assessment-priority
           data-editable="false"
