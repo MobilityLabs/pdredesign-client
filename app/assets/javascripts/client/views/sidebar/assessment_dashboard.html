@@ -6,18 +6,23 @@
       <p  ng-show="meetingDateHeld()" class='header'>Consensus Meeting was held</p>
       <div class='outer'>
         <div class='inner'>
-          <p class='day'>{{meetingDayName(assessment.meeting_date)}}</p>
-          <p class='date' ng-show="assessment.meeting_date">{{meetingDayNumber(assessment.meeting_date)}}</p>
-          <p class='date' ng-hide="assessment.meeting_date">?</p>
-          <p class='month'>{{meetingMonthName(assessment.meeting_date)}}</p>
+          <div ng-show="showScheduleConsensusMeeting">
+            <p class='day'>{{meetingDayName()}}</p>
+            <p class='date'>{{meetingDayNumber()}}</p>
+            <p class='month'>{{meetingMonthName()}}</p>
+          </div>
+          <div ng-hide="showScheduleConsensusMeeting">
+            <p class='date'>?</p>
+          </div>
         </div>
       </div>
     </div>
     <div class="links">
       <a  class="active" href="#/assessments/{{assessment.id}}/dashboard">Dashboard</a>
+      <a ng-show="showScheduleConsensusMeeting()" data-target="#modifySchedule" data-toggle="modal" href="">Schedule Consensus Meeting</a>
       <a ng-show="showConsensusCreateLink()" data-target="#createConsensus" data-toggle="modal" href="" >Create Consensus</a>
       <a ng-show="showConsensusViewLink()" data-target="#createConsensus" data-toggle="modal" href="" >View Consensus</a>
-      <a ng-show="showConsensusViewLink()" href="" >Report</a>
+      <a ng-show="showConsensusViewLink()" href="">Report</a>
       <a ng-show="showConsensusViewLink()" href="" class="">Recommendations</a>
       <a ng-show="showConsensusViewLink()" href="" class="">Send Followup Reminder</a>
       <a ng-show="showConsensusViewLink()" href="" class="">Create Followup Assessment</a>
