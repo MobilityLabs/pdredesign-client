@@ -4,39 +4,56 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', ['$scope', '$timeout', 'S
 
       $scope.assessment = Assessment.get({id: $scope.id});
 
-      $scope.meetingDateHeld = function() {
-        return moment().isAfter($scope.assessment.meeting_date)
-      }
-
-      $scope.meetingDateNotHeld = function() {
-        return moment().isBefore($scope.assessment.meeting_date)
-      }
-      $scope.meetingDateNone = function() {
-        return $scope.assessment.meeting_date == null
-      }
-
-      $scope.meetingDayNumber = function() {
-        return moment($scope.assessment.meeting_date).format("D");
-      }
-
-      $scope.showConsensusCreateLink = function() {
+      $scope.preDateTable = function() {
         if(typeof $scope.assessment.overview !== "undefined") {
-          return $scope.assessment.overview.link == "edit_consensus";
+          return moment().isBefore($scope.assessment.meeting_date);
         }
       }
 
-      $scope.showConsensusViewLink = function() {
+      $scope.postDateTable = function() {
+        if(typeof $scope.assessment.overview !== "undefined") {
+          return moment().isAfter($scope.assessment.meeting_date);
+        }
+      }
+
+      $scope.meetingDateDaysAgo = function() {
+        if(typeof $scope.assessment.overview !== "undefined") {
+          return moment().diff($scope.assessment.meeting_date, 'days');
+        }
+      }
+
+      $scope.postMeetingDate = function() {
+        if(typeof $scope.assessment.overview !== "undefined") {
+          if ($scope.assessment.overview.link == "edit_consensus") {
+            return moment().isAfter($scope.assessment.meeting_date);
+          }
+        }
+      }
+
+      $scope.preMeetingDate = function() {
+        if(typeof $scope.assessment.overview !== "undefined") {
+          if ($scope.assessment.overview.link == "edit_consensus") {
+            return moment().isBefore($scope.assessment.meeting_date);
+          }
+        }
+      }
+
+      $scope.noMeetingDate = function() {
+        if(typeof $scope.assessment.overview !== "undefined") {
+          if ($scope.assessment.overview.link == "view_consensus") {
+            return $scope.assessment.meeting_date == null;
+          }
+        }
+      }
+
+      $scope.reportPresent = function() {
         if(typeof $scope.assessment.overview !== "undefined") {
           return $scope.assessment.overview.link == "view_consensus";
         }
       }
 
-      $scope.showModifyScheduleLink = function() {
-        return moment().isBefore($scope.assessment.meeting_date)
-     }
-
-      $scope.showScheduleConsensusMeeting = function() {
-        return moment().isBefore($scope.assessment.meeting_date)
+      $scope.meetingDayNumber = function() {
+        return moment($scope.assessment.meeting_date).format("D");
       }
 
       $scope.meetingDayName = function() {
