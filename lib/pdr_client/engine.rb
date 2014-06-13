@@ -21,6 +21,7 @@ module PdrClient
     require 'rails-assets-angular-moment'
 
     require 'rails-assets-select2'
+    require 'rails-assets-highcharts'
     require 'rails-assets-angular-ui-select2'
     require 'bootstrap3-datetimepicker-rails'
 

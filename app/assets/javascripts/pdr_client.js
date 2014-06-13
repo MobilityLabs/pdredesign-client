@@ -23,5 +23,7 @@
 //= require angular-rails-templates
 //= require bootstrap-datetimepicker
 //= require jquery.tablednd
+//= require highcharts
+//= require highcharts/highcharts-more
 //= require_tree ./client/views
 //= require_tree ./client

@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency("rails-assets")
   s.add_dependency('rails-assets-moment')
   s.add_dependency('rails-assets-underscore')
+  s.add_dependency('rails-assets-highcharts')
   s.add_dependency('rails-assets-angular')
   s.add_dependency('rails-assets-angular-route')
   s.add_dependency('rails-assets-angular-sanitize')
