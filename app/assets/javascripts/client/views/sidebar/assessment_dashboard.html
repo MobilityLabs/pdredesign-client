@@ -47,14 +47,10 @@
       </span>
 
       <span ng-show="reportPresent()">
-        <a href="#/assessments/{{assessment.id}}/consensus/{{assessment.consensus.id}}">View Consensus</a>
-        <a href="" class="">Recommendations</a>
         <a
           ng-class="{ active: $state.includes('assessment_report') }"
           href="#/assessments/{{assessment.id}}/report">Report
         </a>
-        <a href="" class="">Send Followup Reminder</a>
-        <a href="" class="">Create Followup Assessment</a>
       </span>
     </div>
   </div>
