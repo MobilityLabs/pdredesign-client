@@ -13,9 +13,17 @@ PDRClient.directive('startAssessment', [
           'Assessment',
           'SessionService',
           function($scope, $timeout, $location, Rubric, Assessment, SessionService){
-          $scope.rubrics = Rubric.query({});
+
           $scope.alerts  = [];
           $scope.assessment = {};
+          Rubric
+            .query({})
+            .$promise
+            .then(function(data){ 
+                $scope.rubrics = data; 
+                $scope.rubric  = data[0];
+            });
+
 
           $scope.isAdmin = function() {
             var user = SessionService.getCurrentUser();
@@ -33,8 +41,8 @@ PDRClient.directive('startAssessment', [
           }
 
           $scope.create  = function(assessment) {
-            if(assessment.rubric_id)
-              assessment.rubric_id = assessment.rubric_id.id;
+            if($scope.rubric)
+              assessment.rubric_id = $scope.rubric.id;
             assessment.due_date = moment($("#due-date").val()).toISOString();
 
             Assessment

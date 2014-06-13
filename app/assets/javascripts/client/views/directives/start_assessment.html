@@ -29,16 +29,16 @@
 
             <div class="row">
               <div class="col-md-6">
-                <select class="form-control" ng-model="assessment.rubric_id" ng-options="rubric.name for rubric in rubrics" required>
+                <select class="form-control" ng-model="rubric" required ng-options="rubric.name for rubric in rubrics">
                 </select>
               </div>
               <div class="col-md-6">
                 <div class="input-group date datetime">
                   <input 
+                    ng-model="due_date" 
                     type="text"
                     placeholder="Due Date*"
                     class="form-control" 
-                    ng-model="assessment.due_date" 
                     data-format="dd/MM/yyyy hh:mm:ss" 
                     id="due-date"
                     name="due-date">
