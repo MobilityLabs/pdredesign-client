@@ -37,6 +37,15 @@ PDRClient.directive('assessmentChart', [
               return categories;
             };
 
+            $scope.diagnosticMins = function() {
+              var mins = [];
+
+              angular.forEach($scope.categories, function(category, index) {
+                mins.push(category.diagnostic_min);
+              });
+              return mins;
+            };
+
             $scope.averages = function() {
               var averages = [];
 
@@ -79,13 +88,17 @@ PDRClient.directive('assessmentChart', [
                 credits: {
                   enabled: false
                 },
-                series: [
-                  {
-                  name: 'Score',
-                  data: $scope.averages(),
-                  pointPlacement: 'on'
-                }
-                ]
+                series: [{
+                    color: '#EDB8BE',
+                    name: 'Diagnostic Min',
+                    data: $scope.diagnosticMins(),
+                    pointPlacement: 'on'
+                }, {
+                    color: '#5F8D9C',
+                    name: 'Averages',
+                    data: $scope.averages(),
+                    pointPlacement: 'on'
+                }]
               });
             };
 
