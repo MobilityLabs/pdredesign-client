@@ -5,9 +5,15 @@
 
     <div class="col-md-4">
       <select
+        ng-change="changeViewMode(viewMode)"
         ng-model="viewMode"
-        ng-options="mode.label for mode in viewModes"
         class="col-md-8 form-control">
+        <option
+          ng-selected="$index == 0"
+          value="{{mode.label}}"
+          ng-repeat="mode in viewModes">
+          {{mode.label}}
+        </option>
       </select>
     </div>
   </div>
