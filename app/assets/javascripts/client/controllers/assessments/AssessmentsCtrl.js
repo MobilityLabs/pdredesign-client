@@ -62,7 +62,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'Assessment
             return '#046262';
           default:
             return '#884541';
-        } 
+        }
       }
     }
 ]);
