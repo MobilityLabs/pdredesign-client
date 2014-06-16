@@ -15,16 +15,6 @@ describe('Controller: AssessmentDashboardSidebarCtrl', function() {
       });
   }));
 
-  it('preDateTable should be true for meeting date that is nextWeek', function() {
-    scope.assessment.meeting_date = nextWeek
-    expect(scope.preDateTable()).toEqual(true)
-  });
-
-  it('postDateTable should be false for meeting date that is nextWeek', function() {
-    scope.assessment.meeting_date = nextWeek
-    expect(scope.postDateTable()).toEqual(false)
-  });
-
   it('postMeetingDate should be false for meeting date that is nextWeek', function() {
     scope.assessment.meeting_date = nextWeek
     expect(scope.postMeetingDate()).toEqual(false)
@@ -40,7 +30,7 @@ describe('Controller: AssessmentDashboardSidebarCtrl', function() {
     expect(scope.noMeetingDate()).toEqual(true)
   });
 
-  it("reportPresent should be true is overview is 'view_consenus' ", function() {
+  it("reportPresent should be true if overview is 'view_consenus' ", function() {
     scope.assessment.overview = {}
     scope.assessment.overview.link = "view_consensus"
     expect(scope.reportPresent()).toEqual(true)
