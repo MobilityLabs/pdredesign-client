@@ -2,17 +2,17 @@
 
   <div id="assessment_dashboard_consensus_sidebar" ng-controller="AssessmentDashboardSidebarCtrl">
     <div class='consensus'>
-      <p ng-show="preDateTable()" class='header'>Consensus Meeting for</p>
-      <p ng-show="postDateTable()" class='header'>Consensus Meeting was held</p>
+      <p ng-show="preMeetingDate()" class='header'>Consensus Meeting for</p>
+      <p ng-show="postMeetingDate()" class='header'>Consensus Meeting was held</p>
       <p ng-show="noMeetingDate()" class='header'>Consensus Meeting not yet scheduled</p>
       <div class='outer'>
         <div class='inner'>
-          <div ng-show="postDateTable()">
+          <div ng-show="postMeetingDate()">
             <p class='date'>{{meetingDateDaysAgo()}}</p>
             <p class='month'>days ago</p>
           </div>
 
-          <div ng-show="preDateTable()">
+          <div ng-show="preMeetingDate()">
             <p class='day'>{{meetingDayName()}}</p>
             <p class='date'>{{meetingDayNumber()}}</p>
             <p class='month'>{{meetingMonthName()}}</p>
