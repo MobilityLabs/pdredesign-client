@@ -30,12 +30,16 @@ describe('Controller: AssessmentDashboardSidebarCtrl', function() {
     expect(scope.noMeetingDate()).toEqual(true)
   });
 
-  it("reportPresent should be true if overview is 'view_consenus' ", function() {
-    scope.assessment.overview = {}
-    scope.assessment.overview.link = "view_consensus"
+  it("reportPresent should be true if consensus has been submitted ", function() {
+    scope.assessment.consensus = {}
+    scope.assessment.consensus.submitted_at = "something"
     expect(scope.reportPresent()).toEqual(true)
   });
 
-
+  it("reportPresent should be false if consensus submitted_at is null", function() {
+    scope.assessment.consensus = {}
+    scope.assessment.consensus.submitted_at = null
+    expect(scope.reportPresent()).toEqual(false)
+  });
 
 });
