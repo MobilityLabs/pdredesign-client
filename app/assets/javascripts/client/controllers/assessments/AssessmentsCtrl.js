@@ -45,7 +45,8 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'Assessment
       }
 
       $scope.responseLinkDisabled = function(assessment) {
-        if($scope.responseLink(assessment) == '#') return 'disabled';
+        if($scope.responseLink(assessment) == '#')
+          return 'disabled';
         return '';
       }
 
