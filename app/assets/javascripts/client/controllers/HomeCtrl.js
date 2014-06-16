@@ -37,7 +37,7 @@ PDRClient.controller('HomeCtrl', ['$scope','ToolKit', 'SessionService', '$timeou
 
         return "<div><div class='row'><div class='col-md-12'><p class='greeting'>" + tool.title + "</p>" + tool.description + "</div></div>" +
           "<div class='row second'><div class='col-md-9 icons'><span class='fa-stack'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-font fa-stack-1x'></i></span><span class='fa-stack'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-users fa-stack-1x'></i></span><span class='fa-stack'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-comments fa-stack-1x'></i></span></div>" +
-          "<div class='col-md-3'><a href='/assessments' class='btn btn-primary'>Go</a></div></div>" + "</div>"
+          "<div class='col-md-3'><a href='/#/assessments' class='btn btn-primary'>Go</a></div></div>" + "</div>"
       }
 
       SessionService.setUserTemplate(
