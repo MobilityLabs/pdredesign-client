@@ -4,14 +4,6 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', ['$scope', '$timeout', 'S
 
       $scope.assessment = Assessment.get({id: $scope.id});
 
-      $scope.preDateTable = function() {
-        return moment().isBefore($scope.assessment.meeting_date);
-      }
-
-      $scope.postDateTable = function() {
-        return moment().isAfter($scope.assessment.meeting_date);
-      }
-
       $scope.meetingDateDaysAgo = function() {
         return moment().diff($scope.assessment.meeting_date, 'days');
       }
@@ -29,7 +21,9 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', ['$scope', '$timeout', 'S
       }
 
       $scope.reportPresent = function() {
-        return $scope.assessment.overview.link == "view_consensus";
+        if(typeof $scope.assessment.overview !== 'undefined'){
+          return $scope.assessment.overview.link == "view_consensus";
+         };
       }
 
       $scope.meetingDayNumber = function() {
