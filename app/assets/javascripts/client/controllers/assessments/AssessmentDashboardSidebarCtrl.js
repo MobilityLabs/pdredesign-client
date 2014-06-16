@@ -21,9 +21,7 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', ['$scope', '$timeout', 'S
       }
 
       $scope.reportPresent = function() {
-        if(typeof $scope.assessment.overview !== 'undefined'){
-          return $scope.assessment.overview.link == "view_consensus";
-         };
+        return $scope.assessment.consensus.submitted_at !== null;
       }
 
       $scope.meetingDayNumber = function() {
