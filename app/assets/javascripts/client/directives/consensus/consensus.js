@@ -3,12 +3,10 @@ PDRClient.directive('consensus', [
     return {
       restrict: 'E',
       replace: true,
-      scope: {},
+      scope: {
+        assessmentId:  '@',
+        responseId:    '@',},
       templateUrl: 'client/views/directives/response_question.html',
-      link: function(scope, element, attrs) {
-        scope.assessmentId = attrs.assessmentId;
-        scope.responseId   = attrs.responseId;
-      },
       controller: [
         '$scope',
         '$timeout',
@@ -41,7 +39,7 @@ PDRClient.directive('consensus', [
           };
 
           $scope.assignAnswerToQuestion = function(answer, question) {
-            if($scope.isReadOnly) return;
+            if($scope.isReadOnly) return false;
             var params = {response_id: $scope.responseId, assessment_id: $scope.assessmentId};
             var score = {question_id: question.id, value: answer.value, evidence: question.score.evidence};
 
@@ -72,7 +70,7 @@ PDRClient.directive('consensus', [
 
           $scope.viewModes = [{label: "Category"}, {label: "Variance"}];
           $scope.viewMode  = $scope.viewModes[0];
-          
+
           $scope.sortByCategory = function() {
             return $scope.data;
           };
@@ -93,7 +91,7 @@ PDRClient.directive('consensus', [
             keys.sort();
 
             var sorted    = {};
-            angular.forEach(keys, function(key) { sorted[key] = tmpObject[key]; }); 
+            angular.forEach(keys, function(key) { sorted[key] = tmpObject[key]; });
 
             return sorted;
           };
@@ -108,7 +106,7 @@ PDRClient.directive('consensus', [
                 break;
             }
           };
-          
+
           $scope.$on('submit_response', function() {
             Consensus
               .submit({assessment_id: $scope.assessmentId, id: $scope.responseId}, {submit: true})
