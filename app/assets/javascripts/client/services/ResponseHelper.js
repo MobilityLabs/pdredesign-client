@@ -3,6 +3,16 @@ PDRClient.service('ResponseHelper',
   'Score',
   function($q, Score) {
 
+  this.answerCount = function(scores, questionId, answerValue) {
+    var count = 0;
+    angular.forEach(scores, function(score) {
+      if(score.question_id != questionId) return false;
+      if(score.value == answerValue)
+        count++;
+    });
+    return count;
+  };
+
   this.toggleAnswers = function(question) {
     question.answersVisible = !question.answersVisible;
   };
