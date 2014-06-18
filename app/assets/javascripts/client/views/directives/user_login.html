@@ -2,7 +2,7 @@
   <h3 class="heading">Sign in to PD Redesign</h3>
   <ng-include src="'client/views/shared/errors.html'"> </ng-include>
 
-
+  <form ui-keypress="{13:'authenticate(email, password)'}">
   <div class"row">
     <div class="input col-md-12">
       <input autofocus 
@@ -30,9 +30,19 @@
              ng-click="authenticate(email, password)"/>
     </div>
   </div>
+  </form>
   <div class="checkbox">
     <label>
-      <input name="user[remember_me]" type="hidden" value="0"><input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1"> Remember Me &nbsp; • &nbsp; <a href="/users/password/new">Forgot Password?</a>
+      <input 
+        name="user[remember_me]" 
+        type="hidden" 
+        value="0">
+      <input 
+        id="user_remember_me"
+        name="user[remember_me]" 
+        type="checkbox" value="1">
+          Remember Me &nbsp; • &nbsp; 
+      <a href="/users/password/new">Forgot Password?</a>
     </label>
   </div>
 

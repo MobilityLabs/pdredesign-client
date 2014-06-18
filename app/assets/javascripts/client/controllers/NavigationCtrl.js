@@ -14,6 +14,10 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
       $scope.updateTemplate();
       $scope.user = SessionService.getCurrentUser();
 
+      $scope.userAvatar = function() {
+        return $scope.user.avatar;
+      };
+
       $scope.$watch(function () { return $location.url(); }, function (url) {
         switch(url) {
           case '/assessments':
@@ -23,7 +27,7 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
           default:
             return '';
         }
-      })
+      });
 
       $scope.$on('session_updated', function() {
         $scope.updateTemplate();

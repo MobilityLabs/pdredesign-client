@@ -21,7 +21,7 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', ['$scope', '$timeout', 'S
       }
 
       $scope.reportPresent = function() {
-        return $scope.assessment.consensus.submitted_at !== null;
+        return $scope.assessment.submitted_at !== null;
       }
 
       $scope.meetingDayNumber = function() {

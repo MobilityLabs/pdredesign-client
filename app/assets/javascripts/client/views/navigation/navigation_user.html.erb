@@ -56,11 +56,11 @@
                 </li>
               </ul>
             </li>
-            <li>
-              <img alt="{{user.name}}" class="img-polaroid" height="40" ng-src="{{user.avatar}}">
+            <li class='hidden-xs hidden-sm'>
+              <img alt="{{user.name}}" class="img-polaroid" height="40" ng-src="{{userAvatar()}}">
             </li>
-            <li>
-            <a class='home' href='#/'>
+            <li class='hidden-xs hidden-sm'>
+            <a class='home logo' href='#/'>
               <%= image_tag 'logo.png' %>
             </a>
             </li>
