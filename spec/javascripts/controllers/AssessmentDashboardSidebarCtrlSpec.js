@@ -16,30 +16,28 @@ describe('Controller: AssessmentDashboardSidebarCtrl', function() {
   }));
 
   it('postMeetingDate should be false for meeting date that is nextWeek', function() {
-    scope.assessment.meeting_date = nextWeek
-    expect(scope.postMeetingDate()).toEqual(false)
+    scope.assessment.meeting_date = nextWeek;
+    expect(scope.postMeetingDate()).toEqual(false);
   });
 
   it('preMeetingDate should be true for meeting date that is nextWeek', function() {
-    scope.assessment.meeting_date = nextWeek
-    expect(scope.preMeetingDate()).toEqual(true)
+    scope.assessment.meeting_date = nextWeek;
+    expect(scope.preMeetingDate()).toEqual(true);
   });
 
   it('noMeetingDate should be true for meeting date that is null', function() {
-    scope.assessment.meeting_date = null
-    expect(scope.noMeetingDate()).toEqual(true)
+    scope.assessment.meeting_date = null;
+    expect(scope.noMeetingDate()).toEqual(true);
   });
 
   it("reportPresent should be true if consensus has been submitted ", function() {
-    scope.assessment.consensus = {}
-    scope.assessment.consensus.submitted_at = "something"
-    expect(scope.reportPresent()).toEqual(true)
+    scope.assessment.submitted_at = "something";
+    expect(scope.reportPresent()).toEqual(true);
   });
 
   it("reportPresent should be false if consensus submitted_at is null", function() {
-    scope.assessment.consensus = {}
-    scope.assessment.consensus.submitted_at = null
-    expect(scope.reportPresent()).toEqual(false)
+    scope.assessment.submitted_at = null;
+    expect(scope.reportPresent()).toEqual(false);
   });
 
 });
