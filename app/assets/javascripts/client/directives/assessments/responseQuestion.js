@@ -16,44 +16,16 @@ PDRClient.directive('responsequestion', [
         'SessionService',
         'Response',
         'Score',
-        function($scope, $timeout, $stateParams, SessionService, Response, Score) {
-          $scope.toggleAnswers = function(question) {
-            question.answersVisible = !question.answersVisible
-          };
+        'ResponseHelper',
+        function($scope, $timeout, $stateParams, SessionService, Response, Score, ResponseHelper) {
 
-          $scope.saveEvidence = function(score) {
-            score.editMode = true
-          };
+          $scope.toggleAnswers = ResponseHelper.toggleAnswers
+          $scope.saveEvidence = ResponseHelper.saveEvidence
+          $scope.editAnswer = ResponseHelper.editAnswer
+          $scope.answerTitle = ResponseHelper.answerTitle
 
-          $scope.editAnswer = function(score) {
-            score.editMode = false
-          };
-
-          $scope.assignAnswerToQuestion = function(answer, question) {
-            var params = {response_id: $scope.responseId, assessment_id: $scope.assessmentId};
-            var score = {question_id: question.id, value: answer.value, evidence: answer.evidence};
-            question.loading = true;
-            Score
-              .save(params, score)
-              .$promise
-              .then(function(){
-                $scope.$emit('response_updated');
-                question.loading = false;
-                question.score.value = answer.value;
-              });
-          }
-
-          $scope.answerTitle = function(value) {
-            switch(value) {
-              case 1:
-                return 'Non-Existent';
-              case 2:
-                return 'Initial';
-              case 3:
-                return 'Defined & Managed';
-              case 4:
-                return 'Optimizing';
-            }
+          $scope.assignAnswerToQuestion = function (answer, question) {
+            ResponseHelper.assignAnswerToQuestion($scope, answer, question);
           }
 
           $timeout(function(){

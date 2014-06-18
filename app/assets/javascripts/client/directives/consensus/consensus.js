@@ -15,14 +15,12 @@ PDRClient.directive('consensus', [
         'SessionService',
         'Consensus',
         'Score',
-        function($scope, $timeout, $stateParams, $location, SessionService, Consensus, Score) {
+        'ResponseHelper',
+        function($scope, $timeout, $stateParams, $location, SessionService, Consensus, Score, ResponseHelper) {
 
           $scope.isConsensus = true;
           $scope.isReadOnly  = true;
 
-          $scope.toggleAnswers = function(question) {
-            question.answersVisible = !question.answersVisible;
-          };
 
           $scope.toggleCategoryAnswers = function(category) {
             angular.forEach(category.questions, function(question, key) {
@@ -30,43 +28,15 @@ PDRClient.directive('consensus', [
             });
           };
 
-          $scope.saveEvidence = function(score) {
-            score.editMode = true;
-          };
+          $scope.toggleAnswers = ResponseHelper.toggleAnswers
+          $scope.saveEvidence = ResponseHelper.saveEvidence
+          $scope.editAnswer = ResponseHelper.editAnswer
+          $scope.answerTitle = ResponseHelper.answerTitle
 
-          $scope.editAnswer = function(score) {
-            score.editMode = false;
-          };
-
-          $scope.assignAnswerToQuestion = function(answer, question) {
+          $scope.assignAnswerToQuestion = function (answer, question) {
             if($scope.isReadOnly) return false;
-            var params = {response_id: $scope.responseId, assessment_id: $scope.assessmentId};
-            var score = {question_id: question.id, value: answer.value, evidence: question.score.evidence};
-
-            question.loading = true;
-
-            Score
-              .save(params, score)
-              .$promise
-              .then(function(){
-                $scope.$emit('response_updated');
-                question.loading = false;
-                question.score.value = answer.value;
-              });
-          };
-
-          $scope.answerTitle = function(value) {
-            switch(value) {
-              case 1:
-                return 'Non-Existent';
-              case 2:
-                return 'Initial';
-              case 3:
-                return 'Defined & Managed';
-              case 4:
-                return 'Optimizing';
-            }
-          };
+            ResponseHelper.assignAnswerToQuestion($scope, answer, question);
+          }
 
           $scope.viewModes = [{label: "Category"}, {label: "Variance"}];
           $scope.viewMode  = $scope.viewModes[0];
