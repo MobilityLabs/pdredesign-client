@@ -93,7 +93,6 @@ PDRClient.directive('consensus', [
               .$promise
               .then(function(data) {
                 $scope.scores     = data.scores;
-                window.scores = $scope.scores;
                 $scope.data       = data.categories;
                 $scope.categories = data.categories;
                 $scope.isReadOnly = data.is_completed || false;
