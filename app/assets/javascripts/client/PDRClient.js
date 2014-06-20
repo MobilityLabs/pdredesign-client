@@ -125,6 +125,15 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
        }
      }
    })
+   .state('response_create', {
+     url: '/assessments/:assessment_id/responses',
+     views: {
+       '': {
+         controller: 'ResponseCreateCtrl',
+         templateUrl: ''
+       }
+     }
+   })
    .state('consensus_show', {
      url: '/assessments/:assessment_id/consensus/:response_id',
      views: {
