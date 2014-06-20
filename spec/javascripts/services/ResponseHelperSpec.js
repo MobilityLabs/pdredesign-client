@@ -22,11 +22,25 @@ describe('Service: ResponseHelper', function() {
     expect(score.editMode).toEqual(true);
   });
 
+  describe('#answerCount', function() {
+    var scores = [{question_id: 1, value: 1},
+                  {question_id: 2, value: 4},
+                  {question_id: 1, value: 4},
+                  {question_id: 1, value: 4}];
+
+    it('return the count for a question id and answer id', function() {
+      expect(subject.answerCount(scores, 1, 4)).toEqual(2);
+      expect(subject.answerCount(scores, 1, 1)).toEqual(1);
+      expect(subject.answerCount(scores, 1, 0)).toEqual(0);
+      expect(subject.answerCount(scores, 1, undefined)).toEqual(0);
+    });
+  });
+
   describe('#assignAnswerToQuestion', function() {
     var scoreResource;
-    var score1 = {id: 1, evidence: "hello", value: 1, editMode: null};
+    var score1    = {id: 1, evidence: "hello", value: 1, editMode: null};
     var question1 = {id: 1, score: score1 };
-    var answer1 = {id: 1, value: 2};
+    var answer1   = {id: 1, value: 2};
 
     beforeEach(inject(function($injector, Score) {
       scope.isReadOnly = false;

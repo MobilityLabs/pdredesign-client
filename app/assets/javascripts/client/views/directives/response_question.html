@@ -41,7 +41,10 @@
               </div>
 
 
-              <div class="col-md-11 answer-row valueColor-{{answer.value}}" ng-class="{scored{{answer.value}}: question.score.value == answer.value}">
+              <div
+                class="col-md-11 answer-row valueColor-{{answer.value}}"
+                ng-class="{scored{{answer.value}}: question.score.value == answer.value}">
+
                 <div class="answer-info-row">
                   <div class="col-md-1 scored-{{answer.value}} answer-value">
                     <span>{{answer.value}}</span>
