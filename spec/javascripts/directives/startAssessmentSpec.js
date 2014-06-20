@@ -4,12 +4,11 @@ describe('Directive: startAssessment', function() {
   var assessment = {id: 1, due_date: null, rubric_id: null};
   beforeEach(module('PDRClient'));
 
-  beforeEach(inject(function($rootScope, $compile, $timeout, $q, Rubric, $httpBackend, Assessment) {
+  beforeEach(inject(function($rootScope, $compile, $q, $httpBackend, Assessment) {
     $httpBackend.expectGET('/v1/rubrics').respond([{id: 2, name: "PD Readiness Rubric v3.0", version: "3.0", enabled: true}]);
     AssessmentResource = Assessment;
     scope   = $rootScope.$new();
     element = angular.element('<start-assessment></start-assessment>');
-    timeout = $timeout;
     q = $q;
     $compile(element)(scope);
     scope.$digest();
@@ -27,10 +26,11 @@ describe('Directive: startAssessment', function() {
     });
 
     it('sets assessment due date ', function() {
+      assessment.due_date = null
       var today = new Date();
       $("#due-date").val(today);
       scope.create(assessment);
-      expect(assessment.due_date).toEqual(moment(today).toISOString());
+      expect(moment(assessment.due_date).format('dddd')).toEqual(moment(today).format('dddd'));
     });
 
     it('callbacks functions success and redirectToAssessment are called', function() {
