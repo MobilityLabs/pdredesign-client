@@ -1,5 +1,5 @@
-PDRClient.controller('AssessmentDashboardCtrl', ['$scope', '$timeout', 'SessionService', 'Assessment', '$stateParams', 'Participant',
-    function($scope, $timeout, SessionService, Assessment, $stateParams, Participant) {
+PDRClient.controller('AssessmentDashboardCtrl', ['$modal', '$scope', '$timeout', 'SessionService', 'Assessment', '$stateParams', 'Participant',
+    function($modal, $scope, $timeout, SessionService, Assessment, $stateParams, Participant) {
       $scope.id = $stateParams.id;
       $scope.currentUser = SessionService.getCurrentUser();
 
