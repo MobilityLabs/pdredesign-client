@@ -25,7 +25,7 @@ PDRClient.directive('assessmentLinks', [
                   "show_response": "group",
                   "none": "group",
                   "finish": "pencil",
-                  "messages": "messages",
+                  "messages": "envelope",
                   "report": "file-text-o",
               }
               return icons[type];
