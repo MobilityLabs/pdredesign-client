@@ -20,7 +20,7 @@ PDRClient.controller('ResponseCreateCtrl', ['$modal', '$timeout', '$scope', '$lo
         $scope.notification  = "Response was not created.";
         $modal.open({
           templateUrl: 'client/views/shared/notification_modal.html',
-          scope: $scope.errors
+          scope: $scope
         });
       });
     };
