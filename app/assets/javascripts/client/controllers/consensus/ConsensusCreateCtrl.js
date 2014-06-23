@@ -13,7 +13,7 @@ PDRClient.controller('ConsensusCreateCtrl', ['$modal', '$scope', '$timeout', '$l
           $location.path('/assessments/'+ $scope.assessmentId +'/consensus/' + response.id)
       }, function(data){
 
-        $scope.isError = true
+        $scope.isError = true;
         $scope.notification  = "Consensus was not created.";
         $modal.open({
           templateUrl: 'client/views/shared/notification_modal.html',
