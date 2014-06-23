@@ -1,6 +1,6 @@
-PDRClient.controller('ResponseCreateCtrl', ['$timeout', '$scope', '$location', 'SessionService', 'Response', '$stateParams', 'Assessment',
-  function($timeout, $scope, $location, SessionService, Response, $stateParams, Assessment) {
-    $scope.errors  = null;
+PDRClient.controller('ResponseCreateCtrl', ['$modal', '$timeout', '$scope', '$location', 'SessionService', 'Response', '$stateParams', 'Assessment',
+  function($modal, $timeout, $scope, $location, SessionService, Response, $stateParams, Assessment) {
+    $scope.isError  = null;
 
     $scope.assessmentId = $stateParams.assessment_id;
 
@@ -15,8 +15,13 @@ PDRClient.controller('ResponseCreateCtrl', ['$timeout', '$scope', '$location', '
       .then(function(response){
         $location.path('/assessments/'+ $scope.assessmentId +'/responses/' + response.id);
       }, function(data){
-        console.log("failure");
-        $scope.errors  = "Response was not created.";
+
+        $scope.isError = true
+        $scope.notification  = "Response was not created.";
+        $modal.open({
+          templateUrl: 'client/views/shared/notification_modal.html',
+          scope: $scope.errors
+        });
       });
     };
 

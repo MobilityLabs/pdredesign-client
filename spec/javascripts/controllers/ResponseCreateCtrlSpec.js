@@ -66,16 +66,16 @@ describe('Controller: ResponseCreateCtrl', function() {
 
   });
 
-  it('Response save fails and shows error', function() {
+  it('Response save fails and isError is true', function() {
       spyOn(ResponseResource, 'save').and.callFake(function(){
         var deferred = q.defer();
-        deferred.reject(false);
+        deferred.reject({});
         return {$promise: deferred.promise};
       });
 
       scope.createResponse()
       scope.$apply();
-      expect(scope.errors).not.toEqual(null);
+      expect(scope.isError).toEqual(true);
   });
 
   it('Response save is successful and has no errors', function() {
@@ -87,8 +87,7 @@ describe('Controller: ResponseCreateCtrl', function() {
 
       scope.createResponse()
       scope.$apply();
-      expect(scope.errors).toEqual(null);
-
+      expect(scope.isError).toEqual(null);
   });
 
 });
