@@ -21,6 +21,10 @@ describe('Controller: ConsensusCreateCtrl', function() {
 
   }));
 
+  afterEach(function() {
+    httpBackend.verifyNoOutstandingExpectation();
+    httpBackend.verifyNoOutstandingRequest();
+  });
 
   it('Consensus create is called', function() {
     spyOn(ConsensusResource, 'create')
@@ -38,5 +42,31 @@ describe('Controller: ConsensusCreateCtrl', function() {
         scope.createConsensus(2, 3);
         httpBackend.flush();
   });
+
+  it('Consensus create fails and isError is true', function() {
+      spyOn(ConsensusResource, 'create').and.callFake(function(){
+        var deferred = q.defer();
+        deferred.reject({});
+        return {$promise: deferred.promise};
+      });
+
+      scope.createConsensus()
+      scope.$apply();
+      expect(scope.isError).toEqual(true);
+  });
+
+  it('Consensus create is successful and has no errors', function() {
+      spyOn(ConsensusResource, 'create').and.callFake(function(){
+        var deferred = q.defer();
+        deferred.resolve({});
+        return {$promise: deferred.promise};
+      });
+
+      scope.createConsensus()
+      scope.$apply();
+      expect(scope.isError).toEqual(null);
+  });
+
+
 
 });
