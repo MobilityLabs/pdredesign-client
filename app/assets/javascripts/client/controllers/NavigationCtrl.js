@@ -3,6 +3,10 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
 
       $scope.user = SessionService.getCurrentUser();
 
+      $scope.$watch('user', function() {
+        $scope.userAvatar = $scope.user.avatar;
+      });
+
       $scope.updateTemplate = function() {
         SessionService.setUserTemplate(
           $scope,
@@ -10,20 +14,22 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
           'client/views/navigation/navigation_anon.html'
         );
       };
-      $scope.locationHolder = '';
       $scope.updateTemplate();
       $scope.user = SessionService.getCurrentUser();
 
-      $scope.userAvatar = function() {
-        return $scope.user.avatar;
+      $scope.currentLocation = '';
+      $scope.activeClassFor = function(location) {
+        if($scope.currentLocation == location)
+          return 'active';
+        return '';
       };
 
       $scope.$watch(function () { return $location.url(); }, function (url) {
         switch(url) {
           case '/assessments':
-            return $scope.locationHolder = "currentStates";
+            return $scope.currentLocation = "current_state";
           case '':
-            return $scope.locationHolder = "home";
+            return $scope.currentLocation = "home";
           default:
             return '';
         }

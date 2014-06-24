@@ -5,10 +5,10 @@
         <div class='col-md-12'>
           <div class='navbar-header'>
             <ul class='nav navbar-nav'>
-              <li ng-class="{activeLocation: locationHolder == 'home'}">
+              <li ng-class="activeClassFor('home')">
               <a href='#'>Home</a>
               </li>
-              <li  ng-class="{activeLocation: locationHolder == 'currentStates'}">
+              <li ng-class="activeClassFor('current_state')">
               <a class='data-toggle' data-toggle='dropdown'>Current State</a>
               <ul class='dropdown-menu'>
                 <li>
@@ -57,7 +57,7 @@
               </ul>
             </li>
             <li class='hidden-xs hidden-sm'>
-              <img alt="{{user.name}}" class="img-polaroid" height="40" ng-src="{{userAvatar()}}">
+              <img alt="{{user.name}}" class="img-polaroid" height="40" ng-src="{{user.avatar}}">
             </li>
             <li class='hidden-xs hidden-sm'>
             <a class='home logo' href='#/'>

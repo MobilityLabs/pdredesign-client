@@ -11,7 +11,7 @@ describe('Controller: ConsensusCreateCtrl', function() {
       q  = $injector.get('$q');
       scope              = $injector.get('$rootScope').$new();
       httpBackend        = $injector.get('$httpBackend');
-      ConsensusResource   = $injector.get('Consensus');
+      ConsensusResource  = $injector.get('Consensus');
       timeout            = $injector.get('$timeout');
 
       subject  = $controller('ConsensusCreateCtrl', {
