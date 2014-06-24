@@ -35,6 +35,13 @@ describe('Directive: consensus', function() {
         expect(scope.assignAnswerToQuestion(answer1, question1)).toEqual(false);
     });
 
+    it('isAlert should be true if score evidence is missing', function() {
+        var score2 = {id: 1, evidence: "", value: 1, editMode: null};
+        var question2 = {id: 1, score: score2 };
+        scope.assignAnswerToQuestion(answer1, question2)
+        expect(question2.isAlert).toEqual(true);
+    });
+
   });
 
   describe('#ConsensusGET', function() {

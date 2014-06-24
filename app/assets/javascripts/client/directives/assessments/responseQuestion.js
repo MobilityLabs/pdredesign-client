@@ -24,6 +24,10 @@ PDRClient.directive('responsequestion', [
           $scope.editAnswer = ResponseHelper.editAnswer
           $scope.answerTitle = ResponseHelper.answerTitle
 
+          $scope.invalidEvidence = function (question) {
+            return question.score.evidence == null ||  question.score.evidence  == '';
+          }
+
           $scope.assignAnswerToQuestion = function (answer, question) {
             ResponseHelper.assignAnswerToQuestion($scope, answer, question);
           }
