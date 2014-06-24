@@ -40,10 +40,7 @@ PDRClient.service('ResponseHelper',
     };
 
     this.assignAnswerToQuestion = function(scope, answer, question) {
-      // if(question.score.evidence == null ||  question.score.evidence  == '') {
-      //   question.isAlert = true;
-      //   return;
-      // }
+
       var params = {response_id: scope.responseId, assessment_id: scope.assessmentId};
       var score = {question_id: question.id, value: answer.value, evidence: question.score.evidence};
       question.loading = true;
