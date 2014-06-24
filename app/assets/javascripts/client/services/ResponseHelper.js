@@ -2,6 +2,8 @@ PDRClient.service('ResponseHelper',
   ['$q',
   'Score',
   function($q, Score) {
+    var scope = this;
+
     this.answerCount = function(scores, questionId, answerValue) {
       var count = 0;
       angular.forEach(scores, function(score) {
@@ -38,6 +40,10 @@ PDRClient.service('ResponseHelper',
     };
 
     this.assignAnswerToQuestion = function(scope, answer, question) {
+      // if(question.score.evidence == null ||  question.score.evidence  == '') {
+      //   question.isAlert = true;
+      //   return;
+      // }
       var params = {response_id: scope.responseId, assessment_id: scope.assessmentId};
       var score = {question_id: question.id, value: answer.value, evidence: question.score.evidence};
       question.loading = true;
@@ -48,6 +54,8 @@ PDRClient.service('ResponseHelper',
           scope.$emit('response_updated');
           question.loading = false;
           question.score.value = answer.value;
+          question.isAlert = false;
+
         });
     }
 
