@@ -11,17 +11,26 @@ PDRClient.controller('AssessmentAssignCtrl', [
     function($scope, $timeout, $anchorScroll, $location, $stateParams, SessionService, Assessment, Participant, Rubric) {
 
       $scope.id = $stateParams.id;
-      $scope.assessment = Assessment.get({id: $scope.id});
       $scope.participants = Participant.query({assessment_id: $scope.id})
       $scope.nonDistrictParticipants = Participant.all({assessment_id: $scope.id})
       $scope.rubrics  = Rubric.query();
 
       $scope.alerts = [];
 
+      $scope.fetchAssessment = function() {
+        return Assessment.get({id: $scope.id});
+      };
+
+      $scope.assessment = $scope.fetchAssessment();
+
+      $scope.$watch('assessment.due_date', function(value) {
+        $scope.due_date = moment(value).format("MM/DD/YYYY");
+      });
+
       $scope.assignAndSave = function(assessment) {
         if (confirm("Are you sure you want to send out the assessment and invite all your participants?")) {
           $scope.save(assessment, true);
-          $location.path('/'); 
+          $location.path('/assessments'); 
         }
       };
 
@@ -41,7 +50,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
             $scope.saving = false;
             $scope.error('Could not save assessment');
           });
-      }
+      };
 
       $scope.success = function(message) {
         $scope.alerts.push({type: 'success', msg: message });
@@ -52,7 +61,6 @@ PDRClient.controller('AssessmentAssignCtrl', [
         $scope.alerts.push({type: 'danger', msg: message });
         $anchorScroll();
       };
-
 
       $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
@@ -73,28 +81,25 @@ PDRClient.controller('AssessmentAssignCtrl', [
         }, function() {
             $scope.error('Could not update participants list');
         });
-      }
+      };
 
       $scope.removeParticipant = function(user) {
         Participant.delete({assessment_id: $scope.id, id: user.participant_id}, {user_id: user.id})
         updateParticipantsList();
-      }
+      };
 
       $scope.addParticipant = function(user) {
         Participant.save({assessment_id: $scope.id}, {user_id: user.id})
         updateParticipantsList();
-      }
+      };
 
       $scope.formattedDate = function(date) {
-        return moment(date).format("Do MMM YYYY");
-      }
+        return moment(date).format("ll");
+      };
 
       $timeout(function() {
         $scope.datetime = $('.datetime').datetimepicker({
-          minuteStepping:15,
-          useSeconds: false,
-          icons: { time: "fa fa-clock-o", date: "fa fa-calendar",
-            up: "fa fa-arrow-up", down: "fa fa-arrow-down" }
+          pickTime: false,
         });
       });
 

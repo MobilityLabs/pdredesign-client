@@ -1,5 +1,4 @@
 <div class="sidebar">
-
   <div id="assessment_dashboard_consensus_sidebar" ng-controller="AssessmentDashboardSidebarCtrl">
     <div class='consensus'>
       <p ng-show="preMeetingDate()" class='header'>Consensus Meeting for</p>
@@ -30,20 +29,17 @@
         href="#/assessments/{{assessment.id}}/dashboard">Dashboard
       </a>
       <span ng-show="noMeetingDate()">
-        <a data-target="#modifySchedule" data-toggle="modal" href="">No Modify Schedule</a>
+        <a ng-click="modifySchedule()" href="">Schedule Consensus Meeting</a>
         <a data-target="#newReminder" data-toggle="modal" href="">Send Reminder</a>
       </span>
 
       <span ng-show="preMeetingDate()">
-        <a data-target="#modifySchedule" data-toggle="modal" href="">Schedule Consensus Meeting</a>
+        <a ng-click="modifySchedule()" href="">Modify Schedule</a>
         <a data-target="#createConsensus" data-toggle="modal" href="" >Create Consensus</a>
       </span>
 
       <span ng-show="postMeetingDate()">
         <a href="#/assessments/{{assessment.id}}/consensus/{{assessment.consensus.id}}">View Consensus</a>
-        <a href="" class="">Recommendations</a>
-        <a href="" class="">Send Followup Reminder</a>
-        <a href="" class="">Create Followup Assessment</a>
       </span>
 
       <span ng-show="reportPresent()">
@@ -63,5 +59,4 @@
 
   <ng-include src="'client/views/assessments/dashboard/consensus_modal.html'"></ng-include>
   <ng-include src="'client/views/assessments/dashboard/new_reminder_modal.html'"></ng-include>
-  <ng-include src="'client/views/assessments/dashboard/modify_schedule_modal.html'"></ng-include>
 </div>

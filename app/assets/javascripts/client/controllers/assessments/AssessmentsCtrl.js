@@ -17,7 +17,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'Assessment
       }
 
       $scope.meetingTime = function(date) {
-        if(date)
+        if(date != null)
           return moment(date).format("Do MMM YYYY");
 
         return "TBD"

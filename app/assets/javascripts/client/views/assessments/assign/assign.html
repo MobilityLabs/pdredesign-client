@@ -38,8 +38,9 @@
                 <div class="input-group date datetime">
                   <input
                     class="form-control"
-                    ng-model="assessment.due_date"
-                    data-format="dd/MM/yyyy hh:mm:ss"
+                    ng-model="due_date"
+                    data-defaultDate="{{due_date}}"
+                    data-format="dd/MM/yyyy"
                     id="due-date"
                     name="due-date">
                   <span class="input-group-addon"><i class="fa fa-calendar"></i></span>

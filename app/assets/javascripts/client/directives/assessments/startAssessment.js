@@ -73,10 +73,7 @@ PDRClient.directive('startAssessment', [
 
           $timeout(function() {
             $scope.datetime = $('.datetime').datetimepicker({
-              minuteStepping: 15,
-              useSeconds: false,
-              icons: { time: "fa fa-clock-o", date: "fa fa-calendar",
-                up: "fa fa-arrow-up", down: "fa fa-arrow-down" }
+              pickTime: false,
             });
           });
         }],
