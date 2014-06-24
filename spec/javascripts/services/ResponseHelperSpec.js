@@ -80,6 +80,19 @@ describe('Service: ResponseHelper', function() {
         subject.assignAnswerToQuestion(scope, answer1, question1);
     });
 
+    it('isAlert should be false if score evidence is missing', function() {
+        spyOn(scoreResource, 'save')
+        .and.callFake(function(params, score) {
+          var deferred = q.defer();
+          deferred.resolve({});
+          return {$promise: deferred.promise};
+        });
+
+        subject.assignAnswerToQuestion(scope, answer1, question1);
+        expect(question1.isAlert).toEqual(false);
+
+    });
+
     describe('resolved promise', function(){
       beforeEach(function(){
         $httpBackend.expectPOST('/v1/assessments/1/responses/1/scores').respond({});

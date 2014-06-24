@@ -16,6 +16,15 @@ describe('Directive: responsequestion', function() {
     scope = scope.$$childTail
   }));
 
+  it('save button is not disabled with evidence present', function() {
+    expect(scope.invalidEvidence(question1)).toEqual(false)
+  });
+
+  it('save button is disabled with no evidence', function() {
+    var score2 = {id: 1, evidence: "", value: 1, editMode: null};
+    var question2 = {id: 1, score: score2 };
+    expect(scope.invalidEvidence(question2)).toEqual(true)
+  });
 
   describe('#ResponseGET', function() {
     var $httpBackend, subject;

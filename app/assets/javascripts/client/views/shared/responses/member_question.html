@@ -1,10 +1,13 @@
 <div class="row score-evidence" ng-show="question.score.value == answer.value">
   <div class="col-md-2"></div>
-  <div class="col-md-8">
+  <div class="col-md-9">
     <div ng-hide="question.score.editMode">
-      <textarea redactor ng-model="question.score.evidence"></textarea>
+      <textarea redactor
+        ng-model="question.score.evidence"
+        placeholder="Write evidence of why you believe this is the correct score for this question. Skip to next question if you're not sure.">
+      </textarea>
       <div class="save-holder">
-        <button class='btn btn-primary'
+        <button ng-disabled="invalidEvidence(question)" class='btn btn-primary'
           ng-click="saveEvidence(question.score)">
           <i class='fa fa-save'></i>SAVE
         </button>
@@ -24,5 +27,3 @@
     </div>
   </div>
 </div>
-
-
