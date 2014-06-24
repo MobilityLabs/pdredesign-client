@@ -22,11 +22,11 @@ PDRClient.directive('consensus', [
           $scope.isReadOnly  = true;
 
           $scope.toggleCategoryAnswers = function(category) {
+            category.toggled = !category.toggled;
             angular.forEach(category.questions, function(question, key) {
               $scope.toggleAnswers(question);
             });
           };
-
 
           $scope.answerCount   = ResponseHelper.answerCount;
           $scope.toggleAnswers = ResponseHelper.toggleAnswers;

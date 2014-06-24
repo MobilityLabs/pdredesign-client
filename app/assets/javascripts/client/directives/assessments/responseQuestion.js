@@ -19,6 +19,13 @@ PDRClient.directive('responsequestion', [
         'ResponseHelper',
         function($scope, $timeout, $stateParams, SessionService, Response, Score, ResponseHelper) {
 
+          $scope.toggleCategoryAnswers = function(category) {
+            category.toggled = !category.toggled;
+            angular.forEach(category.questions, function(question, key) {
+              $scope.toggleAnswers(question);
+            });
+          };
+
           $scope.toggleAnswers = ResponseHelper.toggleAnswers
           $scope.saveEvidence = ResponseHelper.saveEvidence
           $scope.editAnswer = ResponseHelper.editAnswer
