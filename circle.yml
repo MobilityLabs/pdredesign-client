@@ -1,3 +1,3 @@
 test:
   override:
-    - rake jasmine:combust
+    - bundle exec rake jasmine:combust
