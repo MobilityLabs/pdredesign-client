@@ -16,8 +16,7 @@
           <div class='row row-assessment'>
             <div class='col-md-1 col-sm-1' style='background-color: {{backgroundColor(assessment)}};'>
               <p class='assessment-type'>{{assessment.status}}</p>
-              <p class="assessment-stat"><i style="line-height: 0.9em; color: white; font-size: 1em" class="fa {{consensusReportIcon(assessment)}}" ng-if="assessment.status ==
-                'consensus' "></i></p>
+              <p class="assessment-stat"><i class="fa {{consensusReportIcon(assessment)}}" ng-if="assessment.status == 'consensus' "></i></p>
               <p class="assessment-stat" ng-if="assessment.status ==
               'assessment' ">{{roundNumber(assessment.percent_completed)}}%</p>
               <p class="assessment-stat" ng-if="assessment.status ==
@@ -60,7 +59,7 @@
               </assessment-links>
             </div>
           </div>
-          <div class='row row-assessment-addon' style='margin-bottom:15px;'>
+          <div class='row row-assessment-addon'>
             <div class='col-md-1 col-sm-1' style='background-color: {{backgroundColor(assessment)}};'>
               <avatar
                 data-imgclass="pull-left media-object img-circle"
@@ -78,7 +77,7 @@
                   <div ng-repeat="p in assessment.subheading.participants">
                     <avatar
                       data-has-tooltip="true"
-                      data-style="margin-right:6px;"
+                      data-style="margin-right:0.375em;"
                       data-name="{{p.full_name}}"
                       data-avatar="{{p.avatar}}"
                       data-role="{{p.team_role}}"
