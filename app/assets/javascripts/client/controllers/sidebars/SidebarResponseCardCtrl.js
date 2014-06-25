@@ -1,4 +1,5 @@
 PDRClient.controller('SidebarResponseCardCtrl', [
+  '$modal',
   '$scope',
   '$rootScope',
   '$stateParams',
@@ -9,11 +10,16 @@ PDRClient.controller('SidebarResponseCardCtrl', [
   'Score',
   'Consensus',
   'Assessment',
-  function($scope, $rootScope, $stateParams, $location, $anchorScroll, $timeout, SessionService, Score, Consensus, Assessment) {
+  function($modal, $scope, $rootScope, $stateParams, $location, $anchorScroll, $timeout, SessionService, Score, Consensus, Assessment) {
     $scope.assessmentId = $stateParams.assessment_id;
     $scope.responseId   = $stateParams.response_id;
     $scope.questions = [];
     $scope.user      = SessionService.getCurrentUser();
+    $scope.assessment = {};
+
+    $timeout(function(){
+      $scope.assessment = Assessment.get({id: $scope.assessmentId});
+    });
 
     $scope.updateScores = function() {
       $scope.questions = Score.query({
@@ -26,10 +32,14 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       var count = 0;
       angular.forEach($scope.questions, function(question) {
         if(question.score && question.score.value != null) count++;
-      });  
+      });
 
       return count;
     };
+
+    $scope.unansweredQuestions = function() {
+      return $scope.questions.length - $scope.answeredQuestions();
+    }
 
     $scope.scrollTo = function(questionId) {
       $location.hash("question-" + questionId)
@@ -65,6 +75,22 @@ PDRClient.controller('SidebarResponseCardCtrl', [
     $rootScope.$on('response_updated', function(){
       $scope.updateScores();
     });
+
+    $scope.AssessmentMeetingDate = function() {
+      if ($scope.assessment.due_date == null) { return 'TBD'};
+      return moment($scope.assessment.due_date).format("MMM Do YY");
+    }
+
+    $scope.submitResponseModal = function() {
+     $scope.modalInstanceResponseModal =  $modal.open({
+        templateUrl: 'client/views/modals/response_submit_modal.html',
+        scope: $scope
+      });
+    }
+
+    $scope.cancel = function () {
+      $scope.modalInstanceResponseModal.dismiss('cancel');
+    };
 
     $scope.submitResponse = function() {
       $rootScope.$broadcast('submit_response');
