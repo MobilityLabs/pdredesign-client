@@ -1,11 +1,11 @@
 PDRClient.controller('AssessmentAssignCtrl', [
-  '$scope', 
-  '$timeout', 
+  '$scope',
+  '$timeout',
   '$anchorScroll',
-  '$location', 
-  '$stateParams', 
-  'SessionService', 
-  'Assessment', 
+  '$location',
+  '$stateParams',
+  'SessionService',
+  'Assessment',
   'Participant',
   'Rubric',
     function($scope, $timeout, $anchorScroll, $location, $stateParams, SessionService, Assessment, Participant, Rubric) {
@@ -26,15 +26,28 @@ PDRClient.controller('AssessmentAssignCtrl', [
       $scope.$watch('assessment.due_date', function(value) {
         $scope.due_date = moment(value).format("MM/DD/YYYY");
       });
+      $scope.messageError = "Enter a message before sending!";
+      $scope.alertError = false;
 
       $scope.assignAndSave = function(assessment) {
+        if (assessment.message == null || assessment.message == '') {
+          $scope.alertError = true;
+          return;
+        };
+
         if (confirm("Are you sure you want to send out the assessment and invite all your participants?")) {
+          $scope.alertError = false;
           $scope.save(assessment, true);
           $location.path('/assessments'); 
         }
       };
 
       $scope.save = function(assessment, assign) {
+        if(assessment.name == '') {
+          $scope.error("Assessment needs a name!");
+          return;
+        };
+
         $scope.saving = true;
         assessment.due_date = moment($("#due-date").val()).toISOString();
 
