@@ -1,5 +1,13 @@
-PDRClient.controller('ResponseCreateCtrl', ['$modal', '$timeout', '$scope', '$location', 'SessionService', 'Response', '$stateParams', 'Assessment',
-  function($modal, $timeout, $scope, $location, SessionService, Response, $stateParams, Assessment) {
+PDRClient.controller('ResponseCreateCtrl', [
+  '$modal', 
+  '$timeout', 
+  '$scope', 
+  '$location', 
+  '$stateParams', 
+  'SessionService', 
+  'Response', 
+  'Assessment',
+  function($modal, $timeout, $scope, $location, $stateParams, SessionService, Response, Assessment) {
     $scope.isError  = null;
 
     $scope.assessmentId = $stateParams.assessment_id;

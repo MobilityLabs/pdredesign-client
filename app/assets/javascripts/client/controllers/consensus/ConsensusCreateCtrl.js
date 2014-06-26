@@ -1,4 +1,11 @@
-PDRClient.controller('ConsensusCreateCtrl', ['$modal', '$scope', '$timeout', '$location', 'SessionService', 'Consensus', '$stateParams',
+PDRClient.controller('ConsensusCreateCtrl', [
+  '$modal',
+  '$scope',
+  '$timeout', 
+  '$location', 
+  'SessionService', 
+  'Consensus', 
+  '$stateParams',
   function($modal, $scope, $timeout, $location, SessionService, Consensus, $stateParams) {
     $scope.isError  = null;
 
