@@ -1,4 +1,8 @@
-PDRClient.controller('AssessmentEditCtrl', ['$scope', 'SessionService', 'Assessment', '$stateParams',
+PDRClient.controller('AssessmentEditCtrl', [
+  '$scope',
+  'SessionService',
+  'Assessment',
+  '$stateParams',
     function($scope, SessionService, Assessment, $stateParams) {
 
     }

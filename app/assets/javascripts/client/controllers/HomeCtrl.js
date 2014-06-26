@@ -1,4 +1,8 @@
-PDRClient.controller('HomeCtrl', ['$scope','ToolKit', 'SessionService', '$timeout',
+PDRClient.controller('HomeCtrl', [
+  '$scope',
+  'ToolKit',
+  'SessionService', 
+  '$timeout',
     function($scope, ToolKit, SessionService, $timeout) {
       $scope.toolKits  = [];
       $scope.user = SessionService.getCurrentUser();

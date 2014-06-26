@@ -1,9 +1,9 @@
 PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService', '$location',
     function($rootScope, $scope, SessionService, $location) {
 
-      $scope.user = SessionService.getCurrentUser();
-
       $scope.$watch('user', function() {
+        if($scope.user == null)
+          return;
         $scope.userAvatar = $scope.user.avatar;
       });
 
