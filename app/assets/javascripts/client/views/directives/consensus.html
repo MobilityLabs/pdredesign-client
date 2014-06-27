@@ -29,7 +29,7 @@
           <div class="col-md-12 answers" ng-show="question.answersVisible">
             <div class="answer" ng-repeat="answer in question.answers">
               <div class="col-md-1"></div>
-              <div class="col-md-11 answer-row valueColor-{{answer.value}}" ng-class="{scored{{answer.value}}: question.score.value == answer.value}">
+              <div class="col-md-11 answer-row value-color-{{answer.value}}" ng-class="{scored{{answer.value}}: question.score.value == answer.value}">
                 <div class="answer-info-row">
                   <div class="col-md-1 scored-{{answer.value}} answer-value">
                     <span>{{answer.value}}</span>

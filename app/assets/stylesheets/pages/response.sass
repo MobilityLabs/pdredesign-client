@@ -1,8 +1,9 @@
 $unscored:  #b3b3b3
-$scored1:   #e38a25
-$scored2:   #6a9539
-$scored3:   #2d7f3d
-$scored4:   #163f1e
+$scored1:   #E38A24
+$scored2:   #E4BB21
+$scored3:   #98B04E
+$scored4:   #3B5E3D
+$skipped:   #3D8B8B
 
 .scored-1
   background-color: $scored1
@@ -12,20 +13,26 @@ $scored4:   #163f1e
   background-color: $scored3
 .scored-4
   background-color: $scored4
+.skipped
+  background-color: $skipped
 
-.valueColor-1
+.value-color-1
   background-color: #faf9f7
   color: #333
 
-.valueColor-2
+.value-color-2
   background-color: #efeeea
   color: #333
 
-.valueColor-3
+.value-color-3
   background-color: #eae9e4
   color: #333
 
-.valueColor-4
+.value-color-4
+  background-color: #e0ddd6
+  color: #333
+
+.value-color-skipped
   background-color: #e0ddd6
   color: #333
 
@@ -86,6 +93,8 @@ $scored4:   #163f1e
       background-color: $scored3
     &.scored-4
       background-color: $scored4
+    &.skipped
+      background-color: $skipped
 
 
   .question-content
@@ -157,7 +166,6 @@ $scored4:   #163f1e
     background-color: $scored1
     > div > div
       color: white
-
   &.scored2
     background-color: $scored2
     color: white
@@ -169,6 +177,10 @@ $scored4:   #163f1e
       color: white
   &.scored4
     background-color: $scored4
+    > div > div
+      color: white
+  &.skipped
+    background-color: $skipped
     > div > div
       color: white
   .title-1
@@ -186,6 +198,10 @@ $scored4:   #163f1e
   .title-4
     &:hover
       background-color: $scored4
+      color: white
+  .title-skipped
+    &:hover
+      background-color: $skipped
       color: white
 
   .score-evidence
@@ -281,4 +297,3 @@ table.table-evidence
   font-size: 1em
   background-color: $scored4
   color: #f6f3ec
-
