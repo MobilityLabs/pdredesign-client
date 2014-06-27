@@ -17,13 +17,30 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', [
 
       $scope.assessment = $scope.fetchAssessment();
 
-
       $scope.modifySchedule  = function() {
-        $modal.open({
+        $scope.modal = $modal.open({
           templateUrl: 'client/views/modals/modify_schedule.html',
-          scope: $scope,
+          scope: $scope
         });
       };
+
+      $scope.createConsensus  = function() {
+        $scope.modal = $modal.open({
+          templateUrl: 'client/views/modals/create_consensus.html',
+          scope: $scope
+        });
+      };
+
+      $scope.newReminder  = function() {
+        $scope.modal = $modal.open({
+          templateUrl: 'client/views/modals/new_reminder.html',
+          scope: $scope
+        });
+      };
+
+      $scope.close = function() {
+        $scope.modal.dismiss('cancel');
+      }
 
       $scope.meetingDateDaysAgo = function() {
         return moment().diff($scope.assessment.meeting_date, 'days');
@@ -59,5 +76,3 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', [
 
     }
 ]);
-
-
