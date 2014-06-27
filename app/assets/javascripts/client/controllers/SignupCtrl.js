@@ -7,10 +7,6 @@ PDRClient.controller('SignupCtrl', [
     function($scope, $rootScope, $location, User, SessionService) {
       $scope.user = {}
 
-      $scope.districts  = function(){
-        return $("#districts:first").val();
-      };
-
       $scope.login = function(user) {
         SessionService
         .authenticate(user.email, user.password)
@@ -21,7 +17,7 @@ PDRClient.controller('SignupCtrl', [
       };
 
       $scope.createUser = function(user) {
-        user.district_ids = $scope.districts();
+        user["district_ids"] = $scope.districts;
 
         $scope.success = null;
         $scope.errors  = null;

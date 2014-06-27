@@ -20,9 +20,8 @@ module PdrClient
     require 'rails-assets-angular-bootstrap'
     require 'rails-assets-angular-moment'
 
-    require 'rails-assets-select2'
+    require 'selectize-rails' 
     require 'rails-assets-highcharts'
-    require 'rails-assets-angular-ui-select2'
     require 'bootstrap3-datetimepicker-rails'
 
     initializer "PDRClient.assets.precompile", :group => :all do |app|

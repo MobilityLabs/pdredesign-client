@@ -14,16 +14,15 @@
 //= require angular-sanitize
 //= require angular-route
 //= require angular-ui-router
-//= require angular-ui-select2
 //= require redactor-rails
 //= require angular-redactor
 //= require angular-bootstrap
 //= require angular-moment
-//= require select2
 //= require angular-rails-templates
 //= require bootstrap-datetimepicker
 //= require jquery.tablednd
 //= require highcharts
 //= require highcharts/highcharts-more
+//= require selectize
 //= require_tree ./client/views
 //= require_tree ./client
