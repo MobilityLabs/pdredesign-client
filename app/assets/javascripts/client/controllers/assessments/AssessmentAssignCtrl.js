@@ -11,6 +11,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
     function($scope, $timeout, $anchorScroll, $location, $stateParams, SessionService, Assessment, Participant, Rubric) {
 
       $scope.id                      = $stateParams.id;
+      $scope.user                    = SessionService.getCurrentUser();
       $scope.participants            = Participant.query({assessment_id: $scope.id})
       $scope.nonDistrictParticipants = Participant.all({assessment_id: $scope.id})
       $scope.rubrics                 = Rubric.query();
