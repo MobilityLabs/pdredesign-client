@@ -9,5 +9,6 @@ PDRClient.controller('ConsensusShowCtrl', [
 
       $scope.assessmentId = $stateParams.assessment_id;
       $scope.responseId   = $stateParams.response_id;
+      $scope.assessment = Assessment.get({id: $scope.assessmentId});
     }
 ]);
