@@ -4,6 +4,7 @@ describe('Controller: AssessmentsCtrl', function() {
   beforeEach(module('PDRClient'));
 
   beforeEach(inject(function($controller, $rootScope, $injector) {
+
     $httpBackend   = $injector.get('$httpBackend');
     SessionService = $injector.get('SessionService');
 
@@ -12,7 +13,8 @@ describe('Controller: AssessmentsCtrl', function() {
 
     scope    = $rootScope.$new();
     subject  = $controller('AssessmentsCtrl', {
-      $scope: scope
+      $scope: scope,
+      assessments: {}
     });
 
   }));
