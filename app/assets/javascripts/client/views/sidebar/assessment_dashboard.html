@@ -30,12 +30,12 @@
       </a>
       <span ng-show="noMeetingDate()">
         <a ng-click="modifySchedule()" href="">Schedule Consensus Meeting</a>
-        <a data-target="#newReminder" data-toggle="modal" href="">Send Reminder</a>
+        <a ng-click="newReminder()" href="">Send Reminder</a>
       </span>
 
       <span ng-show="preMeetingDate()">
         <a ng-click="modifySchedule()" href="">Modify Schedule</a>
-        <a data-target="#createConsensus" data-toggle="modal" href="" >Create Consensus</a>
+        <a ng-click="createConsensus()" href="" >Create Consensus</a>
       </span>
 
       <span ng-show="postMeetingDate()">
@@ -51,12 +51,8 @@
     </div>
   </div>
 
-
-
   <div class="content">
     <ng-include src="'client/views/sidebar/why_pd_redesign.html'"></ng-include>
   </div>
 
-  <ng-include src="'client/views/assessments/dashboard/consensus_modal.html'"></ng-include>
-  <ng-include src="'client/views/assessments/dashboard/new_reminder_modal.html'"></ng-include>
 </div>
