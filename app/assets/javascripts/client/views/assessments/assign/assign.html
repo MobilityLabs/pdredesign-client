@@ -10,8 +10,12 @@
           <p class='wizard-instruction'> This is the name others will see for this assessment.</p>
         </div>
         <div class='col-md-9'>
-          <p class='greeting'>{{assessment.name}}</p>
-          <p class='byline'>organized by: {{assessment.facilitator.full_name}} on {{formattedDate(assessment.created_at)}}</p>
+          <p class='greeting'>
+            {{assessment.name}}
+          </p>
+          <p class='byline'>
+            organized by: {{assessment.facilitator.full_name}} on {{formattedDate(assessment.created_at)}}
+          </p>
 
           <div class='row row--0-settings'>
             <div class='col-md-5 col-sm-5'>
@@ -27,7 +31,11 @@
                   <select
                     class="form-control"
                     ng-model="assessment.rubric_id">
-                    <option ng-repeat="rubric in rubrics" ng-selected="{{rubric.id == assessment.rubric_id}}">{{rubric.name}}</option>
+                    <option 
+                      ng-repeat="rubric in rubrics" 
+                      ng-selected="rubric.id == assessment.rubric_id">
+                      {{rubric.name}}
+                    </option>
                   </select>
               </div>
             </div>

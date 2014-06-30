@@ -10,12 +10,11 @@ PDRClient.controller('AssessmentAssignCtrl', [
   'Rubric',
     function($scope, $timeout, $anchorScroll, $location, $stateParams, SessionService, Assessment, Participant, Rubric) {
 
-      $scope.id = $stateParams.id;
-      $scope.participants = Participant.query({assessment_id: $scope.id})
+      $scope.id                      = $stateParams.id;
+      $scope.participants            = Participant.query({assessment_id: $scope.id})
       $scope.nonDistrictParticipants = Participant.all({assessment_id: $scope.id})
-      $scope.rubrics  = Rubric.query();
-
-      $scope.alerts = [];
+      $scope.rubrics                 = Rubric.query();
+      $scope.alerts                  = [];
 
       $scope.fetchAssessment = function() {
         return Assessment.get({id: $scope.id});
@@ -26,8 +25,9 @@ PDRClient.controller('AssessmentAssignCtrl', [
       $scope.$watch('assessment.due_date', function(value) {
         $scope.due_date = moment(value).format("MM/DD/YYYY");
       });
+
       $scope.messageError = "Enter a message before sending!";
-      $scope.alertError = false;
+      $scope.alertError   = false;
 
       $scope.assignAndSave = function(assessment) {
         if (assessment.message == null || assessment.message == '') {
