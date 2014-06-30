@@ -37,7 +37,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'assessment
 
         if(assessment.status == "assessment") {
           if(_.isEmpty(assessment.responses))
-            return '#/assessments/' + assessment.id + '/responses'
+            return '#/assessments/' + assessment.id + '/dashboard'
           else
             return '#/assessments/' + assessment.id + '/responses/' + assessment.responses[0].id;
         }

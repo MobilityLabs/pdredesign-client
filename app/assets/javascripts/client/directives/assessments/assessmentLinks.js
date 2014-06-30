@@ -13,8 +13,8 @@ PDRClient.directive('assessmentLinks', [
           scope.id     = attrs.id;
           scope.consensusId = attrs.consensusId;
         },
-        controller: ['$scope', '$rootScope', '$location', '$timeout',
-          function($scope, $rootScope, $location, $timeout) {
+        controller: ['$scope', '$modal', '$rootScope', '$location', '$timeout',
+          function($scope, $modal, $rootScope, $location, $timeout) {
             $scope.linkIcon = function(type){
               icons = {
                   "dashboard": "dashboard",
@@ -31,14 +31,27 @@ PDRClient.directive('assessmentLinks', [
               return icons[type];
             };
 
+            $scope.createConsensus  = function(type) {
+              if (type == 'new_consensus') {
+                $scope.modal = $modal.open({
+                  templateUrl: 'client/views/modals/create_consensus.html',
+                  scope: $scope
+                });
+              }
+            };
+
+            $scope.close = function() {
+              $scope.modal.dismiss('cancel');
+            }
+
             $scope.assessmentLink = function(type, role, active) {
               if(typeof type === 'undefined' || typeof role === 'undefined' || active == "false")
-                return "#";
+                return "#/assessments";
 
               routes = {
                 "facilitator": {
                   "dashboard": "#/assessments/" + $scope.id + "/dashboard",
-                  "new_consensus": "#/assessments/" + $scope.id + "/consensus",
+                  "new_consensus": "#/assessments",
                   "consensus": "#/assessments/" + $scope.id + "/consensus",
                   "finish": "#/assessments/" + $scope.id + "/assign",
                   "report": "#/assessments/" + $scope.id + "/report",
