@@ -54,6 +54,9 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
       url: '/assessments',
       views: {
         '': {
+          resolve: {
+            assessments: function(Assessment) { return Assessment.query().$promise;}
+          },
           controller: 'AssessmentsCtrl',
           templateUrl: 'client/views/assessments/index.html'
         },

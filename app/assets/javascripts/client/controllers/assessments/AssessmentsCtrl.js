@@ -1,7 +1,7 @@
-PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'Assessment',
-    function($scope, SessionService, Assessment) {
+PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'assessments',
+    function($scope, SessionService, assessments) {
 
-      $scope.assessments = Assessment.query();
+      $scope.assessments = assessments;
       $scope.user        = SessionService.getCurrentUser();
       $scope.role        = $scope.user.role;
 
