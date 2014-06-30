@@ -1,0 +1,26 @@
+<div class='row-bg row-header'>
+  <div class="container">
+    <div class="col-md-9">
+      <div class="media">
+        <div class="media-body">
+          <p class="media-heading headline">{{user.first_name}}</p>
+          <p class='byline'>organized by: <a href=""> {{user.full_name}}</a> on {{user.created_at  | amDateFormat:'MMMM Do, YYYY'}}</p>
+          <p class='instructions-header'>Instructions</p>
+
+          <div class='row'>
+            <div class='col-md-9'>
+              <p class='instructions-content'>
+                The Readiness Assessment Tool consists of 28 questions broken into the 8 categories from the PD System Map.
+                Please answer each question carefully. You can add your notes or attach files as evidence, after answering each question.
+              </p>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
+              <a class="btn btn-default pull-right" href="/assessments/34/responses/79/edit.pdf" target="_blank"><i class="fa fa-cloud-download"></i> Download PDF</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
