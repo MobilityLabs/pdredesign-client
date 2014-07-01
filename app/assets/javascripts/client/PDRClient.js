@@ -55,7 +55,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
       views: {
         '': {
           resolve: {
-            assessments: function(Assessment) { return Assessment.query().$promise;}
+            assessments: ['Assessment', function(Assessment) { return Assessment.query().$promise;}]
           },
           controller: 'AssessmentsCtrl',
           templateUrl: 'client/views/assessments/index.html'
@@ -175,6 +175,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
        }
      }
    })
+
    .state('signup_facilitator', {
      url: '/signup/facilitator',
      views: {
@@ -188,7 +189,24 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
        }
      }
    })
-
+    .state('terms_of_use', {
+      url: '/terms-of-use',
+      views: {
+        '': {
+          controller: '',
+          templateUrl: 'client/views/static/terms_of_use.html'
+        },
+      }
+    })
+    .state('privacy', {
+      url: '/privacy',
+      views: {
+        '': {
+          controller: '',
+          templateUrl: 'client/views/static/privacy.html'
+        },
+      }
+    })
     .state('settings', {
       url: '/settings',
       views: {
@@ -202,7 +220,6 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
         }
       }
     });
-
   }
 ]);
 
@@ -210,3 +227,11 @@ angular.module("PDRClient").run(function ($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 });
+angular.module("PDRClient").run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
+      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+          $rootScope.$broadcast('start_change');
+      });
+      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+          $rootScope.$broadcast('success_change');
+      });
+  }]);

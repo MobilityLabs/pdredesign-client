@@ -4,7 +4,11 @@
   z-index: 5
   *
     z-index: 2
+
   .row.first
+    height: 4em
+    .container
+      height: initial
     background-color: #2C373D
     color: #fff
     span
@@ -12,17 +16,27 @@
       color: #fff
     #social
       padding: 1em
-      font-size: 1.5em
+      font-size: 1.25em
       color: #fff
-      a 
+      a
         margin-left: .5em
     .logo
       position: absolute
-      margin-top: -6.6em
+      bottom: 0
 
   .row.second
     line-height: 3.5em
     color: #fff
     background-color: #03232E
     .copy
+      font-size: 1em
       color: #fff
+      span
+        font-size: 1em
+        color: #fff
+        margin-left: 0.5em
+      a
+        font-size: 1em
+        color: #fff
+      a:hover
+        text-decoration: none
