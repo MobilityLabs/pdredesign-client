@@ -39,7 +39,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
         if (confirm("Are you sure you want to send out the assessment and invite all your participants?")) {
           $scope.alertError = false;
           $scope.save(assessment, true);
-          $location.path('/assessments'); 
+          $location.path('/assessments');
         }
       };
 
@@ -69,6 +69,9 @@ PDRClient.controller('AssessmentAssignCtrl', [
       $scope.success = function(message) {
         $scope.alerts.push({type: 'success', msg: message });
         $anchorScroll();
+        $timeout(function() {
+          $scope.alerts.splice(message, 1);
+        }, 10000);
       };
 
       $scope.error   = function(message) {
