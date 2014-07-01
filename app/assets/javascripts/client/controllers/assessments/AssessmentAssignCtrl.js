@@ -12,8 +12,8 @@ PDRClient.controller('AssessmentAssignCtrl', [
 
       $scope.id                      = $stateParams.id;
       $scope.user                    = SessionService.getCurrentUser();
-      $scope.participants            = Participant.query({assessment_id: $scope.id})
-      $scope.nonDistrictParticipants = Participant.all({assessment_id: $scope.id})
+      $scope.participants            = Participant.query({assessment_id: $scope.id});
+      $scope.allParticipants         = Participant.all({assessment_id: $scope.id});
       $scope.rubrics                 = Rubric.query();
       $scope.alerts                  = [];
 
@@ -25,6 +25,10 @@ PDRClient.controller('AssessmentAssignCtrl', [
 
       $scope.$watch('assessment.due_date', function(value) {
         $scope.due_date = moment(value).format("MM/DD/YYYY");
+      });
+
+      $scope.$on('update_participants', function() {
+        updateParticipantsList();
       });
 
       $scope.messageError = "Enter a message before sending!";
@@ -91,7 +95,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
           });
 
         Participant.all({assessment_id: $scope.id}).$promise.then(function(data) {
-          $scope.nonDistrictParticipants = data;
+          $scope.allParticipants = data;
         }, function() {
             $scope.error('Could not update participants list');
         });
