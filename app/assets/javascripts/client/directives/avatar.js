@@ -18,7 +18,6 @@ PDRClient.directive('avatar', [
       scope.title  = "<p class='name'>" + scope.name + "</p><p class='role'>" + scope.role + "</p>";
       scope.elm    = elm;
     },
-
     controller: ['$scope', '$rootScope', '$location', '$timeout',
       function($scope, $rootScope, $location, $timeout) {
         $timeout(function() {

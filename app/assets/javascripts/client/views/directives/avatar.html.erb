@@ -1,0 +1,28 @@
+<div class="avatar">
+   <a href="#">
+    <img ng-hide="avatar == ''"
+      ng-src="{{avatar}}"
+      class="{{imgclass}}"
+      width="{{width}}"
+      height="{{height}}"
+      style="{{style}}"
+      data-html="true"
+      data-placement="{{toolplacement}}"
+      data-title="{{title}}"
+      data-toggle="tooltip"
+      data-original-title="">
+
+      <img ng-show="avatar == ''"
+      ng-src="<%= asset_path 'fallback/default.png' %>"
+      class="{{imgclass}}"
+      width="{{width}}"
+      height="{{height}}"
+      style="{{style}}"
+      data-html="true"
+      data-placement="{{toolplacement}}"
+      data-title="{{title}}"
+      data-toggle="tooltip"
+      data-original-title="">
+
+  </a>
+</div>
