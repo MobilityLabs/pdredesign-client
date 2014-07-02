@@ -11,13 +11,14 @@ PDRClient.directive('responsequestion', [
       },
       controller: [
         '$scope',
+        '$rootScope',
         '$timeout',
         '$stateParams',
         'SessionService',
         'Response',
         'Score',
         'ResponseHelper',
-        function($scope, $timeout, $stateParams, SessionService, Response, Score, ResponseHelper) {
+        function($scope, $rootScope, $timeout, $stateParams, SessionService, Response, Score, ResponseHelper) {
 
           $scope.toggleCategoryAnswers = function(category) {
             category.toggled = !category.toggled;
@@ -40,11 +41,14 @@ PDRClient.directive('responsequestion', [
           }
 
           $timeout(function(){
+
+            $rootScope.$broadcast('start_change');
             Response
               .get({assessment_id: $scope.assessmentId, id: $scope.responseId})
               .$promise
               .then(function(data){
                 $scope.categories = data.categories;
+                $rootScope.$broadcast('success_change');
               });
           });
 
