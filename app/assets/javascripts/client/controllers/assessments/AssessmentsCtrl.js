@@ -32,16 +32,22 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'assessment
       }
 
       $scope.responseLink = function(assessment) {
-        if(_.isEmpty(assessment.responses))
-          return '#/assessments/' + assessment.id + '/responses'
-        else
-          return '#/assessments/' + assessment.id + '/responses/' + assessment.responses[0].id;
+        if(assessment.status == "consensus" && assessment.consensus.submitted_at)
+          return '#/assessments/' + assessment.id + '/consensus/' + assessment.consensus.id;
+
+        if(assessment.status == "assessment") {
+          if(_.isEmpty(assessment.responses))
+            return '#/assessments/' + assessment.id + '/dashboard'
+          else
+            return '#/assessments/' + assessment.id + '/responses/' + assessment.responses[0].id;
+        }
+        return '#/assessments';
       }
 
       $scope.responseLinkDisabled = function(assessment) {
         if(_.isEmpty(assessment.responses) && !assessment.is_participant)
-          return 'disabled';
-        return '';
+          return true;
+        return false;
       }
 
       $scope.percentBackgroundColor = function(percent) {
