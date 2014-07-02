@@ -83,7 +83,7 @@ PDRClient.directive('consensus', [
             }
           };
 
-          $scope.$on('submit_response', function() {
+          $scope.$on('submit_consensus', function() {
             Consensus
               .submit({assessment_id: $scope.assessmentId, id: $scope.responseId}, {submit: true})
               .$promise

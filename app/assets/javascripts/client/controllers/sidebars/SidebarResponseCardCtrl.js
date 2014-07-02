@@ -82,18 +82,20 @@ PDRClient.controller('SidebarResponseCardCtrl', [
     }
 
     $scope.submitResponseModal = function() {
-     $scope.modalInstanceResponseModal =  $modal.open({
+     $scope.modalInstance =  $modal.open({
         templateUrl: 'client/views/modals/response_submit_modal.html',
         scope: $scope
       });
     }
 
     $scope.cancel = function () {
-      $scope.modalInstanceResponseModal.dismiss('cancel');
+      $scope.modalInstance.dismiss('cancel');
     };
 
     $scope.submitResponse = function() {
+      $scope.modalInstance.dismiss('cancel');
       $rootScope.$broadcast('submit_response');
+      $rootScope.$broadcast('submit_consensus');
     }
   }
 ]);
