@@ -4,10 +4,11 @@
   </p>
 
   <p>
-  For detailed instructions and question guides, 
-  <a href="<%= asset_path('assets/PD RA Facilitation Guide.pdf') %>" target='_blank' >
+  For detailed instructions and question guides,
+  <a href="<%= asset_path('assets/PDRedesign RA Facilitation Guide.pdf') %>" target='_blank' >
     download the Facilitation Guide PDF
   </a>
   </p>
+  <ng-include src="'client/views/sidebar/facilitator_video.html'" ng-hide="role == member"></ng-include>
 </div>
 
