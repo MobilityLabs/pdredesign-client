@@ -5,6 +5,7 @@ PDRClient = angular.module("PDRClient", [
   'templates',
   'angular-redactor',
   'angularMoment',
+  'ui.utils',
   'ui.router',
   'ui.bootstrap']);
 
@@ -47,6 +48,19 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
         'sidebar': {
           controller: 'SidebarCtrl',
           templateUrl: 'client/views/sidebar/sidebar_login.html'
+        }
+      }
+    })
+    .state('invite', {
+      url: '/invitations/:token',
+      views: {
+        '': {
+          controller: 'InvitationCtrl',
+          templateUrl: 'client/views/invitation/redeem.html'
+        },
+        'sidebar': {
+          controller: '',
+          templateUrl: 'client/views/sidebar/sidebar_generic.html'
         }
       }
     })

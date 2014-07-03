@@ -14,6 +14,7 @@
 //= require angular-sanitize
 //= require angular-route
 //= require angular-ui-router
+//= require angular-ui-utils
 //= require redactor-rails
 //= require angular-redactor
 //= require angular-bootstrap
