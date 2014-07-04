@@ -66,7 +66,7 @@
           <div class='row row-assessment-addon'>
             <div class='col-md-1 col-sm-1' style='background-color: {{backgroundColor(assessment)}};'>
               <avatar
-                data-imgclass="pull-left media-object img-circle"
+                data-imgclass="media-object img-circle"
                 data-width="28"
                 data-has-tooltip="true"
                 data-name="{{assessment.facilitator.full_name}}"
@@ -74,9 +74,9 @@
                 data-role="{{assessment.facilitator.team_role}}">
               </avatar>
             </div>
+                <div class="row">
             <div class='col-md-11 col-sm-11'>
               <div class="media">
-                <div>
                   <p class="pull-left subheading-text">{{assessment.subheading.text}}</p>
                   <div ng-repeat="p in assessment.subheading.participants">
                     <avatar
@@ -91,6 +91,7 @@
                     </avatar>
                   </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>
