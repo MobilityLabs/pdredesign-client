@@ -238,14 +238,19 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
 ]);
 
 angular.module("PDRClient").run(function ($rootScope, $state, $stateParams) {
-    $rootScope.$state = $state;
+    $rootScope.$state       = $state;
     $rootScope.$stateParams = $stateParams;
 });
-angular.module("PDRClient").run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
-      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-          $rootScope.$broadcast('start_change');
-      });
-      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-          $rootScope.$broadcast('success_change');
-      });
-  }]);
+
+angular.module("PDRClient").run([
+  '$rootScope',
+  '$state',
+  '$stateParams',
+  function ($rootScope, $state, $stateParams) {
+    $rootScope.$on('$stateChangeStart', function() {
+      $rootScope.$broadcast('start_change');
+    });
+    $rootScope.$on('$stateChangeSuccess', function() {
+      $rootScope.$broadcast('success_change');
+    });
+}]);
