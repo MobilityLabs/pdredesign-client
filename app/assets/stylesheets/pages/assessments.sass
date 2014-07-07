@@ -1,134 +1,57 @@
 .assessments
-  margin-top: 3em
-  .row
-    padding: 0
+  .assessment
+    height: 5em
+    margin-top: 1em
+    margin-bottom: .1em
+    border-bottom: 1px solid #dcdbd4
 
-  .row.row-assessment
-    margin-bottom: 1.05em
-    .col-md-1
-      padding: 0.625em 0em
-      height: 5.3em
-      p
-        color:  #f7f9fa
-        text-transform: uppercase
-        text-align: center
-        line-height: 1em
+    .assessment-stat
+      *
+        font-size: 1.0em
+      .category
         font-weight: 300
-        &.assessment-type
-          font-size: 1.125em
-        &.assessment-stat
-          font-size: 2em
-          i
-            line-height: 0.9em
-            color: white
-            font-size: 1em
-    a#row-link
-      .col-md-9
-        &:hover
-          box-shadow:  0em 0.13em 0em #d4d2c8
-          background-color:  #e5f1f5
-
-        background-color: #f7f9fa
-        border-bottom: 0.125em solid #dcdbd4
-        padding-top: 0.3125em
-        height: 5.3em
-        p
-
-          color: #2a3a41
-          text-align: left
-          &.assessment-name
-            font-size: 1.625em
-            line-height: 1.4em
-            font-weight: bold
-            margin-bottom: 0em
-
-          &.assessment-stat
-            font-size: 1.25em
-
-            .category
-              font-weight: 300
-              margin-right: 0.0125em
-            .stat
-              font-weight: bold
-
-
-      &.disabled
-        .col-md-9
-          &:hover
-            cursor: default
-            box-shadow:  none
-            background-color:  #f7f9fa
-
-
-    .col-md-2
-      padding: 0em
-      .links
-        a
-          display: block
-          width: 100%
-          padding: 0.13em 0.3125em 0.13em 0.625em
-          font-size: 1em
-          font-weight: 300
-          background-color:  #b1bbbf
-          color: white
-          margin-bottom: 0em
-          border-bottom: 0.13em solid #dcdbd4
-          i
-            color: white
-            padding-right: 0.5em
-            min-width: 1.5em
-          &.active
-            background-color:  #4a5e67
-            &:hover
-              color: #4a5e67
-              background-color: #eaf0f2
-              text-decoration: none
-              i
-                color: #4a5e67
-          &.disabled
-            &:hover
-              cursor: default
-              text-decoration: none
-
-
-.row.row-assessment-addon
-  margin-top: -.85em
-  margin-bottom: 0.9375em
-  .tooltip
+      .stat
+        font-weight: bold
     .name
-      white-space: nowrap
-
-  .col-md-1
-    min-height: 2.625em !important
-    text-align: center
-    img
-      margin-top: 0.4375em
-
-  .col-md-11
-    min-height: 2.625em !important
-    background-color: #ebebe8
-    border-bottom: 0.13em solid #dcdbd4
-    padding-top: 0em
-
-    .media
-
-      p.subheading-text
-        margin-top: 0.5em
-        margin-right: 0.5em
-      .media-title
-        margin-top:  0.625em
+      margin-top: 0
+    .overview
+      height: 100%
+      padding: 0
+      text-align: center
+      text-transform: uppercase
+      *
+        color: #fff
+      .type
+        font-size: 1.1em
+      .status
+        padding-top: .5em
+        *
+          font-size: 1.6em
+    .links
+      padding: 0
+      *
+        padding: 0
+      .link
+        border-bottom: 1px solid #fff
+        background-color: #4a5e67
+        padding: .1em
+        &.disabled
+          background-color: #b1bbbf
+      .fa, a, .title
+        color: #fff
+      a
+        width: 100%
         font-weight: 300
-      .media-object
-        margin-top:  0.375em
-      p.inviter-name
-        margin-bottom:  0em
-        font-size:  1em
-        font-weight:  bold
-        color:  #8b1b2f
-        text-align: left
-      p.inviter-bio
-        margin: 0.1875em 0em 0em
-        font-size:  0.75em
-        text-align: left
+     
 
-
+        
+  .details
+    height: 100%
+    background-color: #f7f9fa
+  .assessment-footer
+    height: 2em
+    line-height: 2em
+    background-color: #ebebe8
+    border-bottom: 1px solid #dcdbd4
+    .avatar
+      height: 100%

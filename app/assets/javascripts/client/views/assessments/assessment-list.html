@@ -1,0 +1,100 @@
+<div class='assessments'>
+  <div ng-repeat="assessment in assessments">
+    <div class='row assessment'>
+      <div class='col-md-1 col-sm-1 overview' style='background-color: {{backgroundColor(assessment)}};'>
+        <div class="type">
+          {{assessment.status}}
+        </div>
+
+        <div class="status" ng-switch on="assessment.status">
+          <div ng-switch-when="consensus">
+            <i class="fa {{consensusReportIcon(assessment)}}"></i>
+          </div>
+          <div ng-switch-when="assessment">
+            {{roundNumber(assessment.percent_completed)}}%
+          </div>
+          <div ng-switch-default>
+            N/A
+          </div>
+        </div>
+
+      </div>
+
+      <div class='col-md-9 col-sm9 details'>
+        <div class='row'>
+          <div class='col-md-12 col-sm-12'>
+            <h2 class='name'>{{assessment.name}}</h2>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-3 col-sm-3'>
+            <p class='assessment-stat'>
+              <span class='category'>Participants</span>
+              <span class='stat'>{{assessment.participant_count}}</span>
+            </p>
+          </div>
+          <div class='col-md-4 col-sm-4'>
+            <p class='assessment-stat'>
+            <span class='category'>Completed</span>
+            <span class='stat'>{{assessment.completed_responses}}</span>
+            </p>
+          </div>
+          <div class='col-md-5 col-sm-5'>
+            <p class='assessment-stat'>
+            <span class='category'>Meeting</span>
+            <span class='stat'>{{meetingTime(assessment.meeting_date)}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class='col-md-2 col-sm-2 links'>
+        <div ng-repeat="link in assessment.links">
+          <assessment-links
+          data-link="{{link}}"
+          data-title="{{link.title}}"
+          data-active="{{link.active}}"
+          data-type="{{link.type}}"
+          data-id="{{assessment.id}}"
+          data-consensus-id="{{assessment.consensus.id}}"
+          data-role="{{role}}">
+          </assessment-links>
+        </div>
+      </div>
+
+    </div>
+    <div class='row assessment-footer'>
+      <div class='avatar col-md-1 col-sm-1' style='background-color: {{backgroundColor(assessment)}};'>
+        <avatar
+        data-imgclass="media-object img-circle"
+        data-width="28"
+        data-has-tooltip="true"
+        data-name="{{assessment.facilitator.full_name}}"
+        data-avatar="{{assessment.facilitator.avatar}}"
+        data-role="{{assessment.facilitator.team_role}}">
+        </avatar>
+      </div>
+
+      <div class='col-md-11 col-sm-11'>
+        <div class="media">
+          <p class="pull-left subheading-text">{{assessment.subheading.text}}</p>
+          <div ng-repeat="p in assessment.subheading.participants">
+            <avatar
+            data-has-tooltip="true"
+            data-style="margin-right:0.375em;"
+            data-name="{{p.full_name}}"
+            data-avatar="{{p.avatar}}"
+            data-role="{{p.team_role}}"
+            data-width="28"
+            data-toolplacement="bottom"
+            data-imgclass="pull-left media-object img-circle">
+            </avatar>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+      </div>
+

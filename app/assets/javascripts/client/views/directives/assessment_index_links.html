@@ -1,5 +1,13 @@
-<div class="col-md-2 col-sm-2">
-  <div class="links">
-    <a ng-click="createConsensus(type)" class="{{linkActive(active)}}" href="{{assessmentLink(type, role, active)}}"><i class="fa fa-{{linkIcon(type)}}"></i>{{title}}</a>
-  </div>
+<div class="col-md-12 col-sm-12 link" class="{{linkActive(active)}}">
+  <a
+    class="{{linkActive(active)}}"
+    ng-click="createConsensus(type)"
+    href="{{assessmentLink(type, role, active)}}">
+    <div class="col-md-2 col-sm-2">
+      <i class="fa fa-{{linkIcon(type)}}"></i>
+    </div>
+    <div class="col-md-10 col-sm-10 title">
+      {{title}}
+    </div>
+  </a>
 </div>
