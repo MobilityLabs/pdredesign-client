@@ -8,8 +8,8 @@ PDRClient.controller('InvitationCtrl', ['$scope', '$location', '$stateParams', '
       $scope.showalert = false;
       $scope.alerts = [];
 
-      $scope.showError = function() {
-        $scope.alerts.push({type: 'danger', msg: 'Invalid email or password!'});
+      $scope.showError = function(msg) {
+        $scope.alerts.push({type: 'danger', msg: msg});
       };
 
       $scope.closeAlert = function(index) {
@@ -29,9 +29,14 @@ PDRClient.controller('InvitationCtrl', ['$scope', '$location', '$stateParams', '
           .$promise
           .then(function() {
             $location.url('/login');
-          }, function(data){
-              console.log(data)
-              $scope.showError();
+          }, function(response){
+            var errors = response.data.errors;
+            angular.forEach(errors, function(error, key) {
+              angular.forEach(error, function(e) {
+                var message = key + ": " + e;
+                $scope.showError(message);
+              });
+           });
 
           });
       };
