@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="PDRClient">
   <head>
-    <title></title>
+    <title>PDredesign</title>
     <%= stylesheet_link_tag    "pdr_client", media: "all" %>
     <%= javascript_include_tag "pdr_client" %>
     <%= favicon_link_tag %>
@@ -9,12 +9,11 @@
   </head>
   <body>
     <%= render 'pdr_client/layouts/partials/top_nav' %>
-    <div class="container-fluid">
-      <div class="row">
-        <%= yield %>
-        <%= render 'pdr_client/layouts/partials/sidebar' %>
-      </div>
-    </div>
+    
+    <%= render 'pdr_client/layouts/partials/sidebar' %>
+
+    <%= yield %>
+
     <%= render 'pdr_client/layouts/partials/footer' %>
   </body>
 </html>
