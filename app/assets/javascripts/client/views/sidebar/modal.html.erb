@@ -1,56 +1,12 @@
-      <div class="what-is-pd">
-        <p class="title">
-          <i class="fa fa-info-circle"></i> Why Readiness Assessment?
-        </p>
+<div class="what-is-pd">
+  <p class="title">
+    <i class="fa fa-info-circle"></i> Why Readiness Assessment?
+  </p>
 
-        <p data-toggle="modal" class="sidebar-text modal-text" data-target="#overview">
-        <a href="#">Learn more about PD Redesign</a>
-        process and how this Readiness Assessment fits into the larger picture.
-        </p>
+  <p ng-click="pdrOverview()">
+    <a>Learn more about PD Redesign</a>
+    process and how this Readiness Assessment fits into the larger picture.
+  </p>
 
-        <ng-include src="'client/views/sidebar/facilitator_pdf.html'" ng-hide="role == member"></ng-include>
-      </div>
-
-<!-- Modal -->
-<div class="modal fade" id="overview" tabindex="-1" role="dialog" aria-labelledby="overview-title" aria-hidden="true" data-backdrop="false">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title sidebar-title" id="overview-title">
-          PD Redesign: Readiness Assessment
-        </h4>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-         <div class="col-md-6">
-            <p class='sidebar-question'>What is it?</p>
-            <div class='sidebar-answer'>
-              The PD Redesign Readiness Assessment Tool is designed to help districts and LEAs:
-              <ol>
-                <li>Engage in a candid, cross-functional discussion about innovative Professional Development using a common language anchored to key program elements from the Gates Foundation's PD System Map (below).</li>
-                <li>Gain a high level understanding of the organization's current strengths and weaknesses and overall readiness, aid in the PD strategy design, and support the associated whole system change.</li>
-              </ol>
-            </div>
-
-            <p class='sidebar-question'>How is it used?</p>
-            <div class='sidebar-answer'>
-              Ideally, the process for using the PD Readiness Assessment consists of:
-              <ul>
-                <li>Gathering a cross-functional team</li>
-                <li>Having each team member review and fill out the assessment</li>
-                <li>Discussing the questions one by one as a group, coming to a consensus on a score for each question, and providing evidence and bright spots to support the consensus score</li>
-                <li>Creating the report: After filing out the scoring rubric, a printable version of the assessment report will be generated</li>
-              </ul>
-            </div>
-
-          </div>
-          <div class="col-md-6">
-            <%= image_tag("diagram.png", style: 'width:100%') %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <ng-include src="'client/views/sidebar/facilitator_pdf.html'" ng-hide="role == member"></ng-include>
 </div>
-
