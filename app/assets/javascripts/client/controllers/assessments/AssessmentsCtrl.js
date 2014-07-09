@@ -3,7 +3,13 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'assessment
 
       $scope.assessments = assessments;
       $scope.user        = SessionService.getCurrentUser();
-      $scope.role        = $scope.user.role;
+      $scope.role        = null;
+
+      $scope.$watch('user', function(){ 
+        if(!$scope.user) return;
+
+        $scope.role = $scope.user.role;
+      });
 
       $scope.consensusReportIcon = function(assessment) {
         if (assessment.links['report']['active'] == true)
