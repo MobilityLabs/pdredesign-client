@@ -2,8 +2,7 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
     function($rootScope, $scope, SessionService, $location) {
 
       $scope.$watch('user', function() {
-        if($scope.user == null)
-          return;
+        if($scope.user == null) return;
         $scope.userAvatar = $scope.user.avatar;
       });
 
@@ -37,6 +36,7 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
 
       $scope.$on('session_updated', function() {
         $scope.updateTemplate();
+        $scope.userAvatar = $scope.user.avatar;
       });
     }
 ]);
