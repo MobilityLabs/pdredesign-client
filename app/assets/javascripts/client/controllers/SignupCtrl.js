@@ -17,7 +17,7 @@ PDRClient.controller('SignupCtrl', [
       };
 
       $scope.createUser = function(user) {
-        user["district_ids"] = $scope.districts;
+        user["district_ids"] = $scope.selectedDistrict;
 
         $scope.success = null;
         $scope.errors  = null;
