@@ -82,7 +82,7 @@ describe('Controller: InvitationCtrl', function() {
      spyOn(Invitation, 'save')
           .and.callFake(function() {
             var deferred = q.defer();
-            deferred.reject({});
+            deferred.reject({data: {errors: {[{'password' : 'invalid'}]}}});
             return {$promise: deferred.promise};
         });
         expect(scope.alerts).toEqual([])

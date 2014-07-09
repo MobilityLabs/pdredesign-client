@@ -28,6 +28,7 @@ describe('Controller: NavigationCtrl', function() {
     function(SessionService) {
       spyOn(SessionService, 'setUserTemplate');
 
+      scope.user = {};
       rootScope.$emit('session_updated');
 
       expect(SessionService.setUserTemplate)
