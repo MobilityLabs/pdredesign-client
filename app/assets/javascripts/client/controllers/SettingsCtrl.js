@@ -6,6 +6,13 @@ PDRClient.controller('SettingsCtrl', ['$scope', '$timeout', 'User', 'SessionServ
       $scope.errors  = null;
       $scope.success = null;
 
+      $scope.$watch('user', function() {
+        if(!$scope.user.districts)
+          return;
+        $scope.districtId = $scope.user.districts[0].id;
+        $scope.districtText= $scope.user.districts[0].text;
+      });
+
       $timeout(function() {
         $('#districts').selectize({
           valueField:  'id',
@@ -36,13 +43,13 @@ PDRClient.controller('SettingsCtrl', ['$scope', '$timeout', 'User', 'SessionServ
       });
 
       $scope.update = function(editedUser) {
-        editedUser["district_ids"] = $scope.districts;
+        editedUser["district_ids"] = $scope.selectedDistrict;
 
         editedUser
           .$save()
           .then(
             function(data) {
-              $scope.success = "Your profile has been updated"
+              $scope.success    = "Your profile has been updated"
             },
             function(response) {
               $scope.errors  = response.data.errors
