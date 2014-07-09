@@ -82,14 +82,14 @@ describe('Controller: InvitationCtrl', function() {
      spyOn(Invitation, 'save')
           .and.callFake(function() {
             var deferred = q.defer();
-            deferred.reject({data: {errors: ['password' : 'Invalid email or password!']}});
+            deferred.reject({data: {errors: {'password' : ['Invalid email or password!']}}});
             return {$promise: deferred.promise};
         });
         expect(scope.alerts).toEqual([])
         scope.redeemInvite();
         httpBackend.flush();
         expect(location.url()).not.toEqual('/login')
-        expect(scope.alerts).toEqual([{type: 'danger', msg: 'Invalid email or password!'}])
+        expect(scope.alerts).toEqual([{type: 'danger', msg: 'password: Invalid email or password!'}])
   });
 
 });
