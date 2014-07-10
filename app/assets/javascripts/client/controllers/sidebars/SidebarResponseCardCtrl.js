@@ -51,7 +51,7 @@ PDRClient.controller('SidebarResponseCardCtrl', [
     };
 
     $scope.isAssessment = function(){
-      $location.url().indexOf("responses") > -1
+      return $location.url().indexOf("responses") > -1;
     };
 
     $scope.subject = function() {
