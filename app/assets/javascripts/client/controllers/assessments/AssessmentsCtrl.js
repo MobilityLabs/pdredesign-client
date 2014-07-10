@@ -55,7 +55,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
           case 'response':
             return '/assessments/' + assessment.id + '/responses/' + assessment.responses[0].id;
           case 'consensus':
-            return '/assessments/' + assessment.id + '/consensus/' + assessment.response.consensus.id;
+            return '/assessments/' + assessment.id + '/consensus/' + assessment.consensus.id;
           case 'none':
             return false;
         }
