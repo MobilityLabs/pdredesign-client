@@ -2,6 +2,10 @@
   <div class="sidebar">
     <div id='response-sidebar' data-spy="affix" data-offset-top="40" data-offset-bottom="200">
       <div class='punchcard'>
+        <div class="type">
+          <p ng-hide="isAssessment()">Consensus</p>
+          <p ng-show="isAssessment()">Response</p>
+        </div>
         <p class="sidebar-title">
           Saved Answers
           <span class='score-count'>
