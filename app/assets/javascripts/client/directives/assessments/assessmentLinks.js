@@ -31,21 +31,29 @@ PDRClient.directive('assessmentLinks', [
               return icons[type];
             };
 
-            $scope.createConsensus  = function(type) {
-              if (type == 'new_consensus') {
-                $scope.modal = $modal.open({
-                  templateUrl: 'client/views/modals/create_consensus.html',
-                  scope: $scope
-                });
-              }
+            $scope.createConsensusModal = function() {
+              $scope.modal = $modal.open({
+                templateUrl: 'client/views/modals/create_consensus.html',
+                scope: $scope
+              });
             };
 
             $scope.close = function() {
               $scope.modal.dismiss('cancel');
             }
 
+            $scope.createConsensusLocation = function() {
+              $scope.modal.dismiss('cancel');
+              $location.url($scope.assessmentLink('new_consensus', true));
+            };
+
             $scope.gotoLocation   = function(location) {
-              if(location)
+              if(!location) return;
+
+              if(location.match(/\/assessments\/.*\/consensus$/)) {
+                $scope.createConsensusModal();
+              }
+              else
                 $location.url(location);
             };
 
