@@ -29,7 +29,8 @@
         data-toggle="modal"
         data-target="#assessmentReview"
         ng-click="submitResponseModal()">
-        Submit Response
+          <span ng-show='is_completed'>Update Response</span>
+          <span ng-hide='is_completed'>Submit Response</span>
       </button>
       </div>
 
