@@ -10,7 +10,8 @@
         </div>
 
         <div ng-hide="isReadOnly">
-          <textarea redactor
+          <textarea 
+            class="col-md-12 col-sm-12"
             ng-hide="isReadOnly"
             ng-model="question.score.evidence"
             placeholder="Write evidence of why you believe this is the correct score for this question. Skip to next question if you're not sure.">

@@ -38,6 +38,7 @@ PDRClient.directive('responsequestion', [
           }
 
           $scope.assignAnswerToQuestion = function (answer, question) {
+            console.debug("Should Start redactor");
             ResponseHelper.assignAnswerToQuestion($scope, answer, question);
           }
 
