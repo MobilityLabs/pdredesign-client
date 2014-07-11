@@ -6,8 +6,10 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', [
   'Assessment',
   '$stateParams',
   'Participant',
+  'Reminder',
     function($scope, $timeout, $modal,
-      SessionService, Assessment, $stateParams, Participant) {
+      SessionService, Assessment, $stateParams,
+      Participant, Reminder) {
 
       $scope.id         = $stateParams.id;
 
@@ -40,7 +42,16 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', [
 
       $scope.close = function() {
         $scope.modal.dismiss('cancel');
-      }
+      };
+
+      $scope.sendReminder = function(message) {
+        Reminder
+          .save({assessment_id: $scope.id}, {message: message})
+          .$promise
+          .then(function(){
+            $scope.close();  
+          });
+      };
 
       $scope.meetingDateDaysAgo = function() {
         return moment().diff($scope.assessment.meeting_date, 'days');

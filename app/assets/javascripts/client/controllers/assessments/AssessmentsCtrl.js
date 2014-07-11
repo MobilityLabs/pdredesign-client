@@ -1,9 +1,15 @@
-PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'assessments',
-    function($scope, SessionService, assessments) {
+PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService', 'assessments',
+    function($scope, $location, SessionService, assessments) {
 
       $scope.assessments = assessments;
       $scope.user        = SessionService.getCurrentUser();
-      $scope.role        = $scope.user.role;
+      $scope.role        = null;
+
+      $scope.$watch('user', function(){ 
+        if(!$scope.user) return;
+
+        $scope.role = $scope.user.role;
+      });
 
       $scope.consensusReportIcon = function(assessment) {
         if (assessment.links['report']['active'] == true)
@@ -31,18 +37,29 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', 'SessionService', 'assessment
         return "#4e5e66";
       }
 
-      $scope.responseLink = function(assessment) {
-        if(assessment.status == "consensus" && assessment.consensus.submitted_at)
-          return '#/assessments/' + assessment.id + '/consensus/' + assessment.consensus.id;
+      $scope.gotoLocation = function(location) {
+        if(location)
+          $location.url(location);
+      };
 
-        if(assessment.status == "assessment") {
-          if(_.isEmpty(assessment.responses))
-            return '#/assessments/' + assessment.id + '/dashboard'
-          else
-            return '#/assessments/' + assessment.id + '/responses/' + assessment.responses[0].id;
+      $scope.activeAssessmentLink = function(assessment) {
+        if($scope.responseLink(assessment))
+          return 'active';
+        return '';
+      };
+
+      $scope.responseLink = function(assessment) {
+        switch(assessment.assessment_link) {
+          case 'new_response':
+            return '/assessments/' + assessment.id + '/responses';
+          case 'response':
+            return '/assessments/' + assessment.id + '/responses/' + assessment.responses[0].id;
+          case 'consensus':
+            return '/assessments/' + assessment.id + '/consensus/' + assessment.consensus.id;
+          case 'none':
+            return false;
         }
-        return '#/assessments';
-      }
+      };
 
       $scope.responseLinkDisabled = function(assessment) {
         if(_.isEmpty(assessment.responses) && !assessment.is_participant)

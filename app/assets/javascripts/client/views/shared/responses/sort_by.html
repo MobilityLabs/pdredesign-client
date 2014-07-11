@@ -1,20 +1,25 @@
-  <div class="row">
-    <div class="col-md-offset-6 col-md-2 label">
-      Sort By:
-    </div>
-
-    <div class="col-md-4">
-      <select
-        ng-change="changeViewMode(viewMode)"
-        ng-model="viewMode"
-        class="col-md-8 form-control">
-        <option
-          ng-selected="$index == 0"
-          value="{{mode.label}}"
-          ng-repeat="mode in viewModes">
-          {{mode.label}}
-        </option>
-      </select>
+<div class="row-bg sort-by">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1 label">
+        Sort By:
+      </div>
+      <div class="col-md-5">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default">
+            <i class="fa fa-fire"></i>
+            Popularity
+          </button>
+          <button type="button" class="btn btn-default" ng-click="changeViewMode('category')">
+            <i class="fa fa-sort-numeric-asc"></i>
+            Numeric
+          </button>
+          <button type="button" class="btn btn-default" ng-click="changeViewMode('variance')" ng-model="viewMode">
+            <i class="fa fa-bar-chart-o"></i>
+            Variance
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-
+</div>

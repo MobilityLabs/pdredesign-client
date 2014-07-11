@@ -25,7 +25,7 @@
   <div class='container'>
     <div class='row'>
       <div class='col-md-9'>
-        <div id='participants'>
+        <div id='participants' ng-show="assessment.is_facilitator">
           <div class='row'>
             <p class='header'><span class='stat'>{{assessment.participant_count}} </span> Participants </p>
               <div class='col-md-6 col-sm-6' ng-repeat="user in assessment.participants">

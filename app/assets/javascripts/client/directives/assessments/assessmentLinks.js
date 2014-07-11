@@ -31,56 +31,58 @@ PDRClient.directive('assessmentLinks', [
               return icons[type];
             };
 
-            $scope.createConsensus  = function(type) {
-              if (type == 'new_consensus') {
-                $scope.modal = $modal.open({
-                  templateUrl: 'client/views/modals/create_consensus.html',
-                  scope: $scope
-                });
-              }
+            $scope.createConsensusModal = function() {
+              $scope.modal = $modal.open({
+                templateUrl: 'client/views/modals/create_consensus.html',
+                scope: $scope
+              });
             };
 
             $scope.close = function() {
               $scope.modal.dismiss('cancel');
             }
 
-            $scope.assessmentLink = function(type, role, active) {
-              if(typeof type === 'undefined' || typeof role === 'undefined' || active == "false")
-                return "#/assessments";
+            $scope.createConsensusLocation = function() {
+              $scope.modal.dismiss('cancel');
+              $location.url($scope.assessmentLink('new_consensus', true));
+            };
+
+            $scope.gotoLocation   = function(location) {
+              if(!location) return;
+
+              if(location.match(/\/assessments\/.*\/consensus$/)) {
+                $scope.createConsensusModal();
+              }
+              else
+                $location.url(location);
+            };
+
+            $scope.assessmentLink = function(type, active) {
+              if(typeof type === 'undefined' || active == "false")
+                return false;
 
               routes = {
-                "facilitator": {
-                  "dashboard": "#/assessments/" + $scope.id + "/dashboard",
-                  "new_consensus": "#/assessments",
-                  "consensus": "#/assessments/" + $scope.id + "/consensus",
-                  "finish": "#/assessments/" + $scope.id + "/assign",
-                  "report": "#/assessments/" + $scope.id + "/report",
-                  "edit_report": "#/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
-                  "show_report": "#/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
-                },
-                "member": {
-                  "messages": "#/assessments/" + $scope.id + "/dashboard",
-                  "consensus": "#/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
-                  "show_response": "#/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
-                  "edit_report": "group",
-                  "show_report": "group",
-                  "finish": "pencil",
-                  "report": "file-text-o",
-                }
-              }
+                "new_consensus": "/assessments/" + $scope.id + "/consensus",
+                "dashboard":     "/assessments/" + $scope.id + "/dashboard",
+                "consensus":     "/assessments/" + $scope.id + "/consensus",
+                "finish":        "/assessments/" + $scope.id + "/assign",
+                "report":        "/assessments/" + $scope.id + "/report",
+                "edit_report":   "/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
+                "show_report":   "/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
+                "messages":      "/assessments/" + $scope.id + "/dashboard",
+                "consensus":     "/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
+                "show_response": "/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
+              };
 
-              return routes[role][type];
-            }
+              return routes[type];
+            };
 
             $scope.linkActive = function(link){
-                if (link == "true") {
-                  return "active";
-                }
-                else {
-                  return "disabled";
-                }
-
-            }
+              if(link == "true")
+                return "active";
+              else
+                return "disabled";
+            };
 
         }],
 

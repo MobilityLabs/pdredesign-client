@@ -1,6 +1,6 @@
 PDRClient.service('SessionService',
-  ['UrlService', '$http', '$location', '$q',
-  function(UrlService, $http, $location, $q) {
+  ['UrlService', '$http', '$location', '$q', 'User',
+  function(UrlService, $http, $location, $q, User) {
     var userIsAuthenticated = false;
     var service = this;
     var user    = null;
@@ -12,13 +12,24 @@ PDRClient.service('SessionService',
       localStorage.setItem('user', stringy);
     }
 
+    this.syncUser = function() {
+      User
+        .get()
+        .$promise
+        .then(function(usr) {
+          user = usr; 
+      }); 
+    };
+
     this.softLogin = function() {
       var localUser = localStorage.getItem('user');   
       if(localUser !== null && typeof localUser !== 'undefined'){
         object = JSON.parse(localUser);
         setCurrentUser(object);
       }
+      this.syncUser();
     }
+
     this.softLogin();
 
     this.getUserAuthenticated = function() {

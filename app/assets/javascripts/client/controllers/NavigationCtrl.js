@@ -1,12 +1,5 @@
 PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService', '$location',
     function($rootScope, $scope, SessionService, $location) {
-
-      $scope.$watch('user', function() {
-        if($scope.user == null)
-          return;
-        $scope.userAvatar = $scope.user.avatar;
-      });
-
       $scope.updateTemplate = function() {
         SessionService.setUserTemplate(
           $scope,
@@ -36,6 +29,7 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
       });
 
       $scope.$on('session_updated', function() {
+        SessionService.syncUser();
         $scope.updateTemplate();
       });
     }

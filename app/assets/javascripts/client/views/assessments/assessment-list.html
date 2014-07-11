@@ -20,7 +20,10 @@
 
       </div>
 
-      <div class='col-md-9 col-sm9 details'>
+      <div
+        class='col-md-9 col-sm-9 details'
+        ng-class="activeAssessmentLink(assessment)"
+        ng-click="gotoLocation(responseLink(assessment))">
         <div class='row'>
           <div class='col-md-12 col-sm-12'>
             <h2 class='name'>{{assessment.name}}</h2>

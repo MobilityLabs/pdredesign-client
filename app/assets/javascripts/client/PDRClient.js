@@ -51,6 +51,32 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
         }
       }
     })
+    .state('reset', {
+      url: '/reset',
+      views: {
+        '': {
+          controller: 'ResetPasswordCtrl',
+          templateUrl: 'client/views/reset_password/request_reset.html'
+        },
+        'sidebar': {
+          controller: 'SidebarCtrl',
+          templateUrl: 'client/views/sidebar/sidebar_login.html'
+        }
+      }
+    })
+    .state('reset_token', {
+      url: '/reset/:token',
+      views: {
+        '': {
+          controller: 'ResetPasswordCtrl',
+          templateUrl: 'client/views/reset_password/reset.html'
+        },
+        'sidebar': {
+          controller: 'SidebarCtrl',
+          templateUrl: 'client/views/sidebar/sidebar_login.html'
+        }
+      }
+    })
     .state('invite', {
       url: '/invitations/:token',
       views: {

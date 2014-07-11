@@ -69,7 +69,7 @@
 
 
         <em>What is your district?</em>
-        <district-select data-role="member" ng-model="user.district_ids"></district-select>
+        <district-select></district-select>
 
         <input
         type="button"
@@ -79,7 +79,9 @@
         value="Create PD Account">
 
         <input
-          ng-model="user.role" value="facilitator">
+          style="display: none;"
+          ng-model="user.role"
+          value="facilitator">
 
         </form>
 

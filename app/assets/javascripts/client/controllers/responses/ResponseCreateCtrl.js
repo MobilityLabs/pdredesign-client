@@ -24,12 +24,7 @@ PDRClient.controller('ResponseCreateCtrl', [
         $location.path('/assessments/'+ $scope.assessmentId +'/responses/' + response.id);
       }, function(data){
 
-        $scope.isError = true;
-        $scope.notification  = "Response was not created.";
-        $modal.open({
-          templateUrl: 'client/views/shared/notification_modal.html',
-          scope: $scope
-        });
+        $location.path('/assessments');
       });
     };
 
