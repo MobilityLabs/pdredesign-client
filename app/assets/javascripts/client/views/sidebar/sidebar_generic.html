@@ -1,35 +1,30 @@
-<div class="row" ng-show="visible">
-  <div class="sidebar">
-    <div class="user">
-      <div class="col-md-3">
-        <span class="avatar">
-          <img ng-src="{{avatar}}">
-        </span>
+<div class='sidebar-container hidden-sm hidden-xs'>
+  <div class='row'>
+    <div class='sidebar-column col-md-3 col-md-offset-9'>
+
+      <div class="sidebar">
+        <div class="content user">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img ng-src="{{avatar}}">
+            </a>
+            <div class="media-body information">
+              <p id="name">{{name}}</p>
+              <p id="role">{{role}}</p>
+            </div>
+          </div>
+        </div>
+
+        <ul class="links">
+          <li><a href="#/settings">Edit profile</a></li>
+        </ul>
+
+
+        <div class="content">
+          <ng-include src="'client/views/sidebar/why_pd_redesign.html'"></ng-include>
+        </div>
       </div>
 
-      <div class="col-md-6">
-        <div class="information">
-          <p id="name">
-          {{name}}
-        </span>
-        <p id="role">
-        {{role}}
-      </span>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-12 no-padding">
-      <ul class="links">
-        <li>
-        <a href="#/settings">Edit profile</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-</div>
-
-<div class="content">
-  <ng-include src="'client/views/sidebar/why_pd_redesign.html'"></ng-include>
 </div>

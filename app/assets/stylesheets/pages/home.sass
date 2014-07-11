@@ -23,7 +23,7 @@
 
   .design-principles
     background-color: #C5DCE2
-    margin: 1em
+    padding: 0.1em 1em
     font-size: 1.0em
     font-weight: bold
     h1
@@ -38,10 +38,6 @@
     .fa-stack-1x
       color: #C5DCE2
   .toolkits
-    padding-right: 0
-    .toolkit
-      padding-right: 0
-      padding-left: 0
     .triangle-right
       border-top: 0.9375em solid #D4E5E9
       border-left: 0.625em solid #C5DCE2
@@ -60,9 +56,13 @@
       .triangle-right
         visibility: hidden
     .row.title
-      padding: 0 0 0 .3em
+      padding: 0 0 0 .5em
       font-size: 1.3em
       text-transform: uppercase
+      &.title-0
+        margin-left: 0px
+      &.title-2
+        margin-right: 0px
     .goal
       font-size: 1.0em
       font-style: italic
@@ -72,7 +72,6 @@
     .categories
       font-size: .75em
       padding: .5em
-      margin-right: .5em
       margin-bottom: 1em
       background-color: #D4D2C8
       .subcategories, ul.tool
