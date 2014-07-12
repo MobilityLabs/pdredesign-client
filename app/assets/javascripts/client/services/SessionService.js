@@ -26,8 +26,8 @@ PDRClient.service('SessionService',
       if(localUser !== null && typeof localUser !== 'undefined'){
         object = JSON.parse(localUser);
         setCurrentUser(object);
+        this.syncUser();
       }
-      this.syncUser();
     }
 
     this.softLogin();

@@ -23,7 +23,6 @@ PDRClient.controller('ResponseCreateCtrl', [
       .then(function(response){
         $location.path('/assessments/'+ $scope.assessmentId +'/responses/' + response.id);
       }, function(data){
-
         $location.path('/assessments');
       });
     };
