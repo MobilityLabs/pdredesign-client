@@ -9,8 +9,11 @@ PDRClient.controller('SidebarResponseCardCtrl', [
   'SessionService',
   'Score',
   'Consensus',
+  'Response',
   'Assessment',
-  function($modal, $scope, $rootScope, $stateParams, $location, $anchorScroll, $timeout, SessionService, Score, Consensus, Assessment) {
+  function($modal, $scope, $rootScope, $stateParams, $location, 
+           $anchorScroll, $timeout, SessionService, Score, 
+           Consensus, Response, Assessment) {
     $scope.assessmentId = $stateParams.assessment_id;
     $scope.responseId   = $stateParams.response_id;
     $scope.questions = [];
@@ -19,6 +22,15 @@ PDRClient.controller('SidebarResponseCardCtrl', [
 
     $timeout(function(){
       $scope.assessment = Assessment.get({id: $scope.assessmentId});
+      $scope.subject()
+        .get({assessment_id: $scope.assessmentId, id: $scope.responseId})
+        .$promise
+        .then(function(data){
+          $scope.isReadOnly = data.is_completed || false;
+      });
+
+      $(".punchcard").affix();
+      $scope.updateScores();
     });
 
     $scope.updateScores = function() {
@@ -27,6 +39,10 @@ PDRClient.controller('SidebarResponseCardCtrl', [
         response_id:   $scope.responseId
       });
     };
+
+    $rootScope.$on('response_updated', function(){
+      $scope.updateScores();
+    });
 
     $scope.answeredQuestions = function() {
       var count = 0;
@@ -46,35 +62,23 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       $anchorScroll();
     };
 
-    $scope.canSubmit = function() {
-      return !$scope.isReadOnly;
-    };
-
-    $scope.isAssessment = function(){
+    $scope.isResponse = function(){
       return $location.url().indexOf("responses") > -1;
     };
 
-    $scope.subject = function() {
-      if($scope.isAssessment()) return Assessment;
-      return Consensus;
+    $scope.canSubmit = function() {
+      if($scope.isResponse()) return true;
+      return !$scope.isReadOnly;
     };
 
-    $scope.subject()
-    .get({assessment_id: $scope.assessmentId, id: $scope.responseId})
-    .$promise
-    .then(function(data){
-      $scope.isReadOnly = data.is_completed || false;
-    });
+    $scope.isResponseCompleted = function() {
+      return $scope.isReadOnly;
+    };
 
-    $scope.updateScores();
-
-    $timeout(function(){
-      $(".punchcard").affix();
-    });
-
-    $rootScope.$on('response_updated', function(){
-      $scope.updateScores();
-    });
+    $scope.subject = function() {
+      if($scope.isResponse()) return Response;
+      return Consensus;
+    };
 
     $scope.AssessmentMeetingDate = function() {
       if ($scope.assessment.due_date == null) { return 'TBD'};
