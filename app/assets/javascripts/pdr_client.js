@@ -25,5 +25,7 @@
 //= require highcharts
 //= require highcharts/highcharts-more
 //= require selectize
+//= require ./client/PDRClient
+//= require_tree ./client/routes
 //= require_tree ./client/views
 //= require_tree ./client
