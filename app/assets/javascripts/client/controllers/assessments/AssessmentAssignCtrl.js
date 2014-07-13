@@ -31,7 +31,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
         updateParticipantsList();
       });
 
-      $scope.messageError = "Enter a message before sending!";
+      $scope.messageError = "A message is required to send!";
       $scope.alertError   = false;
 
       $scope.assignAndSave = function(assessment) {
@@ -42,8 +42,11 @@ PDRClient.controller('AssessmentAssignCtrl', [
 
         if (confirm("Are you sure you want to send out the assessment and invite all your participants?")) {
           $scope.alertError = false;
-          $scope.save(assessment, true);
-          $location.path('/assessments');
+          $scope
+            .save(assessment, true)
+            .then(function() {
+              $location.path('/assessments');
+            });
         }
       };
 
@@ -58,7 +61,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
 
         if(assign) assessment.assign = true;
 
-        Assessment
+        return Assessment
           .save({ id: assessment.id }, assessment)
           .$promise
           .then(function(_data) {

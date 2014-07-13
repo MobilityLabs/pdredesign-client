@@ -64,7 +64,9 @@ PDRClient.directive('consensus', [
               });
             });
 
-            keys.sort();
+            keys
+              .sort()
+              .reverse();
 
             var sorted    = {};
             angular.forEach(keys, function(key) { sorted[key] = tmpObject[key]; });
