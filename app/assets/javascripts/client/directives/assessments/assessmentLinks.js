@@ -17,6 +17,7 @@ PDRClient.directive('assessmentLinks', [
           function($scope, $modal, $rootScope, $location, $timeout) {
             $scope.linkIcon = function(type){
               icons = {
+                  "response": "check",
                   "dashboard": "dashboard",
                   "consensus": "group",
                   "new_consensus": "group",
