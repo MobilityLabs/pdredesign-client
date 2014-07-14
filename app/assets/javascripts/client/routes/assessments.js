@@ -3,6 +3,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
 
     $stateProvider.state('assessments', {
       url: '/assessments',
+      authenticate: true,
       views: {
         '': {
           resolve: {
@@ -19,6 +20,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
    })
    .state('assessment_dashboard', {
      url: '/assessments/:id/dashboard',
+     authenticate: true,
      views: {
        '': {
          controller: 'AssessmentDashboardCtrl',
@@ -32,6 +34,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
    })
    .state('assessment_report', {
      url: '/assessments/:id/report',
+     authenticate: true,
      views: {
        '': {
          controller: 'AssessmentReportCtrl',
@@ -45,6 +48,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
    })
    .state('assessment_assign', {
      url: '/assessments/:id/assign',
+     authenticate: true,
      views: {
        '': {
          controller: 'AssessmentAssignCtrl',
@@ -54,6 +58,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
    })
    .state('assessment_edit', {
      url: '/assessments/:id/edit',
+     authenticate: true,
      views: {
        '': {
          controller: 'AssessmentEditCtrl',

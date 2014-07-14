@@ -3,6 +3,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
 
     $stateProvider.state('consensus_show', {
      url: '/assessments/:assessment_id/consensus/:response_id',
+     authenticate: true,
      views: {
        '': {
          controller: 'ConsensusShowCtrl',
@@ -16,6 +17,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
    })
    .state('consensus_create', {
      url: '/assessments/:assessment_id/consensus',
+     authenticate: true,
      views: {
        '': {
          controller: 'ConsensusCreateCtrl',

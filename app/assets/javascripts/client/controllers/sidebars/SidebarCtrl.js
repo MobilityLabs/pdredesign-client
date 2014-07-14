@@ -1,6 +1,7 @@
-PDRClient.controller('SidebarCtrl', ['$scope', '$modal', 'SessionService',
-    function($scope, $modal, SessionService) {
-      $scope.user   = SessionService.getCurrentUser();
+PDRClient.controller('SidebarCtrl', ['$scope', '$modal', '$stateParams', 'SessionService',
+    function($scope, $modal, $stateParams, SessionService) {
+      $scope.user     = SessionService.getCurrentUser();
+      $scope.redirect = $stateParams.redirect;
 
       if($scope.user && $scope.user["avatar"]) {
         $scope.visible = true;

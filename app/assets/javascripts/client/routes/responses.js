@@ -3,6 +3,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
 
     $stateProvider.state('response_edit', {
      url: '/assessments/:assessment_id/responses/:response_id',
+     authenticate: true,
      views: {
        '': {
          controller: 'ResponseCtrl',
@@ -16,6 +17,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
    })
    .state('response_create', {
      url: '/assessments/:assessment_id/responses',
+     authenticate: true,
      views: {
        '': {
          controller: 'ResponseCreateCtrl',

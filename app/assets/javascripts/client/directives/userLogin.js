@@ -3,7 +3,6 @@ PDRClient.directive('userLogin', ['SessionService',
       return {
         restrict: 'E',
         replace: true,
-        scope: {},
         templateUrl: 'client/views/directives/user_login.html',
         controller: ['$scope', '$rootScope', '$location',
           function($scope, $rootScope, $location) {
@@ -24,7 +23,7 @@ PDRClient.directive('userLogin', ['SessionService',
             $scope.authenticate = function(email, password) {
               SessionService.authenticate(email, password)
                 .then(function(user) {
-                  $location.path('/');
+                  $location.url($scope.redirect);
                   $rootScope.$broadcast('session_updated');
                 }, function() {
                   $scope.showError();

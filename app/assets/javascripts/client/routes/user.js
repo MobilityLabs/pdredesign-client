@@ -14,7 +14,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
       }],
     })
     .state('login', {
-      url: '/login',
+      url: '/login{redirect:(?:/[^/]+)?}',
       views: {
         '': {
           controller: 'LoginCtrl',
@@ -93,6 +93,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
     })
     .state('settings', {
       url: '/settings',
+      authenticate: true,
       views: {
         '': {
           controller: 'SettingsCtrl',
