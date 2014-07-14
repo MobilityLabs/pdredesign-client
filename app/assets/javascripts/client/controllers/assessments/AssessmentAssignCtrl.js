@@ -108,13 +108,17 @@ PDRClient.controller('AssessmentAssignCtrl', [
       };
 
       $scope.removeParticipant = function(user) {
-        Participant.delete({assessment_id: $scope.id, id: user.participant_id}, {user_id: user.id})
-        updateParticipantsList();
+        Participant
+          .delete({assessment_id: $scope.id, id: user.participant_id}, {user_id: user.id})
+          .$promise
+          .then(function(){ updateParticipantsList(); });
       };
 
       $scope.addParticipant = function(user) {
-        Participant.save({assessment_id: $scope.id}, {user_id: user.id})
-        updateParticipantsList();
+        Participant
+          .save({assessment_id: $scope.id}, {user_id: user.id})
+          .$promise
+          .then(function(){ updateParticipantsList(); });
       };
 
       $scope.formattedDate = function(date) {

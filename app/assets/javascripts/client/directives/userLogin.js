@@ -23,7 +23,11 @@ PDRClient.directive('userLogin', ['SessionService',
             $scope.authenticate = function(email, password) {
               SessionService.authenticate(email, password)
                 .then(function(user) {
-                  $location.url($scope.redirect);
+                  if($scope.redirect)
+                    $location.url($scope.redirect);
+                  else
+                    $location.url('/');
+
                   $rootScope.$broadcast('session_updated');
                 }, function() {
                   $scope.showError();
