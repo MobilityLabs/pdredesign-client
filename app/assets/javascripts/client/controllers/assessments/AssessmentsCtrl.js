@@ -49,7 +49,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       };
 
       $scope.responseLink = function(assessment) {
-        switch(assessment.assessment_link) {
+        switch(assessment.response_link) {
           case 'new_response':
             return '/assessments/' + assessment.id + '/responses';
           case 'response':
