@@ -38,6 +38,9 @@ PDRClient.directive('responsequestion', [
           }
 
           $scope.assignAnswerToQuestion = function (answer, question) {
+            question.score.value = answer.value;
+            if($scope.invalidEvidence(question)) return;
+
             ResponseHelper.assignAnswerToQuestion($scope, answer, question);
           }
 
