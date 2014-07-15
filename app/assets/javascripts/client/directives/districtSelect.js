@@ -6,11 +6,16 @@ PDRClient.directive('districtSelect', ['SessionService', 'UrlService', '$timeout
         templateUrl: 'client/views/directives/district_select.html',
         link: function(scope, elm, attrs) {
           $timeout(function() {
+            var maxItems = 1;
+            
+            if(attrs.multiple == "true")
+              maxItems = 20;
+
             scope.selectize = $('#districts').selectize({
               valueField:  'id',
               labelField:  'text',
               searchField: 'text',
-              maxItems:    1,
+              maxItems:    maxItems,
               create:      false,
               render: {
                 option: function(item, escape) {

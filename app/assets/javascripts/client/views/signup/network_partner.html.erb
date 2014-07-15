@@ -4,7 +4,7 @@
       <div class="col-md-4">
         <h1>Welcome to the </h1>
         <h2 class="subheading" >PD Readiness Assessment Tool</h2>
-        <p>As a facilitator, here's what you can do with the tool...</p>
+        <p></p>
       </div>
 
       <div class="col-md-8 form">
@@ -58,18 +58,23 @@
         type="password">
 
 
-        <h3>Facilitator Profile</h3>
+        <h3>Network Partner Profile</h3>
 
-        <em>What is your team role?</em>
-        <input
-        ng-model="user.team_role"
+        <em>What product of services do you provide?</em>
+        <textarea
+        ng-model="user.services"
         class="form-group form-control"
-        placeholder="E.g. Teacher, Consultant, Administrator"
-        type="text">
+        placeholder=""
+        type="text"></textarea>
 
 
         <em>What is your district?</em>
-        <district-select></district-select>
+        <district-select multiple="true"></district-select>
+        <input
+        type="hidden"
+        name="role"
+        value="network_partner">
+
 
         <input
         type="button"

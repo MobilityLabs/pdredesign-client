@@ -25,12 +25,6 @@ PDRClient.directive('startAssessment', [
             });
 
 
-          $scope.isAdmin = function() {
-            var user = SessionService.getCurrentUser();
-            if(user && user.role != 'member') { return true }
-            return false;
-          };
-
           $scope.hideModal = function() { 
             $('#startAssessment').modal('hide');
           }

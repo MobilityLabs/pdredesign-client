@@ -78,12 +78,12 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
         }
       }
     })
-    .state('signup_facilitator', {
-      url: '/signup/facilitator',
+    .state('signup_network_partners', {
+      url: '/signup/network_partner',
       views: {
         '': {
           controller: 'SignupCtrl',
-          templateUrl: 'client/views/signup/facilitator.html'
+          templateUrl: 'client/views/signup/network_partner.html'
         },
         'sidebar': {
           controller: 'SidebarCtrl',
