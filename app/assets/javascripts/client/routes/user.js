@@ -79,7 +79,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
       }
     })
     .state('signup_network_partners', {
-      url: '/signup/network_partner',
+      url: '/networks',
       views: {
         '': {
           controller: 'SignupCtrl',

@@ -16,8 +16,11 @@ PDRClient.controller('SignupCtrl', [
         });
       };
 
-      $scope.createUser = function(user) {
+      $scope.createUser = function(user, isNetworkPartner) {
         user["district_ids"] = $scope.selectedDistrict;
+        if(isNetworkPartner)
+          user["role"] = "network_partner"
+         
 
         $scope.success = null;
         $scope.errors  = null;

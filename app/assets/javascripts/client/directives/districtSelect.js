@@ -7,7 +7,7 @@ PDRClient.directive('districtSelect', ['SessionService', 'UrlService', '$timeout
         link: function(scope, elm, attrs) {
           $timeout(function() {
             var maxItems = 1;
-            
+           
             if(attrs.multiple == "true")
               maxItems = 20;
 
@@ -40,14 +40,13 @@ PDRClient.directive('districtSelect', ['SessionService', 'UrlService', '$timeout
             });
           });
 
-          attrs.$observe('districtId', function() {
-            if(!scope.selectize || !attrs.districtText || !attrs.districtId) return;
+          attrs.$observe('districts', function() {
+            if(!scope.selectize || !attrs.districts) return;
 
-            var districtId   = 1;
-            var districtText = attrs.districtText;
-
-            scope.selectize[0].selectize.addOption({id: districtId, text: districtText});
-            scope.selectize[0].selectize.setValue(districtId);
+            angular.forEach(JSON.parse(attrs.districts), function(d, key) {
+              scope.selectize[0].selectize.addOption({id: d.id, text: d.text});
+              scope.selectize[0].selectize.setValue(d.id);
+            });
           });
 
         },

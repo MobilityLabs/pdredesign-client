@@ -70,15 +70,10 @@
 
         <em>What is your district?</em>
         <district-select multiple="true"></district-select>
-        <input
-        type="hidden"
-        name="role"
-        value="network_partner">
-
 
         <input
         type="button"
-        ng-click="createUser(user)"
+        ng-click="createUser(user, true)"
         class="btn btn-devise btn-danger"
         name="commit"
         value="Create PD Account">
