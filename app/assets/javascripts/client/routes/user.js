@@ -13,8 +13,21 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
             });
       }],
     })
+    .state('login_simple', {
+      url: '/login',
+      views: {
+        '': {
+          controller: 'LoginCtrl',
+          templateUrl: 'client/views/login/login.html'
+        },
+        'sidebar': {
+          controller: 'SidebarCtrl',
+          templateUrl: 'client/views/sidebar/sidebar_login.html'
+        }
+      }
+    })
     .state('login', {
-      url: '/login{redirect:(?:/[^/]+)?}',
+      url: '/login{redirect:(.*)}',
       views: {
         '': {
           controller: 'LoginCtrl',

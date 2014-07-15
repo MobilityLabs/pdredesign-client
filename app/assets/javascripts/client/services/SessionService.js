@@ -12,6 +12,12 @@ PDRClient.service('SessionService',
       localStorage.setItem('user', stringy);
     }
 
+    this.isNetworkPartner = function() { 
+      if(user && user.role && user.role == "network_partner") 
+        return true;
+      return false;
+    };
+
     this.syncUser = function() {
       return User
         .get()

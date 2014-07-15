@@ -23,8 +23,7 @@ PDRClient.directive('startAssessment', [
           SessionService.syncUser();
 
           $scope.text = function(){
-            var user = SessionService.getCurrentUser();
-            if(user && user.role && user.role == "network_partner")
+            if(SessionService.isNetworkPartner())
               return "Recommend Assessment";
             return "Start a New Assessment";
           };

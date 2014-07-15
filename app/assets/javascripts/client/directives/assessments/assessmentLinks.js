@@ -13,8 +13,15 @@ PDRClient.directive('assessmentLinks', [
           scope.id     = attrs.id;
           scope.consensusId = attrs.consensusId;
         },
-        controller: ['$scope', '$modal', '$rootScope', '$location', '$timeout', 'AccessRequest',
-          function($scope, $modal, $rootScope, $location, $timeout, AccessRequest) {
+        controller: ['$scope',
+          '$modal',
+          '$rootScope',
+          '$location',
+          '$timeout',
+          '$state',
+          'AccessRequest',
+          'SessionService',
+          function($scope, $modal, $rootScope, $location, $timeout, $state, AccessRequest, SessionService) {
             $scope.linkIcon = function(type){
               icons = {
                   "response": "check",
@@ -42,12 +49,15 @@ PDRClient.directive('assessmentLinks', [
             };
 
             $scope.requestAccess = function() {
+              var templateUrl = 'client/views/modals/request_access.html'; 
+              if(SessionService.isNetworkPartner())
+                templateUrl = 'client/views/modals/request_access_partner.html'; 
+                
               $scope.modal = $modal.open({
-                templateUrl: 'client/views/modals/request_access.html',
+                templateUrl: templateUrl,
                 scope: $scope
               });
             };
-
 
             $scope.close = function() {
               $scope.modal.dismiss('cancel');
@@ -64,6 +74,7 @@ PDRClient.directive('assessmentLinks', [
                 .$promise
                 .then(function() {
                   $scope.modal.dismiss('cancel');
+                  $state.go($state.$current, null, { reload: true });
                 });
             };
 
