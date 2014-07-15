@@ -14,16 +14,20 @@ PDRClient.directive('startAssessment', [
           'SessionService',
           function($scope, $timeout, $location, Rubric, Assessment, SessionService){
 
-          $scope.alerts  = [];
+          $scope.alerts     = [];
           $scope.assessment = {};
-          Rubric
-            .query({})
-            .$promise
-            .then(function(data){ 
-                $scope.rubrics = data; 
-                $scope.rubric  = data[0];
-            });
 
+          $scope.user       = SessionService.getCurrentUser();
+          $scope.district   = $scope.user.districts[0];
+
+          SessionService.syncUser();
+
+          $scope.text = function(){
+            var user = SessionService.getCurrentUser();
+            if(user && user.role && user.role == "network_partner")
+              return "Recommend Assessment";
+            return "Start a New Assessment";
+          };
 
           $scope.hideModal = function() { 
             $('#startAssessment').modal('hide');
@@ -35,8 +39,6 @@ PDRClient.directive('startAssessment', [
           }
 
           $scope.create  = function(assessment) {
-            if($scope.rubric)
-              assessment.rubric_id = $scope.rubric.id;
             assessment.due_date = moment($("#due-date").val()).toISOString();
 
             Assessment

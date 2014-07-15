@@ -13,7 +13,7 @@ PDRClient.service('SessionService',
     }
 
     this.syncUser = function() {
-      User
+      return User
         .get()
         .$promise
         .then(function(usr) {

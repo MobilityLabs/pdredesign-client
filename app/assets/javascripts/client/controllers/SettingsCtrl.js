@@ -50,6 +50,7 @@ PDRClient.controller('SettingsCtrl', ['$scope', '$timeout', 'User', 'SessionServ
           .then(
             function(data) {
               $scope.success    = "Your profile has been updated"
+              SessionService.syncUser();
             },
             function(response) {
               $scope.errors  = response.data.errors
