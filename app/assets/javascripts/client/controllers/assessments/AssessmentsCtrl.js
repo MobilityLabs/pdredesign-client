@@ -12,7 +12,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       });
 
       $scope.consensusReportIcon = function(assessment) {
-        if (assessment.links['report']['active'] == true)
+        if (assessment.consensus && assessment.consensus.submitted_at)
           return 'fa-check';
 
         return 'fa-spinner';
