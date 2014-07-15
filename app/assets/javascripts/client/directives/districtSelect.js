@@ -43,10 +43,13 @@ PDRClient.directive('districtSelect', ['SessionService', 'UrlService', '$timeout
           attrs.$observe('districts', function() {
             if(!scope.selectize || !attrs.districts) return;
 
+            var ids = [];
             angular.forEach(JSON.parse(attrs.districts), function(d, key) {
               scope.selectize[0].selectize.addOption({id: d.id, text: d.text});
-              scope.selectize[0].selectize.setValue(d.id);
+              ids.push(d.id);
             });
+
+            scope.selectize[0].selectize.setValue(ids);
           });
 
         },
