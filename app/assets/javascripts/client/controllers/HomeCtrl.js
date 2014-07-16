@@ -14,6 +14,10 @@ PDRClient.controller('HomeCtrl', [
       $scope.$on('updated_tools', function(){
         $scope.updateTools();
       });
+      
+      $scope.isNetworkPartner = function() {
+        return SessionService.isNetworkPartner();
+      };
 
       $scope.setToolTip = function() {
         $timeout(function(){
