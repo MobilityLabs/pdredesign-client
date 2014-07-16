@@ -78,7 +78,7 @@
         </avatar>
       </div>
 
-      <div class='col-md-11 col-sm-11'>
+      <div class='col-md-7 col-sm-7'>
         <div class="media">
           <p class="pull-left subheading-text">{{assessment.subheading.text}}</p>
           <div ng-repeat="p in assessment.subheading.participants">
@@ -94,6 +94,10 @@
             </avatar>
           </div>
         </div>
+      </div>
+
+      <div ng-show="isNetworkPartner()" class='col-md-4 col-sm-4 district-name'>
+        {{assessment.district_name}}
       </div>
     </div>
 

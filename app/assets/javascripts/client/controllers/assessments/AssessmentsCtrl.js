@@ -11,23 +11,27 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         $scope.role = $scope.user.role;
       });
 
+      $scope.isNetworkPartner    = function() {
+        return SessionService.isNetworkPartner();
+      };
+
       $scope.consensusReportIcon = function(assessment) {
         if (assessment.consensus && assessment.consensus.submitted_at)
           return 'fa-check';
 
         return 'fa-spinner';
-      }
+      };
 
       $scope.roundNumber = function(number) {
         return Math.floor(number);
-      }
+      };
 
       $scope.meetingTime = function(date) {
         if(date != null)
           return moment(date).format("Do MMM YYYY");
 
         return "TBD"
-      }
+      };
 
       $scope.backgroundColor = function(assessment) {
         if(assessment.status == "draft")
@@ -35,7 +39,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         else if(assessment.status == "assessment")
           return $scope.percentBackgroundColor(assessment.percent_completed);
         return "#4e5e66";
-      }
+      };
 
       $scope.gotoLocation = function(location) {
         if(location)
