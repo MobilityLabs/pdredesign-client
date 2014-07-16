@@ -38,3 +38,11 @@ angular.module("PDRClient").run(
       }
     });
   }]);
+
+angular.module("PDRClient").config(['$tooltipProvider', function($tooltipProvider){
+  $tooltipProvider.setTriggers({
+    'mouseenter': 'blur',
+    'click': 'click',
+    'focus': 'blur',
+  });
+}]);

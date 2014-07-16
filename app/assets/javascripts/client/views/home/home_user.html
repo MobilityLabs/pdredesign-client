@@ -19,18 +19,18 @@
 
     <div class="row">
       <div class="col-md-9 toolkits">
-        <div class="col-md-4 toolkit" ng-repeat="toolKit in toolKits">
+        <div class="col-md-4 toolkit" ng-repeat="phase in tools">
           <div class="row title title-{{$index}}">
-            {{toolKit.title}}
+            {{phase.title}}
             <div class="triangle-right"></div>
           </div>
-          <div class="row goal">Goal: {{toolKit.goal}}</div>
+          <div class="row goal">Goal: {{phase.description}}</div>
 
-            <div class="categories" ng-repeat="category in toolKit.categories">
-              <div class="title">{{category.title}}</div>
-              <div class="subcategories" ng-repeat="subcategory in category.categories">
-                {{subcategory.title}}
-                <ul class="tool" ng-repeat="tool in subcategory.categories">
+            <div class="categories" ng-repeat="category in phase.categories">
+              <div class="title">{{category.name}}</div>
+              <div class="subcategories" ng-repeat="subcategory in category.subcategories">
+                {{subcategory.name}}
+                <ul class="tool" ng-repeat="tool in subcategory.tools">
                   <li
                     data-html="true"
                     data-placement="right"
@@ -45,6 +45,12 @@
             </div>
         </div>
 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-9">
+        <add-tool tools="tools"></add-tool>
       </div>
     </div>
 
