@@ -2,9 +2,10 @@ PDRClient.controller('SignupCtrl', [
   '$scope',
   '$rootScope',
   '$location',
+  '$state',
   'User',
   'SessionService',
-    function($scope, $rootScope, $location, User, SessionService) {
+    function($scope, $rootScope, $location, $state, User, SessionService) {
       $scope.user = {}
 
       $scope.login = function(user) {

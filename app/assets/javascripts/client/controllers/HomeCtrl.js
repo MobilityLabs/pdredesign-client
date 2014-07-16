@@ -3,7 +3,8 @@ PDRClient.controller('HomeCtrl', [
   'Tool',
   'SessionService',
   '$timeout',
-    function($scope, Tool, SessionService, $timeout) {
+  '$modal',
+    function($scope, Tool, SessionService, $timeout, $modal) {
       $scope.user   = SessionService.getCurrentUser();
       $scope.tools  = [];
 
@@ -17,6 +18,18 @@ PDRClient.controller('HomeCtrl', [
       
       $scope.isNetworkPartner = function() {
         return SessionService.isNetworkPartner();
+      }
+      
+      $scope.chooseRole  = function() {
+        $scope.modal = $modal.open({
+          templateUrl: 'client/views/modals/choose_role.html',
+          scope: $scope,
+          size: 'sm'
+        });
+      };
+
+      $scope.close = function() {
+        $scope.modal.dismiss('cancel');
       };
 
       $scope.setToolTip = function() {
