@@ -32,6 +32,8 @@
       placeholder="Password *"
       type="password">
 
+      <district-select ng-if="$state.current.views.sidebar.is_network_partner" multiple="true"></district-select>
+      <district-select ng-if="!$state.current.views.sidebar.is_network_partner"></district-select>
       </form>
 
       <button ng-disabled="signup.$invalid" ng-click="createUser(user, $state.current.views.sidebar.is_network_partner)" class="btn btn-primary btn-lg">Create my account</button>
