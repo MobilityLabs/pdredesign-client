@@ -17,12 +17,6 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
         return '';
       };
 
-      $scope.LogInModal  = function() {
-        $scope.modal = $modal.open({
-          templateUrl: 'client/views/modals/login.html',
-        });
-      };
-
       $scope.chooseRole  = function() {
         $scope.modal = $modal.open({
           templateUrl: 'client/views/modals/choose_role.html',
