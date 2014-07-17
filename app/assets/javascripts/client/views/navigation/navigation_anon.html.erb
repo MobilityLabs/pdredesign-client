@@ -3,12 +3,12 @@
     <div class='container'>
       <div class='row'>
         <div class='col-md-12'>
-          <ul class='nav navbar-nav navbar-right'>
-            <li ng-class="activeClassFor('home')">
-              <a href='#'>Home</a>
-            </li>
+          <ul class='nav navbar-nav'>
+            <li><a href="#"><%= image_tag 'logo.png' %></a></li>
+          </ul>
+          <ul class='nav navbar-nav lower navbar-right'>
             <li>
-              <a ng-click="chooseRole()">Roles</a>
+              <a ng-click="chooseRole()">Get Started</a>
             </li>
             <li>
               <a ng-click="LogInModal()">Sign In</a>
