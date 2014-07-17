@@ -1,5 +1,5 @@
-PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService', '$location',
-    function($rootScope, $scope, SessionService, $location) {
+PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService', '$location', '$modal',
+    function($rootScope, $scope, SessionService, $location, $modal) {
       $scope.updateTemplate = function() {
         SessionService.setUserTemplate(
           $scope,
@@ -17,12 +17,34 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
         return '';
       };
 
+      $scope.chooseRole  = function() {
+        $scope.modal = $modal.open({
+          templateUrl: 'client/views/modals/choose_role.html',
+          scope: $scope,
+          size: 'sm'
+        });
+      };
+
+      $scope.close = function() {
+        $scope.modal.dismiss('cancel');
+      };
+
       $scope.$watch(function () { return $location.url(); }, function (url) {
         switch(url) {
           case '/assessments':
             return $scope.currentLocation = "current_state";
           case '':
             return $scope.currentLocation = "home";
+          case '/':
+            return $scope.currentLocation = "home";
+          case '/login':
+            return $scope.currentLocation = "login";
+          case '/administrators':
+            return $scope.currentLocation = "administrators";
+          case '/educators':
+            return $scope.currentLocation = "educators";
+            case '/networks':
+            return $scope.currentLocation = "networks";
           default:
             return '';
         }
