@@ -17,11 +17,19 @@ PDRClient.controller('AssessmentAssignCtrl', [
       $scope.rubrics                 = Rubric.query();
       $scope.alerts                  = [];
 
-
       $scope.district   = $scope.user.districts[0];
 
       $scope.fetchAssessment = function() {
-        return Assessment.get({id: $scope.id});
+        return Assessment
+                .get({id: $scope.id})
+                .$promise.then(function(assessment) {
+                  $scope.assessment = assessment;
+                  angular.forEach($scope.user.districts, function(district) {
+                    if(assessment.district_id == district.id)
+                      $scope.district = district;
+                  });
+
+                });
       };
 
       $scope.assessment = $scope.fetchAssessment();
@@ -60,7 +68,6 @@ PDRClient.controller('AssessmentAssignCtrl', [
         };
 
        assessment.district_id = $scope.district.id;
-      console.debug(assessment);
 
        $scope.saving = true;
         assessment.due_date = moment($("#due-date").val()).toISOString();

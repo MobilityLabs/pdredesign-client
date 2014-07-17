@@ -38,7 +38,8 @@ PDRClient.directive('startAssessment', [
           }
 
           $scope.create  = function(assessment) {
-            assessment.due_date = moment($("#due-date").val()).toISOString();
+            assessment.due_date     = moment($("#due-date").val()).toISOString();
+            assessment.district_id  = $scope.district.id;
 
             Assessment
               .create(assessment)
