@@ -3,14 +3,15 @@
     <div class='container'>
       <div class='row'>
         <div class='col-md-12'>
-          <ul class='nav navbar-nav'>
-            <li ng-class="activeClassFor('home')">
-            <a href='#'>Home</a>
-            </li>
-          </ul>
           <ul class='nav navbar-nav navbar-right'>
+            <li ng-class="activeClassFor('home')">
+              <a href='#'>Home</a>
+            </li>
             <li>
-              <a href='#/login'>Sign In</a>
+              <a ng-click="chooseRole()">Roles</a>
+            </li>
+            <li>
+              <a ng-click="LogInModal()">Sign In</a>
             </li>
           </ul>
         </div>
