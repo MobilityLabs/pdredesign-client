@@ -52,6 +52,7 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
 
       $scope.$on('session_updated', function() {
         SessionService.syncUser();
+        $scope.user = SessionService.getCurrentUser();
         $scope.updateTemplate();
       });
     }

@@ -23,7 +23,7 @@ PDRClient.service('SessionService',
         .get()
         .$promise
         .then(function(usr) {
-          user = usr; 
+          setCurrentUser(usr);
       }); 
     };
 
