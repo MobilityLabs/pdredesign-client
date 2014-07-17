@@ -17,6 +17,9 @@ PDRClient.controller('AssessmentAssignCtrl', [
       $scope.rubrics                 = Rubric.query();
       $scope.alerts                  = [];
 
+
+      $scope.district   = $scope.user.districts[0];
+
       $scope.fetchAssessment = function() {
         return Assessment.get({id: $scope.id});
       };
@@ -56,7 +59,10 @@ PDRClient.controller('AssessmentAssignCtrl', [
           return;
         };
 
-        $scope.saving = true;
+       assessment.district_id = $scope.district.id;
+      console.debug(assessment);
+
+       $scope.saving = true;
         assessment.due_date = moment($("#due-date").val()).toISOString();
 
         if(assign) assessment.assign = true;
