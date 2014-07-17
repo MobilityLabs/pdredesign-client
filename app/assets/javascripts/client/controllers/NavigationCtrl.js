@@ -23,6 +23,16 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
             return $scope.currentLocation = "current_state";
           case '':
             return $scope.currentLocation = "home";
+          case '/':
+            return $scope.currentLocation = "home";
+          case '/login':
+            return $scope.currentLocation = "login";
+          case '/administrators':
+            return $scope.currentLocation = "administrators";
+          case '/educators':
+            return $scope.currentLocation = "educators";
+            case '/networks':
+            return $scope.currentLocation = "networks";
           default:
             return '';
         }
