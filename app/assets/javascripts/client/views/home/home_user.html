@@ -7,6 +7,19 @@
         <h1>Where to start?</h1>
         You can use any of the tools or resources in the process. We recommend you start with the Readiness Assessment.
         <start-assessment></start-assessment>
+        <div ng-if="isNetworkPartner()">
+          <div class="row start-assessment">
+            <a href="#/settings">
+              <div class="col-sm-1 col-md-1">
+                <i class="fa fa-plus"></i>
+              </div>
+              <div class="col-sm-11 col-md-11 heading">
+                <h1>Add Districts</h1>
+              </div>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
 
