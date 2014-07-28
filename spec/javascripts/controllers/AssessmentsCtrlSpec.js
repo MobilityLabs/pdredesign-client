@@ -33,19 +33,14 @@ describe('Controller: AssessmentsCtrl', function() {
 
   it('#consensusReportIcon returns correct icon', function() {
     var assessment = {
-      links: {
-        'report': {
-          'active' : true
-        }
+      consensus: {
+        is_complete: true
       }
     };
 
     expect(scope.consensusReportIcon(assessment))
       .toEqual("fa-check");
 
-    assessment.links['report']['active'] = false;
-    expect(scope.consensusReportIcon(assessment))
-      .toEqual("fa-spinner");
   });
 
 });

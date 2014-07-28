@@ -27,7 +27,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
       }
     })
     .state('login', {
-      url: '/login{redirect:(.*)}',
+      url: '/login{redirect:.*}',
       views: {
         '': {
           controller: 'LoginCtrl',

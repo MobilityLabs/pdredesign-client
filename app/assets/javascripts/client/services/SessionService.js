@@ -12,8 +12,10 @@ PDRClient.service('SessionService',
       localStorage.setItem('user', stringy);
     }
 
+    this.userRole = function() { return user && user.role }
+
     this.isNetworkPartner = function() { 
-      if(user && user.role && user.role == "network_partner") 
+      if(service.userRole() == "network_partner") 
         return true;
       return false;
     };
