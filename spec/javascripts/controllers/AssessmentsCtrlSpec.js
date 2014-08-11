@@ -19,6 +19,22 @@ describe('Controller: AssessmentsCtrl', function() {
 
   }));
 
+  describe('#districts', function(){
+    it('returns all unique districts', function(){
+      assessments = [
+        {district_name: 'first'},
+        {district_name: 'first'},
+        {district_name: 'second'},
+        {district_name: 'second'}
+      ];
+
+      districts = scope.districts(assessments);
+      expect(districts).toEqual(['first', 'second'])
+
+    });
+  });
+
+
   it('#roundNumber rounds', function(){
     expect(scope.roundNumber(50.999)).toEqual(50);
   });

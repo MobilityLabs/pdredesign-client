@@ -1,9 +1,11 @@
 PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService', 'assessments',
     function($scope, $location, SessionService, assessments) {
 
-      $scope.assessments = assessments;
-      $scope.user        = SessionService.getCurrentUser();
-      $scope.role        = null;
+      $scope.assessments    = assessments;
+      $scope.user           = SessionService.getCurrentUser();
+      $scope.role           = null;
+      
+      $scope.districtFilter = null;
 
       $scope.$watch('user', function(){ 
         if(!$scope.user) return;
@@ -21,6 +23,17 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
 
         return 'fa-spinner';
       };
+
+      $scope.districts = function(assessments) { 
+        var districts = [];
+        angular.forEach(assessments, function(assessment, key){
+          if(districts.indexOf(assessment.district_name) == -1)
+            districts.push(assessment.district_name);
+        });
+
+        return districts;
+      };
+
 
       $scope.roundNumber = function(number) {
         return Math.floor(number);
