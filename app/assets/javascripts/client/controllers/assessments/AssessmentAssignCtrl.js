@@ -13,7 +13,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
       $scope.id                      = $stateParams.id;
       $scope.user                    = SessionService.getCurrentUser();
       $scope.participants            = Participant.query({assessment_id: $scope.id});
-      $scope.allParticipants         = Participant.all({assessment_id: $scope.id});
+      $scope.invitableParticipants   = Participant.all({assessment_id: $scope.id});
       $scope.rubrics                 = Rubric.query();
       $scope.alerts                  = [];
 
@@ -114,7 +114,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
           });
 
         Participant.all({assessment_id: $scope.id}).$promise.then(function(data) {
-          $scope.allParticipants = data;
+          $scope.invitableParticipants = data;
         }, function() {
             $scope.error('Could not update participants list');
         });
