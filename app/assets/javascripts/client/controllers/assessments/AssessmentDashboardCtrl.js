@@ -42,7 +42,7 @@ PDRClient.controller('AssessmentDashboardCtrl', [
       };
 
       $scope.addParticipant = function(user) {
-        Participant.save({assessment_id: $scope.id}, {user_id: user.id})
+        Participant.save({assessment_id: $scope.id}, {user_id: user.id, send_invite: true})
         $scope.updateParticipantsList();
         $scope.updateAssessment();
       }
