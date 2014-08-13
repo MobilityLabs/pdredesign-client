@@ -44,20 +44,16 @@
                   </div>
                 </div>
               </div>
-              <a data-target="#currentUsers" data-toggle="modal" href="" ng-hide="assessment.status == 'consensus'">
-                <div class="col-md-6 col-sm-6">
-                  <div class="row row-participant-action">
-                      <div class="col-md-2 col-sm-2 col-xs-2">
-                        <i class="fa fa-plus"></i>
-                      </div>
-                      <div class="col-md-10 col-sm-10 col-xs-10">
-                        Add New Participant
-                      </div>
-                  </div>
-                </div>
-              </a>
           </div>
         </div>
+        <a data-target="#currentUsers" data-toggle="modal" href="" ng-hide="assessment.status == 'consensus'">
+          <div class='row row-invite  add_participant_modal_row'>
+            <div class='col-md-1 col-sm-1'><div class='plus'><i class='fa fa-plus'></i></div></div>
+            <div class='col-md-11 col-sm-11'>Add Participant</div>
+          </div>
+        </a>
+        <invite-user data-assessment-id="{{assessment.id}}"></invite-user>
+
         <div id='messages' ng-show="assessment.messages">
           <p class='header'><span class='stat'>{{assessment.messages.length}}</span> Sent Messages</p>
 
