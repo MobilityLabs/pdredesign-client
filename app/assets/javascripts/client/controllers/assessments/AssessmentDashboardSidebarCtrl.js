@@ -58,10 +58,14 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', [
       };
 
       $scope.postMeetingDate = function() {
+        if(!$scope.assessment.meeting_date)
+          return false;
         return moment().isAfter($scope.assessment.meeting_date);
       };
 
       $scope.preMeetingDate = function() {
+        if(!$scope.assessment.meeting_date)
+          return false;
         return moment().isBefore($scope.assessment.meeting_date);
       };
 
