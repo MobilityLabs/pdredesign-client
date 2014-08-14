@@ -8,6 +8,19 @@
         <h1>Where to start?</h1>
         You can use any of the tools or resources in the process. We recommend you start with the Readiness Assessment.
         <start-assessment></start-assessment>
+        <div ng-if="isNetworkPartner()">
+          <div class="row start-assessment">
+            <a href="#/settings">
+              <div class="col-sm-1 col-md-1">
+                <i class="fa fa-plus"></i>
+              </div>
+              <div class="col-sm-11 col-md-11 heading">
+                <h1>Add Districts</h1>
+              </div>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -17,33 +30,40 @@
         Learn more about the tools currently under development as part of the PDredesign process.
 
         <div class="row toolkits">
-          <div class="col-md-4 toolkit" ng-repeat="toolKit in toolKits">
+          <div class="col-md-4 toolkit" ng-repeat="phase in tools">
             <div class="row title title-{{$index}}">
-              {{toolKit.title}}
+              {{phase.title}}
               <div class="triangle-right"></div>
             </div>
-            <div class="goal">Goal: {{toolKit.goal}}</div>
+            <div class="goal">Goal: {{phase.description}}</div>
 
-              <div class="categories" ng-repeat="category in toolKit.categories">
-                <div class="title">{{category.title}}</div>
-                <div class="subcategories" ng-repeat="subcategory in category.categories">
-                  {{subcategory.title}}
-                  <ul class="tool" ng-repeat="tool in subcategory.categories">
-                    <li
-                      data-html="true"
-                      data-placement="right"
-                      data-content="{{setPopovers(tool)}}"
-                      data-toggle="tooltip">
-                      <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
-                        {{tool.title}}
-                    </li>
-                  </ul>
-
-                </div>
+            <div class="categories" ng-repeat="category in phase.categories">
+              <div class="title">{{category.name}}</div>
+              <div class="subcategories" ng-repeat="subcategory in category.subcategories">
+                {{subcategory.name}}
+                <ul class="tool" ng-repeat="tool in subcategory.tools">
+                  <li
+                    data-html="true"
+                    data-placement="right"
+                    data-content="{{setPopovers(tool)}}"
+                    data-toggle="tooltip">
+                    <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
+                      {{tool.title}}
+                  </li>
+                </ul>
               </div>
-          </div>
 
+            </div>
+              
+          </div>
         </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-9">
+        <add-tool ng-if="isNetworkPartner()" tools="tools"></add-tool>
       </div>
     </div>
 

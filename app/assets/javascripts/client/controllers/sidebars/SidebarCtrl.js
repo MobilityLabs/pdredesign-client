@@ -1,12 +1,13 @@
-PDRClient.controller('SidebarCtrl', ['$scope', '$modal', 'SessionService',
-    function($scope, $modal, SessionService) {
-      $scope.user   = SessionService.getCurrentUser();
+PDRClient.controller('SidebarCtrl', ['$scope', '$modal', '$stateParams', 'SessionService',
+    function($scope, $modal, $stateParams, SessionService) {
+      $scope.user     = SessionService.getCurrentUser();
+      $scope.redirect = $stateParams.redirect;
 
-      if($scope.user && $scope.user["avatar"]) {
+      if($scope.user) {
         $scope.visible = true;
         $scope.name   = $scope.user["full_name"];
         $scope.avatar = $scope.user["avatar"];
-        $scope.role   = $scope.user["role"];
+        $scope.role   = $scope.user["role_human"];
       }
 
       $scope.pdrOverview  = function() {

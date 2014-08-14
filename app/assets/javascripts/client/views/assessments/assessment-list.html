@@ -1,6 +1,6 @@
 <div class='assessments'>
-  <div ng-repeat="assessment in assessments">
-    
+
+  <div ng-repeat="assessment in assessments | filter:{district_name: $parent.selectedDistrict}">
     <div class='row assessment'>
 
       <div class='col-md-1 col-sm-1 overview' style='background-color: {{backgroundColor(assessment)}};'>
@@ -53,7 +53,7 @@
       </div>
 
       <div class='col-md-2 col-sm-2 links'>
-        <div ng-repeat="link in assessment.links">
+        <div class="repeat" ng-repeat="link in assessment.links">
           <assessment-links
             data-link="{{link}}"
             data-title="{{link.title}}"
@@ -81,7 +81,7 @@
         </avatar>
       </div>
 
-      <div class='col-md-11 col-sm-11'>
+      <div class='col-md-7 col-sm-7'>
         <div class="media">
           <p class="pull-left subheading-text">{{assessment.subheading.text}}</p>
           <div ng-repeat="p in assessment.subheading.participants">
@@ -99,6 +99,9 @@
         </div>
       </div>
 
+      <div ng-show="isNetworkPartner()" class='col-md-4 col-sm-4 district-name'>
+        {{assessment.district_name}}
+      </div>
     </div>
 
   </div>

@@ -3,8 +3,8 @@
     <div id='response-sidebar' data-spy="affix" data-offset-top="40" data-offset-bottom="200">
       <div class='punchcard'>
         <div class="type">
-          <p ng-hide="isAssessment()">Consensus</p>
-          <p ng-show="isAssessment()">Response</p>
+          <p ng-hide="isResponse()">Consensus</p>
+          <p ng-show="isResponse()">Response</p>
         </div>
         <p class="sidebar-title">
           Saved Answers
@@ -29,8 +29,8 @@
         data-toggle="modal"
         data-target="#assessmentReview"
         ng-click="submitResponseModal()">
-          <span ng-show='is_completed'>Update Response</span>
-          <span ng-hide='is_completed'>Submit Response</span>
+          <span ng-show='isResponseCompleted()'>Update Response</span>
+          <span ng-hide='isResponseCompleted()'>Submit Response</span>
       </button>
       </div>
 

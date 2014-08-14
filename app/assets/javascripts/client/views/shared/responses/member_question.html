@@ -8,7 +8,9 @@
         placeholder="Write evidence of why you believe this is the correct score for this question. Skip to next question if you're not sure.">
       </textarea>
       <div class="save-holder">
-        <button ng-disabled="invalidEvidence(question)" class='btn btn-primary'
+        <button
+          ng-disabled="invalidEvidence(question)"
+          class='btn btn-primary'
           ng-click="saveEvidence(question.score)">
           <i class='fa fa-save'></i>SAVE
         </button>

@@ -6,11 +6,16 @@ PDRClient.directive('districtSelect', ['SessionService', 'UrlService', '$timeout
         templateUrl: 'client/views/directives/district_select.html',
         link: function(scope, elm, attrs) {
           $timeout(function() {
+            var maxItems = 1;
+           
+            if(attrs.multiple == "true")
+              maxItems = 20;
+
             scope.selectize = $('#districts').selectize({
               valueField:  'id',
               labelField:  'text',
               searchField: 'text',
-              maxItems:    1,
+              maxItems:    maxItems,
               create:      false,
               render: {
                 option: function(item, escape) {
@@ -35,14 +40,16 @@ PDRClient.directive('districtSelect', ['SessionService', 'UrlService', '$timeout
             });
           });
 
-          attrs.$observe('districtId', function() {
-            if(!scope.selectize || !attrs.districtText || !attrs.districtId) return;
+          attrs.$observe('districts', function() {
+            if(!scope.selectize || !attrs.districts) return;
 
-            var districtId   = 1;
-            var districtText = attrs.districtText;
+            var ids = [];
+            angular.forEach(JSON.parse(attrs.districts), function(d, key) {
+              scope.selectize[0].selectize.addOption({id: d.id, text: d.text});
+              ids.push(d.id);
+            });
 
-            scope.selectize[0].selectize.addOption({id: districtId, text: districtText});
-            scope.selectize[0].selectize.setValue(districtId);
+            scope.selectize[0].selectize.setValue(ids);
           });
 
         },

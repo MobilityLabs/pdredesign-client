@@ -1,9 +1,11 @@
 PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService', 'assessments',
     function($scope, $location, SessionService, assessments) {
 
-      $scope.assessments = assessments;
-      $scope.user        = SessionService.getCurrentUser();
-      $scope.role        = null;
+      $scope.assessments    = assessments;
+      $scope.user           = SessionService.getCurrentUser();
+      $scope.role           = null;
+      
+      $scope.districtFilter = null;
 
       $scope.$watch('user', function(){ 
         if(!$scope.user) return;
@@ -11,23 +13,38 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         $scope.role = $scope.user.role;
       });
 
+      $scope.isNetworkPartner    = function() {
+        return SessionService.isNetworkPartner();
+      };
+
       $scope.consensusReportIcon = function(assessment) {
-        if (assessment.links['report']['active'] == true)
+        if (assessment.consensus && assessment.consensus.is_complete)
           return 'fa-check';
 
         return 'fa-spinner';
-      }
+      };
+
+      $scope.districts = function(assessments) { 
+        var districts = [];
+        angular.forEach(assessments, function(assessment, key){
+          if(districts.indexOf(assessment.district_name) == -1)
+            districts.push(assessment.district_name);
+        });
+
+        return districts;
+      };
+
 
       $scope.roundNumber = function(number) {
         return Math.floor(number);
-      }
+      };
 
       $scope.meetingTime = function(date) {
         if(date != null)
           return moment(date).format("Do MMM YYYY");
 
         return "TBD"
-      }
+      };
 
       $scope.backgroundColor = function(assessment) {
         if(assessment.status == "draft")
@@ -35,7 +52,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         else if(assessment.status == "assessment")
           return $scope.percentBackgroundColor(assessment.percent_completed);
         return "#4e5e66";
-      }
+      };
 
       $scope.gotoLocation = function(location) {
         if(location)
@@ -49,7 +66,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       };
 
       $scope.responseLink = function(assessment) {
-        switch(assessment.assessment_link) {
+        switch(assessment.response_link) {
           case 'new_response':
             return '/assessments/' + assessment.id + '/responses';
           case 'response':

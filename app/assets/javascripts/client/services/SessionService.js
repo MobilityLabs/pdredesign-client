@@ -12,12 +12,20 @@ PDRClient.service('SessionService',
       localStorage.setItem('user', stringy);
     }
 
+    this.userRole = function() { return user && user.role }
+
+    this.isNetworkPartner = function() { 
+      if(service.userRole() == "network_partner") 
+        return true;
+      return false;
+    };
+
     this.syncUser = function() {
-      User
+      return User
         .get()
         .$promise
         .then(function(usr) {
-          user = usr; 
+          setCurrentUser(usr);
       }); 
     };
 
@@ -26,8 +34,8 @@ PDRClient.service('SessionService',
       if(localUser !== null && typeof localUser !== 'undefined'){
         object = JSON.parse(localUser);
         setCurrentUser(object);
+        this.syncUser();
       }
-      this.syncUser();
     }
 
     this.softLogin();

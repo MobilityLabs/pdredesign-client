@@ -11,7 +11,7 @@ PDRClient.controller('AssessmentDashboardCtrl', [
       $scope.currentUser = SessionService.getCurrentUser();
 
       $scope.updateParticipantsList = function() {
-        $scope.nonDistrictParticipants = Participant.all({assessment_id: $scope.id})
+        $scope.invitableParticipants = Participant.all({assessment_id: $scope.id})
       };
 
       $scope.updateAssessment = function() {

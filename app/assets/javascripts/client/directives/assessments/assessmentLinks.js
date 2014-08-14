@@ -13,10 +13,20 @@ PDRClient.directive('assessmentLinks', [
           scope.id     = attrs.id;
           scope.consensusId = attrs.consensusId;
         },
-        controller: ['$scope', '$modal', '$rootScope', '$location', '$timeout',
-          function($scope, $modal, $rootScope, $location, $timeout) {
+        controller: ['$scope',
+          '$modal',
+          '$rootScope',
+          '$location',
+          '$timeout',
+          '$state',
+          'AccessRequest',
+          'SessionService',
+          function($scope, $modal, $rootScope, $location, $timeout, $state, AccessRequest, SessionService) {
             $scope.linkIcon = function(type){
               icons = {
+                  "response": "check",
+                  "request_access": "eye",
+                  "pending": "spinner",
                   "dashboard": "dashboard",
                   "consensus": "group",
                   "new_consensus": "group",
@@ -38,6 +48,17 @@ PDRClient.directive('assessmentLinks', [
               });
             };
 
+            $scope.requestAccess = function() {
+              var templateUrl = 'client/views/modals/request_access.html'; 
+              if(SessionService.isNetworkPartner())
+                templateUrl = 'client/views/modals/request_access_partner.html'; 
+                
+              $scope.modal = $modal.open({
+                templateUrl: templateUrl,
+                scope: $scope
+              });
+            };
+
             $scope.close = function() {
               $scope.modal.dismiss('cancel');
             }
@@ -47,12 +68,23 @@ PDRClient.directive('assessmentLinks', [
               $location.url($scope.assessmentLink('new_consensus', true));
             };
 
+            $scope.submitAccessRequest = function(roles) {
+              AccessRequest
+                .save({assessment_id: $scope.id}, {roles: [roles]})
+                .$promise
+                .then(function() {
+                  $scope.modal.dismiss('cancel');
+                  $state.go($state.$current, null, { reload: true });
+                });
+            };
+
             $scope.gotoLocation   = function(location) {
               if(!location) return;
 
-              if(location.match(/\/assessments\/.*\/consensus$/)) {
+              if(location.match(/\/assessments\/.*\/consensus$/)) 
                 $scope.createConsensusModal();
-              }
+              else if(location == 'request_access')
+                $scope.requestAccess(); 
               else
                 $location.url(location);
             };
@@ -62,6 +94,7 @@ PDRClient.directive('assessmentLinks', [
                 return false;
 
               routes = {
+                "request_access": "request_access",
                 "new_consensus": "/assessments/" + $scope.id + "/consensus",
                 "dashboard":     "/assessments/" + $scope.id + "/dashboard",
                 "consensus":     "/assessments/" + $scope.id + "/consensus",

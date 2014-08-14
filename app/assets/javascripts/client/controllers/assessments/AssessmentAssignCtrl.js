@@ -13,12 +13,23 @@ PDRClient.controller('AssessmentAssignCtrl', [
       $scope.id                      = $stateParams.id;
       $scope.user                    = SessionService.getCurrentUser();
       $scope.participants            = Participant.query({assessment_id: $scope.id});
-      $scope.allParticipants         = Participant.all({assessment_id: $scope.id});
+      $scope.invitableParticipants   = Participant.all({assessment_id: $scope.id});
       $scope.rubrics                 = Rubric.query();
       $scope.alerts                  = [];
 
+      $scope.district   = $scope.user.districts[0];
+
       $scope.fetchAssessment = function() {
-        return Assessment.get({id: $scope.id});
+        return Assessment
+                .get({id: $scope.id})
+                .$promise.then(function(assessment) {
+                  $scope.assessment = assessment;
+                  angular.forEach($scope.user.districts, function(district) {
+                    if(assessment.district_id == district.id)
+                      $scope.district = district;
+                  });
+
+                });
       };
 
       $scope.assessment = $scope.fetchAssessment();
@@ -31,7 +42,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
         updateParticipantsList();
       });
 
-      $scope.messageError = "Enter a message before sending!";
+      $scope.messageError = "A message is required to send!";
       $scope.alertError   = false;
 
       $scope.assignAndSave = function(assessment) {
@@ -42,8 +53,11 @@ PDRClient.controller('AssessmentAssignCtrl', [
 
         if (confirm("Are you sure you want to send out the assessment and invite all your participants?")) {
           $scope.alertError = false;
-          $scope.save(assessment, true);
-          $location.path('/assessments');
+          $scope
+            .save(assessment, true)
+            .then(function() {
+              $location.path('/assessments');
+            });
         }
       };
 
@@ -53,12 +67,14 @@ PDRClient.controller('AssessmentAssignCtrl', [
           return;
         };
 
-        $scope.saving = true;
+       assessment.district_id = $scope.district.id;
+
+       $scope.saving = true;
         assessment.due_date = moment($("#due-date").val()).toISOString();
 
         if(assign) assessment.assign = true;
 
-        Assessment
+        return Assessment
           .save({ id: assessment.id }, assessment)
           .$promise
           .then(function(_data) {
@@ -98,20 +114,24 @@ PDRClient.controller('AssessmentAssignCtrl', [
           });
 
         Participant.all({assessment_id: $scope.id}).$promise.then(function(data) {
-          $scope.allParticipants = data;
+          $scope.invitableParticipants = data;
         }, function() {
             $scope.error('Could not update participants list');
         });
       };
 
       $scope.removeParticipant = function(user) {
-        Participant.delete({assessment_id: $scope.id, id: user.participant_id}, {user_id: user.id})
-        updateParticipantsList();
+        Participant
+          .delete({assessment_id: $scope.id, id: user.participant_id}, {user_id: user.id})
+          .$promise
+          .then(function(){ updateParticipantsList(); });
       };
 
       $scope.addParticipant = function(user) {
-        Participant.save({assessment_id: $scope.id}, {user_id: user.id})
-        updateParticipantsList();
+        Participant
+          .save({assessment_id: $scope.id}, {user_id: user.id})
+          .$promise
+          .then(function(){ updateParticipantsList(); });
       };
 
       $scope.formattedDate = function(date) {

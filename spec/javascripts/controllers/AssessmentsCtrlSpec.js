@@ -19,6 +19,22 @@ describe('Controller: AssessmentsCtrl', function() {
 
   }));
 
+  describe('#districts', function(){
+    it('returns all unique districts', function(){
+      assessments = [
+        {district_name: 'first'},
+        {district_name: 'first'},
+        {district_name: 'second'},
+        {district_name: 'second'}
+      ];
+
+      districts = scope.districts(assessments);
+      expect(districts).toEqual(['first', 'second'])
+
+    });
+  });
+
+
   it('#roundNumber rounds', function(){
     expect(scope.roundNumber(50.999)).toEqual(50);
   });
@@ -33,19 +49,14 @@ describe('Controller: AssessmentsCtrl', function() {
 
   it('#consensusReportIcon returns correct icon', function() {
     var assessment = {
-      links: {
-        'report': {
-          'active' : true
-        }
+      consensus: {
+        is_complete: true
       }
     };
 
     expect(scope.consensusReportIcon(assessment))
       .toEqual("fa-check");
 
-    assessment.links['report']['active'] = false;
-    expect(scope.consensusReportIcon(assessment))
-      .toEqual("fa-spinner");
   });
 
 });

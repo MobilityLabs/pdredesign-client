@@ -2,9 +2,10 @@ PDRClient.controller('SignupCtrl', [
   '$scope',
   '$rootScope',
   '$location',
+  '$state',
   'User',
   'SessionService',
-    function($scope, $rootScope, $location, User, SessionService) {
+    function($scope, $rootScope, $location, $state, User, SessionService) {
       $scope.user = {}
 
       $scope.login = function(user) {
@@ -16,8 +17,11 @@ PDRClient.controller('SignupCtrl', [
         });
       };
 
-      $scope.createUser = function(user) {
+      $scope.createUser = function(user, isNetworkPartner) {
         user["district_ids"] = $scope.selectedDistrict;
+        if(isNetworkPartner)
+          user["role"] = "network_partner"
+         
 
         $scope.success = null;
         $scope.errors  = null;

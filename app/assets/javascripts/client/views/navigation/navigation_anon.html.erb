@@ -3,14 +3,15 @@
     <div class='container'>
       <div class='row'>
         <div class='col-md-12'>
-          <ul class='nav navbar-nav navbar-right'>
+          <ul class='nav navbar-nav'>
+            <li><a href="#"><%= image_tag 'logo.png' %></a></li>
+          </ul>
+          <ul class='nav navbar-nav lower navbar-right'>
             <li>
-            <a href='#/login'>Sign In</a>
+              <a ng-click="chooseRole()">Get Started</a>
             </li>
             <li>
-            <a class='home logo' href='#/'>
-              <%= image_tag 'logo.png' %>
-            </a>
+              <a href="#/login" >Sign In</a>
             </li>
           </ul>
         </div>

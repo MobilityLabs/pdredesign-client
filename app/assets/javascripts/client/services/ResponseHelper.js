@@ -42,7 +42,8 @@ PDRClient.service('ResponseHelper',
     this.assignAnswerToQuestion = function(scope, answer, question) {
 
       var params = {response_id: scope.responseId, assessment_id: scope.assessmentId};
-      var score = {question_id: question.id, value: answer.value, evidence: question.score.evidence};
+      var score  = {question_id: question.id, value: answer.value, evidence: question.score.evidence};
+
       question.loading = true;
       Score
         .save(params, score)

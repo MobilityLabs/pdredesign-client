@@ -1,8 +1,8 @@
-<div ng-show="isAdmin()">
+<div>
   <div class="row start-assessment">
     <a href="" data-toggle="modal" data-target="#startAssessment">
       <div class="col-sm-1 col-md-1"><i class="fa fa-plus"></i></div>
-      <div class="col-sm-11 col-md-11 heading"><h1>Start a New Assessment</h1></div>
+      <div class="col-sm-11 col-md-11 heading"><h1>{{text()}}</h1></div>
     </a>
   </div>
 
@@ -24,7 +24,11 @@
 
             <div class="row">
               <div class="col-md-6">
-                <select class="form-control" ng-model="rubric" required ng-options="rubric.name for rubric in rubrics">
+                <select
+                  required
+                  class="form-control"
+                  ng-model="district"
+                  ng-options="district.text for district in user.districts">
                 </select>
               </div>
               <div class="col-md-6">
