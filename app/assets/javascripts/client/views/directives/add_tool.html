@@ -1,51 +1,12 @@
-<div>
-  <div class="row start-assessment">
-      <a href="" data-toggle="modal" data-target="#addTool">
-        <div class="col-sm-1 col-md-1">
-          <i class="fa fa-plus"></i>
-        </div>
-        <div class="col-sm-11 col-md-11 heading">
-          <h1>
-            Add Tool
-          </h1>
-        </div>
-      </a>
-  </div>
-  <div class="modal fade" id="addTool" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Add new tool</h4>
-        </div>
-        <div class="modal-body">
-          <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-            
-            <div class="form-group">
-                <input class="form-control" type="text" ng-model="tool.title" placeholder="Tool title" required>
-            </div>
-            
-            <div class="form-group">
-                <textarea class="form-control" type="text" ng-model="tool.description" placeholder="Description of the tool" required></textarea>
-            </div>
-            
-            <div class="form-group">
-                <input class="form-control" type="text" ng-model="tool.url" placeholder="Tool url" required>
-            </div>
-
-            <div class="form-group">
-                <select class="form-control" type="text" ng-model="tool.tool_subcategory_id" ng-options="category.id as category.title for category in categories" required></select>
-            </div>
-
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input  type="submit" class="btn btn-primary" value="Create" ng-click="create(tool)">
-        </div>
-      </form>
+<div class="row start-assessment">
+    <a href="" data-toggle="modal" data-target="#addTool">
+      <div class="col-sm-1 col-md-1">
+        <i class="fa fa-plus"></i>
       </div>
-    </div>
-  </div>
+      <div class="col-sm-11 col-md-11 heading">
+        <h1 ng-click="showAddToolModal()">
+          Add Tool
+        </h1>
+      </div>
+    </a>
 </div>
