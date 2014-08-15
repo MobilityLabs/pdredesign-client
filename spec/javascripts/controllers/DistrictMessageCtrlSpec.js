@@ -39,13 +39,18 @@ describe('Controller: DistrictMessage', function() {
   it('fails gracefully', function() {
       spyOn(DistrictMessage, 'save').and.callFake(function(message) {
         var deferred = q.defer();
-        deferred.reject({"data": {"errors": {"some error"});
+        deferred.reject({
+          "data": {
+            "errors": ["some error"]
+          }
+        });
+
         return {$promise: deferred.promise};
       });
 
 
       scope.sendMessage(message);
       scope.$apply();
-      expect(scope.errors).toEqual("some error");
+      expect(scope.errors).toEqual(["some error"]);
   });
 });
