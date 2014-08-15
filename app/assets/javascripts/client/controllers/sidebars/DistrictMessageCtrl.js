@@ -19,8 +19,6 @@ PDRClient.controller('DistrictMessageCtrl', ['$scope',
               $scope.errors  = response.data.errors
             }
           );
-
       };
-
     }
 ]);
