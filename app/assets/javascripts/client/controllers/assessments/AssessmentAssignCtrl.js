@@ -13,7 +13,6 @@ PDRClient.controller('AssessmentAssignCtrl', [
       $scope.id                      = $stateParams.id;
       $scope.user                    = SessionService.getCurrentUser();
       $scope.participants            = Participant.query({assessment_id: $scope.id});
-      $scope.invitableParticipants   = Participant.all({assessment_id: $scope.id});
       $scope.rubrics                 = Rubric.query();
       $scope.alerts                  = [];
 
@@ -127,12 +126,6 @@ PDRClient.controller('AssessmentAssignCtrl', [
           .then(function(){ updateParticipantsList(); });
       };
 
-      $scope.addParticipant = function(user) {
-        Participant
-          .save({assessment_id: $scope.id}, {user_id: user.id})
-          .$promise
-          .then(function(){ updateParticipantsList(); });
-      };
 
       $scope.formattedDate = function(date) {
         return moment(date).format("ll");

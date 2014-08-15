@@ -15,7 +15,7 @@ describe('Controller: DistrictMessage', function() {
       q                  = $injector.get('$q');
       scope              = $injector.get('$rootScope').$new();
       httpBackend        = $injector.get('$httpBackend');
-      DistrictMessage  = $injector.get('DistrictMessage');
+      DistrictMessage    = $injector.get('DistrictMessage');
 
       subject  = $controller('DistrictMessageCtrl', {
         $scope: scope

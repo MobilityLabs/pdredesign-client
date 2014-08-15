@@ -14,7 +14,7 @@ describe('Directive: consensus', function() {
 
     $compile(element)(scope);
     scope.$digest();
-    scope = scope.$$childTail
+    scope = scope.$$childTail;
   }));
 
 
