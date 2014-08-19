@@ -41,6 +41,11 @@ describe('Directive: organizationSelect', function() {
     it('returns false when the org is not current users', function() {
       expect(isolatedScope.buttonDisabled({id: 2})).toEqual(false);
     });
+
+    it('returns false when the org is not set', function() {
+      isolatedScope.organizationId = null;
+      expect(isolatedScope.buttonDisabled({id: null})).toEqual(false);
+    });
   });
 
   describe('#performAction', function(){

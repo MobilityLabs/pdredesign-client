@@ -30,9 +30,12 @@ PDRClient.directive('organizationSelect', [
           };
 
           scope.buttonDisabled = function(organization) {
-            if(organization.id == scope.organizationId) return true;
-
-            return false;
+            if(scope.organizationId == null)
+              return false;
+            else if(organization.id == scope.organizationId)
+              return true;
+            else
+              return false;
           };
 
           scope.updateUserOrganization = function(organization) {
