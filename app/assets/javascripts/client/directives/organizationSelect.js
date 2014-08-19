@@ -41,7 +41,7 @@ PDRClient.directive('organizationSelect', [
           scope.updateUserOrganization = function(organization) {
              scope.organizationId = organization.id;
              User
-               .save({organization_ids: organization.id})
+               .save({organization_ids: organization.id || null})
                .$promise
                .then(function() {
                 scope.messages = {type: 'success', msg: 'Profile updated'};

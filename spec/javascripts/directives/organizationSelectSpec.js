@@ -87,6 +87,15 @@ describe('Directive: organizationSelect', function() {
       expect(isolatedScope.messages.msg).toEqual('Profile updated');
     });
 
+    it('explicitly sends null when an org is cleared', function(){
+      $httpBackend
+      .expectPUT('/v1/user', {organization_ids: null})
+      .respond({});
+
+      isolatedScope.updateUserOrganization({});
+      $httpBackend.flush();
+    });
+
   });
 
   describe('#buttonText', function() {
