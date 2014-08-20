@@ -8,6 +8,7 @@
 //= require bootstrap/popover
 //= require bootstrap/affix
 //= require chart.min
+//= require bowser.min
 //= require angular
 //= require moment
 //= require angular-resource

@@ -1,6 +1,7 @@
 <user-header></user-header>
 
 <div class="container settings">
+  <form ng-submit="updateUser(user)">
   <div class="row">
     <div class="col-md-7">
       <ng-include src="'client/views/shared/errors.html'"></ng-include>
@@ -55,8 +56,13 @@
         <input class="form-control" id="user_password_confirmation" type="password" ng-model="user.password_confirmation">
       </div>
 
-      <input class="btn btn-success" name="commit" type="submit" value="Update" ng-click="update(user)">
+      <div ng-if="user">
+        <organization-section
+          ng-if="isNetworkPartner()" organization-id="user.organization_ids">
+        </organization-section>
+      </div>
 
+      <input class="btn btn-success" name="commit" type="submit" value="Update" ng-click="update(user)">
     </div>
-  </div>
+  </form>
 </div>

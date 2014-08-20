@@ -10,9 +10,10 @@ PDRClient.directive('addTool', [
           '$scope',
           '$timeout',
           '$location',
+          '$modal',
           'Tool',
           'SessionService',
-          function($scope, $timeout, $location, Tool, SessionService){
+          function($scope, $timeout, $location, $modal, Tool, SessionService){
             $scope.alerts  = [];
             $scope.tool    = {};
             $scope.categories = [];
@@ -31,8 +32,17 @@ PDRClient.directive('addTool', [
 
             });
 
+            $scope.showAddToolModal = function() {
+              $('ul.tool').find('li').not(this).popover('hide');
+
+              $scope.modalInstance = $modal.open({
+                templateUrl: 'client/views/modals/add_tool.html',
+                scope: $scope
+              });
+            };
+
             $scope.hideModal = function() { 
-              $('#addTool').modal('hide');
+              $scope.modalInstance.dismiss('cancel');
             }
 
             $scope.create  = function(tool) {
