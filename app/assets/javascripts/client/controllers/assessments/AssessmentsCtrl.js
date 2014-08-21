@@ -6,6 +6,8 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       $scope.role           = null;
 
       $scope.districtFilter = null;
+      $scope.permissionTypes = ["Facilitator", "Participant"];
+      $scope.statuses = ["consensus", "assessment", "draft"];
 
       $scope.$watch('user', function(){
         if(!$scope.user) return;
@@ -40,17 +42,12 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return permissions;
       };
 
-      $scope.permissionTypes = ["Facilitator", "Participant"];
-      $scope.statuses = ["consensus", "assessment", "draft"];
+      $scope.permissionsFilter = function(filter){
+        if(filter == "Participant")
+          return {is_participant: true};
 
-      $scope.permissionsFacilitatorFilter = function(permission){
-        if(permission == "Facilitator")
-          return true;
-      };
-
-      $scope.permissionsParticipantFilter = function(permission){
-        if(permission == "Participant")
-          return true;
+        if(filter == "Facilitator")
+          return {is_facilitator: true};
       };
 
       $scope.roundNumber = function(number) {

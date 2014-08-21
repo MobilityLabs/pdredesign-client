@@ -11,7 +11,15 @@
   <div class="row">
     <div class="col-md-9">
       <div ng-show="isNetworkPartner()">
-        <ng-include src="'client/views/assessments/district-filter.html'" scope="this"></ng-include>
+        <div class="col-md-4">
+          <ng-include src="'client/views/assessments/district-filter.html'" scope="this"></ng-include>
+        </div>
+        <div class="col-md-4">
+          <ng-include src="'client/views/assessments/permission-filter.html'" scope="this"></ng-include>
+        </div>
+        <div class="col-md-4">
+          <ng-include src="'client/views/assessments/status-filter.html'" scope="this"></ng-include>
+        </div>
       </div>
       <start-assessment></start-assessment>
       <ng-include src="'client/views/assessments/assessment-list.html'" scope="this"></ng-include>

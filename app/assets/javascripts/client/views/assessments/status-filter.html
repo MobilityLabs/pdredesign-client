@@ -1,11 +1,9 @@
-<div class="col-md-4">
-  <div class="form-group">
-    <label for="status" class="control-label">Status</label>
-    <select class="form-control" id="status" ng-model="$parent.selectedStatus">
-      <option value="" selected>All</option>
-      <option value="{{status}}" ng-repeat="status in statuses">
-        {{status}}
-      </option>
-    </select>
-  </div>
+<div class="form-group">
+  <label for="status" class="control-label">Status</label>
+  <select class="form-control" id="status" ng-model="$parent.selectedStatus">
+    <option value="" selected>All</option>
+    <option value="{{status}}" ng-repeat="status in statuses">
+      {{status}}
+    </option>
+  </select>
 </div>
