@@ -4,10 +4,10 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       $scope.assessments    = assessments;
       $scope.user           = SessionService.getCurrentUser();
       $scope.role           = null;
-      
+
       $scope.districtFilter = null;
 
-      $scope.$watch('user', function(){ 
+      $scope.$watch('user', function(){
         if(!$scope.user) return;
 
         $scope.role = $scope.user.role;
@@ -24,7 +24,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return 'fa-spinner';
       };
 
-      $scope.districts = function(assessments) { 
+      $scope.districts = function(assessments) {
         var districts = [];
         angular.forEach(assessments, function(assessment, key){
           if(districts.indexOf(assessment.district_name) == -1)
@@ -34,6 +34,24 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return districts;
       };
 
+      $scope.permissions = function(assessments) {
+        var permissions = [];
+
+        return permissions;
+      };
+
+      $scope.permissionTypes = ["Facilitator", "Participant"];
+      $scope.statuses = ["consensus", "assessment", "draft"];
+
+      $scope.permissionsFacilitatorFilter = function(permission){
+        if(permission == "Facilitator")
+          return true;
+      };
+
+      $scope.permissionsParticipantFilter = function(permission){
+        if(permission == "Participant")
+          return true;
+      };
 
       $scope.roundNumber = function(number) {
         return Math.floor(number);

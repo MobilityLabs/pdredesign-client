@@ -10,7 +10,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-      <ng-include src="'client/views/assessments/district-filter.html'" scope="this"></ng-include>
+      <div ng-show="isNetworkPartner()">
+        <ng-include src="'client/views/assessments/district-filter.html'" scope="this"></ng-include>
+      </div>
       <start-assessment></start-assessment>
       <ng-include src="'client/views/assessments/assessment-list.html'" scope="this"></ng-include>
     </div>

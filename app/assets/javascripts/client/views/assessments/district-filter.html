@@ -1,13 +1,37 @@
 <div ng-show="isNetworkPartner()" >
   <div class="row">
-    <div class="col-sm-12 col-md-4 pull-right">
-      filter by District
-      <select ng-model="$parent.selectedDistrict">
-        <option value="" selected>All</option>
-        <option value="{{district}}" ng-repeat="district in districts(assessments)">
-          {{district}}
-        </option>
-      </select>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="selected-district" class="control-label">Districts</label>
+          <select class="form-control" id="selected-district" ng-model="$parent.selectedDistrict">
+            <option value="" selected>All Districts</option>
+            <option value="{{district}}" ng-repeat="district in districts(assessments)">
+              {{district}}
+            </option>
+          </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="permission" class="control-label">Permission Level</label>
+          <select class="form-control" id="permission" ng-model="$parent.selectedPermission">
+            <option value="" selected>All Permissions</option>
+            <option value="{{permission}}" ng-repeat="permission in permissionTypes">
+              {{permission}}
+            </option>
+          </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="status" class="control-label">Status</label>
+        <select class="form-control" id="status" ng-model="$parent.selectedStatus">
+          <option value="" selected>All</option>
+          <option value="{{status}}" ng-repeat="status in statuses">
+            {{status}}
+          </option>
+        </select>
+      </div>
     </div>
   </div>
 </div>
