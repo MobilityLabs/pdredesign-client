@@ -27,7 +27,9 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return 'fa-spinner';
       };
 
+
       $scope.districtOptions = function(assessments) {
+
         var districts = [];
         angular.forEach(assessments, function(assessment, key){
           if(districts.indexOf(assessment.district_name) == -1)
