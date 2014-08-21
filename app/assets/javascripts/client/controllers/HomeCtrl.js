@@ -15,11 +15,11 @@ PDRClient.controller('HomeCtrl', [
       $scope.$on('updated_tools', function(){
         $scope.updateTools();
       });
-      
+
       $scope.isNetworkPartner = function() {
         return SessionService.isNetworkPartner();
       }
-      
+
       $scope.chooseRole  = function() {
         $scope.modal = $modal.open({
           templateUrl: 'client/views/modals/choose_role.html',
@@ -67,7 +67,7 @@ PDRClient.controller('HomeCtrl', [
         if(!tool.description)
           return $scope.emptyTool();
 
-        var output = "<div><div class='row'><div class='col-md-12'><p class='greeting'>" + 
+        var output = "<div><div class='row'><div class='col-md-12'><p class='greeting'>" +
               tool.title + "</p>" + '<p class="description">' + tool.description + '</p>'  + '<p>';
         if(!tool.url)
           output += $scope.emptyTool();
