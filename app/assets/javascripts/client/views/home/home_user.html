@@ -2,6 +2,7 @@
   <user-header></user-header>
 
   <div class="container">
+
     <div class="row">
       <div class="col-md-9">
         <h1>Where to start?</h1>
@@ -27,17 +28,14 @@
       <div class="col-md-9">
         <h1>PD System Redesign Tool Kit</h1>
         Learn more about the tools currently under development as part of the PDredesign process.
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-9 toolkits">
-        <div class="col-md-4 toolkit" ng-repeat="phase in tools">
-          <div class="row title title-{{$index}}">
-            {{phase.title}}
-            <div class="triangle-right"></div>
-          </div>
-          <div class="row goal">Goal: {{phase.description}}</div>
+        <div class="row toolkits">
+          <div class="col-md-4 toolkit" ng-repeat="phase in tools">
+            <div class="row title title-{{$index}}">
+              {{phase.title}}
+              <div class="triangle-right"></div>
+            </div>
+            <div class="goal">Goal: {{phase.description}}</div>
 
             <div class="categories" ng-repeat="category in phase.categories">
               <div class="title">{{category.name}}</div>
@@ -53,9 +51,11 @@
                       {{tool.title}}
                   </li>
                 </ul>
-
               </div>
+
             </div>
+
+          </div>
         </div>
 
       </div>
@@ -67,9 +67,9 @@
       </div>
     </div>
 
-
     <div class="row">
-      <div class="col-md-9 design-principles">
+      <div class="col-md-9">
+        <div class="design-principles">
           <h1>Design Principles</h1>
           <div class="icons">
             <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-font fa-stack-1x"></i></span> Common Language &amp; Frameworks
@@ -78,7 +78,10 @@
             <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-comments fa-stack-1x"></i></span> Actionable Feedback
             <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-refresh fa-stack-1x"></i></span> Continuous Improvement
           </div>
+
         </div>
       </div>
     </div>
+
   </div>
+</div>
