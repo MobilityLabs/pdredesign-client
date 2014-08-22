@@ -2,7 +2,7 @@
   <label for="status" class="control-label">Status</label>
   <select class="form-control" id="status" ng-model="$parent.selectedStatus">
     <option value="" selected>All</option>
-    <option value="{{status}}" ng-repeat="status in statuses">
+    <option value="{{status}}" ng-repeat="status in statuses(assessments)">
       {{status}}
     </option>
   </select>

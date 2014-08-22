@@ -6,8 +6,6 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       $scope.role           = null;
 
       $scope.districtFilter = null;
-      $scope.permissionTypes = ["Facilitator", "Participant"];
-      $scope.statuses = ["consensus", "assessment", "draft"];
 
       $scope.$watch('user', function(){
         if(!$scope.user) return;
@@ -15,7 +13,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         $scope.role = $scope.user.role;
       });
 
-      $scope.isNetworkPartner    = function() {
+      $scope.isNetworkPartner = function() {
         return SessionService.isNetworkPartner();
       };
 
@@ -36,12 +34,17 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return districts;
       };
 
-      $scope.permissions = function(assessments) {
-        var permissions = [];
+      $scope.statuses = function(assessments) {
+        var statuses = [];
+        angular.forEach(assessments, function(assessment, key){
+          if(statuses.indexOf(assessment.status) == -1)
+            statuses.push(assessment.status);
+        });
 
-        return permissions;
+        return statuses;
       };
 
+      $scope.permissionTypes = ["Facilitator", "Participant"];
       $scope.permissionsFilter = function(filter){
         if(filter == "Participant")
           return {is_participant: true};
