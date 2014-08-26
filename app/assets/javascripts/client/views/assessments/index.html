@@ -12,13 +12,19 @@
     <div class="col-md-9">
       <div ng-show="isNetworkPartner()">
         <div class="col-md-4">
-          <ng-include src="'client/views/assessments/district-filter.html'" scope="this"></ng-include>
+          <district-filter
+            assessments="assessments">
+          </district-filter>
         </div>
         <div class="col-md-4">
-          <ng-include src="'client/views/assessments/permission-filter.html'" scope="this"></ng-include>
+          <permission-filter
+            types="permissionTypes">
+          </permission-filter>
         </div>
         <div class="col-md-4">
-          <ng-include src="'client/views/assessments/status-filter.html'" scope="this"></ng-include>
+          <status-filter
+            assessments="assessments">
+          </status-filter>
         </div>
       </div>
       <start-assessment></start-assessment>

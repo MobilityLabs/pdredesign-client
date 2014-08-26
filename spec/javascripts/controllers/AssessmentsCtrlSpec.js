@@ -19,21 +19,17 @@ describe('Controller: AssessmentsCtrl', function() {
 
   }));
 
-  describe('#districts', function(){
-    it('returns all unique districts', function(){
-      assessments = [
-        {district_name: 'first'},
-        {district_name: 'first'},
-        {district_name: 'second'},
-        {district_name: 'second'}
-      ];
+  describe('#permissionsFilter', function(){
+    it('Facilitator should return is_facilitator true', function() {
+       permission = scope.permissionsFilter('Facilitator');
+      expect(permission).toEqual({ is_facilitator : true })
+    });
 
-      districts = scope.districts(assessments);
-      expect(districts).toEqual(['first', 'second'])
-
+    it('Participant should return is_participant true', function() {
+       permission = scope.permissionsFilter('Participant');
+      expect(permission).toEqual({ is_participant : true  })
     });
   });
-
 
   it('#roundNumber rounds', function(){
     expect(scope.roundNumber(50.999)).toEqual(50);
