@@ -5,7 +5,8 @@ PDRClient.directive('manageParticipants', ['SessionService', 'Assessment', '$tim
         replace: false,
         templateUrl: 'client/views/directives/manage_participants.html',
         scope: {
-          'assessmentId': '@'
+          'assessmentId': '@',
+          'sendInvite': '@'
         },
         controller: ['$scope', '$modal', 'Participant', function($scope, $modal, Participant) {
           
@@ -29,9 +30,13 @@ PDRClient.directive('manageParticipants', ['SessionService', 'Assessment', '$tim
             $scope.participants  = Participant.all({assessment_id: $scope.assessmentId});
           };
 
+          $scope.shouldSendInvite = function() {
+            return $scope.sendInvite == "true" || $scope.sendInvite == true;
+          };
+
           $scope.addParticipant = function(user) {
             Participant
-              .save({assessment_id: $scope.assessmentId}, {user_id: user.id})
+              .save({assessment_id: $scope.assessmentId}, {user_id: user.id, send_invite: $scope.shouldSendInvite()})
               .$promise
               .then(function() {
                 $scope.updateParticipants();

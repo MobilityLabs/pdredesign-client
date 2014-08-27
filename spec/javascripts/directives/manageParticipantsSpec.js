@@ -3,8 +3,10 @@ describe('Directive: manageParticipants', function() {
       $compile,
       $timeout,
       $modal,
+      $q,
       element,
-      Participant;
+      Participant,
+      isolatedScope;
 
   beforeEach(module('PDRClient'));
 
@@ -19,11 +21,10 @@ describe('Directive: manageParticipants', function() {
     element     = angular.element('<manage-participants data-assessment-id=1></manage-participants>');
     timeout     = $timeout;
 
-
     $compile(element)($scope);
 
     $scope.$digest();
-    $scope = $scope.$$childTail;
+    isolatedScope = element.isolateScope();
   }));
 
   it('shows the right modal when showing', function(){
@@ -35,28 +36,48 @@ describe('Directive: manageParticipants', function() {
         expect(params.size).toEqual('lg');
       });
 
-    $scope.showAddParticipants();
+    isolatedScope.showAddParticipants();
     expect($modal.open).toHaveBeenCalled();
   });
 
   it('calls update with the correct assessment id', function(){
     spyOn(Participant, 'all');
 
-    $scope.updateParticipants(); 
-
+    isolatedScope.updateParticipants(); 
     expect(Participant.all).toHaveBeenCalledWith({assessment_id: '1'});
+  });
+
+  it('sends :send_invite when attribute is set', function() {
+      spyOn(Participant, 'save').and.callFake(function(params, user) {
+        var deferred = $q.defer();
+        deferred.resolve({});
+        expect(params).toEqual({assessment_id: '1'});
+        expect(user).toEqual({user_id: 8, send_invite: true});
+        return {$promise: deferred.promise};
+      });
+
+
+    e = angular.element('<manage-participants send-invite="true" data-assessment-id=1></manage-participants>');
+    $compile(e)($scope);
+
+    $scope.$digest();
+    scope = e.isolateScope();
+    scope.$digest();
+
+    scope.addParticipant({id: 8}); 
+    expect(Participant.save).toHaveBeenCalled();
   });
 
   it('saves a participant when adding', function() {
       spyOn(Participant, 'save').and.callFake(function(params, user) {
-        var deferred = q.defer();
+        var deferred = $q.defer();
         deferred.resolve({});
         expect(params).toEqual({assessment_id: '1'});
-        expect(user).toEqual({user_id: 8});
+        expect(user).toEqual({user_id: 8, send_invite: false});
         return {$promise: deferred.promise};
       });
 
-    $scope.addParticipant({id: 8}); 
+    isolatedScope.addParticipant({id: 8}); 
     expect(Participant.save).toHaveBeenCalled();
   });
 
