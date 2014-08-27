@@ -15,18 +15,22 @@ describe('Directive: permissionFilter', function() {
     $compile = $injector.get('$compile');
     $q       = $injector.get('$q');
     $timeout = $injector.get('$timeout');
+    $scope.types = [1, 2]
+    $scope.selectedPermission = "";
 
-    element = angular.element("<permission-filter types='1'></permission-filter>");
+    element = angular.element("<permission-filter selected-permission='selectedPermission' types='types'></permission-filter>");
     $compile(element)($scope);
     $scope.$digest();
     isolatedScope = element.isolateScope();
   }));
 
-  describe('#permissions', function() {
-    it('types is passed types', function(){
-      expect(isolatedScope.types).toEqual(1);
+    it('sets the types correctly', function(){
+      expect(isolatedScope.types).toEqual([1, 2]);
     });
-  });
+
+    it('sets the selectedPermission correctly', function(){
+      expect(isolatedScope.selectedPermission).toEqual('');
+    });
 
 
 });

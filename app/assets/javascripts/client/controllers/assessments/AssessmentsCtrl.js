@@ -5,6 +5,11 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       $scope.user           = SessionService.getCurrentUser();
       $scope.role           = null;
 
+      $scope.selectedPermission = "";
+      $scope.selectedDistrict = "";
+      $scope.selectedStatus = "";
+      $scope.permissionTypes = ["Organizer", "Participant"];
+
       $scope.$watch('user', function(){
         if(!$scope.user) return;
 
@@ -22,12 +27,34 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return 'fa-spinner';
       };
 
-      $scope.permissionTypes = ["Facilitator", "Participant"];
+      $scope.districtOptions = function(assessments) {
+        var districts = [];
+        angular.forEach(assessments, function(assessment, key){
+          if(districts.indexOf(assessment.district_name) == -1)
+            districts.push(assessment.district_name);
+        });
+
+        return districts;
+      };
+
+      $scope.districts = $scope.districtOptions(assessments);
+
+      $scope.statusesOptions = function(assessments) {
+        var statuses = [];
+        angular.forEach(assessments, function(assessment, key){
+          if(statuses.indexOf(assessment.status) == -1)
+            statuses.push(assessment.status);
+        });
+        return statuses;
+      };
+
+      $scope.statuses = $scope.statusesOptions(assessments);
+
       $scope.permissionsFilter = function(filter){
         if(filter == "Participant")
           return {is_participant: true};
 
-        if(filter == "Facilitator")
+        if(filter == "Organizer")
           return {is_facilitator: true};
       };
 

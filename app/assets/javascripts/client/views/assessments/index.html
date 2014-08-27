@@ -13,17 +13,25 @@
       <div ng-show="isNetworkPartner()">
         <div class="col-md-4">
           <district-filter
-            assessments="assessments">
+            districts="districts"
+            selected-district="selectedDistrict"
+            >
           </district-filter>
         </div>
         <div class="col-md-4">
           <permission-filter
-            types="permissionTypes">
+            types="permissionTypes"
+            selected-permission="selectedPermission"
+            >
           </permission-filter>
         </div>
+
         <div class="col-md-4">
           <status-filter
-            assessments="assessments">
+            statuses="statuses"
+            selected-status="selectedStatus"
+          >
+
           </status-filter>
         </div>
       </div>

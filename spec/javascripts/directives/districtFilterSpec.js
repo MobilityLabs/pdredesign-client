@@ -13,28 +13,23 @@ describe('Directive: districtFilter', function() {
     $compile = $injector.get('$compile');
     $q       = $injector.get('$q');
     $timeout = $injector.get('$timeout');
+    $scope.districts = [1, 2, 3];
+    $scope.selectedDistrict = "";
 
-    element = angular.element("<district-filter> </district-filter>");
+    element = angular.element("<district-filter districts='districts'"
+                                   + "selected-district='selectedDistrict'>"
+                                   + "</district-filter>");
     $compile(element)($scope);
     $scope.$digest();
-
     isolatedScope = element.isolateScope();
   }));
 
-  describe('#districts', function(){
-    it('returns all unique districts', function(){
-      assessments = [
-        {district_name: 'first'},
-        {district_name: 'first'},
-        {district_name: 'second'},
-        {district_name: 'second'}
-      ];
-
-      districts = isolatedScope.districts(assessments);
-      expect(districts).toEqual(['first', 'second'])
-
+    it('sets districts correctly', function(){
+      expect(isolatedScope.districts).toEqual([1, 2, 3]);
     });
-  });
 
+    it('sets the selectedDistrict correctly', function(){
+      expect(isolatedScope.selectedDistrict).toEqual('')
+    });
 
 });

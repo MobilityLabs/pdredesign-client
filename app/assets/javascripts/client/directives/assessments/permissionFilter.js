@@ -6,6 +6,7 @@ PDRClient.directive('permissionFilter', [
       templateUrl: 'client/views/assessments/filters/permission-filter.html',
       scope: {
         types: '=',
+        selectedPermission: '=',
       },
     };
 }]);

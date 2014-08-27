@@ -19,9 +19,39 @@ describe('Controller: AssessmentsCtrl', function() {
 
   }));
 
+  describe('#districtOptions', function(){
+    it('returns all unique districts', function(){
+      assessments = [
+        {district_name: 'first'},
+        {district_name: 'first'},
+        {district_name: 'second'},
+        {district_name: 'second'}
+      ];
+
+      districts = scope.districtOptions(assessments);
+      expect(districts).toEqual(['first', 'second'])
+
+    });
+  });
+  describe('#statusesOptions', function(){
+    it('returns all unique statuses', function(){
+      assessments = [
+        {status: 'draft'},
+        {status: 'consensus'},
+        {status: 'draft'},
+        {status: 'consensus'}
+      ];
+
+      statuses = scope.statusesOptions(assessments);
+      expect(statuses).toEqual(['draft', 'consensus'])
+
+    });
+  });
+
+
   describe('#permissionsFilter', function(){
-    it('Facilitator should return is_facilitator true', function() {
-       permission = scope.permissionsFilter('Facilitator');
+    it('Organizer should return is_facilitator true', function() {
+       permission = scope.permissionsFilter('Organizer');
       expect(permission).toEqual({ is_facilitator : true })
     });
 
