@@ -35,7 +35,8 @@
   .label
     color: #000
     font-size: 1.3em
-.media-heading.headline
+.headline
+  margin-top: 1em
   margin-bottom:  0em !important
   font-weight:  600
   font-size:  2em
@@ -49,14 +50,13 @@
   color:  #4b616f
   font-size:  1em
   font-weight:  lighter
-  margin-bottom:  1.1em
-  margin-left: -1em
+  margin-bottom:  1em
 
 .question-container
   margin-bottom: 1.1em
 
   .question-row
-    display: table
+    margin: 0px
     &:hover
       cursor: pointer
 
@@ -94,7 +94,8 @@
     border-top: 0em
     background-color: #f8f9fb
     border-bottom:  0.1em solid #e2e1dc
-
+    min-height: 4.8em
+    padding-top: 0.3em
     .question
       font-size: 1.3em
       margin-bottom: 0em
@@ -120,17 +121,18 @@
   i
     color: #9f1c2c
     font-size: 0.8em
+.answer
+  margin: 0px !important
 .answer-row
   display: table
   padding-left: 0em
   .answer-info-row
+    margin: 0px !important
     border-top: 0.1em solid #ddd
     .answer-value
       width: 2%
       font-size: 1.2em
       height: 3em
-      margin-left: -0.75em
-      float: none
       display: table-cell
       vertical-align: top
       span
@@ -141,7 +143,7 @@
     .answer-title
       float: none
       display: table-cell
-      vertical-align: top
+      vertical-align: middle
       width: 22%
       font-size: 1.2em
       min-height: 3.01em
@@ -149,7 +151,7 @@
     .answer-description
       float: none
       display: table-cell
-      vertical-align: top
+      vertical-align: middle
       font-size:  1em
       font-weight: lighter
 
