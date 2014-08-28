@@ -89,11 +89,6 @@ PDRClient.directive('assessmentChart', [
                   enabled: false
                 },
                 series: [{
-                    color: '#EDB8BE',
-                    name: 'Diagnostic Min',
-                    data: $scope.diagnosticMins(),
-                    pointPlacement: 'on'
-                }, {
                     color: '#5F8D9C',
                     name: 'Averages',
                     data: $scope.averages(),
