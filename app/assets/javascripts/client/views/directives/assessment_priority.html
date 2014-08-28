@@ -1,6 +1,6 @@
-<div class="assessment-priority">
-  <div class="header row">
-    <div class="priority col-md-7 col-sm-7">
+<div class="row assessment-priority">
+  <div class='col-sm-7'>
+    <div class="priority">
       <table class="table table-diagnostic" ng-hide="loading">
         <thead>
           <tr>
@@ -33,8 +33,9 @@
           Save Priority
         </button>
       </div>
-
     </div>
+  </div>
+  <div class="col-sm-5">
     <assessment-chart data-assessment-id="{{assessmentId}}">></assessment-chart>
   </div>
 </div>

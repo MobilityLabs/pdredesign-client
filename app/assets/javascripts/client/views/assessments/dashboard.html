@@ -27,56 +27,59 @@
   <div class='container'>
     <div class='row'>
       <div class='col-md-9'>
+
         <div id='participants' ng-show="assessment.is_facilitator">
+          <p class='header'><span class='stat'>{{assessment.participant_count}} </span> Participants </p>
           <div class='row'>
-            <p class='header'><span class='stat'>{{assessment.participant_count}} </span> Participants </p>
-              <div class='col-md-6 col-sm-6' ng-repeat="user in assessment.participants">
-                <div class='row row-participant' >
-                  <div class='col-md-2 col-sm-2 col-xs-2'>
-                    <avatar data-avatar="{{user.avatar}}"  data-width="100%" ></avatar>
-                  </div>
-                  <div class='col-md-6 col-sm-6 col-xs-6'>
-                    <p class='name'>{{user.full_name}}</p>
-                  </div>
-                  <div class='col-md-4 col-sm-4 col-xs-4'>
-                    <div class='status'>
-                      <i class="fa fa-fa {{statusMessageIcon(user.status)}}"></i>{{user.status_human}}
-                      <p class="date">{{user.status_date | amDateFormat:'MMMM Do, YYYY'}}</p>
-                    </div>
+            <div class='col-sm-6' ng-repeat="user in assessment.participants">
+              <div class='row row-participant' >
+                <div class='col-xs-2'>
+                  <avatar data-avatar="{{user.avatar}}"  data-width="100%" ></avatar>
+                </div>
+                <div class='col-xs-6'>
+                  <p class='name'>{{user.full_name}}</p>
+                </div>
+                <div class='col-xs-4'>
+                  <div class='status'>
+                    <i class="fa fa-fa {{statusMessageIcon(user.status)}}"></i>{{user.status_human}}
+                    <p class="date">{{user.status_date | amDateFormat:'MMMM Do, YYYY'}}</p>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
         </div>
-        <manage-participants data-send-invite="true" data-assessment-id="{{assessment.id}}"></manage-participants>
-        <invite-user data-assessment-id="{{assessment.id}}"></invite-user>
+
+        <div class='row'>
+          <div class='col-sm-6'>
+            <manage-participants data-send-invite="true" data-assessment-id="{{assessment.id}}"></manage-participants>
+          </div>
+          <div class='col-sm-6'>
+            <invite-user data-assessment-id="{{assessment.id}}"></invite-user>
+          </div>
+        </div>
 
         <div id='messages' ng-show="assessment.messages">
           <p class='header'><span class='stat'>{{assessment.messages.length}}</span> Sent Messages</p>
 
           <div ng-repeat="message in assessment.messages">
-            <div class='row'>
-              <div class="col-md-12 col-sm-12">
-                <div class="row row-message">
-                  <a href="">
-                    <div class="col-md-1 col-sm-1 col-xs-2">
-                      <i class="fa {{messageIcon(message.category)}}"></i>
-                    </div>
-                    <div class="col-md-11 col-sm-11 col-xs-10 message-content">
-                      <h4 class="subject">
-                        {{messageTitle(message.category)}}
-                        <small class="date">- {{message.sent_at| amDateFormat:'MMMM Do, YYYY'}}</small>
-                      </h4>
-                      <p class="content">{{message.teaser}}</p>
-                    </div>
-                  </a>
+            <div class="row row-message">
+              <a href="">
+                <div class="col-md-1 col-sm-1 col-xs-2">
+                  <i class="fa {{messageIcon(message.category)}}"></i>
                 </div>
-
-              </div>
+                <div class="col-md-11 col-sm-11 col-xs-10 message-content">
+                  <h4 class="subject">
+                    {{messageTitle(message.category)}}
+                    <small class="date">- {{message.sent_at| amDateFormat:'MMMM Do, YYYY'}}</small>
+                  </h4>
+                  <p class="content">{{message.teaser}}</p>
+                </div>
+              </a>
             </div>
-
           </div>
         </div>
+
       </div>
     </div>
   </div>
