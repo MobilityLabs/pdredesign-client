@@ -1,11 +1,4 @@
-<div
-  class="col-md-12 col-sm-12 link"
-  ng-class="linkActive(active)"
-  ng-click="gotoLocation(assessmentLink(type, active))">
-    <div class="col-md-2 col-sm-2">
-      <i class="fa fa-{{linkIcon(type)}}"></i>
-    </div>
-    <div class="col-md-10 col-sm-10 title">
-      {{title}}
-    </div>
+<div class="link" ng-class="linkActive(active)" ng-click="gotoLocation(assessmentLink(type, active))">
+  <i class="fa fa-{{linkIcon(type)}}"></i> &nbsp;
+  <span>{{title}}</span>
 </div>

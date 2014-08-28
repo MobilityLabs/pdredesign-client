@@ -6,13 +6,14 @@
 
     .assessment-stat
       *
-        font-size: 1.0em
+        font-size: 1.1em
       .category
         font-weight: 300
       .stat
         font-weight: bold
     .name
-      margin-top: 0
+      margin-top: 0.2em
+      margin-bottom: 0.2em
     .overview
       height: 100%
       padding: 0
@@ -31,31 +32,30 @@
       *
         padding: 0
       .link
-        border-bottom: 1px solid #fff
-        background-color: #4a5e67
+        border-bottom: 0.1em solid #fff
         padding: 0.1em 0.3em
+        line-height: 1.45em
+        background-color: #4a5e67
+        i, span
+          color: #fff
         &.active
-          cursor: hand
-          cursor: pointer
+          &:hover
+            cursor: pointer
+            background-color: #eaf0f2
+            i, span
+              color: #4a5e67
         &.disabled
           background-color: #b1bbbf
-      .fa, a, .title
-        color: #fff
-      a
-        width: 100%
-        font-weight: 300
-     
-
         
   .details
-    height: 100%
     background-color: #f7f9fa
-    &.active
-      cursor: hand
+    &.active:hover
+      box-shadow: 0px 2px 0px #d4d2c8
+      background-color: #e5f1f5
       cursor: pointer
   .assessment-footer
-    height: 2em
-    line-height: 2em
+    height: 2.1em
+    line-height: 2.1em
     background-color: #ebebe8
     border-bottom: 1px solid #dcdbd4
     margin: 0.1em 0em
