@@ -3,7 +3,7 @@
 <div class="container settings">
   <form ng-submit="updateUser(user)">
     <div class="row">
-      <div class="col-md-7">
+      <div id="form-top" class="col-md-7">
         <ng-include src="'client/views/shared/errors.html'"></ng-include>
         <h3>Account Settings</h3>
         <div class="row">
@@ -59,7 +59,7 @@
             </div>
           </div>
 
-          <p class="form-header">Change Password</p>
+          <h3>Change Password</h3>
 
           <div class="form-group">
             <label for="user_password">Password</label>
@@ -84,7 +84,7 @@
             </organization-section>
           </div>
 
-          <input class="btn btn-success" name="commit" type="submit" value="Update ">
+          <input ng-click="scrollTop()" class="btn btn-success" name="commit" type="submit" value="Update ">
         </div>
       </div>
     </div>
