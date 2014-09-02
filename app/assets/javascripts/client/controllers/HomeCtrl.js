@@ -8,6 +8,10 @@ PDRClient.controller('HomeCtrl', [
       $scope.user   = SessionService.getCurrentUser();
       $scope.tools  = [];
 
+      $scope.toggleOffCanvas = function() {
+        $('.row-offcanvas').toggleClass('active')
+      };
+
       $scope.$watch($scope.tools, function() {
         $scope.setToolTip();
       });
@@ -54,6 +58,7 @@ PDRClient.controller('HomeCtrl', [
           $scope.tools = data;
           $scope.setToolTip();
         });
+
       };
 
       $scope.updateTools();
@@ -61,7 +66,6 @@ PDRClient.controller('HomeCtrl', [
       $scope.emptyTool = function() {
         return '<p class="no-link">This item is currently under development. Please stay tuned.</p>';
       };
-
 
       $scope.setPopovers = function(tool){
         if(!tool.description)
