@@ -4,16 +4,19 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       $scope.assessments    = assessments;
       $scope.user           = SessionService.getCurrentUser();
       $scope.role           = null;
-      
-      $scope.districtFilter = null;
 
-      $scope.$watch('user', function(){ 
+      $scope.selectedPermission = "";
+      $scope.selectedDistrict = "";
+      $scope.selectedStatus = "";
+      $scope.permissionTypes = ["Organizer", "Participant"];
+
+      $scope.$watch('user', function(){
         if(!$scope.user) return;
 
         $scope.role = $scope.user.role;
       });
 
-      $scope.isNetworkPartner    = function() {
+      $scope.isNetworkPartner = function() {
         return SessionService.isNetworkPartner();
       };
 
@@ -24,7 +27,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return 'fa-spinner';
       };
 
-      $scope.districts = function(assessments) { 
+      $scope.districtOptions = function(assessments) {
         var districts = [];
         angular.forEach(assessments, function(assessment, key){
           if(districts.indexOf(assessment.district_name) == -1)
@@ -34,6 +37,26 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return districts;
       };
 
+      $scope.districts = $scope.districtOptions(assessments);
+
+      $scope.statusesOptions = function(assessments) {
+        var statuses = [];
+        angular.forEach(assessments, function(assessment, key){
+          if(statuses.indexOf(assessment.status) == -1)
+            statuses.push(assessment.status);
+        });
+        return statuses;
+      };
+
+      $scope.statuses = $scope.statusesOptions(assessments);
+
+      $scope.permissionsFilter = function(filter){
+        if(filter == "Participant")
+          return {is_participant: true};
+
+        if(filter == "Organizer")
+          return {is_facilitator: true};
+      };
 
       $scope.roundNumber = function(number) {
         return Math.floor(number);

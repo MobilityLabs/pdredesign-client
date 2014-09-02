@@ -11,8 +11,8 @@ PDRClient.controller('SidebarResponseCardCtrl', [
   'Consensus',
   'Response',
   'Assessment',
-  function($modal, $scope, $rootScope, $stateParams, $location, 
-           $anchorScroll, $timeout, SessionService, Score, 
+  function($modal, $scope, $rootScope, $stateParams, $location,
+           $anchorScroll, $timeout, SessionService, Score,
            Consensus, Response, Assessment) {
     $scope.assessmentId = $stateParams.assessment_id;
     $scope.responseId   = $stateParams.response_id;

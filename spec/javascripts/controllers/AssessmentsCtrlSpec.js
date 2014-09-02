@@ -19,7 +19,7 @@ describe('Controller: AssessmentsCtrl', function() {
 
   }));
 
-  describe('#districts', function(){
+  describe('#districtOptions', function(){
     it('returns all unique districts', function(){
       assessments = [
         {district_name: 'first'},
@@ -28,12 +28,38 @@ describe('Controller: AssessmentsCtrl', function() {
         {district_name: 'second'}
       ];
 
-      districts = scope.districts(assessments);
+      districts = scope.districtOptions(assessments);
       expect(districts).toEqual(['first', 'second'])
 
     });
   });
+  describe('#statusesOptions', function(){
+    it('returns all unique statuses', function(){
+      assessments = [
+        {status: 'draft'},
+        {status: 'consensus'},
+        {status: 'draft'},
+        {status: 'consensus'}
+      ];
 
+      statuses = scope.statusesOptions(assessments);
+      expect(statuses).toEqual(['draft', 'consensus'])
+
+    });
+  });
+
+
+  describe('#permissionsFilter', function(){
+    it('Organizer should return is_facilitator true', function() {
+       permission = scope.permissionsFilter('Organizer');
+      expect(permission).toEqual({ is_facilitator : true })
+    });
+
+    it('Participant should return is_participant true', function() {
+       permission = scope.permissionsFilter('Participant');
+      expect(permission).toEqual({ is_participant : true  })
+    });
+  });
 
   it('#roundNumber rounds', function(){
     expect(scope.roundNumber(50.999)).toEqual(50);
