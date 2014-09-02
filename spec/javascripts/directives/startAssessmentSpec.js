@@ -1,6 +1,6 @@
 describe('Directive: startAssessment', function() {
   var $scope, $timeout, $httpBackend, $compile;
-  var element, Assessment, SessionService;
+  var element, Assessment, SessionService, isolatedScope;
 
   var user = {role: "facilitator", districts: [{id: 1}]};
   var assessment = {id: 1, due_date: null, rubric_id: null};
@@ -27,19 +27,20 @@ describe('Directive: startAssessment', function() {
 
     $compile(element)($scope);
     $scope.$digest();
-    $scope = $scope.$$childHead;
+
+    isolatedScope = element.isolateScope();
 
   }));
 
   describe('#text', function() {
     it('returns Start a New Assessment when a user is a district user', function() {
       spyOn(SessionService, 'isNetworkPartner').and.returnValue(false);
-      expect($scope.text()).toEqual('Start a New Assessment');
+      expect(isolatedScope.text()).toEqual('Start a New Assessment');
     });
 
     it('returns Recommend Assessment when a user is a network Partner', function() {
       spyOn(SessionService, 'isNetworkPartner').and.returnValue(true);
-      expect($scope.text()).toEqual('Recommend Assessment');
+      expect(isolatedScope.text()).toEqual('Recommend Assessment');
     });
   });
 
@@ -51,9 +52,9 @@ describe('Directive: startAssessment', function() {
     });
 
     it('sets the district_id to selected district', function() {
-      $scope.district = { id: 55 };
+      isolatedScope.district = { id: 55 };
 
-      $scope.create(assessment);
+      isolatedScope.create(assessment);
       expect(assessment.district_id).toEqual(55);  
     });
 
@@ -63,15 +64,15 @@ describe('Directive: startAssessment', function() {
       var today = new Date();
       $("#due-date").val(today);
 
-      $scope.create(assessment);
+      isolatedScope.create(assessment);
       expect(moment(assessment.due_date).format('dddd')).toEqual(moment(today).format('dddd'));
     });
 
     it('redirects to the assessment assign page when success', function() {
-      spyOn($scope, 'redirectToAssessment');
-      $scope.create(assessment);
+      spyOn(isolatedScope, 'redirectToAssessment');
+      isolatedScope.create(assessment);
 
-      expect($scope.redirectToAssessment).toHaveBeenCalled;
+      expect(isolatedScope.redirectToAssessment).toHaveBeenCalled;
     });
 
   });

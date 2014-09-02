@@ -75,6 +75,11 @@ PDRClient.directive('startAssessment', [
             $scope.datetime = $('.datetime').datetimepicker({
               pickTime: false,
             });
+
+            $scope.datetime.on("dp.change",function (e) {
+              $('#due-date').trigger('change');
+            });
+
           });
         }],
       }
