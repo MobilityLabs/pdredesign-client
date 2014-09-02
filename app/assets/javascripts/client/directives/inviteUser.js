@@ -32,9 +32,9 @@ PDRClient.directive('inviteUser', ['SessionService', 'UrlService', '$timeout',
               .then(function() {
                 $scope.$emit('update_participants');
                 $scope.modalInstance.dismiss('cancel');
-              }, function(response){ 
+              }, function(response){
                 var errors = response.data.errors;
-                angular.forEach(errors, function(error, field) { 
+                angular.forEach(errors, function(error, field) {
                   $scope.addAlert(field + " : " + error);
                 });
 

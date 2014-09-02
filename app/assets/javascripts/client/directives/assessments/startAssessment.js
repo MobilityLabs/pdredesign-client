@@ -28,8 +28,12 @@ PDRClient.directive('startAssessment', [
             return "Start a New Assessment";
           };
 
-          $scope.hideModal = function() { 
+          $scope.hideModal = function() {
             $('#startAssessment').modal('hide');
+          }
+
+          $scope.noDistrict = function() {
+            return _.isEmpty($scope.user.district_ids);
           }
 
           $scope.redirectToAssessment = function(assessment) {
@@ -49,7 +53,7 @@ PDRClient.directive('startAssessment', [
                 $scope.redirectToAssessment(data);
               }, function(response) {
                 var errors = response.data.errors;
-                angular.forEach(errors, function(error, field) { 
+                angular.forEach(errors, function(error, field) {
                   $scope.error(field + " : " + error);
                 });
               });
