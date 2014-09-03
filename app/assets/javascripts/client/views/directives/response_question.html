@@ -18,7 +18,7 @@
               <p class="question-id scored-{{question.score.value}}" ng-show="question.loading">
                 <i class="fa fa-spinner fa-spin"></i>
               </p>
-              <p id="question-{{question.number}}" class="question-id scored-{{question.score.value}}" ng-hide="question.loading">
+              <p id="question-{{question.number}}" class="question-id {{questionTDColor(question)}}" ng-hide="question.loading">
                 <a href="#question-{{question.id}}"></a>
                 {{question.number}}
               </p>
@@ -40,7 +40,6 @@
                   src="'client/views/shared/responses/score_count.html'">
                 </ng-include>
               </div>
-
 
               <div
                 class="col-md-11 answer-row value-color-{{answer.value}}"
@@ -65,6 +64,13 @@
 
               </div>
             </div>
+            <skip-question
+              ng-hide="isConsensus"
+              question="question"
+              response-id="{{responseId}}"
+              assessment-id="{{assessmentId}}"
+              >
+            </skip-question>
 
             <ng-include
               ng-show="isConsensus"

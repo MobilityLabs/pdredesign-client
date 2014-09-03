@@ -14,11 +14,11 @@ PDRClient.controller('SidebarResponseCardCtrl', [
   function($modal, $scope, $rootScope, $stateParams, $location,
            $anchorScroll, $timeout, SessionService, Score,
            Consensus, Response, Assessment) {
+
     $scope.assessmentId = $stateParams.assessment_id;
     $scope.responseId   = $stateParams.response_id;
-    $scope.questions = [];
-    $scope.user      = SessionService.getCurrentUser();
-    $scope.assessment = {};
+    $scope.questions    = [];
+    $scope.assessment   = {};
 
     $timeout(function(){
       $scope.assessment = Assessment.get({id: $scope.assessmentId});
@@ -32,6 +32,13 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       $(".punchcard").affix();
       $scope.updateScores();
     });
+
+    $scope.questionScoreValue = function(question) {
+      if(question.score.value == null && question.score.evidence != null) {
+        return 'skipped';
+      }
+      return question.score.value;
+    };
 
     $scope.updateScores = function() {
       Score.query({
@@ -82,11 +89,6 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       if($scope.isResponse()) return Response;
       return Consensus;
     };
-
-    $scope.AssessmentMeetingDate = function() {
-      if ($scope.assessment.due_date == null) { return 'TBD'};
-      return moment($scope.assessment.due_date).format("MMM Do YY");
-    }
 
     $scope.submitResponseModal = function() {
      $scope.modalInstance =  $modal.open({
