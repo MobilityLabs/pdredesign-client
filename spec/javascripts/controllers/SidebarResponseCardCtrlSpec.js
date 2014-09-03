@@ -33,21 +33,32 @@ describe('Controller: SidebarResponseCardCtrl', function() {
     expect($scope.questions.length).toEqual(2);
   });
 
-  it('counts questions correctly via #answeredQuestions', function(){
-    $scope.questions = [
-      {score: {value: 1}},
-      {score: {value: 1}},
-      {score: {value: 1}},
-      {score:{}}];
-    expect($scope.answeredQuestions()).toEqual(3);
+  it('#isAnswered returns true when a question is answered of skipped', function() {
+    expect($scope.isAnswered({score: {value: 1}})).toEqual(true);
+    expect($scope.isAnswered({score: {value: null, evidence: 'something'}})).toEqual(true);
+    expect($scope.isAnswered({score: {skipped: true}})).toEqual(true);
+    expect($scope.isAnswered({score: {value: null, evidence: null}})).toEqual(false);
+    expect($scope.isAnswered({})).toEqual(false);
   });
 
-  it('counts unanswered questions correctly', function(){
+  it('counts questions correctly via #answeredQuestions', function() {
     $scope.questions = [
       {score: {value: 1}},
       {score: {value: 1}},
       {score: {value: 1}},
-      {score:{}}];
+      {score: {value: null, evidence: 'something'}},
+      {score: {}}];
+    expect($scope.answeredQuestions()).toEqual(4);
+  });
+
+  it('counts unanswered questions correctly', function() {
+    $scope.questions = [
+      {score: {value: 1}},
+      {score: {value: 1}},
+      {score: {value: 1}},
+      {score: {value: null, evidence: 'something'}},
+      {score: {skipped: true, value: null, evidence: 'something'}},
+      {score: {}}];
     expect($scope.unansweredQuestions()).toEqual(1);
   });
 

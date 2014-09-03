@@ -54,16 +54,28 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       $scope.updateScores();
     });
 
+    $scope.isAnswered = function(question) {
+      if(!question.score)                 return false;
+      if(question.score.skipped  == true) return true;
+      if(question.score.value    != null) return true;
+      if(question.score.evidence == null) return false;
+      if(question.score.evidence != '')   return true;
+
+      return false;
+    };
+
     $scope.answeredQuestions = function() {
       var count = 0;
       angular.forEach($scope.questions, function(question) {
-        if(question.score && question.score.value != null) count++;
+        if($scope.isAnswered(question)) count++;
       });
 
       return count;
     };
 
     $scope.unansweredQuestions = function() {
+      window.questions = $scope.questions;
+      window.scope     = $scope;
       return $scope.questions.length - $scope.answeredQuestions();
     }
 
