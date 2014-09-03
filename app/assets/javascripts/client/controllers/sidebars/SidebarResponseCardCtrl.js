@@ -34,9 +34,12 @@ PDRClient.controller('SidebarResponseCardCtrl', [
     });
 
     $scope.updateScores = function() {
-      $scope.questions = Score.query({
+      Score.query({
         assessment_id: $scope.assessmentId,
         response_id:   $scope.responseId
+      }).$promise
+      .then(function(questions) {
+        $scope.questions = questions;
       });
     };
 
