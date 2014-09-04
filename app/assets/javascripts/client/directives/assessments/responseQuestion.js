@@ -20,6 +20,18 @@ PDRClient.directive('responsequestion', [
         'Score',
         'ResponseHelper',
         function($scope, $rootScope, $timeout, $stateParams, $location, SessionService, Response, Score, ResponseHelper) {
+          $scope.toggleAnswers = ResponseHelper.toggleAnswers
+          $scope.saveEvidence  = ResponseHelper.saveEvidence
+          $scope.editAnswer    = ResponseHelper.editAnswer
+          $scope.answerTitle   = ResponseHelper.answerTitle
+
+          $scope.questionTDColor = function(question){
+            if (question.score.evidence != null && question.score.value == null) {
+              return "scored-skipped";
+            };
+
+            return 'scored-' + question.score.value;
+          };
 
           $scope.toggleCategoryAnswers = function(category) {
             category.toggled = !category.toggled;
@@ -28,16 +40,12 @@ PDRClient.directive('responsequestion', [
             });
           };
 
-          $scope.toggleAnswers = ResponseHelper.toggleAnswers
-          $scope.saveEvidence  = ResponseHelper.saveEvidence
-          $scope.editAnswer    = ResponseHelper.editAnswer
-          $scope.answerTitle   = ResponseHelper.answerTitle
-
           $scope.invalidEvidence = function (question) {
             return question.score.evidence == null ||  question.score.evidence  == '';
           }
 
           $scope.assignAnswerToQuestion = function (answer, question) {
+            question.skipped = false;
             question.score.value = answer.value;
             if($scope.invalidEvidence(question)) return;
 
@@ -52,7 +60,6 @@ PDRClient.directive('responsequestion', [
                 $location.path('/assessments');
               });
           });
-
 
           $timeout(function(){
             $rootScope.$broadcast('start_change');

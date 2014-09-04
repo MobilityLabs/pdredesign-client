@@ -16,7 +16,7 @@
           <span>
             <a href="" ng-click="scrollTo($index+1)" ng-repeat="question in questions" >
               <span class="fa-stack fa-md">
-                <i class="fa fa-circle fa-stack-2x scored-{{question.score.value}}"></i>
+                <i class="fa fa-circle fa-stack-2x scored-{{questionScoreValue(question)}}"></i>
                 <i class="fa fa-text fa-stack-1x fa-inverse">{{$index+1}}</i>
               </span>
             </a>

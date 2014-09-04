@@ -1,5 +1,5 @@
-PDRClient.controller('SettingsCtrl', ['$q', '$scope', '$timeout', 'User', 'SessionService', 'UrlService',
-    function($q, $scope, $timeout, User, SessionService, UrlService) {
+PDRClient.controller('SettingsCtrl', ['$location', '$anchorScroll', '$scope', '$timeout', 'User', 'SessionService', 'UrlService',
+    function($location, $anchorScroll, $scope, $timeout, User, SessionService, UrlService) {
 
       $scope.user    = null;
 
@@ -17,6 +17,11 @@ PDRClient.controller('SettingsCtrl', ['$q', '$scope', '$timeout', 'User', 'Sessi
 
       $scope.isNetworkPartner = function() {
         return SessionService.isNetworkPartner();
+      };
+
+      $scope.scrollTop = function() {
+        $location.hash("form-top");
+        $anchorScroll();
       };
 
       $scope.updateUser = function(editedUser) {

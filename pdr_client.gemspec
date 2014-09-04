@@ -46,7 +46,8 @@ Gem::Specification.new do |s|
   s.add_dependency('redactor-rails')
 
   s.add_dependency('selectize-rails')
-  s.add_dependency('bootstrap3-datetimepicker-rails', '= 3.0.0.2')
+  s.add_dependency('bootstrap3-datetimepicker-rails', '>= 3.1.2')
+
 
   s.add_development_dependency("jasmine")
   s.add_development_dependency('combustion')

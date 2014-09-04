@@ -1,6 +1,10 @@
 <div class='assessments'>
 
-  <div ng-repeat="assessment in assessments | filter:{district_name: $parent.selectedDistrict}">
+  <div ng-repeat="assessment in assessments
+     | filter:{district_name: selectedDistrict}
+     | filter: permissionsFilter(selectedPermission)
+     | filter:{status: selectedStatus}">
+
     <div class='row assessment'>
 
       <div class='col-sm-1 col-xs-2 overview' style='background-color: {{backgroundColor(assessment)}};'>

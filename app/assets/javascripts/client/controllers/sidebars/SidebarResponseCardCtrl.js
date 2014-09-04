@@ -11,14 +11,14 @@ PDRClient.controller('SidebarResponseCardCtrl', [
   'Consensus',
   'Response',
   'Assessment',
-  function($modal, $scope, $rootScope, $stateParams, $location, 
-           $anchorScroll, $timeout, SessionService, Score, 
+  function($modal, $scope, $rootScope, $stateParams, $location,
+           $anchorScroll, $timeout, SessionService, Score,
            Consensus, Response, Assessment) {
+
     $scope.assessmentId = $stateParams.assessment_id;
     $scope.responseId   = $stateParams.response_id;
-    $scope.questions = [];
-    $scope.user      = SessionService.getCurrentUser();
-    $scope.assessment = {};
+    $scope.questions    = [];
+    $scope.assessment   = {};
 
     $timeout(function(){
       $scope.assessment = Assessment.get({id: $scope.assessmentId});
@@ -33,10 +33,20 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       $scope.updateScores();
     });
 
+    $scope.questionScoreValue = function(question) {
+      if(question.score.value == null && question.score.evidence != null) {
+        return 'skipped';
+      }
+      return question.score.value;
+    };
+
     $scope.updateScores = function() {
-      $scope.questions = Score.query({
+      Score.query({
         assessment_id: $scope.assessmentId,
         response_id:   $scope.responseId
+      }).$promise
+      .then(function(questions) {
+        $scope.questions = questions;
       });
     };
 
@@ -44,16 +54,28 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       $scope.updateScores();
     });
 
+    $scope.isAnswered = function(question) {
+      if(!question.score)                 return false;
+      if(question.score.skipped  == true) return true;
+      if(question.score.value    != null) return true;
+      if(question.score.evidence == null) return false;
+      if(question.score.evidence != '')   return true;
+
+      return false;
+    };
+
     $scope.answeredQuestions = function() {
       var count = 0;
       angular.forEach($scope.questions, function(question) {
-        if(question.score && question.score.value != null) count++;
+        if($scope.isAnswered(question)) count++;
       });
 
       return count;
     };
 
     $scope.unansweredQuestions = function() {
+      window.questions = $scope.questions;
+      window.scope     = $scope;
       return $scope.questions.length - $scope.answeredQuestions();
     }
 
@@ -79,11 +101,6 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       if($scope.isResponse()) return Response;
       return Consensus;
     };
-
-    $scope.AssessmentMeetingDate = function() {
-      if ($scope.assessment.due_date == null) { return 'TBD'};
-      return moment($scope.assessment.due_date).format("MMM Do YY");
-    }
 
     $scope.submitResponseModal = function() {
      $scope.modalInstance =  $modal.open({

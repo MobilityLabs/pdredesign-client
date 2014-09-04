@@ -19,7 +19,7 @@ describe('Controller: ResponseCreateCtrl', function() {
       subject  = $controller('ResponseCreateCtrl', {
         $scope: scope
       });
-      scope.assessmentId = 1
+      scope.assessmentId = 1;
 
   }));
 

@@ -32,7 +32,12 @@
       placeholder="Password *"
       type="password">
 
-      <district-select ng-if="$state.current.views.sidebar.is_network_partner" multiple="true"></district-select>
+<!--      <organization-select-->
+        <!--ng-if="$state.current.views.sidebar.is_network_partner"-->
+        <!--messages="errors"-->
+        <!--organization-id="user.organization_id">-->
+      <!--</organization-select>-->
+
       <district-select ng-if="!$state.current.views.sidebar.is_network_partner"></district-select>
       </form>
 

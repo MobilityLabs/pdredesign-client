@@ -86,6 +86,8 @@
       background-color: $scored3
     &.scored-4
       background-color: $scored4
+    &.scored-skipped
+      background-color: $skipped
     &.skipped
       background-color: $skipped
 
@@ -139,7 +141,8 @@
         color: white
         vertical-align: -0.75em
         margin-left: -0.14em
-
+    .answer-value.skipped
+      width: 4%
     .answer-title
       float: none
       display: table-cell

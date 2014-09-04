@@ -15,7 +15,7 @@
         </div>
         <div class="modal-body">
           <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-          <form>
+          <form name="startAssessment">
             <div class="row">
               <div class="col-md-12">
                 <input class="form-control" type="text" ng-model="assessment.name" placeholder="Name*" required>
@@ -26,21 +26,29 @@
               <div class="col-md-6">
                 <select
                   required
+                  ng-hide="noDistrict()"
                   class="form-control"
                   ng-model="district"
                   ng-options="district.text for district in user.districts">
                 </select>
+                <div ng-show="noDistrict()" class="col-md-12">
+                  <p>
+                    You have not selected districts that you work with. Please update your profile
+                    <a href="#/settings" ng-click="hideModal()" >here</a>
+                  </p>
+                </div>
               </div>
               <div class="col-md-6">
                 <div class="input-group date datetime">
-                  <input 
-                    ng-model="due_date" 
+                  <input
+                    id="due-date"
+                    name="due-date"
+                    required
+                    ng-model="due_date"
                     type="text"
                     placeholder="Due Date*"
-                    class="form-control" 
-                    data-format="dd/MM/yyyy hh:mm:ss" 
-                    id="due-date"
-                    name="due-date">
+                    class="form-control"
+                    data-format="dd/MM/yyyy hh:mm:ss">
                   <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                 </div>
               </div>
@@ -49,7 +57,12 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input  type="submit" class="btn btn-primary" value="Create" ng-click="create(assessment)">
+            <button type="submit"
+              ng-disabled="startAssessment.$invalid"
+              ng-click="create(assessment)"
+              class="btn btn-primary">
+              Create
+            </button>
         </div>
       </form>
       </div>

@@ -2,7 +2,7 @@ PDRClient.directive('assessmentLinks', [
     function() {
       return {
         restrict: 'E',
-        replace: true,
+        replace: false,
         scope: {},
         templateUrl: 'client/views/directives/assessment_index_links.html',
         link: function(scope, elm, attrs) {
@@ -13,7 +13,8 @@ PDRClient.directive('assessmentLinks', [
           scope.id     = attrs.id;
           scope.consensusId = attrs.consensusId;
         },
-        controller: ['$scope',
+        controller: [
+          '$scope',
           '$modal',
           '$rootScope',
           '$location',
