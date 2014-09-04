@@ -51,9 +51,8 @@ PDRClient.service('ResponseHelper',
         .then(function(){
           scope.$emit('response_updated');
           question.loading = false;
-          question.score.value = answer.value;
           question.isAlert = false;
-
+          question.score.value = answer.value;
         });
     }
 

@@ -34,6 +34,7 @@ PDRClient.controller('SidebarResponseCardCtrl', [
     });
 
     $scope.questionScoreValue = function(question) {
+      if(!question || !question.score) return null;
       if(question.score.value == null && question.score.evidence != null) {
         return 'skipped';
       }

@@ -35,12 +35,15 @@ PDRClient.directive('consensus', [
           $scope.answerTitle   = ResponseHelper.answerTitle;
 
           $scope.assignAnswerToQuestion = function (answer, question) {
-            if($scope.isReadOnly) return false;
-            if(question.score.evidence == null ||  question.score.evidence  == '') {
-              question.isAlert = true;
-              return;
+            switch(true) {
+              case $scope.isReadOnly:
+                return false;
+              case !question || !question.score:
+              case question.score.evidence == null || question.score.evidence == '':
+                question.isAlert = true;
+                return false;
             }
-
+            
             ResponseHelper.assignAnswerToQuestion($scope, answer, question);
           }
 
