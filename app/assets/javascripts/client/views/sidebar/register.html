@@ -38,7 +38,12 @@
         <!--organization-id="user.organization_id">-->
       <!--</organization-select>-->
 
-      <district-select ng-if="!$state.current.views.sidebar.is_network_partner"></district-select>
+      <district-select 
+        ng-show="!$state.current.views.sidebar.is_network_partner" 
+        multiple="false"
+        districts="user.district_ids">
+      </district-select>
+
       </form>
 
       <button ng-disabled="signup.$invalid" ng-click="createUser(user, $state.current.views.sidebar.is_network_partner)" class="btn btn-primary btn-lg">Create my account</button>

@@ -25,13 +25,12 @@ PDRClient.controller('SettingsCtrl', ['$location', '$anchorScroll', '$scope', '$
       };
 
       $scope.updateUser = function(editedUser) {
-        editedUser["district_ids"] = $scope.selectedDistrict;
         editedUser["organization_ids"] = editedUser.organization_ids;
         editedUser
           .$save()
           .then(
             function(data) {
-              $scope.success    = "Your profile has been updated"
+              $scope.success = "Your profile has been updated"
               SessionService.syncUser();
             },
             function(response) {

@@ -38,12 +38,10 @@
 
           <div class="form-group">
             <label for="district">District</label>
-
-            <district-select ng-if="isNetworkPartner()"
-                             multiple="true"
-                             data-districts="{{user.districts}}"></district-select>
-            <district-select ng-if="!isNetworkPartner()"
-                             data-districts="{{user.districts}}"></district-select>
+              <district-select multiple="{{isNetworkPartner()}}"
+                               preselected="user.districts"
+                               districts="user.district_ids">
+            </district-select>
           </div>
 
           <div class="form-group">
