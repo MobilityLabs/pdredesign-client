@@ -53,7 +53,6 @@ PDRClient.service('ResponseHelper',
           question.loading = false;
           question.score.value = answer.value;
           question.isAlert = false;
-
         });
     }
 
