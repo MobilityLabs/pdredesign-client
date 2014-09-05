@@ -6,7 +6,7 @@ PDRClient.directive('consensus', [
       scope: {
         assessmentId:  '@',
         responseId:    '@',},
-      templateUrl: 'client/views/directives/response_question.html',
+      templateUrl: 'client/views/directives/consensus_question.html',
       controller: [
         '$scope',
         '$timeout',
