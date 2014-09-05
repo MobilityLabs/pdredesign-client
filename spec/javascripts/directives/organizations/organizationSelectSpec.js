@@ -11,6 +11,7 @@ describe('Directive: organizationSelect', function() {
     $compile = $injector.get('$compile');
     $httpBackend = $injector.get('$httpBackend');
 
+
     $httpBackend.when('GET', '/v1/organizations/1').respond({id: 1, name: 'some org'});
 
     $scope.tmp = 1;
@@ -22,7 +23,6 @@ describe('Directive: organizationSelect', function() {
     $scope.$digest();
 
     isolatedScope = element.isolateScope();
-    isolatedScope.$digest();
   }));
 
   it('sets the organizationId correctly', function() {

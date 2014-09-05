@@ -4,7 +4,6 @@ PDRClient.directive('logoUploader', [
       restrict: 'E',
       replace: false,
       templateUrl: 'client/views/settings/logo_uploader.html',
-      transclude: true,
       scope: {
         organizationId: '=',
       },

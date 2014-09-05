@@ -20,7 +20,7 @@ describe('Directive: organizationSection', function() {
     isolatedScope = element.isolateScope();
   }));
 
-  it('sets the organizationId correctly', function(){
+  xit('sets the organizationId correctly', function(){
     expect(isolatedScope.organizationId).toEqual(1);
   });
 
