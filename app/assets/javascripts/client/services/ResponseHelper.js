@@ -32,7 +32,10 @@ PDRClient.service('ResponseHelper',
     }
 
     this.saveEvidence = function(answer, question) {
+      if(question.score.evidence == null)
+        question.score.evidence = '';
       question.score.editMode = true;
+
       scope.assignAnswerToQuestion(scope, answer, question);
     };
 
@@ -57,6 +60,13 @@ PDRClient.service('ResponseHelper',
         });
     }
 
+    this.skipQuestion = function(question){
+      question.skipped = true
+
+      var answer = {value: null}
+      scope.assignAnswerToQuestion(scope, answer, question);
+    };
+
     this.skipped = function(question) {
       switch(true) {
         case !question || !question.score:
@@ -70,17 +80,5 @@ PDRClient.service('ResponseHelper',
       }
     }
 
-    this.skipQuestion = function(question){
-      question.skipped = true
-
-      var answer = {value: null}
-      scope.assignAnswerToQuestion(scope, answer, question);
-    };
-
-    this.skipQuestionSaveEvidence = function(score){
-      if(score.evidence == null)
-        score.evidence = '';
-      score.editMode = true;
-    };
 
 }]);
