@@ -15,11 +15,11 @@
       </organization-select>
     </div>
 
-    <div class="form-group">
-      <logo-uploader organization-id="organizationId"></logo-uploader>
+    <div class="form-group" ng-show="organizationId">
+      <logo-uploader messages="alertorganization" organization-id="organizationId"></logo-uploader>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" ng-show="organizationId">
       <category-select messages="alertorganization" organization-id="organizationId"></category-select>
     </div>
 

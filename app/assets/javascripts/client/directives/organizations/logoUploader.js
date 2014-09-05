@@ -6,6 +6,7 @@ PDRClient.directive('logoUploader', [
       templateUrl: 'client/views/settings/logo_uploader.html',
       scope: {
         organizationId: '=',
+        messages: '='
       },
       controller: [
         '$scope',
@@ -43,6 +44,7 @@ PDRClient.directive('logoUploader', [
             },
             onCompleteAll: function() {
               $scope.uploading = false;
+              $scope.messages = {type: 'success', msg: 'Logo updated'};
               $scope.updateLogo($scope.organizationId);
             }
           });
