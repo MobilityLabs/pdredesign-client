@@ -1,47 +1,35 @@
-<div class="col-md-11 col-md-offset-1 answer-row value-color-skipped"
-  ng-click="skipQuestion(question, question.score)"
-  ng-class="{skipped: skipped(question)}">
-  <div class="answer-info-row">
-    <div class="col-md-1 skipped answer-value">
-      <span>S</span>
-    </div>
-    <div class="col-md-3 answer-title title-{{answer.value}}">
-      Skip This Question
-    </div>
-    <div class="col-md-8 answer-description">
-      <p ng-show="question.score.value == null">
-        Saved Evidence:<p  ng-show="question.score.value == null"
-        ng-bind-html="question.score.evidence"></p>
-      </p>
-    </div>
-  </div>
-  <div class="row score-evidence" ng-show="skipped(question)">
-    <div class="col-md-2"></div>
-    <div class="col-md-9">
-      <div ng-hide="question.score.editMode">
-        <textarea
-          class="col-md-12 col-sm-12"
-          ng-model="question.score.evidence"
-          placeholder="Write a note to explain why you skipped this question (optional).">
-        </textarea>
-        <div class="save-holder">
-          <button class='btn btn-primary'
-            ng-click="skipQuestionSaveEvidence(question.score)">
-            <i class='fa fa-save'></i>SAVE
-          </button>
-        </div>
-      </div>
-      <div ng-show="question.score.editMode ">
-        <div class="evidence-read">
-          <div ng-bind-html="question.score.evidence"></div>
-          <div class="edit-holder">
-            <button class='btn btn-primary edit-button'
-              ng-click="editAnswer(question.score)">
-              <i class='fa fa-save'></i>Edit
-            </button>
-          </div>
-        </div>
+<tr class='score-value valueColor-skipped' ng-class="{'selected' : skipped(question)}" ng-click="skipQuestion(question, question.score)">
+  <td>S</td>
+  <td>Skip This Question</td>
+  <td>
+    Test
+  </td>
+</tr>
+
+<tr class='score-evidence valueColor-skipped' ng-show="skipped(question)}">
+  <td colspan='2'>&nbsp;</td>
+  <td style='color:#333'>
+
+    <div ng-show="question.score.editMode" class='evidence-read'>
+      <div ng-bind-html="question.score.evidence"></div>
+      <div class="edit-holder">
+        <button class='btn btn-primary edit-button'
+          ng-click="editAnswer(question.score)">
+          <i class='fa fa-edit'></i> Edit
+        </button>
       </div>
     </div>
-  </div>
-</div>
+
+    <div ng-hide="question.score.editMode">
+      <textarea ng-model="question.score.evidence"></textarea>
+      <div class="save-holder">
+        <button
+          class='btn btn-primary'
+          ng-click="skipQuestionSaveEvidence(question.score)">
+          <i class='fa fa-save'></i> Save
+        </button>
+      </div>
+    </div>
+
+  </td>
+</tr>

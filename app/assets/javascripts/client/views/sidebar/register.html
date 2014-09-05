@@ -2,43 +2,48 @@
   <div class="content register-sidebar">
 
     <form name="signup" id="signup">
-    <h3 class="heading">Register now</h3>
-    <ng-include src="'client/views/shared/errors.html'"> </ng-include>
-      <input
-      required
-      ng-model="user.first_name"
-      class="form-group form-control"
-      placeholder="First Name*"
-      type="text">
+      <h3 class="heading">Register now</h3>
+      <ng-include src="'client/views/shared/errors.html'"> </ng-include>
+        <input
+        required
+        ng-model="user.first_name"
+        class="form-group form-control"
+        placeholder="First Name*"
+        type="text">
 
-      <input
-      required
-      ng-model="user.last_name"
-      class="form-group form-control"
-      placeholder="Last Name*"
-      type="text">
+        <input
+        required
+        ng-model="user.last_name"
+        class="form-group form-control"
+        placeholder="Last Name*"
+        type="text">
 
-      <input
-      required
-      ng-model="user.email"
-      class="form-group form-control"
-      placeholder="Email Address*"
-      type="text">
+        <input
+        required
+        ng-model="user.email"
+        class="form-group form-control"
+        placeholder="Email Address*"
+        type="text">
 
-      <input
-      required
-      ng-model="user.password"
-      class="form-group form-control"
-      placeholder="Password *"
-      type="password">
+        <input
+        required
+        ng-model="user.password"
+        class="form-group form-control"
+        placeholder="Password *"
+        type="password">
 
-<!--      <organization-select-->
-        <!--ng-if="$state.current.views.sidebar.is_network_partner"-->
-        <!--messages="errors"-->
-        <!--organization-id="user.organization_id">-->
-      <!--</organization-select>-->
+  <!--      <organization-select-->
+          <!--ng-if="$state.current.views.sidebar.is_network_partner"-->
+          <!--messages="errors"-->
+          <!--organization-id="user.organization_id">-->
+        <!--</organization-select>-->
 
-      <district-select ng-if="!$state.current.views.sidebar.is_network_partner"></district-select>
+        <district-select 
+          ng-show="!$state.current.views.sidebar.is_network_partner" 
+          multiple="false"
+          districts="user.district_ids">
+        </district-select>
+
       </form>
 
       <button ng-disabled="signup.$invalid" ng-click="createUser(user, $state.current.views.sidebar.is_network_partner)" class="btn btn-primary btn-lg">Create my account</button>

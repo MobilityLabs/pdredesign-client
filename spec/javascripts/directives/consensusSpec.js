@@ -31,16 +31,22 @@ describe('Directive: consensus', function() {
     }));
 
     it('will return false if $scope.isReadOnly is true', function() {
-        scope.isReadOnly = true;
-        expect(scope.assignAnswerToQuestion(answer1, question1)).toEqual(false);
+      scope.isReadOnly = true;
+      expect(scope.assignAnswerToQuestion(answer1, question1)).toEqual(false);
     });
 
     it('isAlert should be true if score evidence is missing', function() {
-        var score2 = {id: 1, evidence: "", value: 1, editMode: null};
-        var question2 = {id: 1, score: score2 };
-        scope.assignAnswerToQuestion(answer1, question2)
-        expect(question2.isAlert).toEqual(true);
+      var score2 = {id: 1, evidence: "", value: 1, editMode: null};
+      var question2 = {id: 1, score: score2 };
+      scope.assignAnswerToQuestion(answer1, question2)
+      expect(question2.isAlert).toEqual(true);
     });
+
+    it('does not error on an undefined score', function(){
+      var score2 = {id: 1, evidence: "", value: 1, editMode: null};
+      var question2 = {id: 1};
+      scope.assignAnswerToQuestion(answer1, question2)
+    })
 
   });
 
@@ -65,11 +71,11 @@ describe('Directive: consensus', function() {
     });
 
     it('gets data on callback and sets scores, data, categories, isReadOnly, and participantCount', function() {
-        expect(scope.scores).toEqual([score1]);
-        expect(scope.data).toEqual(categories);
-        expect(scope.categories).toEqual(categories);
-        expect(scope.isReadOnly).toEqual(true);
-        expect(scope.participantCount).toEqual(5);
+      expect(scope.scores).toEqual([score1]);
+      expect(scope.data).toEqual(categories);
+      expect(scope.categories).toEqual(categories);
+      expect(scope.isReadOnly).toEqual(true);
+      expect(scope.participantCount).toEqual(5);
     });
 
   });

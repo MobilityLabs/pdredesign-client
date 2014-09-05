@@ -35,6 +35,11 @@ describe('Directive: skipQuestion', function() {
   });
 
   describe('#skipped', function(){
+
+    it('returns false when a question doesnt have an answer', function(){
+      expect(isolatedScope.skipped({})).toEqual(false);
+    });
+
     it('returns false when evidence null when ', function(){
       expect(isolatedScope.skipped(isolatedScope.question)).toEqual(false);
     });

@@ -115,6 +115,11 @@ describe('Controller: SidebarResponseCardCtrl', function() {
       question = { score: {value: 1, evidence: 'something'} };
       expect($scope.questionScoreValue(question)).toEqual(1);
     });
+
+    it('returns null when a question doesnt have a score', function(){
+      expect($scope.questionScoreValue({})).toEqual(null);
+    });
+
   });
 
 

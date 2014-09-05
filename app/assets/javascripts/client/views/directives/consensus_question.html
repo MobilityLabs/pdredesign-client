@@ -1,5 +1,8 @@
 <div class="categories">
-
+  <ng-include
+    ng-show="isConsensus"
+    src="'client/views/shared/responses/sort_by.html'" >
+  </ng-include>
   <div class="category" ng-repeat="category in categories">
 
     <p class="category-label" ng-click="toggleCategoryAnswers(category)">
@@ -50,7 +53,7 @@
                         <button
                           ng-disabled="invalidEvidence(question)"
                           class='btn btn-primary'
-                          ng-click="saveEvidence(answer, question)">
+                          ng-click="saveEvidence(question.score)">
                           <i class='fa fa-save'></i>SAVE
                         </button>
                       </div>
@@ -61,7 +64,7 @@
 
                 <tr class='score-value valueColor-skipped' ng-class="{'selected' : skipped(question)}" ng-click="skipQuestion(question, question.score)">
                   <td>S</td>
-                  <td>Skip Question</td>
+                  <td>Skip This Question</td>
                   <td>If you're unsure of the correct response to this question, choose this option to skip it and move on. You can still leave a comment if you choose to skip the question.</td>
                 </tr>
 

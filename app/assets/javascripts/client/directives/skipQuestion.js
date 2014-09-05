@@ -18,9 +18,16 @@ PDRClient.directive('skipQuestion', [
           $scope.editAnswer    = ResponseHelper.editAnswer
 
           $scope.skipped = function(question) {
-            return question.score.value == null
-                && question.score.evidence != null
-                || question.skipped;
+            switch(true) {
+              case !question || !question.score:
+                return false;
+              case question.score.value == null && question.score.evidence != null:
+                return true;
+              case question.skipped:
+                return true;
+              default:
+                return false;
+            }
           }
 
           $scope.skipQuestion = function(question, score){

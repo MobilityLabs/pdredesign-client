@@ -35,9 +35,12 @@
 
             </div>
 
-            <district-select></district-select>
+            <district-select 
+              multiple="false"
+              districts="user.district_ids">
+            </district-select>
 
-            <input
+          <input
               ng-model="user.email"
               class="form-group form-control"
               placeholder="E-Mail*"

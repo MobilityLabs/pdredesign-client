@@ -1,4 +1,4 @@
-<div class="link" ng-class="linkActive(active)" ng-click="gotoLocation(assessmentLink(type, active))">
+<div class="link" ng-show="title" ng-class="linkActive(active)" ng-click="gotoLocation(assessmentLink(type, active))">
   <i class="fa fa-{{linkIcon(type)}}"></i> &nbsp;
   <span>{{title}}</span>
 </div>
