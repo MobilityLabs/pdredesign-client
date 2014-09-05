@@ -128,8 +128,7 @@ PDRClient.directive('organizationSelect', [
           scope.$watch('organizationId', function(value, _oldValue) {
             if(!scope.selectize || !scope.organization) return;
             scope.updateOrganizationData(value);
-
-          }, true);
+          });
         },
      }
 }]);

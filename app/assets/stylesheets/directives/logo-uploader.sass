@@ -1,12 +1,10 @@
 $logo-uploader-border: 1px dashed #E3E2DE
-$logo-uploader-padding: .3em
+$logo-uploader-margin: .3em
 $logo-uploader-background-color: #F6F7F9
 
 .logo-uploader
   border-top: $logo-uploader-border
   border-bottom: $logo-uploader-border
-  padding-top: $logo-uploader-padding
-  padding-bottom: $logo-uploader-padding
   .spinner
     text-align: center
     .fa-spinner
@@ -15,6 +13,8 @@ $logo-uploader-background-color: #F6F7F9
   .required
     color: red
   .image
+    margin-top: $logo-uploader-margin
+    margin-bottom: $logo-uploader-margin
     border: $logo-uploader-border
     background-color: $logo-uploader-background-color
     max-width: 100%
