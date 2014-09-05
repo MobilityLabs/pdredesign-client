@@ -79,10 +79,10 @@
                     </div>
 
                     <div ng-hide="question.score.editMode" class='evidence-write'>
-                      <textarea ng-model="question.score.evidence"></textarea>
+                      <textarea ng-model="question.score.evidence" placeholder="You may leave comments here if you'd like. Otherwise, your choice of 'Skip' has been marked for this question."></textarea>
                       <div class="save-holder">
                         <button class='btn btn-primary save-button'
-                          ng-click="saveEvidence({value: null}, question)">
+                          ng-click="saveEvidence({value: null}, question)" ng-hide="question.score.evidence == null || question.score.evidence == ''">
                           <i class='fa fa-save'></i> Save
                         </button>
                       </div>
