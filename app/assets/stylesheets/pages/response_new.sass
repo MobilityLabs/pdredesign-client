@@ -189,22 +189,28 @@
       textarea
         width: 100%
       .evidence-read
-        div,p
+        div,p,i
           color: white
-        min-height: 3em
+        min-height: 3.5em
         vertical-align: middle
         position: relative
+        text-align: center
+        .evidence
+          text-align: left
         .edit-button
-          position: absolute
-          vertical-align: middle
           display: none
-          text-align: center
-          top: 1em
+          position: relative
+          bottom: 0.75em
         &:hover
           cursor: pointer
           background: rgba(54, 25, 25, 0.5)
           .edit-button
             display: inline-block
+      .evidence-write
+        i
+          color: white
+        .save-holder
+          text-align: center
     .valueColor-1
       background-color: $scored1bg
       color: #333
