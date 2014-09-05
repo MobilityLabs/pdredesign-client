@@ -43,6 +43,7 @@ Gem::Specification.new do |s|
   s.add_dependency('rails-assets-angular-bootstrap')
   s.add_dependency('rails-assets-angular-moment')
   s.add_dependency('rails-assets-angular-ui-utils')
+  s.add_dependency('rails-assets-angular-file-upload')
   s.add_dependency('redactor-rails')
 
   s.add_dependency('selectize-rails')

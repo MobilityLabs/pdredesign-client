@@ -3,16 +3,12 @@ describe('Directive: organizationSection', function() {
       isolatedScope,
       $scope,
       $compile, 
-      $timeout, 
-      $q, 
       $httpBackend;
 
   beforeEach(module('PDRClient'));
   beforeEach(inject(function($rootScope, $injector) {
     $scope   = $rootScope.$new({});
     $compile = $injector.get('$compile');
-    $q       = $injector.get('$q');
-    $timeout = $injector.get('$timeout');
     $httpBackend = $injector.get('$httpBackend');
 
     $httpBackend.when('GET', '/v1/organizations/1').respond({id: 1, name: 'some org'});

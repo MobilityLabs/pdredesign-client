@@ -5,6 +5,7 @@ PDRClient = angular.module("PDRClient", [
   'templates',
   'angular-redactor',
   'angularMoment',
+  'angularFileUpload',
   'ui.utils',
   'ui.router',
   'ui.bootstrap']);

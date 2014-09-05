@@ -21,6 +21,7 @@
 //= require angular-bootstrap
 //= require angular-moment
 //= require angular-rails-templates
+//= require angular-file-upload
 //= require bootstrap-datetimepicker
 //= require jquery.tablednd
 //= require highcharts

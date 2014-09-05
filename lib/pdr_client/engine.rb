@@ -20,6 +20,7 @@ module PdrClient
     require 'rails-assets-angular-redactor'
     require 'rails-assets-angular-bootstrap'
     require 'rails-assets-angular-moment'
+    require 'rails-assets-angular-file-upload'
 
     require 'selectize-rails' 
     require 'rails-assets-highcharts'
