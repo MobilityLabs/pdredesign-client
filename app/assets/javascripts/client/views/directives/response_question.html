@@ -11,7 +11,7 @@
       <tbody>
         
         <tr class='question-row' ng-click="toggleAnswers(question)">
-          <td id='question-{{question.id}}' class="question-id scored-{{question.score.value}}">{{question.number}}</td>
+          <td id='question-{{question.id}}' class="question-id scored-{{question.score.value}}" ng-class="{'scored-skipped' : skipped(question)}">{{question.number}}</td>
           <td class='question-content' colspan='3'>
             <p class='question'>{{question.headline}}:</p>
             <p class='content'>{{question.content}}</p>
@@ -24,7 +24,7 @@
             <table class='table' style='margin-bottom:0px'>
               <tbody>
 
-                <tr ng-repeat-start="answer in question.answers" ng-init='question.score.editMode = question.score.value != null ? true : false' class='score-value valueColor-{{answer.value}}' ng-class="{'selected' : question.score.value == answer.value}" ng-click="assignAnswerToQuestion(answer, question)">
+                <tr ng-repeat-start="answer in question.answers" ng-init='question.score.editMode = (question.score.value != null || skipped(question)) ? true : false' class='score-value valueColor-{{answer.value}}' ng-class="{'selected' : question.score.value == answer.value}" ng-click="assignAnswerToQuestion(answer, question)">
                   <td>{{answer.value}}</td>
                   <td>{{answerTitle(answer.value)}}</td>
                   <td>{{answer.content}}</td>
@@ -65,7 +65,7 @@
                   <td>If you're unsure of the correct response to this question, choose this option to skip it and move on. You can still leave a comment if you choose to skip the question.</td>
                 </tr>
 
-                <tr class='score-evidence valueColor-skipped' ng-show="skipped(question)">
+                <tr class='score-evidence valueColor-skipped' ng-class="{'selected' : skipped(question)}" ng-show="skipped(question)">
                   <td colspan='2'>&nbsp;</td>
                   <td style='color:#333'>
 
@@ -84,7 +84,7 @@
                       <div class="save-holder">
                         <button
                           class='btn btn-primary'
-                          ng-click="skipQuestionSaveEvidence(question.score)">
+                          ng-click="saveEvidence({value: null}, question)">
                           <i class='fa fa-save'></i> Save
                         </button>
                       </div>

@@ -31,14 +31,6 @@ PDRClient.service('ResponseHelper',
       }
     }
 
-    this.saveEvidence = function(answer, question) {
-      if(question.score.evidence == null)
-        question.score.evidence = '';
-      question.score.editMode = true;
-
-      scope.assignAnswerToQuestion(scope, answer, question);
-    };
-
     this.editAnswer = function(score) {
       score.editMode = false;
     };
@@ -59,26 +51,5 @@ PDRClient.service('ResponseHelper',
           question.score.value = answer.value;
         });
     }
-
-    this.skipQuestion = function(question){
-      question.skipped = true
-
-      var answer = {value: null}
-      scope.assignAnswerToQuestion(scope, answer, question);
-    };
-
-    this.skipped = function(question) {
-      switch(true) {
-        case !question || !question.score:
-          return false;
-        case question.score.value == null && question.score.evidence != null:
-          return true;
-        case question.skipped:
-          return true;
-        default:
-          return false;
-      }
-    }
-
 
 }]);

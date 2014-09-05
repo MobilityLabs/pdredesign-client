@@ -52,6 +52,33 @@ PDRClient.directive('responsequestion', [
             ResponseHelper.assignAnswerToQuestion($scope, answer, question);
           }
 
+          $scope.saveEvidence = function(answer, question) {
+            if(question.score.evidence == null)
+              question.score.evidence = '';
+            question.score.editMode = true;
+
+            ResponseHelper.assignAnswerToQuestion($scope, answer, question);
+          };
+
+          $scope.skipQuestion = function(question){
+            question.skipped = true;
+            var answer = {value: null}
+            ResponseHelper.assignAnswerToQuestion($scope, answer, question);
+          };
+
+          $scope.skipped = function(question) {
+            switch(true) {
+              case !question || !question.score:
+                return false;
+              case question.score.value == null && question.score.evidence != null:
+                return true;
+              case question.skipped:
+                return true;
+              default:
+                return false;
+            }
+          }
+
           $scope.$on('submit_response', function() {
             Response
               .submit({assessment_id: $scope.assessmentId, id: $scope.responseId}, {submit: true})
