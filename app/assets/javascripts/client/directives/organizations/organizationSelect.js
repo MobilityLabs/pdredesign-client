@@ -74,8 +74,8 @@ PDRClient.directive('organizationSelect', [
               scope.updateUserOrganization(organization);
           };
 
-          $timeout(function(){
-            scope.selectize = $('#organization').selectize({
+          $timeout(function() {
+            scope.selectize = $(elm).find('#organization').selectize({
                 valueField:  'name',
                 labelField:  'name',
                 searchField: 'name',
