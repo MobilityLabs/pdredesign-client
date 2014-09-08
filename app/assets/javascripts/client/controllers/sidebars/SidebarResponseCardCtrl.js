@@ -10,11 +10,13 @@ PDRClient.controller('SidebarResponseCardCtrl', [
   'Score',
   'Consensus',
   'Response',
+  'ResponseHelper',
   'Assessment',
   function($modal, $scope, $rootScope, $stateParams, $location,
            $anchorScroll, $timeout, SessionService, Score,
-           Consensus, Response, Assessment) {
+           Consensus, Response, ResponseHelper, Assessment) {
 
+    $scope.skipped      = ResponseHelper.skipped;
     $scope.assessmentId = $stateParams.assessment_id;
     $scope.responseId   = $stateParams.response_id;
     $scope.questions    = [];
@@ -56,13 +58,17 @@ PDRClient.controller('SidebarResponseCardCtrl', [
     });
 
     $scope.isAnswered = function(question) {
-      if(!question.score)                 return false;
-      if(question.score.skipped  == true) return true;
-      if(question.score.value    != null) return true;
-      if(question.score.evidence == null) return false;
-      if(question.score.evidence != '')   return true;
-
-      return false;
+      switch(true) {
+        case !question.score:
+        case !question.score.evidence == null:
+          return false;
+        case $scope.skipped(question):
+        case question.score.skipped  == true:
+        case question.score.value    != null:
+          return true;
+        default:
+          return false;
+      }
     };
 
     $scope.answeredQuestions = function() {

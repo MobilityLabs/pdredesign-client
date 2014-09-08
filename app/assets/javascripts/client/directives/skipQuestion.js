@@ -13,27 +13,14 @@ PDRClient.directive('skipQuestion', [
         '$scope',
         '$timeout',
         'ResponseHelper',
-
         function($scope, $timeout, ResponseHelper) {
-          $scope.editAnswer    = ResponseHelper.editAnswer
-
-          $scope.skipped = function(question) {
-            switch(true) {
-              case !question || !question.score:
-                return false;
-              case question.score.value == null && question.score.evidence != null:
-                return true;
-              case question.skipped:
-                return true;
-              default:
-                return false;
-            }
-          }
+          $scope.editAnswer = ResponseHelper.editAnswer;
+          $scope.skipped    = ResponseHelper.skipped;
 
           $scope.skipQuestion = function(question, score){
-            question.skipped = true
+            question.skipped = true;
 
-            var answer = {value: null}
+            var answer = { value: null };
             ResponseHelper.assignAnswerToQuestion($scope, answer, question);
           };
 

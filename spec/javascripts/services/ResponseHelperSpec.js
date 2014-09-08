@@ -111,9 +111,28 @@ describe('Service: ResponseHelper', function() {
       });
     });
 
+    describe('#skipped', function(){
+      it('returns false when a question doesnt have an answer', function(){
+        var question = {};
+        expect(subject.skipped(question)).toEqual(false);
+      });
+
+      it('returns false when evidence null when ', function(){
+        var question = {score: { value: null, evidence: null}};
+        expect(subject.skipped(question)).toEqual(false);
+      });
+
+      it('returns true when evidence is present and value is null ', function(){
+        var question = {score: { value: null, evidence: ''}};
+        expect(subject.skipped(question)).toEqual(true);
+      });
+
+      it('returns false when evidence is present and value is not null ', function(){
+        var question = {score: { value: 1, evidence: ''}};
+        expect(subject.skipped(question)).toEqual(false);
+      });
+
+    });
 
   });
-
-
-
 });

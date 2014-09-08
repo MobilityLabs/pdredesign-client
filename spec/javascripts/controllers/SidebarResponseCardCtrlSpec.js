@@ -38,6 +38,7 @@ describe('Controller: SidebarResponseCardCtrl', function() {
     expect($scope.isAnswered({score: {value: null, evidence: 'something'}})).toEqual(true);
     expect($scope.isAnswered({score: {skipped: true}})).toEqual(true);
     expect($scope.isAnswered({score: {value: null, evidence: null}})).toEqual(false);
+    expect($scope.isAnswered({score: {value: null, evidence: ''}})).toEqual(true);
     expect($scope.isAnswered({})).toEqual(false);
   });
 

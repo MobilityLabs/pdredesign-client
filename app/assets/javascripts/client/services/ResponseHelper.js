@@ -39,6 +39,18 @@ PDRClient.service('ResponseHelper',
       score.editMode = false;
     };
 
+    this.skipped = function(question) {
+      switch(true) {
+        case !question || !question.score:
+        return false;
+        case question.skipped:
+        case question.score.value == null && question.score.evidence != null:
+        return true;
+        default:
+        return false;
+      }
+    }
+
     this.assignAnswerToQuestion = function(scope, answer, question) {
 
       var params = {response_id: scope.responseId, assessment_id: scope.assessmentId};

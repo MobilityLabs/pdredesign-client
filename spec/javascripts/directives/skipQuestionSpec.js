@@ -34,28 +34,6 @@ describe('Directive: skipQuestion', function() {
     expect(isolatedScope.question.score.value).toEqual(null);
   });
 
-  describe('#skipped', function(){
-    it('returns false when a question doesnt have an answer', function(){
-      expect(isolatedScope.skipped({})).toEqual(false);
-    });
-
-    it('returns false when evidence null when ', function(){
-      expect(isolatedScope.skipped(isolatedScope.question)).toEqual(false);
-    });
-
-    it('returns true when evidence is present and value is null ', function(){
-      isolatedScope.question.score.evidence = '';
-      expect(isolatedScope.skipped(isolatedScope.question)).toEqual(true);
-    });
-
-    it('returns false when evidence is present and value is not null ', function(){
-      isolatedScope.question.score.evidence = '';
-      isolatedScope.question.score.value = 1;
-      expect(isolatedScope.skipped(isolatedScope.question)).toEqual(false);
-    });
-
-  });
-
   describe('#skipQuestionSaveEvidence', function(){
     it('sets score evidence to an empty string when evidence is null ', function(){
       expect(isolatedScope.question.score.evidence).toEqual(null);
