@@ -63,7 +63,7 @@ PDRClient.controller('HomeCtrl', [
       };
 
 
-      $scope.setPopovers = function(tool){
+      $scope.popoverContent = function(tool){
         if(!tool.description)
           return $scope.emptyTool();
 

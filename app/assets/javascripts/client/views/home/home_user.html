@@ -45,10 +45,11 @@
                   <li
                     data-html="true"
                     data-placement="right"
-                    data-content="{{setPopovers(tool)}}"
+                    data-content="{{popoverContent(tool)}}"
                     data-toggle="tooltip">
                     <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
-                      {{tool.title}}
+                    <span>{{tool.title}}</span>
+
                   </li>
                 </ul>
               </div>
