@@ -23,6 +23,8 @@ PDRClient.directive('assessmentLinks', [
           'AccessRequest',
           'SessionService',
           function($scope, $modal, $rootScope, $location, $timeout, $state, AccessRequest, SessionService) {
+            $scope.isNetworkPartner = SessionService.isNetworkPartner;
+
             $scope.linkIcon = function(type){
               icons = {
                   "response": "check",
@@ -42,6 +44,13 @@ PDRClient.directive('assessmentLinks', [
               return icons[type];
             };
 
+            $scope.districtMemberPopoverContent = "<div> <i class='fa fa-bullhorn'></i><span>Facilitator</span><p>Facilitators share responsibility with the district facilitator to contact participants and view their individual responses, facilitate the consensus meeting, and view the final consensus report.</p>" +
+                                                  "<i class='fa fa-edit'></i><span>Participant</span><p>Participants respond to the individual readiness assessment survey and take part in the consensus meeting. They can view the final consensus report.</p>" +
+                                                  "<i class='fa fa-eye'></i><span>Viewer</span><p>Viewers have read-only access to the final consensus report. They cannot view individual participant responses or data.</p> </div>";
+
+            $scope.networkPartnerPopoverContent = "<i class='fa fa-bullhorn'></i><span>Organizer</span><p>Organizers share responsibility with the district facilitator to contact participants and view their individual responses, facilitate the consensus meeting, and view the final consensus report.</p>" +
+                                                  "<i class='fa fa-eye'></i><span>Observer</span><p>Observers have read-only access to the final consensus report. They cannot view individual participant responses or data.</p> </div>";
+
             $scope.createConsensusModal = function() {
               $scope.modal = $modal.open({
                 templateUrl: 'client/views/modals/create_consensus.html',
@@ -49,14 +58,29 @@ PDRClient.directive('assessmentLinks', [
               });
             };
 
+            $scope.popoverContent = function() {
+              if($scope.isNetworkPartner())
+                return $scope.networkPartnerPopoverContent;
+
+              return $scope.districtMemberPopoverContent;
+            };
+
+            $scope.addRequestPopover = function() {
+              $timeout(function(){
+                $("[data-toggle=requestPopover]").popover({
+                  html : true,
+                  placement: 'top',
+                  trigger: 'hover',
+                });
+              });
+            };
+
             $scope.requestAccess = function() {
-              var templateUrl = 'client/views/modals/request_access.html'; 
-              if(SessionService.isNetworkPartner())
-                templateUrl = 'client/views/modals/request_access_partner.html'; 
-                
               $scope.modal = $modal.open({
-                templateUrl: templateUrl,
-                scope: $scope
+                templateUrl: 'client/views/modals/request_access.html',
+                scope: $scope,
+                windowClass: 'request-access-window',
+                opened: $scope.addRequestPopover()
               });
             };
 
@@ -82,10 +106,10 @@ PDRClient.directive('assessmentLinks', [
             $scope.gotoLocation   = function(location) {
               if(!location) return;
 
-              if(location.match(/\/assessments\/.*\/consensus$/)) 
+              if(location.match(/\/assessments\/.*\/consensus$/))
                 $scope.createConsensusModal();
               else if(location == 'request_access')
-                $scope.requestAccess(); 
+                $scope.requestAccess();
               else
                 $location.url(location);
             };

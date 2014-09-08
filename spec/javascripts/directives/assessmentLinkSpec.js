@@ -69,6 +69,20 @@ describe('Directive: assessmentLinks', function() {
     });
   });
 
+  describe('#popoverContent', function(){
+    it('returns district members content', function(){
+      spyOn(isolatedScope, 'isNetworkPartner').and.returnValue(false);
+      isolatedScope.districtMemberPopoverContent = "district member content"; 
+      expect(isolatedScope.popoverContent()).toEqual('district member content');
+    });
+
+    it('returns network partner content', function(){
+      spyOn(isolatedScope, 'isNetworkPartner').and.returnValue(true);
+      isolatedScope.networkPartnerPopoverContent = "network partner content"; 
+      expect(isolatedScope.popoverContent()).toEqual('network partner content');
+    });
+  });
+
   describe('#submitAccessRequest', function(){
     it('calls AccessRequest#save', function(){
       isolatedScope.modal = {

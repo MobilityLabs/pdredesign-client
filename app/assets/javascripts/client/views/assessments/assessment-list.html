@@ -1,4 +1,5 @@
 <div class='assessments'>
+
   <div ng-repeat="assessment in assessments
      | filter:{district_name: selectedDistrict}
      | filter: permissionsFilter(selectedPermission)
