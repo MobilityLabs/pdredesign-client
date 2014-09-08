@@ -4,16 +4,30 @@
     <h2>Request Access</h2>
   </div>
   <div class="modal-body">
-    <h3>Select the role you would like to request in this assessment</h3>
-    <div class="btn-group">
+    <h3>Select the role you would like to request in this assessment.
+      <i data-toggle="requestPopover"
+        data-content="{{popoverContent()}}" class="fa fa-question question-tip">
+      </i>
+    </h3>
+
+    <div ng-show="isNetworkPartner()" class="btn-group">
       <label class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'facilitator'">
-        <i class="fa fa-bullhorn">Facilitator</i>
-      </label>
-      <label class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'participant'">
-        <i class="fa fa-edit">Participant</i>
+        <i class="fa fa-bullhorn"><span>Organizer</span></i>
       </label>
       <label class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'viewer'">
-        <i class="fa fa-eye">Viewer</i>
+        <i class="fa fa-eye"><span>Observer</span></i>
+      </label>
+    </div>
+
+    <div ng-show="!isNetworkPartner()" class="btn-group">
+      <label class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'facilitator'">
+        <i class="fa fa-bullhorn"><span>Facilitator</span></i>
+      </label>
+      <label class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'participant'">
+        <i class="fa fa-edit"><span>Participant</span></i>
+      </label>
+      <label class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'viewer'">
+        <i class="fa fa-eye"><span>Viewer</span></i>
       </label>
     </div>
   </div>
