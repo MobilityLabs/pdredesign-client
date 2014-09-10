@@ -7,16 +7,11 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
         '': {
           controller: 'HomeCtrl',
           templateUrl: 'client/views/shared/include_template.html'
-        },
-        'sidebar': {
-          controller: 'SidebarCtrl',
-          templateUrl: 'client/views/sidebar/sidebar_generic.html'
-       }
+        }
+        //sidebar is homeSidebar.js directive
       }
     });
 
     $urlRouterProvider.otherwise("/");
   }
 ]);
-
-
