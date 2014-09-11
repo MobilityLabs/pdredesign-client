@@ -29,6 +29,7 @@ PDRClient.directive('consensus', [
           };
 
           $scope.answerCount   = ResponseHelper.answerCount;
+          $scope.skipCount     = ResponseHelper.skipCount;
           $scope.toggleAnswers = ResponseHelper.toggleAnswers;
           $scope.saveEvidence  = ResponseHelper.saveEvidence;
           $scope.editAnswer    = ResponseHelper.editAnswer;

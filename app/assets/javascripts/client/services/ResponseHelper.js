@@ -14,6 +14,18 @@ PDRClient.service('ResponseHelper',
       return count;
     };
 
+    this.skipCount = function(scores, questionId, participantCount) {
+      var count = 0;
+      angular.forEach(scores, function(score) {
+        if(score.question_id != questionId) return false;
+        if(score.value != 0)
+          count++;
+      });
+
+      var skipped = participantCount - count;
+      return skipped;
+    };
+
     this.toggleAnswers = function(question) {
       question.answersVisible = !question.answersVisible;
     };
