@@ -1,4 +1,5 @@
-<span class="score-count scored-skipped">
+<span class="label score-count scored-skipped" ng-class="{'label-mode': answer.value == question.mode}">
+  <i class="fa fa-heart" ng-show="answer.value == question.mode"></i>
   <span class="value">{{skipCount(scores, question.id, participantCount)}}</span>
   <span>/{{participantCount}}</span>
 </span>

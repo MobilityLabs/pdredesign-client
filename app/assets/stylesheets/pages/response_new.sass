@@ -421,236 +421,241 @@
         color: #f6f3ec
 
 .table-consensus
-  // print changes
-  &.print
-    div.evidence-list
-      max-height: none !important
-      overflow-y: auto !important
   .scores-row
-    .score-value
-      td
-        vertical-align: middle !important
-        &:first-child
-          text-align: center
-          min-width: 5em !important
-          width: 5em !important
-          color: #8c8c8a
-          padding-left: 0pem
-          background-color: #f2f1ef
-          border-top: 0.1em solid transparent
-          .score_count
-            font-size: 24px
-          .response_count
-            font-size: 14px
-          .label.label-mode
-            font-size: 20px
-        &:nth-child(2)
-          width: 2%
-          color: white
-          font-size: 18px
-        &:nth-child(3)
-          width: 22%
-          font-size: 20px
-        &:nth-child(4)
-          font-size: 16px
-          font-weight: lighter
-    .valueColor-1
-      background-color: $scored1bg
-      color: #333
-      td:first-child
-        .label.label-mode
-          background-color: $scored1
-          color: #f6f3ec !important
-          .score_count,.response_count
-            color: #f6f3ec !important
-      td:nth-child(2),&.selected
-        background-color: $scored1
-        color: #f6f3ec
-    .valueColor-2
-      background-color: $scored2bg
-      color: #333
-      td:first-child
-        .label.label-mode
-          background-color: $scored2
-          color: #f6f3ec
-          .score_count,.response_count
-            color: #f6f3ec !important
-      td:nth-child(2),&.selected
-        background-color: $scored2
-        color: #f6f3ec
-    .valueColor-3
-      background-color: $scored3bg
-      color: #333
-      td:first-child
-        .label.label-mode
-          background-color: $scored3
-          color: #f6f3ec
-          .score_count,.response_count
-            color: #f6f3ec !important
-      td:nth-child(2),&.selected
-        background-color: $scored3
-        color: #f6f3ec
-    .valueColor-4
-      background-color: $scored4bg
-      color: #333
-      td:first-child
-        .label.label-mode
-          background-color: $scored4
-          color: #f6f3ec
-          .score_count,.response_count
-            color: #f6f3ec !important
-      td:nth-child(2),&.selected
-        background-color: $scored4
-        color: #f6f3ec
-    .valueColor-skipped
-      background-color: $skippedbg
-      color: #333
-      td:first-child
-        .label.label-mode
-          background-color: $skipped
-          color: #f6f3ec
-          .score_count,.response_count
-            color: #f6f3ec !important
-      td:nth-child(2),&.selected
-        background-color: $skipped
-        color: #f6f3ec
+    td:first-child
+      padding: 0em
+      table
+        margin-bottom: 0em
+        .score-value
+          td
+
+            vertical-align: middle !important
+            &:first-child
+              text-align: center
+              min-width: 5em !important
+              width: 5em !important
+              color: #8c8c8a
+              padding-left: 0em
+              background-color: #f2f1ef
+              border-top: 0.1em solid transparent
+              .score_count
+                font-size: 1.4em
+              .response_count
+                font-size: 1em
+              .label
+                font-size: 1.3em
+            &:nth-child(2)
+              width: 2%
+              color: white
+              font-size: 1.2em
+            &:nth-child(3)
+              width: 22%
+              font-size: 1.2em
+            &:nth-child(4)
+              font-size: 1em
+              font-weight: lighter
+        .valueColor-1
+          background-color: $scored1bg
+          color: #333
+          td:first-child
+            .label.label-mode
+              background-color: $scored1
+              span,i
+                color: #f6f3ec !important
+          td:nth-child(2),&.selected
+            background-color: $scored1
+            td
+              color: #f6f3ec !important
+        .valueColor-2
+          background-color: $scored2bg
+          color: #333
+          td:first-child
+            .label.label-mode
+              background-color: $scored2
+              span,i
+                color: #f6f3ec !important
+          td:nth-child(2),&.selected
+            background-color: $scored2
+            td
+              color: #f6f3ec !important
+        .valueColor-3
+          background-color: $scored3bg
+          color: #333
+          td:first-child
+            .label.label-mode
+              background-color: $scored3
+              span,i
+                color: #f6f3ec !important
+          td:nth-child(2),&.selected
+            background-color: $scored3
+            td
+              color: #f6f3ec !important
+        .valueColor-4
+          background-color: $scored4bg
+          color: #333
+          td:first-child
+            .label.label-mode
+              background-color: $scored4
+              span,i
+                color: #f6f3ec !important
+          td:nth-child(2),&.selected
+            background-color: $scored4
+            td
+              color: #f6f3ec !important
+        .valueColor-skipped
+          background-color: $skippedbg
+          color: #333
+          td:first-child
+            .label.label-mode
+              background-color: $skipped
+              span,i
+                color: #f6f3ec !important
+          td:nth-child(2),&.selected
+            background-color: $skipped
+            td
+              color: #f6f3ec !important
   .evidence-row
-    thead
-      th
-        background-color: #f5f6f8
-        font-size: 24px
-    .evidence-value
-      background-color: white
-      td
-        border: 0em
-        vertical-align: middle
-        &:first-child
-          text-align: center
-          min-width: 2em !important
-          width: 5em !important
-          color: #8c8c8a
-          padding-left: 0em
-          border-top: 0.1em solid transparent
-        &:nth-child(2)
-          padding: 0px
-          margin: 0px
-          div.evidence-list
-            margin-top: -2px
-            padding-right: 60px
-            max-height: 300px
-            overflow-y: scroll
-            .table-evidence
-              &:last-child
-                margin-bottom: 0px
-              border: 2px solid #e9e8e3
-              tr:first-child
-                td:first-child
-                  padding: 0px
-                  margin: 0px
-                  text-align: center
-                  min-width: 37px !important
-                  width: 37px !important
-                  color: white
-                  font-size: 18px
-                td:last-child
-                  padding: 10px
-                  font-size: 14px
-                  font-weight: lighter
-              tr:last-child
-                td:first-child
-                  padding: 0px
-                  margin: 0px
-                  text-align: center
-                  min-width: 37px !important
-                  width: 37px !important
-                  color: white
-                  font-size: 18px
-                td:last-child
-                  padding-left: 10px
-                  font-size: 10px
-                  font-weight: lighter
-                  font-family: "Droid Serif"
-                  font-style: italic
-                  color: #9a9a98
-    .valueColor-1
-      td:first-child
-        background-color: $scored1
-        color: #f6f3ec
-    .valueColor-2
-      td:first-child
-        background-color: $scored2
-        color: #f6f3ec
-    .valueColor-3
-      td:first-child
-        background-color: $scored3
-        color: #f6f3ec
-    .valueColor-4
-      td:first-child
-        background-color: $scored4
-        color: #f6f3ec
-    .valueColor-skipped
-      td:first-child
-        background-color: $skipped
-        color: #f6f3ec
+    td:first-child
+      padding: 0em
+      table
+        margin-bottom: 0em
+        thead
+          th
+            background-color: #f5f6f8
+            font-size: 1.4em
+        .evidence-value
+          background-color: white
+          td
+            border: 0em
+            vertical-align: middle
+            &:first-child
+              text-align: center
+              min-width: 2em !important
+              width: 5em !important
+              color: #8c8c8a
+              padding-left: 0em
+              border-top: 0.1em solid transparent
+            &:nth-child(2)
+              padding: 0em
+              margin: 0em
+              div.evidence-list
+                margin-top: 0em
+                padding-right: 2em
+                max-height: 6em
+                overflow-y: scroll
+                .table-evidence
+                  &:last-child
+                    margin-bottom: 0em
+                  border: 0.1em solid #e9e8e3
+                  tr:first-child
+                    td:first-child
+                      padding: 0em
+                      margin: 0em
+                      text-align: center
+                      min-width: 2.2em !important
+                      width: 2.2em !important
+                      color: white
+                      font-size: 1.2em
+                    td:last-child
+                      padding: 0.7em
+                      font-size: 0.9em
+                      font-weight: lighter
+                  tr:last-child
+                    td:first-child
+                      padding: 0em
+                      margin: 0em
+                      text-align: center
+                      min-width: 2.2em !important
+                      width: 2.2em !important
+                      color: white
+                      font-size: 1.2em
+                    td:last-child
+                      padding-left: 0.7em
+                      font-size: 0.7em
+                      font-weight: lighter
+                      font-family: "Droid Serif"
+                      font-style: italic
+                      color: #9a9a98
+        .valueColor-1
+          td:first-child
+            background-color: $scored1
+            color: #f6f3ec
+        .valueColor-2
+          td:first-child
+            background-color: $scored2
+            color: #f6f3ec
+        .valueColor-3
+          td:first-child
+            background-color: $scored3
+            color: #f6f3ec
+        .valueColor-4
+          td:first-child
+            background-color: $scored4
+            color: #f6f3ec
+        .valueColor-skipped
+          td:first-child
+            background-color: $skipped
+            color: #f6f3ec
   .consensus-row
-    thead
-      th
-        background-color: #f5f6f8
-        font-size: 24px
-        color: #2d3a40
-    text-align: left
-    td
-      border: 0px
-      vertical-align: middle
-      &:first-child
-        min-width: 90px !important
-        width: 90px !important
-        color: #8c8c8a
-        padding-left: 0px
-        border-top: 1px solid transparent
-      &:nth-child(2)
-        padding: 0px
-        margin: 0px
-        div.consensus-scoring
-          margin: 10px 0px
-          padding-right: 63px
-          .consensus-header
-            font-size: 22px
-      .evidence-read
-        div,p
-          color: inherit
-          font-size: 16px
-        min-height: 60px
-        vertical-align: middle
-        position: relative
-        .edit-button
-          position: absolute
+    td:first-child
+      padding: 0em
+      table
+        margin-bottom: 0em
+        text-align: left
+        thead
+          th
+            background-color: #f5f6f8
+            font-size: 1.4em
+            color: #2d3a40
+        td
+          border: 0em
           vertical-align: middle
-          display: none
-          text-align: center
-          width: 100%
-          top: 15px
-        &:hover
-          cursor: pointer
-          background: rgba(54, 25, 25, 0.5)
-          .edit-button
-            display: inline-block
-    .btn-value-1
-      font-size: 16px
-      background-color: $scored1
-      color: #f6f3ec
-    .btn-value-2
-      font-size: 16px
-      background-color: $scored2
-      color: #f6f3ec
-    .btn-value-3
-      font-size: 16px
-      background-color: $scored3
-      color: #f6f3ec
-    .btn-value-4
-      font-size: 16px
-      background-color: $scored4
-      color: #f6f3ec
+          &:first-child
+            min-width: 2em !important
+            width: 5em !important
+            color: #8c8c8a
+            padding-left: 0em
+            border-top: 0.1em solid transparent
+          &:nth-child(2)
+            padding: 0em
+            margin: 0em
+            div.consensus-scoring
+              margin: 0.7em 0em
+              padding-right: 3em
+              .consensus-header
+                font-size: 1.3em
+              textarea
+                width: 100%
+          .evidence-read
+            div,p
+              color: inherit
+              font-size: 1em
+            min-height: 5em
+            vertical-align: middle
+            position: relative
+            .edit-button
+              position: absolute
+              vertical-align: middle
+              display: none
+              text-align: center
+              width: 100%
+              top: 1em
+            &:hover
+              cursor: pointer
+              background: rgba(54, 25, 25, 0.5)
+              .edit-button
+                display: inline-block
+        .btn
+          font-size: 1em
+          color: #f6f3ec
+          &.btn-value-1
+            background-color: $scored1
+          &.btn-value-2
+            background-color: $scored2
+          &.btn-value-3
+            background-color: $scored3
+          &.btn-value-4
+            background-color: $scored4
 
 .confirm-greeting
   font-weight: bold

@@ -1,8 +1,5 @@
 <div class="categories">
-  <ng-include
-    ng-show="isConsensus"
-    src="'client/views/shared/responses/sort_by.html'" >
-  </ng-include>
+  <ng-include src="'client/views/shared/responses/sort_by.html'"></ng-include>
   
   <div class="category" ng-repeat="category in categories">
 
@@ -23,11 +20,11 @@
         </tr>
 
         <tr class='scores-row' ng-show="question.answersVisible">
-          <td colspan='2' style='padding:0px'>
-            <table class='table' style='margin-bottom:0px'>
+          <td colspan='2'>
+            <table class='table'>
               <tbody>
 
-                <tr ng-repeat="answer in question.answers" class='score-value valueColor-{{answer.value}}'>
+                <tr ng-repeat="answer in question.answers" class='score-value valueColor-{{answer.value}}' ng-class="{'selected' : question.score.value == answer.value}">
                   <td><ng-include src="'client/views/shared/responses/score_count.html'"></ng-include></td>
                   <td>{{answer.value}}</td>
                   <td>{{answerTitle(answer.value)}}</td>
@@ -48,8 +45,8 @@
         </tr>
 
         <tr class='evidence-row' ng-show="question.answersVisible">
-          <td colspan='2' style='padding:0px'>
-            <table class='table' style='margin-bottom:0px'>
+          <td colspan='2'>
+            <table class='table'>
               <thead>
                 <tr><th colspan='4'>Evidence Discussion</th></tr>
               </thead>
@@ -70,6 +67,43 @@
                           </tr>
                         </tbody>
                       </table>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr class='consensus-row' ng-show="question.answersVisible">
+          <td colspan='2'>
+            <table class='table'>
+              <thead>
+                <tr><th colspan='4'>Consensus Scoring</th></tr>
+              </thead>
+              <tbody>
+                <tr class='consensus-value'>
+                  <td>&nbsp;</td>
+                  <td>
+                    <div class='consensus-scoring'>
+                      <alert class="alert" ng-show="question.isAlert" type="danger">Please add evidence before saving your answer.</alert>
+
+                      <p class='consensus-header'>Notes</p>
+                      <div ng-show="isReadOnly" ng-bind-html="question.score.evidence"></div>
+                      <div ng-hide="isReadOnly">
+                        <textarea ng-hide="isReadOnly" ng-model="question.score.evidence" placeholder="Write evidence of why you believe this is the correct score for this question. Skip to next question if you're not sure.">
+                        </textarea>
+                      </div>
+                      
+                      <p class='consensus-header'>Score</p>
+                      <div class="row">
+                        <div class="answer col-md-3" ng-repeat="answer in question.answers">
+                          <button class='btn btn-block' ng-class="{'btn-value-{{$index+1}}': answer.value == question.score.value}" ng-click="assignAnswerToQuestion(answer, question)">
+                            {{$index+1}}
+                          </button>
+                        </div>
+                      </div>
+
                     </div>
                   </td>
                 </tr>
