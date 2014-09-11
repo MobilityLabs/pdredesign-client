@@ -77,12 +77,5 @@ PDRClient.controller('HomeCtrl', [
         output += "</p>" + "</div></div>";
         return output;
       }
-
-      SessionService.setUserTemplate(
-        $scope,
-        'client/views/home/home_user.html',
-        'client/views/home/home_anon.html'
-      );
-
     }
 ]);

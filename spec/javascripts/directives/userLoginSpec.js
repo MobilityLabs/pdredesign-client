@@ -72,7 +72,7 @@ describe('Directive: userLogin', function() {
         spyOn($location, 'path');
         submitForm();
 
-        expect($location.path).toHaveBeenCalledWith('/');
+        expect($location.path).toHaveBeenCalledWith('/home');
     }));
 
     it('emits session_updated',

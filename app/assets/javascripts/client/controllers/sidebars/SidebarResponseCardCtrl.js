@@ -31,7 +31,6 @@ PDRClient.controller('SidebarResponseCardCtrl', [
           $scope.isReadOnly = data.is_completed || false;
       });
 
-      $(".punchcard").affix();
       $scope.updateScores();
     });
 

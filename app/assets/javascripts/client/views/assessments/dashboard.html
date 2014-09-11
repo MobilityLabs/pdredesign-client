@@ -21,13 +21,18 @@
   </div>
 </div>
 
-<div class='row-bg row-body'>
+<div class='row-bg'>
   <div class='container'>
     <div class='row'>
       <div class='col-md-9'>
         <div id='participants' ng-show="assessment.is_facilitator">
           <div class='row'>
-            <p class='header'><span class='stat'>{{assessment.participant_count}} </span> Participants </p>
+              <div class='col-md-12 header'>
+                <h2>
+                  <span class='stat'>{{assessment.participant_count}} </span>
+                  Participants
+                </h2>
+              </div>
               <div class='col-md-6 col-sm-6' ng-repeat="user in assessment.participants">
                 <div class='row row-participant' >
                   <div class='col-md-2 col-sm-2 col-xs-2'>
@@ -46,11 +51,17 @@
               </div>
           </div>
         </div>
-        <manage-participants data-send-invite="true" data-assessment-id="{{assessment.id}}"></manage-participants>
+        <manage-participants data-send-invite="true" data-assessment-id="{{assessment.id}}">
+        </manage-participants>
+        
         <invite-user data-assessment-id="{{assessment.id}}"></invite-user>
 
         <div id='messages' ng-show="assessment.messages">
-          <p class='header'><span class='stat'>{{assessment.messages.length}}</span> Sent Messages</p>
+          <div class='col-md-12 header'>
+            <h2>
+              <span class='stat'>{{assessment.messages.length}}</span> Sent Messages
+            </h2>
+          </div>
 
           <div ng-repeat="message in assessment.messages">
             <div class='row'>

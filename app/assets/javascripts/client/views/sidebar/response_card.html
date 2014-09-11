@@ -1,18 +1,18 @@
-<div class="row">
-  <div class="sidebar">
-    <div id='response-sidebar' data-spy="affix" data-offset-top="40" data-offset-bottom="200">
+  <div class="row sidebar">
+    <div id='response-sidebar'>
       <div class='punchcard'>
-        <div class="type">
-          <p ng-hide="isResponse()">Consensus</p>
-          <p ng-show="isResponse()">Response</p>
+        <div class="col-md-12">
+          <h1 ng-hide="isResponse()">Consensus</h1>
+          <h1 ng-show="isResponse()">Response</h1>
+
+          <h3 class="sidebar-title">
+            Saved Answers
+            <span class='score-count'>
+              ({{answeredQuestions()}}/{{questions.length}})
+            </span>
+          </h3>
         </div>
-        <p class="sidebar-title">
-          Saved Answers
-          <span class='score-count'>
-            ({{answeredQuestions()}}/{{questions.length}})
-          </span>
-        </p>
-        <div class='card'>
+        <div class='col-md-12 card'>
           <span>
             <a href="" ng-click="scrollTo($index+1)" ng-repeat="question in questions" >
               <span class="fa-stack fa-md">
@@ -22,19 +22,20 @@
             </a>
           </span>
         </div>
-
-      <button
-        ng-show="canSubmit()"
-        class="submit btn btn-primary btn-block btn-lg"
-        data-toggle="modal"
-        data-target="#assessmentReview"
-        ng-click="submitResponseModal()">
-          <span ng-show='isResponseCompleted()'>Update Response</span>
-          <span ng-hide='isResponseCompleted()'>Submit Response</span>
-      </button>
+        <div class='col-md-12 flush'>
+          <button
+            ng-show="canSubmit()"
+            class="submit btn btn-primary btn-block btn-lg"
+            data-toggle="modal"
+            data-target="#assessmentReview"
+            ng-click="submitResponseModal()">
+              <span ng-show='isResponseCompleted()'>Update Response</span>
+              <span ng-hide='isResponseCompleted()'>Submit Response</span>
+          </button>
+        </div>
       </div>
 
-    <ng-include src="'client/views/sidebar/minimal.html'"></ng-include>
+    
     </div>
+    <ng-include src="'client/views/sidebar/minimal.html'"></ng-include>
   </div>
-</div>

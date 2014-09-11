@@ -1,15 +1,12 @@
 <div class="home-controller">
   <user-header></user-header>
-
-  <div class="container">
-
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-12">
         <h1>Where to start?</h1>
         You can use any of the tools or resources in the process. We recommend you start with the Readiness Assessment.
         <start-assessment></start-assessment>
         <div ng-if="isNetworkPartner()">
-          <div class="row start-assessment">
+          <div class="row add-district plus-button">
             <a href="#/settings">
               <div class="col-sm-1 col-md-1">
                 <i class="fa fa-plus"></i>
@@ -25,7 +22,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-12">
         <h1>PD System Redesign Tool Kit</h1>
         Learn more about the tools currently under development as part of the PDredesign process.
 
@@ -65,26 +62,20 @@
     </div>
 
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-12">
         <add-tool ng-if="isNetworkPartner()" tools="tools"></add-tool>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-9">
-        <div class="design-principles">
-          <h1>Design Principles</h1>
-          <div class="icons">
-            <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-font fa-stack-1x"></i></span> Common Language &amp; Frameworks
-            <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-group fa-stack-1x"></i></span> Cross-Team Collaboration
-            <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-user fa-stack-1x"></i></span> Teacher Centered Design
-            <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-comments fa-stack-1x"></i></span> Actionable Feedback
-            <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-refresh fa-stack-1x"></i></span> Continuous Improvement
-          </div>
-
-        </div>
+    <div class="design-principles">
+      <h1>Design Principles</h1>
+      <div class="icons">
+        <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-font fa-stack-1x"></i></span> Common Language &amp; Frameworks
+        <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-group fa-stack-1x"></i></span> Cross-Team Collaboration
+        <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-user fa-stack-1x"></i></span> Teacher Centered Design
+        <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-comments fa-stack-1x"></i></span> Actionable Feedback
+        <span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-refresh fa-stack-1x"></i></span> Continuous Improvement
       </div>
-    </div>
 
-  </div>
+    </div>
 </div>

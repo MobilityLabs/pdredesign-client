@@ -1,52 +1,53 @@
-<div>
-  <h3 class="heading">Sign in to PDredesign</h3>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="heading">Sign in to PDredesign</h3>
 
-  <div>
-    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-  </div>
+    <div>
+      <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+        {{alert.msg}}
+      </alert>
+    </div>
 
-  <form ui-keypress="{13:'authenticate(email, password)'}">
-  <div class"row">
-    <div class="input col-md-12">
-      <input autofocus
-             id="email"
-             class="form-control"
-             type="text"
-             placeholder="Email Address"
-             ng-model="email"/>
+    <form ui-keypress="{13:'authenticate(email, password)'}">
+    <div class"row">
+      <div class="input col-md-12">
+        <input autofocus
+               id="email"
+               class="form-control"
+               type="text"
+               placeholder="Email Address"
+               ng-model="email"/>
+      </div>
+      <div class="input col-md-12">
+        <input class="form-control"
+               id="password"
+               type="password"
+               placeholder="Password"
+               ng-model="password"/>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input
+            name="user[remember_me]"
+            type="hidden"
+            value="0">
+          <input
+            id="user_remember_me"
+            name="user[remember_me]"
+            type="checkbox" value="1">
+              Remember Me
+          <a href="#/reset">Forgot Password?</a>
+        </label>
+      </div>
+      <div class="input col-md-12">
+        <input class="btn btn-devise btn-info btn-block"
+               id="authenticate"
+               name="commit"
+               type="submit"
+               value="Sign In"
+               ng-click="authenticate(email, password)"/>
+      </div>
     </div>
+    </form>
   </div>
-  <div class"row">
-    <div class="input col-md-9">
-      <input class="form-control"
-             id="password"
-             type="password"
-             placeholder="Password"
-             ng-model="password"/>
-    </div>
-    <div class="input col-md-3">
-      <input class="btn btn-devise btn-info btn-block"
-             id="authenticate"
-             name="commit"
-             type="submit"
-             value="Sign In"
-             ng-click="authenticate(email, password)"/>
-    </div>
-  </div>
-  </form>
-  <div class="checkbox">
-    <label>
-      <input
-        name="user[remember_me]"
-        type="hidden"
-        value="0">
-      <input
-        id="user_remember_me"
-        name="user[remember_me]"
-        type="checkbox" value="1">
-          Remember Me &nbsp; • &nbsp;
-      <a href="#/reset">Forgot Password?</a>
-    </label>
-  </div>
-
 </div>

@@ -49,8 +49,9 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
    .state('assessment_assign', {
      url: '/assessments/:id/assign',
      authenticate: true,
+     showFullWidth: true,
      views: {
-       '': {
+       'full-width': {
          controller: 'AssessmentAssignCtrl',
          templateUrl: 'client/views/assessments/assign/assign.html'
        }

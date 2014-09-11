@@ -26,7 +26,7 @@ PDRClient.directive('userLogin', ['SessionService',
                   if($scope.redirect)
                     $location.url($scope.redirect);
                   else
-                    $location.url('/');
+                    $location.url('/home');
 
                   $rootScope.$broadcast('session_updated');
                 }, function() {

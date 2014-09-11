@@ -1,14 +1,6 @@
 .footer
-  position: relative
-  margin-top: 3em
-  z-index: 5
-  *
-    z-index: 2
-
-  .row.first
+  .first
     height: 4em
-    .container
-      height: initial
     background-color: #2C373D
     color: #fff
     span
@@ -20,23 +12,28 @@
       color: #fff
       a
         margin-left: .5em
-    .logo
+  .logo
+    z-index: 10
+    img
+      max-width: 8em
+      width: 100%
       position: absolute
       bottom: 0
 
-  .row.second
+  .second
     line-height: 3.5em
     color: #fff
     background-color: #03232E
-    .copy
+  .copy
+    text-align: center
+    font-size: 1em
+    color: #fff
+    span
       font-size: 1em
       color: #fff
-      span
-        font-size: 1em
-        color: #fff
-        margin-left: 0.5em
-      a
-        font-size: 1em
-        color: #fff
-      a:hover
-        text-decoration: none
+      margin-left: 0.5em
+    a
+      font-size: 1em
+      color: #fff
+    a:hover
+      text-decoration: none
