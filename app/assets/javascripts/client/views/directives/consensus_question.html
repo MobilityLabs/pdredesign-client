@@ -11,11 +11,11 @@
       {{category.name}}
     </p>
 
-    <table class='table table-question table-form question-{{question.id}}' ng-repeat="question in category.questions">
+    <table class='table table-question table-consensus question-{{question.id}}' ng-repeat="question in category.questions">
       <tbody>
         
         <tr class='question-row' ng-click="toggleAnswers(question)">
-          <td id='question-{{question.id}}' class="question-id scored-{{question.score.value}}" ng-class="{'scored-skipped' : skipped(question)}">{{question.number}}</td>
+          <td id='question-{{question.id}}' class="question-id scored-{{question.score.value}}">{{question.number}}</td>
           <td class='question-content' colspan='3'>
             <p class='question'>{{question.headline}}:</p>
             <p class='content'>{{question.content}}</p>
@@ -23,80 +23,57 @@
         </tr>
 
         <tr class='scores-row' ng-show="question.answersVisible">
-          <td style='border-bottom:none;'>&nbsp;</td>
-          <td style='padding:0px'>
+          <td colspan='2' style='padding:0px'>
             <table class='table' style='margin-bottom:0px'>
               <tbody>
 
-                <tr ng-repeat-start="answer in question.answers" ng-init='question.score.editMode = (question.score.value != null || skipped(question)) ? true : false' class='score-value valueColor-{{answer.value}}' ng-class="{'selected' : question.score.value == answer.value}" ng-click="assignAnswerToQuestion(answer, question)">
+                <tr ng-repeat="answer in question.answers" class='score-value valueColor-{{answer.value}}'>
+                  <td><ng-include src="'client/views/shared/responses/score_count.html'"></ng-include></td>
                   <td>{{answer.value}}</td>
                   <td>{{answerTitle(answer.value)}}</td>
                   <td>{{answer.content}}</td>
                 </tr>
                 
-                <tr ng-repeat-end class='score-evidence valueColor-{{answer.value}}' ng-class="{'selected' : question.score.value == answer.value}" ng-show="question.score.value == answer.value">
-                  <td colspan='2'>&nbsp;</td>
-                  <td style='color:#333'>
-
-                    <div ng-show="question.score.editMode" class='evidence-read'>
-                      <div class='evidence' ng-bind-html="question.score.evidence"></div>
-                      <div class="edit-holder">
-                        <button class='btn btn-primary edit-button'
-                          ng-click="editAnswer(question.score)">
-                          <i class='fa fa-edit'></i> Edit
-                        </button>
-                      </div>
-                    </div>
-
-                    <div ng-hide="question.score.editMode" class='evidence-write'>
-                      <textarea ng-model="question.score.evidence"></textarea>
-                      <div class="save-holder">
-                        <button class='btn btn-primary save-button'
-                          ng-disabled="invalidEvidence(question)"
-                          ng-click="saveEvidence(answer, question)">
-                          <i class='fa fa-save'></i> Save
-                        </button>
-                      </div>
-                    </div>
-
-                  </td>
-                </tr>
-
-                <tr class='score-value valueColor-skipped' ng-class="{'selected' : skipped(question)}" ng-click="skipQuestion(question)">
+                <tr class='score-value valueColor-skipped'>
+                  <td><ng-include src="'client/views/shared/responses/score_count.html'"></ng-include></td>
                   <td>S</td>
                   <td>Skip Question</td>
                   <td>If you're unsure of the correct response to this question, choose this option to skip it and move on. You can still leave a comment if you choose to skip the question.</td>
                 </tr>
 
-                <tr class='score-evidence valueColor-skipped' ng-class="{'selected' : skipped(question)}" ng-show="skipped(question)">
-                  <td colspan='2'>&nbsp;</td>
-                  <td style='color:#333'>
-
-                    <div ng-show="question.score.editMode" class='evidence-read'>
-                      <div class='evidence' ng-bind-html="question.score.evidence"></div>
-                      <div class="edit-holder">
-                        <button class='btn btn-primary edit-button'
-                          ng-click="editAnswer(question.score)">
-                          <i class='fa fa-edit'></i> Edit
-                        </button>
-                      </div>
-                    </div>
-
-                    <div ng-hide="question.score.editMode" class='evidence-write'>
-                      <textarea ng-model="question.score.evidence" placeholder="You may leave comments here if you'd like. Otherwise, your choice of 'Skip' has been marked for this question."></textarea>
-                      <div class="save-holder">
-                        <button class='btn btn-primary save-button'
-                          ng-click="saveEvidence({value: null}, question)" ng-hide="question.score.evidence == null || question.score.evidence == ''">
-                          <i class='fa fa-save'></i> Save
-                        </button>
-                      </div>
-                    </div>
-
-                  </td>
-                </tr>
-
               </tbody>
 
+            </table>
+          </td>
+        </tr>
+
+        <tr class='evidence-row' ng-show="question.answersVisible">
+          <td colspan='2' style='padding:0px'>
+            <table class='table' style='margin-bottom:0px'>
+              <thead>
+                <tr><th colspan='4'>Evidence Discussion</th></tr>
+              </thead>
+              <tbody>
+                <tr class='evidence-value'>
+                  <td>&nbsp;</td>
+                  <td>
+                    <div class='evidence-list box-scroll'>
+                      <table class='table table-evidence valueColor-{{score.value}}' ng-repeat="score in scores| filter: {question_id: question.id}">
+                        <tbody>
+                          <tr>
+                            <td>{{score.value}}</td>
+                            <td ng-bind-html="score.evidence"></td>
+                          </tr>
+                          <tr>
+                            <td><avatar data-width="100%" data-avatar="{{score.participant.avatar}}"/></td>
+                            <td>by: <a href="">{{score.participant.full_name}}</a> on: {{score.participant.updated_at | amDateFormat:'MMMM Do, YYYY'}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </td>
         </tr>
