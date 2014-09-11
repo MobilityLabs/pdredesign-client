@@ -1,19 +1,19 @@
 <div class="sort-row">
   <h4 class='pull-left'>Sort By:</h4>
   <div class="btn-group pull-left">
-    <button type="button" class="btn btn-default" ng-click="changeViewMode('category')" ng-class="{'active': viewMode == 'numeric'}">
+    <button type="button" class="btn btn-default" ng-click="changeViewMode('numeric')" ng-class="{'active': viewMode == 'numeric'}">
       <i class="fa fa-sort-numeric-asc"></i>
       Numeric
     </button>
-    <button type="button" class="btn btn-default" ng-click="changeViewMode('variance')" ng-model="viewMode" ng-class="{'active': viewMode == 'variance'}">
+    <button type="button" class="btn btn-default" ng-click="changeViewMode('variance')" ng-class="{'active': viewMode == 'variance'}">
       <i class="fa fa-bar-chart-o"></i>
       Variance
     </button>
-    <button type="button" class="btn btn-default"  ng-class="{'active': viewMode == 'popularity'}">
+    <button type="button" class="btn btn-default" ng-click="changeViewMode('popularity')" ng-class="{'active': viewMode == 'popularity'}">
       <i class="fa fa-fire"></i>
       Popularity
     </button>
-    <button type="button" class="btn btn-default" ng-class="{'active': viewMode == 'buzz'}">
+    <button type="button" class="btn btn-default" ng-click="changeViewMode('buzz')" ng-class="{'active': viewMode == 'buzz'}">
       <i class="fa fa-comments"></i>
       Buzz
     </button>

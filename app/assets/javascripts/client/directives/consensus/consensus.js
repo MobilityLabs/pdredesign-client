@@ -78,12 +78,50 @@ PDRClient.directive('consensus', [
             return sorted;
           };
 
-          $scope.sortByPopularity = function(scores) {
-            return $scope.data;
+          $scope.sortByPopularity = function(categories) {
+            var tmpObject = {};
+            var keys      = [];
+
+            angular.forEach(categories, function(category, _key) {
+              angular.forEach(category.questions, function(question, key) {
+                if(typeof tmpObject[question.popularity] == 'undefined')
+                  tmpObject[question.popularity] = {"name": question.popularity, "questions": []};
+                keys.push(question.popularity);
+                tmpObject[question.popularity]["questions"].push(question);
+              });
+            });
+
+            keys
+              .sort()
+              .reverse();
+
+            var sorted    = {};
+            angular.forEach(keys, function(key) { sorted[key] = tmpObject[key]; });
+
+            return sorted;
           };
 
-          $scope.sortByBuzz = function(scores) {
-            return $scope.data;
+          $scope.sortByBuzz = function(categories) {
+            var tmpObject = {};
+            var keys      = [];
+
+            angular.forEach(categories, function(category, _key) {
+              angular.forEach(category.questions, function(question, key) {
+                if(typeof tmpObject[question.buzz] == 'undefined')
+                  tmpObject[question.buzz] = {"name": question.buzz, "questions": []};
+                keys.push(question.buzz);
+                tmpObject[question.buzz]["questions"].push(question);
+              });
+            });
+
+            keys
+              .sort()
+              .reverse();
+
+            var sorted    = {};
+            angular.forEach(keys, function(key) { sorted[key] = tmpObject[key]; });
+
+            return sorted;
           };
 
           $scope.changeViewMode = function(mode) {
@@ -98,11 +136,11 @@ PDRClient.directive('consensus', [
                 break;
               case 'popularity':
                 $scope.viewMode = 'popularity';
-                $scope.categories = $scope.sortByNumeric();
+                $scope.categories = $scope.sortByPopularity($scope.data);
                 break;
               case 'buzz':
                 $scope.viewMode = 'buzz';
-                $scope.categories = $scope.sortByNumeric();              
+                $scope.categories = $scope.sortByBuzz($scope.data);              
                 break;
             }
           };
