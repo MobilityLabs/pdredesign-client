@@ -1,11 +1,12 @@
 <div class='report'>
   <div class='row-bg row-header'>
-    <div class='container'>
       <div class='row'>
-        <div class="col-md-9">
-          <p class="greeting">{{currentUser.first_name}}</p>
-          <p class="byline">organized by: <a href="#">{{assessment.facilitator.full_name}} </a>
-          on {{assessment.created_at | amDateFormat:'MMMM Do, YYYY'}}</p>
+        <div class="col-md-12">
+          <h1 class="greeting">{{currentUser.first_name}}</h1>
+          <h4 class="byline">organized by: 
+            <a href="#">{{assessment.facilitator.full_name}} </a>
+            on {{assessment.created_at | amDateFormat:'MMMM Do, YYYY'}}
+          </h4>
 
           <p id="report-header">
             {{assessment.overview.text}}
@@ -16,12 +17,10 @@
           data-assessment-id="{{assessment.id}}"></assessment-priority>
         </div>
       </div>
-    </div>
   </div>
   <div class='row-bg row-body'>
-    <div class='container'>
       <div class='row'>
-        <div class='col-md-9'>
+        <div class='col-md-12'>
           <h2>Report Detail</h2>
           <div class='axis col-md-4' ng-repeat='axis in report.axes'>
             <h4>{{axis.name}}</h4>
@@ -59,16 +58,12 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <take-away assessment-id="{{id}}"></take-away>
-    </div>
+  <div class="row">
+    <take-away assessment-id="{{id}}"></take-away>
   </div>
-  <div class="container">
     <div class="row">
-      <div class="col-md-9 col-sm-12">
+      <div class="col-md-12 col-sm-12">
         <div id="next-steps">
           <h2>Next Steps</h2>
 
@@ -154,5 +149,4 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
