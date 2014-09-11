@@ -1,21 +1,23 @@
-<div class="row">
-  <div class="col-md-1 label">
-    <h3>Sort By:</h3>
-  </div>
-  <div class="col-md-5">
-    <div class="btn-group">
-      <button type="button" class="btn btn-default">
-        <i class="fa fa-fire"></i>
-        Popularity
-      </button>
-      <button type="button" class="btn btn-default" ng-click="changeViewMode('category')">
-        <i class="fa fa-sort-numeric-asc"></i>
-        Numeric
-      </button>
-      <button type="button" class="btn btn-default" ng-click="changeViewMode('variance')" ng-model="viewMode">
-        <i class="fa fa-bar-chart-o"></i>
-        Variance
-      </button>
-    </div>
+<div class="sort-row">
+  <h4 class='pull-left'>Sort By:</h4>
+  <div class="btn-group pull-left">
+    <button type="button" class="btn btn-default" ng-click="changeViewMode('category')" ng-class="{'active': viewMode == 'numeric'}">
+      <i class="fa fa-sort-numeric-asc"></i>
+      Numeric
+    </button>
+    <button type="button" class="btn btn-default" ng-click="changeViewMode('variance')" ng-model="viewMode" ng-class="{'active': viewMode == 'variance'}">
+      <i class="fa fa-bar-chart-o"></i>
+      Variance
+    </button>
+    <button type="button" class="btn btn-default"  ng-class="{'active': viewMode == 'popularity'}">
+      <i class="fa fa-fire"></i>
+      Popularity
+    </button>
+    <button type="button" class="btn btn-default" ng-class="{'active': viewMode == 'buzz'}">
+      <i class="fa fa-comments"></i>
+      Buzz
+    </button>
   </div>
 </div>
+
+<div class='clearfix'></div>

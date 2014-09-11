@@ -48,10 +48,10 @@ PDRClient.directive('consensus', [
             ResponseHelper.assignAnswerToQuestion($scope, answer, question);
           }
 
-          $scope.viewModes = [{label: "Category"}, {label: "Variance"}];
+          $scope.viewModes = [{label: "Numeric"}, {label: "Variance"}, {label: "Popularity"}, {label: "Buzz"}];
           $scope.viewMode  = $scope.viewModes[0];
 
-          $scope.sortByCategory = function() {
+          $scope.sortByNumeric = function() {
             return $scope.data;
           };
 
@@ -78,13 +78,31 @@ PDRClient.directive('consensus', [
             return sorted;
           };
 
+          $scope.sortByPopularity = function(scores) {
+            return $scope.data;
+          };
+
+          $scope.sortByBuzz = function(scores) {
+            return $scope.data;
+          };
+
           $scope.changeViewMode = function(mode) {
             switch(mode.toLowerCase()) {
-              case 'variance':
-                $scope.categories = $scope.sortByVariance($scope.data);
+              case 'numeric':
+                $scope.viewMode = 'numeric'
+                $scope.categories = $scope.sortByNumeric();          
                 break;
-              case 'category':
-                $scope.categories = $scope.sortByCategory();
+              case 'variance':
+                $scope.viewMode = 'variance';
+                $scope.categories = $scope.sortByVariance($scope.data);                
+                break;
+              case 'popularity':
+                $scope.viewMode = 'popularity';
+                $scope.categories = $scope.sortByNumeric();
+                break;
+              case 'buzz':
+                $scope.viewMode = 'buzz';
+                $scope.categories = $scope.sortByNumeric();              
                 break;
             }
           };
@@ -108,6 +126,7 @@ PDRClient.directive('consensus', [
                 $scope.categories = data.categories;
                 $scope.isReadOnly = data.is_completed || false;
                 $scope.participantCount = data.participant_count;
+                $scope.viewMode = 'numeric';
               });
           });
 
