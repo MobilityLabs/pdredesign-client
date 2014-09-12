@@ -56,7 +56,7 @@ describe('Controller: AssessmentsCtrl', function() {
     });
 
     it('Participant should return is_participant true', function() {
-       permission = scope.permissionsFilter('Participant');
+       permission = scope.permissionsFilter('Observer');
       expect(permission).toEqual({ is_participant : true  })
     });
   });

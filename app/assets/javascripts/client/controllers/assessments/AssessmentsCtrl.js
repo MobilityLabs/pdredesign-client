@@ -8,7 +8,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       $scope.selectedPermission = "";
       $scope.selectedDistrict = "";
       $scope.selectedStatus = "";
-      $scope.permissionTypes = ["Organizer", "Participant"];
+      $scope.permissionTypes = ["Organizer", "Observer"];
 
       $scope.$watch('user', function(){
         if(!$scope.user) return;
@@ -53,7 +53,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       $scope.statuses = $scope.statusesOptions(assessments);
 
       $scope.permissionsFilter = function(filter){
-        if(filter == "Participant")
+        if(filter == "Observer")
           return {is_participant: true};
 
         if(filter == "Organizer")
