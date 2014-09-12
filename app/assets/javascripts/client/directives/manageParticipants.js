@@ -6,7 +6,9 @@ PDRClient.directive('manageParticipants', ['SessionService', 'Assessment', '$tim
         templateUrl: 'client/views/directives/manage_participants.html',
         scope: {
           'assessmentId': '@',
-          'sendInvite': '@'
+          'sendInvite': '@',
+          'iconSpan': '@',
+          'headingSpan': '@'
         },
         controller: ['$scope', '$modal', 'Participant', function($scope, $modal, Participant) {
           

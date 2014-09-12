@@ -1,207 +1,160 @@
-.assign-assessment
+.row.row-wizard
+  margin: 1em 0
+  padding-top: 8px
+  border-top: 2px solid #e3e1db
+  p.greeting
+    font-size: 2em
+    font-weight: bold
+  i.fa.fa-envelope-o
+    color: white
+  button.right
+    margin-left: 0.625em
 
+  .update-holder
+    padding: 0em
+
+  .byline
+    color: #999
+    font-style: italic
+    margin-bottom: 1.25em
+  .wizard-step
+    font-style: italic
+    font-weight: bold
+    font-size: 24px
+    color: #70706e
+    margin-top: 5px
+    font-family: "Droid Serif"
+    .fa-stack
+      font-size: 0.9em
+      .fa-circle
+        color: white
+      .fa-text
+        font-size: 1.1em
+        color: #70706e
+        font-family: "Droid Serif"
+        font-weight: bold
+        font-style: italic
+  .wizard-instruction
+    font-style: italic
+    font-size: 11px
+    color: #70706e
+    font-family: "Droid Serif"
+
+.section-header
+  font-size: 30px
+  font-weight: bold
+  line-height: 1.2em
+  margin-bottom: 0px
+  
+.section-subheader
+  font-size: 17px
+  font-weight: 300
+
+.row-settings
+  label
+    color: #63686d
+    font-size: 16px
+    font-weight: normal
+  margin-bottom: 20px
   .assessment-name
-    font-size: 30px
+    font-size: 2em
     font-weight: bold
-    margin-bottom: 15px
+    margin-bottom: 1em
 
-  .row-settings
-
-    label
-      color: #63686d
-      font-size: 16px
-      font-weight: normal
-
-    margin-bottom: 20px
-
-  .row.row-wizard
-    margin: 1em 0
-    padding-top: 8px
-    border-top: 2px solid #e3e1db
-    p.greeting
-      font-size: 2em
-      font-weight: bold
-    i.fa.fa-envelope-o
-      color: white
-    button.right
-      margin-left: 0.625em
-
-    .update-holder
-      padding: 0em
-
-    .byline
-      color: #999
-      font-style: italic
-      margin-bottom: 1.25em
-    .wizard-step
-      font-style: italic
-      font-weight: bold
-      font-size: 24px
-      color: #70706e
-      margin-top: 5px
-      font-family: "Droid Serif"
-      .fa-stack
-        font-size: 0.9em
-        .fa-circle
-          color: white
-        .fa-text
-          font-size: 1.1em
-          color: #70706e
-          font-family: "Droid Serif"
-          font-weight: bold
-          font-style: italic
-
-
-    .wizard-instruction
-      font-style: italic
-      font-size: 11px
-      color: #70706e
-      font-family: "Droid Serif"
-
-
-  .section-header
-    font-size: 30px
-    font-weight: bold
-    line-height: 1.2em
-    margin-bottom: 0px
-  .section-subheader
-    font-size: 17px
-    font-weight: 300
-
-  .row-participant-headers
-    font-weight: bold
-    margin-bottom: 5px
-
-
-  .row-participant
-
-    background-color: #f7f9fa
-    margin-bottom: 10px
-    vertical-align: middle
-    border-bottom: 2px solid #dcdbd4
-    &:hover
-      box-shadow:  0px 2px 0px #d4d2c8
-      background-color: #e5f1f5
-      cursor: pointer
-
-    .col-md-1:first-child
-      background-color: #f2f1ef
-      border-bottom: 1px solid #f2f1ef
-      margin-bottom: -2px
-      // &: hover box-shadow: nonebackground-color: nonecursor: normal
-
-    .name
-      font-family:  "Droid Serif"
-      font-style: italic
-      font-weight: 700
-      font-size: 16px
-      color: #8a1d30
-      margin-top: 16px
-
-    .info
-      margin-top: 16px
-
-  .row-invite
-    i
-      color: white
+.row-participant
+  background-color: #f7f9fa
+  margin: 1em 0em
+  vertical-align: middle
+  border-bottom: 0.1em solid #dcdbd4
+  .col-xs-4:first-child
+    padding-left: 0em
+    .media
+      margin-bottom: 0em
+  .name
+    font-family:  "Droid Serif"
+    font-style: italic
+    font-weight: 700
+    font-size: 1em
+    color: #8a1d30
+    margin-top: 1em
+  .info
+    margin-top: 0.9em
+  .btn
+    margin-top: 1.1em
+    i,span
       font-size: 1em
+      color: white
 
-    margin-bottom: 40px
-    .col-md-1
-      background-color: #f2f1ef
-      text-align: center
-    .plus
-      width: 57px
-      background-color: #148da1
-      font-size: 33px
-      line-height: 1.7em
-      color:  #f7f9fa
-
-
-    .col-md-11
-      background-color: #f7f9fa
-      color: #2a3a41
-      text-align: left
-      font-size: 33px
-      line-height: 1.7em
-      font-weight: bold
-      border-bottom: 2px solid #dcdbd4
-      &:hover
-        box-shadow:  0px 2px 0px #d4d2c8
-        background-color: #e5f1f5
-  .row.row-participant-headers
-    white-space: nowrap
-
-  .message
-    padding-top: 15px
-    padding-bottom: 15px
-    background-color: #f7f9fa
-    box-shadow:  0px 2px 0px #d4d2c8
-    border-left: 1px solid #eae9e6
-    border-right: 1px solid #eae9e6
-    // border: 1px solid #bebcb0
-
-  .hello
-    font-size: 36px
-    font-weight: bold
-    margin-bottom: 15px
-
-
-  .media
-    margin-bottom: 15px
-    .media-heading
-    .name
-      color: #891d31
-      font-weight: bold
-    font-size: 28px
-    line-height: 1.4em
-
-  .removeParticipantAnimation
-    background-color: #AC0000 !important
-    -webkit-transition: linear 2.7s
-    -moz-transition: linear 2.7s
-    -ms-transition: linear 2.7s
-    -o-transition: linear 2.7s
-    transition:all linear 2.7s
-    opacity: 0.0
-
-
-.remove_user_button
-  margin-top: 10px
-  margin-left: 40px
-  color: #4e5e66 !important
-  background-color: white !important
-  border-color: #E9E9E9 !important
+.row-add-participant
+  margin: 1em 0px 0px !important
+  box-shadow: 0 .2em 0 #d4d2c8
   &:hover
-    color: #fff !important
-    background-color: #357ebd !important
-    border-color: #357ebd !important
+    text-decoration: none
+    cursor: pointer
+  .icon
+    background-color: #148da1
+    text-align: center
+    .fa
+      color: #f7f9fa
+      margin: 0
+      font-size: 2em
+      line-height: 2.1em
+  .heading
+    background-color: #f7f9fa
+    &:hover
+      text-decoration: none
+      background-color: #e5f1f5
+    h1
+      margin: 0
+      line-height: 1.9em
+      font-weight: bold
+      font-size: 2.2em
+
+.message
+  padding: 1em
+  background-color: #f7f9fa
+  box-shadow:  0px 0.15em 0px #d4d2c8
+  border-left: 0.1em solid #eae9e6
+  border-right: 0.1em solid #eae9e6
+  .hello
+    font-size: 2.2em
+    font-weight: bold
+    margin-bottom: 0.5em
+  .media
+    margin: 0.5em 0em
+
+.removeParticipantAnimation
+  background-color: #AC0000 !important
+  -webkit-transition: linear 2.7s
+  -moz-transition: linear 2.7s
+  -ms-transition: linear 2.7s
+  -o-transition: linear 2.7s
+  transition:all linear 2.7s
+  opacity: 0.0
 
 .row-participant-add
   background-color: #f7f9fa
-  margin-bottom: 10px
+  margin: 1em 0em
   vertical-align: middle
-  border-bottom: 2px solid #dcdbd4
-  margin-left: 0px !important
-  // &:hover{box-shadow: 0px 2px 0px #d4d2c8background-color:#e5f1f5cursor:pointer}
-  .col-md-1:first-child
-    background-color: #f2f1ef
-    border-bottom: 1px solid #f2f1ef
-    margin-bottom: -2px
-    // &:hover{box-shadow:nonebackground-color:nonecursor:normal}
-
-  p
-    margin-top: 10px
-
-  p.name
-    color: #8a1d30
-    font-size: 14px
+  border-bottom: 0.1em solid #dcdbd4
+  .col-xs-4:first-child
+    padding-left: 0em
+    .media
+      margin-bottom: 0em
+  .name
+    font-family:  "Droid Serif"
+    font-style: italic
     font-weight: 700
-    font-family: "Droid Serif"
-
+    font-size: 1em
+    color: #8a1d30
+    margin-top: 1em
+  .info
+    margin-top: 0.9em
   .btn
-    margin-top: 6px
-
+    margin-top: 1.1em
+    i,span
+      font-size: 1em
+      color: white
 
 .addParticipantAnimation
   background-color: #5b868f !important
@@ -211,8 +164,3 @@
   -o-transition: linear 2.7s
   transition:all linear 2.7s
   opacity: 0.0
-
-#participantModalholder
-  max-height: 400px
-  overflow-y: auto
-  margin-bottom: 20px

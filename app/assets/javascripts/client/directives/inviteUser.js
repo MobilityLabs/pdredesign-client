@@ -5,7 +5,9 @@ PDRClient.directive('inviteUser', ['SessionService', 'UrlService', '$timeout',
         replace: false,
         templateUrl: 'client/views/directives/invite_user.html',
         scope: {
-          'assessmentId': '@'
+          'assessmentId': '@',
+          'iconSpan': '@',
+          'headingSpan': '@'
         },
         controller: ['$scope', '$modal', 'UserInvitation', function($scope, $modal, UserInvitation) {
 

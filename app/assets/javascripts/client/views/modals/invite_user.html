@@ -1,18 +1,20 @@
-<div class="modal-header">
-  <h3 class="modal-title">Add New Paricipant</h3>
-</div>
-<div class="modal-body" id="modal-invite-participant">
+<form name="formInviteParticipant" novalidate>
 
-  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-  <form  name="formInviteParticipant"  novalidate>
+  <div class="modal-header">
+    <h3 class="modal-title">Invite New Participant</h3>
+  </div>
+
+  <div class="modal-body">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
     <div class='row'>
-      <div class='flush-left col-md-4 col-sm-4'>
+      <div class='col-sm-4'>
         <div class="form-group">
           <input placeholder="First Name" type="text" class="form-control" ng-model="inviteUser.first_name" required>
         </div>
       </div>
 
-      <div class='flush-right col-md-8 col-sm-8'>
+      <div class='col-sm-8'>
         <div class="form-group">
           <input placeholder="Last Name" type="text" class="form-control" ng-model="inviteUser.last_name" required>
         </div>
@@ -26,17 +28,15 @@
     <div class="form-group">
       <input placeholder="Team Role (e.g. Finance, HR)" class="form-control" type="text" ng-model="inviteUser.team_role">
     </div>
+  </div>
 
-    <div class="form-group">
-      <div
-        class="btn btn-primary pull-left"
-        ng-disabled="formInviteParticipant.$invalid"
-        ng-click="sendInvite(inviteUser)"
-        data-dismiss="modal">
-          Add to District
-      </div>
+  <div class='modal-footer'>
+    <div class="btn btn-primary pull-right"
+      ng-disabled="formInviteParticipant.$invalid"
+      ng-click="sendInvite(inviteUser)"
+      data-dismiss="modal">
+        Add to Assessment
     </div>
-    <div class='clearfix'>
-    </div>
-  </form>
-</div>
+  </div>
+
+</form>

@@ -2,29 +2,34 @@
   <h3 class="modal-title">Add to Assessment</h3>
 </div>
 
-<div class='row row-participant-headers-modal edit_modal_table_head'>
-  <div class='col-md-1 col-sm-1' style="margin-left: 9px;">&nbsp;</div>
-  <div class='col-md-4 col-sm-4'>Name</div>
-  <div class='col-md-4 col-sm-4'>Email Address</div>
-</div>
-<div id="participantModalholder">
-  <div class="participantholder">
-    <div ng-repeat="user in participants">
-      <div ng-class="{addParticipantAnimation: user.hide == 'yes' }" class='row row-participant-add'>
-        <div class='col-md-1 col-sm-1'>
-          <img alt="" class="img-polaroid pull-right" ng-src="{{user.avatar}}" width="47"></div>
-          <div class='col-md-4 col-sm-4'>
-            <p class='name'>{{user.full_name}}</p>
-          </div>
-          <div class='col-md-4 col-sm-4'>
-            <p class='info'>{{user.email }}</p>
-          </div>
-          <div class='col-md-3 col-sm-3 text-center'>
-            <div class="btn btn-primary pull-right add_to_assessment_button" ng-click="addParticipant(user)">Add to Assessment</div>
-          </div>
+<div class='modal-body'>
+  
+  <div class='row row-participant-headers'>
+    <div class='col-xs-4'><h4>Participant</h4></div>
+    <div class='col-xs-4'><h4>Email Address</h4></div>
+    <div class='col-xs-4'><h4>Team Role</h4></div>
+  </div>
+
+  <div class='row row-participant-add' ng-repeat="user in participants" ng-class="{addParticipantAnimation: user.hide == 'yes' }">
+    <div class='col-xs-4'>
+      <div class="media">
+        <avatar data-avatar="{{user.avatar}}" data-width="50" class='media-object pull-left'></avatar>
+        <div class="media-body"><h4 class='name'>{{ user.full_name}}</h4></div>
+      </div>
+    </div>
+
+    <div class='col-xs-4'>
+      <p class='info'>{{ user.email }}</p>
+    </div>
+
+    <div class='col-xs-4'>
+      <div class='row'>
+        <p class='col-xs-8 info'>{{ user.team_role || 'N.A.' }}</p>
+        <div class="col-xs-3 btn btn-success btn-xs" ng-click="addParticipant(user)">
+          <i class='fa fa-plus'></i> <span class='hidden-xs'>Add</span>
         </div>
       </div>
     </div>
   </div>
-</div>
 
+</div>
