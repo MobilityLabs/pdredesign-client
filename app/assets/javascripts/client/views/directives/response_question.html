@@ -24,9 +24,15 @@
               </p>
             </div>
             <div class="row question-content">
-              <div class="col-md-11">
-                <p class="question">{{question.headline}}</p>
+              <div class="col-md-10">
+                <p class="question">
+                  {{question.headline}}
+                </p>
               </div>
+              <div class="col-md-1">
+                <sample-evidence key-question="question.key_question"></sample-evidence>
+              </div>
+
               <div class="col-md-11">
                 <p class="content">{{question.content}}</p>
               </div>
