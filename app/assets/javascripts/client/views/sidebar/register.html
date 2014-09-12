@@ -32,14 +32,14 @@
       placeholder="Password *"
       type="password">
 
-<!--      <organization-select-->
-        <!--ng-if="$state.current.views.sidebar.is_network_partner"-->
-        <!--messages="errors"-->
-        <!--organization-id="user.organization_id">-->
-      <!--</organization-select>-->
+      <organization-select
+        ng-show="$state.current.views.sidebar.is_network_partner"
+        messages="errors"
+        organization-id="user.organization_ids">
+      </organization-select>
 
-      <district-select 
-        ng-show="!$state.current.views.sidebar.is_network_partner" 
+      <district-select
+        ng-hide="$state.current.views.sidebar.is_network_partner"
         multiple="false"
         districts="user.district_ids">
       </district-select>

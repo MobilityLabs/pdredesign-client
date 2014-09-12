@@ -3,15 +3,15 @@
     <label for="organization">Organization</label>
   </div>
 
-  <div class='col-md-8'>
+  <div class='col-md-8 selector'>
     <input placeholder="Select or add organization" id="organization"/>
   </div>
 
-  <div class='col-md-4'>
+  <div class='col-md-4 action'>
     <button
-    id="select-organization"
-    ng-disabled="buttonDisabled(organization)"
-    class="btn btn-success" ng-click="performAction(organization)">
+      id="select-organization"
+      ng-disabled="buttonDisabled(organization)"
+      class="btn btn-success" ng-click="performAction(organization)">
     {{buttonText(organization)}}
   </button>
 </div>
