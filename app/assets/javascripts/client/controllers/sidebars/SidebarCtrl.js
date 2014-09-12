@@ -10,17 +10,6 @@ PDRClient.controller('SidebarCtrl', ['$scope', '$modal', '$stateParams', 'Sessio
         $scope.role   = $scope.user["role_human"];
       }
 
-      $scope.pdrOverview  = function() {
-        $scope.modal = $modal.open({
-          templateUrl: 'client/views/modals/pdr_overview.html',
-          scope: $scope
-        });
-      };
-
-      $scope.close = function() {
-        $scope.modal.dismiss('cancel');
-      }
-
     }
 
 ]);

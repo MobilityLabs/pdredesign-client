@@ -124,5 +124,6 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       $rootScope.$broadcast('submit_response');
       $rootScope.$broadcast('submit_consensus');
     }
+
   }
 ]);
