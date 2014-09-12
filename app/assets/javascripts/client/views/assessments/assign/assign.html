@@ -76,31 +76,31 @@
 
         <div class='row row-participant-headers'>
           <div class='col-md-1 col-sm-1'>&nbsp;</div>
-          <div class='col-md-3 col-sm-3'>Name</div>
-          <div class='col-md-3 col-sm-3'>Email Address</div>
+          <div class='col-md-2 col-sm-2'>Name</div>
+          <div class='col-md-4 col-sm-4'>Email Address</div>
           <div class='col-md-1 col-sm-3'>Team Role</div>
         </div>
 
-          <div ng-repeat="user in participants">
-            <div class='row row-participant'>
-              <div class='col-md-1 col-sm-1 '>
-                <avatar data-avatar="{{user.avatar}}" data-width="57"></avatar>
+        <div ng-repeat="user in participants">
+          <div class='row row-participant'>
+            <div class='col-md-1 col-sm-1 '>
+              <avatar data-avatar="{{user.avatar}}" data-width="57"></avatar>
 
-              </div>
-              <div class='col-md-3 col-sm-3'>
-                <p class='name'>{{ user.full_name}}</p>
-              </div>
-              <div class='col-md-3 col-sm-3'>
-                <p class='info'>{{ user.email }}</p>
-              </div>
-              <div class='col-md-2 col-sm-3'>
-                <p class='info'>{{ user.team_role || "N/A" }}</p>
-              </div>
-              <div class='col-md-1 col-sm-1 text-center'>
-                <div class="btn btn-primary remove_user_button" ng-click="removeParticipant(user)">Remove</div>
-              </div>
+            </div>
+            <div class='col-md-2 col-sm-2'>
+              <p class='name'>{{ user.full_name}}</p>
+            </div>
+            <div class='col-md-4 col-sm-4'>
+              <p class='info'>{{ user.email }}</p>
+            </div>
+            <div class='col-md-2 col-sm-3'>
+              <p class='info'>{{ user.team_role || "N/A" }}</p>
+            </div>
+            <div class='col-md-1 col-sm-1 text-center'>
+              <div class="btn btn-primary remove_user_button" ng-click="removeParticipant(user)">Remove</div>
             </div>
           </div>
+        </div>
 
         <manage-participants data-assessment-id="{{assessment.id}}"></manage-participants>
         <invite-user data-assessment-id="{{assessment.id}}"></invite-user>
@@ -141,7 +141,7 @@
                       has invited you to participate in {{assessment.name}}
                     </p>
                     <customalert  ng-show='alertError' data-message="{{messageError}}" data-type='error'>
-                        
+
                     </customalert>
                   </div>
                 </div>
