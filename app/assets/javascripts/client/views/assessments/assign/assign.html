@@ -68,11 +68,14 @@
     <div class='row row-wizard'>
       <div class='col-md-2'>
         <p class='wizard-step'>Step <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-text fa-stack-1x">2</i></span></p>
-        <p class='wizard-instruction'> These are the individuals from your district who will receive an invite to participate in the assessment.</p>
+        <p class='wizard-instruction'>
+          These are the individuals from the district who will receive an invite to participate in the assessment.</p>
       </div>
       <div class='col-md-10'>
         <h2>Participants</h2>
-        <p class='section-subheader'>Assign this assessment to team members in your district.</p>
+        <p ng-if="isNetworkPartner()" class='section-subheader'>Recommend the Readiness Assessment to district staff. We recommend inviting 1-2 representatives from different roles and functions involved with PD, including: Teaching & Learning, Human Resources, Curriculum & Instruction, Data & Accountability, Finance, IT, teachers, and principals. You may add participants later on from the dashboard.</p>
+
+        <p ng-if="!isNetworkPartner()" class='section-subheader'>Invite a team of colleagues from your district to participate in the assessment. We recommend inviting 1-2 representatives from different roles and functions involved with PD, including: Teaching & Learning, Human Resources, Curriculum & Instruction, Data & Accountability, Finance, IT, teachers, and principals. You may add participants later on from the dashboard.</p>
 
         <div class='row row-participant-headers'>
           <div class='col-md-1 col-sm-1'>&nbsp;</div>

@@ -131,6 +131,10 @@ PDRClient.controller('AssessmentAssignCtrl', [
         return moment(date).format("ll");
       };
 
+      $scope.isNetworkPartner = function() {
+        return SessionService.isNetworkPartner();
+      };
+
       $timeout(function() {
         $scope.datetime = $('.datetime').datetimepicker({
           pickTime: false,
