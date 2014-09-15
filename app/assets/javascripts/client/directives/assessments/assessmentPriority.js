@@ -4,7 +4,7 @@ PDRClient.directive('assessmentPriority', [
         restrict: 'E',
         replace: true,
         scope: {
-          assessmentId: '@',  
+          assessmentId: '@',
           editable: '@',
         },
         templateUrl: 'client/views/directives/assessment_priority.html',
@@ -50,6 +50,7 @@ PDRClient.directive('assessmentPriority', [
                 .$promise
                 .then(function() {
                   $scope.loading = false;
+                  $scope.updateCategories();
                 });
             };
 
