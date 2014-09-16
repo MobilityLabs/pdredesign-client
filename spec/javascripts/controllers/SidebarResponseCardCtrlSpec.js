@@ -122,5 +122,9 @@ describe('Controller: SidebarResponseCardCtrl', function() {
     });
   });
 
+  it('redirectToAssessmentsIndex redirects in Assessment Index page', function() {
+    $scope.redirectToAssessmentsIndex();
+    expect($location.path()).toEqual('/assessments');
+  });
 
 });

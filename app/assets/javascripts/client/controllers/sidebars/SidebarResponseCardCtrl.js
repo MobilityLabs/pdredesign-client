@@ -90,6 +90,11 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       $anchorScroll();
     };
 
+    $scope.responseTitle = function(){
+      if($scope.isResponse()) return "Response";
+      if(!$scope.isResponse()) return "Consensus";
+    };
+
     $scope.isResponse = function(){
       return $location.url().indexOf("responses") > -1;
     };
@@ -117,6 +122,10 @@ PDRClient.controller('SidebarResponseCardCtrl', [
 
     $scope.cancel = function () {
       $scope.modalInstance.dismiss('cancel');
+    };
+
+    $scope.redirectToAssessmentsIndex = function() {
+      $location.path("/assessments");
     };
 
     $scope.submitResponse = function() {

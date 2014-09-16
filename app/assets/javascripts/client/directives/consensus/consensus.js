@@ -43,7 +43,7 @@ PDRClient.directive('consensus', [
                 question.isAlert = true;
                 return false;
             }
-            
+
             ResponseHelper.assignAnswerToQuestion($scope, answer, question);
           }
 
@@ -88,12 +88,16 @@ PDRClient.directive('consensus', [
             }
           };
 
+          $scope.redirectToDashboard = function(assessmentId) {
+            $location.path("/assessments/" + assessmentId + "/dashboard");
+          };
+
           $scope.$on('submit_consensus', function() {
             Consensus
               .submit({assessment_id: $scope.assessmentId, id: $scope.responseId}, {submit: true})
               .$promise
               .then(function(data){
-                $location.path('/assessments');
+                $scope.redirectToDashboard($scope.assessmentId);
               });
           });
 

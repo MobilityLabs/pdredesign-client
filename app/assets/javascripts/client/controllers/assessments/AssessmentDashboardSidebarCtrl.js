@@ -48,7 +48,7 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', [
         Reminder
           .save({assessment_id: $scope.id}, {message: message})
           .$promise
-          .then(function(){
+          .then(function() {
             $scope.close();  
           });
       };

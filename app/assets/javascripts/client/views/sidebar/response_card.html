@@ -2,9 +2,7 @@
     <div id='response-sidebar'>
       <div class='punchcard'>
         <div class="col-md-12">
-          <h1 ng-hide="isResponse()">Consensus</h1>
-          <h1 ng-show="isResponse()">Response</h1>
-
+          <h1>{{responseTitle()}}</h1>
           <h3 class="sidebar-title">
             Saved Answers
             <span class='score-count'>
@@ -29,13 +27,13 @@
             data-toggle="modal"
             data-target="#assessmentReview"
             ng-click="submitResponseModal()">
-              <span ng-show='isResponseCompleted()'>Update Response</span>
-              <span ng-hide='isResponseCompleted()'>Submit Response</span>
+              <span ng-show='isResponseCompleted()'>Update {{responseTitle()}}</span>
+              <span ng-hide='isResponseCompleted()'>Submit {{responseTitle()}}</span>
           </button>
         </div>
       </div>
 
-    
+
     </div>
     <ng-include src="'client/views/sidebar/minimal.html'"></ng-include>
   </div>
