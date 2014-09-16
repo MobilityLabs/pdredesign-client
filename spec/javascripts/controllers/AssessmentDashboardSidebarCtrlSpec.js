@@ -1,6 +1,7 @@
 describe('Controller: AssessmentDashboardSidebarCtrl', function() {
-  var $scope, $q, subject;
-  var today = new Date();
+  var $scope, $q, $location, $httpBackend, subject;
+
+  var today    = new Date();
   var nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
   var lastWeek = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
 
@@ -11,6 +12,7 @@ describe('Controller: AssessmentDashboardSidebarCtrl', function() {
     $scope       = $rootScope.$new();
     $q           = $injector.get('$q');
     $httpBackend = $injector.get('$httpBackend');
+    $location    = $injector.get('$location');
 
     subject  = $controller('AssessmentDashboardSidebarCtrl', {
       $scope: $scope
@@ -22,7 +24,7 @@ describe('Controller: AssessmentDashboardSidebarCtrl', function() {
   it('sends a reminder to the server', function(){
     $scope.close = function() {};
     $httpBackend.expectPOST('/v1/assessments/99/reminders').respond({});
-
+    
     $scope.id = 99;
     $scope.sendReminder("Something");
     $httpBackend.flush();
@@ -62,6 +64,23 @@ describe('Controller: AssessmentDashboardSidebarCtrl', function() {
   it("reportPresent should be false if consensus submitted_at is null", function() {
     $scope.assessment.submitted_at = null;
     expect($scope.reportPresent()).toEqual(false);
+  });
+
+  describe('#redirectToCreateConsensus', function(){
+    beforeEach(function(){
+      spyOn($scope, 'close');
+    });
+
+    it('sends user to correct URL by passing scope.id', function(){
+      $scope.id = 1;
+      $scope.redirectToCreateConsensus();
+      expect($location.path()).toEqual('/assessments/1/consensus')
+    });
+
+    it('closes the currently open modal', function(){
+      $scope.redirectToCreateConsensus();
+      expect($scope.close).toHaveBeenCalled();
+    });
   });
 
 });

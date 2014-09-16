@@ -2,12 +2,13 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', [
   '$scope',
   '$timeout',
   '$modal',
+  '$location',
   'SessionService',
   'Assessment',
   '$stateParams',
   'Participant',
   'Reminder',
-    function($scope, $timeout, $modal,
+    function($scope, $timeout, $modal, $location
       SessionService, Assessment, $stateParams,
       Participant, Reminder) {
 
@@ -33,6 +34,11 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', [
         });
       };
 
+      $scope.redirectToCreateConsensus = function() {
+        $scope.close();
+        $location.url("/assessments/" + $scope.id + "/consensus");
+      };
+
       $scope.newReminder  = function() {
         $scope.modal = $modal.open({
           templateUrl: 'client/views/modals/new_reminder.html',
@@ -48,8 +54,8 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', [
         Reminder
           .save({assessment_id: $scope.id}, {message: message})
           .$promise
-          .then(function() {
-            $scope.close();  
+          .then(function(){
+            $scope.close();
           });
       };
 

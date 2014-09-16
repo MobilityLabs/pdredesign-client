@@ -89,7 +89,6 @@ PDRClient.directive('assessmentLinks', [
             }
 
             $scope.createConsensusLocation = function() {
-              $scope.modal.dismiss('cancel');
               $location.url($scope.assessmentLink('new_consensus', true));
             };
 
