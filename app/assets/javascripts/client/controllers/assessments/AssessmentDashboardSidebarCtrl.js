@@ -8,7 +8,7 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', [
   '$stateParams',
   'Participant',
   'Reminder',
-    function($scope, $timeout, $modal, $location
+    function($scope, $timeout, $modal, $location,
       SessionService, Assessment, $stateParams,
       Participant, Reminder) {
 
