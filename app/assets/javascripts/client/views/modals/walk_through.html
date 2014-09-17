@@ -1,0 +1,22 @@
+<div class="walk-through-container">
+  <carousel interval="-1">
+    <slide ng-repeat="slide in walkThrough.slides">
+      <div class="row">
+        <div class="col-md-8 slide-image">
+          <img ng-src="{{slide.image}}">
+        </div>
+        <div class="col-md-4 sidebar-content">
+          <h3>{{slide.title}}</h3>
+          <div ng-bind-html="slide.sidebar_content"></div>
+          <button type="button" class="btn btn-default btn-prev" ng-click="$parent.prev()">Previous</button>
+          <button type="button" class="btn btn-primary btn-next" ng-click="$parent.next()">Next</button>
+        </div>
+      </div>
+    </slide>
+  </carousel>
+  <script id="template/carousel/carousel.html" type="text/ng-template">
+    <div class="carousel-inner" ng-transclude></div>
+  </script>
+</div>
+
+
