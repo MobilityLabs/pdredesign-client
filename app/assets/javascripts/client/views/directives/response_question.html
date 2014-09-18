@@ -29,8 +29,8 @@
                   {{question.headline}}
                 </p>
               </div>
-              <div class="col-md-1">
-                <sample-evidence key-question="question.key_question"></sample-evidence>
+              <div class="col-md-1" >
+                <sample-evidence ng-hide="!question.key_question" key-question="question.key_question"></sample-evidence>
               </div>
 
               <div class="col-md-11">
