@@ -1,31 +1,29 @@
 describe('Directive: customalert', function() {
-  var scope;
-  var element;
-  var compile;
+  var $scope,
+      $compile;
 
   beforeEach(module('PDRClient'));
+  beforeEach(inject(function($rootScope, $injector) {
+    $scope   = $rootScope.$new();
+    $compile = $injector.get('$compile');
 
-  it('it is a success alert ', inject(
-    function($rootScope, $compile) {
-      scope   = $rootScope.$new();
-      element = angular.element('<customalert data-message="HeLLO JELOO" data-type="success"></customalert>');
-      $compile(element)(scope);
-      scope.$digest();
-      var div = element.find('div');
-      var attrClass = div.attr('class')
-      expect(attrClass).toEqual('customalert success')
   }));
 
-  it('it is a success alert ', inject(
-    function($rootScope, $compile) {
-      scope   = $rootScope.$new();
-      element = angular.element('<customalert data-message="HeLLO JELOO" data-type="error"></customalert>');
-      $compile(element)(scope);
-      scope.$digest();
-      var div = element.find('div');
-      var attrClass = div.attr('class')
-      expect(attrClass).toEqual('customalert error')
-  }));
+  function compileElement(template) {
+    element = angular.element(template);
+    $compile(element)($scope);
+    $scope.$digest();
+    return element;
+  }
 
+  it('is a success alert ', function() {
+    var element = compileElement('<customalert data-message="HeLLO JELOO" data-type="success"></customalert>');
+    expect(element.find('div').attr('class')).toEqual('customalert success')
+  });
+
+  it('is an error alert', function() {
+    var element = compileElement('<customalert data-message="HeLLO JELOO" data-type="error"></customalert>');
+    expect(element.find('div').attr('class')).toEqual('customalert error')
+  });
 
 });
