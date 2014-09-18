@@ -37,7 +37,7 @@ PDRClient.directive('walkThrough', [
           size: 'lg',
         });
 
-        scope.modal.opened.then(function(){
+        scope.modal.opened.then(function() {
           scope.updateWalkThrough(scope.id);
         });
       };
