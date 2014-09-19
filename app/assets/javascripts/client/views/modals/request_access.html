@@ -11,24 +11,24 @@
     </h3>
 
     <div ng-show="isNetworkPartner()" class="btn-group">
-      <label class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'facilitator'">
-        <i class="fa fa-bullhorn"><span>Organizer</span></i>
-      </label>
-      <label class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'viewer'">
-        <i class="fa fa-eye"><span>Observer</span></i>
-      </label>
+      <span class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'facilitator'">
+        <i class="fa fa-bullhorn"></i><span>Organizer</span>
+      </span>
+      <span class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'viewer'">
+        <i class="fa fa-eye"></i><span>Observer</span>
+      </span>
     </div>
 
     <div ng-show="!isNetworkPartner()" class="btn-group">
-      <label class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'facilitator'">
-        <i class="fa fa-bullhorn"><span>Facilitator</span></i>
-      </label>
-      <label class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'participant'">
-        <i class="fa fa-edit"><span>Participant</span></i>
-      </label>
-      <label class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'viewer'">
-        <i class="fa fa-eye"><span>Viewer</span></i>
-      </label>
+      <span class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'facilitator'">
+        <i class="fa fa-bullhorn"></i><span>Facilitator</span>
+      </span>
+      <span class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'participant'">
+        <i class="fa fa-edit"></i><span>Participant</span>
+      </span>
+      <span class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'viewer'">
+        <i class="fa fa-eye"></i><span>Viewer</span>
+      </span>
     </div>
   </div>
 
