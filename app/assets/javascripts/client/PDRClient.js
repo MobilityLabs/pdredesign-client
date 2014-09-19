@@ -19,12 +19,14 @@ angular.module("PDRClient").run([
   '$rootScope',
   '$state',
   '$stateParams',
-  function ($rootScope, $state, $stateParams) {
+  '$anchorScroll',
+  function ($rootScope, $state, $stateParams, $anchorScroll) {
     $rootScope.$on('$stateChangeStart', function() {
       $rootScope.$broadcast('start_change');
     });
     $rootScope.$on('$stateChangeSuccess', function() {
       $rootScope.$broadcast('success_change');
+      $anchorScroll();
     });
 }]);
 
@@ -43,7 +45,7 @@ angular.module("PDRClient").run(
       if (toState.authenticate && !SessionService.getUserAuthenticated()){
         $rootScope.$broadcast('success_change');
         $state.go("login", {redirect: $location.url()});
-        event.preventDefault(); 
+        event.preventDefault();
       }
     });
   }]);
