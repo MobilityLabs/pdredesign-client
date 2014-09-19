@@ -1,7 +1,9 @@
 PDRClient.directive('walkThrough', [
   '$modal',
   '$timeout',
-  'WalkThrough', function ($modal, $timeout, WalkThrough) {
+  '$http',
+  'UrlService',
+  'WalkThrough', function ($modal, $timeout, $http, UrlService, WalkThrough) {
   return {
     restrict:'E',
     templateUrl: 'client/views/directives/walk_through.html',
@@ -27,7 +29,15 @@ PDRClient.directive('walkThrough', [
       };
 
       scope.close = function() {
+        scope.logWalkThroughView(scope.id);
         scope.modal.dismiss('cancel');
+      };
+
+      scope.logWalkThroughView = function(id) {
+        $http({
+          url: UrlService.url('walk_throughs/' + id + '/viewed'), 
+          method: "post",
+        });
       };
 
       scope.showModal = function() {

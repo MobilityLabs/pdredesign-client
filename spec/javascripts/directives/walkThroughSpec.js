@@ -37,4 +37,16 @@ describe('Directive: walkThrough', function() {
     expect($modal.open).toHaveBeenCalled();
   });
 
+  it('sends a view tacking post after close', function() {
+
+    spyOn($modal, 'open').and.callThrough();
+    isolatedScope.showModal();
+    spyOn(isolatedScope.modal, 'dismiss').and.returnValue(true);
+    
+    $httpBackend.expectPOST('/v1/walk_throughs/42/viewed').respond({});
+    $httpBackend.expectGET('/v1/walk_throughs/42').respond({});
+    isolatedScope.close();
+    $httpBackend.flush();
+  });
+
 });
