@@ -1,26 +1,48 @@
 <div class="walk-through-container">
   <carousel interval="-1">
-    <slide ng-repeat="slide in walkThrough.slides">
+    <slide ng-repeat="slide in walkThrough.slides" active="slide.active">
       <div class="row">
-        <div class="col-md-8 slide-image">
+        <div 
+          class="col-md-8 slide-image"
+          ng-show="slide.image">
           <img ng-src="{{slide.image}}">
         </div>
+
+        <div
+          class="col-md-8 slide-content"
+          ng-hide="slide.image"
+          compile="slide.content">
+        </div>
+
         <div class="col-md-4 sidebar-content">
           <h3>{{slide.title}}</h3>
           <div ng-bind-html="slide.sidebar_content"></div>
+
+          <button type="button"
+            ng-hide="isFirstSlide($index)"
+            ng-click="setActive($index - 1)"
+            class="btn btn-default btn-prev">
+            Previous
+          </button>
+
+          <button type="button"
+            ng-hide="isLastSlide($index)"
+            ng-click="setActive($index + 1)"
+            class="btn btn-primary btn-next">
+            Next
+          </button>
+
+          <button type="button"
+            ng-show="isLastSlide($index)"
+            ng-click="close()"
+            class="btn btn-primary btn-next">
+            Close
+          </button>
+
         </div>
       </div>
     </slide>
   </carousel>
-  <script id="template/carousel/carousel.html" type="text/ng-template">
-    <div>
-      <div class="carousel-inner" ng-transclude></div>
-      <div class="controls">
-        <button type="button" class="btn btn-default btn-prev" ng-click="prev()">Previous</button>
-        <button type="button" class="btn btn-primary btn-next" ng-click="next()">Next</button>
-      </div>
-    </div>
-  </script>
 </div>
 
 

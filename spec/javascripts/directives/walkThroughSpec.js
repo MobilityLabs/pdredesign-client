@@ -38,7 +38,6 @@ describe('Directive: walkThrough', function() {
   });
 
   it('sends a view tacking post after close', function() {
-
     spyOn($modal, 'open').and.callThrough();
     isolatedScope.showModal();
     spyOn(isolatedScope.modal, 'dismiss').and.returnValue(true);
@@ -48,5 +47,13 @@ describe('Directive: walkThrough', function() {
     isolatedScope.close();
     $httpBackend.flush();
   });
+
+  it('triggers an automatic update on assessments', inject(function($state) {
+    spyOn($state, 'is').and.returnValue(true);
+    spyOn(isolatedScope, 'updateWalkThrough').and.returnValue(true);
+
+    expect(isolatedScope.updateWalkThrough).toHaveBeenCalled();
+  }));
+
 
 });
