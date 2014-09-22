@@ -50,6 +50,8 @@ PDRClient.controller('HomeCtrl', [
       };
 
       $scope.updateTools = function() {
+        if(SessionService.getUserAuthenticated() == false)
+          return;
         Tool.query().$promise.then(function(data){
           $scope.tools = data;
           $scope.setToolTip();

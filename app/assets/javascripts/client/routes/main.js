@@ -3,6 +3,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
 
     $stateProvider.state('home', {
       url: '/home',
+      authenticate: true,
       views: {
         '': {
           controller: 'HomeCtrl',
