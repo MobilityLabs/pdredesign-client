@@ -1,9 +1,14 @@
 PDRClient.service('SessionService',
-  ['UrlService', '$http', '$location', '$q', 'User',
-  function(UrlService, $http, $location, $q, User) {
+  ['UrlService', '$http', '$location', '$q', '$rootScope', '$state', 'User',
+  function(UrlService, $http, $location, $q, $rootScope, $state, User) {
     var userIsAuthenticated = false;
     var service = this;
     var user    = null;
+
+    $rootScope.$on('clear_user', function() {
+      service.clear();
+      $state.go('login');
+    });
 
     function setCurrentUser(usr) {
       user = usr;

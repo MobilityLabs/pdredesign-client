@@ -1,5 +1,5 @@
 describe('Service: SessionService', function() {
-  var $q, $scope, $httpBackend, SessionService, UrlService, User;
+  var $q, $scope, $httpBackend, $state, SessionService, UrlService, User;
 
   beforeEach(module('PDRClient'));
   beforeEach(function() { localStorage.clear(); });
@@ -10,7 +10,22 @@ describe('Service: SessionService', function() {
     $q             = $injector.get('$q');
     $httpBackend   = $injector.get('$httpBackend');
     $scope         = $rootScope.$new();
+    $state         = $injector.get('$state');
   }));
+
+  it('clears the services state $on clear_user', function() {
+    spyOn(SessionService, 'clear');
+    $scope.$emit('clear_user');
+
+    expect(SessionService.clear).toHaveBeenCalled();
+  });
+
+  it('redirects to login $on clear_user', function() {
+    spyOn($state, 'go');
+    $scope.$emit('clear_user');
+
+    expect($state.go).toHaveBeenCalledWith('login');
+  });
 
   describe('#isNetworkPartner', function() {
     function fakeRole(role) {

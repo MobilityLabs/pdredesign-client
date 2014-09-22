@@ -9,7 +9,7 @@ PDRClient.controller('SettingsCtrl', ['$location', '$anchorScroll', '$scope', '$
           .then(function(usr) {
             $scope.user = usr;
           });
-      }
+      };
 
       $scope.getUserInfo();
       $scope.errors  = null;
