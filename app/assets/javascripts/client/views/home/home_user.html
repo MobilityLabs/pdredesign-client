@@ -52,18 +52,23 @@
                   </li>
                 </ul>
               </div>
+              <ul class="tool" ng-repeat="tool in category.tools">
+                <li
+                data-html="true"
+                data-placement="right"
+                data-content="{{popoverContent(tool)}}"
+                data-toggle="tooltip">
+                <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
+                {{tool.title}}
+              </li>
+            </ul>
+            <add-tool ng-if="isNetworkPartner()" category="category"></add-tool>
 
-            </div>
+          </div>
 
           </div>
         </div>
 
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <add-tool ng-if="isNetworkPartner()" tools="tools"></add-tool>
       </div>
     </div>
 

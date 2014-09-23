@@ -3,7 +3,7 @@ PDRClient.directive('addTool', [
       return {
         restrict: 'E',
         scope: {
-          tools: '='
+          category: '='
         },
         templateUrl: 'client/views/directives/add_tool.html',
         controller: [
@@ -16,21 +16,6 @@ PDRClient.directive('addTool', [
           function($scope, $timeout, $location, $modal, Tool, SessionService){
             $scope.alerts  = [];
             $scope.tool    = {};
-            $scope.categories = [];
-            
-
-            $scope.$watch('tools', function() {
-              if(!$scope.tools)
-                return;
-              angular.forEach($scope.tools, function(tool) {
-                angular.forEach(tool.categories, function(category) {
-                  angular.forEach(category.subcategories, function(subcategory) {
-                    $scope.categories.push({id: subcategory.id, title: subcategory.name});
-                  });
-                });
-              });
-
-            });
 
             $scope.showAddToolModal = function() {
               $('ul.tool').find('li').not(this).popover('hide');
@@ -41,11 +26,12 @@ PDRClient.directive('addTool', [
               });
             };
 
-            $scope.hideModal = function() { 
+            $scope.hideModal = function() {
               $scope.modalInstance.dismiss('cancel');
             }
 
             $scope.create  = function(tool) {
+              tool.tool_category_id = $scope.category.id;
               Tool
                 .create(tool)
                 .$promise
@@ -55,7 +41,7 @@ PDRClient.directive('addTool', [
                   $scope.hideModal();
                 }, function(response) {
                   var errors = response.data.errors;
-                  angular.forEach(errors, function(error, field) { 
+                  angular.forEach(errors, function(error, field) {
                     $scope.error(field + " : " + error);
                   });
                 });
