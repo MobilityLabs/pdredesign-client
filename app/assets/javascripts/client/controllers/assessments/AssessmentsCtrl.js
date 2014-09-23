@@ -27,6 +27,47 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return 'fa-spinner';
       };
 
+      $scope.orderLinks = function(items) {
+        var filteredArray = [];
+        angular.forEach(items, function(item) {
+          var title = item.title.toLowerCase();
+          switch(true) {
+            case title == "dashboard":
+              item.order = 0;
+              break;
+            case title == "consensus":
+              item.order = 1;
+              break;
+            case title == "finish & assign":
+              item.order = 2;
+              break;
+            default:
+              item.order = 3;
+              break;
+          }
+          filteredArray.push(item);
+        });
+
+
+        /* Sorts links so Dashboard is first
+           and Report is last.
+        */
+        filteredArray.sort(function (a, b) {
+          switch(true) {
+            case a.order < b.order:
+              return -1;
+            case a.order == b.order:
+              return 0;
+            case a.order > b.order:
+            default:
+              return 1;
+          }
+        });
+        console.debug(filteredArray);
+        return filteredArray;
+
+      };
+
 
       $scope.districtOptions = function(assessments) {
 

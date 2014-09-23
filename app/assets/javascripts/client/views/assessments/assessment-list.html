@@ -57,7 +57,7 @@
       </div>
 
       <div class='col-md-2 col-sm-2 links'>
-        <div class="repeat" ng-repeat="link in assessment.links">
+        <div class="repeat" ng-repeat="link in orderLinks(assessment.links)">
           <assessment-links
           data-title="{{link.title}}"
           data-active="{{link.active}}"
