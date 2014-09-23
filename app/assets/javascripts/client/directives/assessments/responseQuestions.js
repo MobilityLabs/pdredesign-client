@@ -1,10 +1,10 @@
-PDRClient.directive('responsequestion', [
+PDRClient.directive('responseQuestions', [
   function() {
     return {
       restrict: 'E',
       replace: true,
       scope: {},
-      templateUrl: 'client/views/directives/response_question.html',
+      templateUrl: 'client/views/directives/response_questions.html',
       link: function(scope, element, attrs) {
         scope.assessmentId = attrs.assessmentId;
         scope.responseId   = attrs.responseId;
@@ -20,18 +20,14 @@ PDRClient.directive('responsequestion', [
         'Score',
         'ResponseHelper',
         function($scope, $rootScope, $timeout, $stateParams, $location, SessionService, Response, Score, ResponseHelper) {
-          $scope.toggleAnswers = ResponseHelper.toggleAnswers
-          $scope.saveEvidence  = ResponseHelper.saveEvidence
-          $scope.editAnswer    = ResponseHelper.editAnswer
-          $scope.answerTitle   = ResponseHelper.answerTitle
 
-          $scope.questionTDColor = function(question){
-            if (question.score.evidence != null && question.score.value == null) {
-              return "scored-skipped";
-            };
+          $scope.isConsensus = false;
 
-            return 'scored-' + question.score.value;
-          };
+          $scope.questionColor = ResponseHelper.questionColor;
+          $scope.toggleAnswers = ResponseHelper.toggleAnswers;
+          $scope.saveEvidence  = ResponseHelper.saveEvidence;
+          $scope.editAnswer    = ResponseHelper.editAnswer;
+          $scope.answerTitle   = ResponseHelper.answerTitle;
 
           $scope.toggleCategoryAnswers = function(category) {
             category.toggled = !category.toggled;

@@ -18,7 +18,7 @@
               <p class="question-id scored-{{question.score.value}}" ng-show="question.loading">
                 <i class="fa fa-spinner fa-spin"></i>
               </p>
-              <p id="question-{{question.number}}" class="question-id {{questionTDColor(question)}}" ng-hide="question.loading">
+              <p id="question-{{question.number}}" class="question-id {{questionColor(question, isConsensus)}}" ng-hide="question.loading">
                 <a href="#question-{{question.id}}"></a>
                 {{question.number}}
               </p>

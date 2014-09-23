@@ -68,4 +68,16 @@ PDRClient.service('ResponseHelper',
         });
     }
 
+    this.questionColor = function(question, isConsensus) {
+      if(!question.score) return null;
+
+      if(!isConsensus) {
+        if (question.score.evidence != null && question.score.value == null)
+          return "scored-skipped";
+      };
+
+      return 'scored-' + question.score.value;
+    }
+
+
 }]);

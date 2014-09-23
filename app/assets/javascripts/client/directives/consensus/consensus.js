@@ -6,7 +6,7 @@ PDRClient.directive('consensus', [
       scope: {
         assessmentId:  '@',
         responseId:    '@',},
-      templateUrl: 'client/views/directives/response_question.html',
+      templateUrl: 'client/views/directives/response_questions.html',
       controller: [
         '$scope',
         '$timeout',
@@ -28,6 +28,7 @@ PDRClient.directive('consensus', [
             });
           };
 
+          $scope.questionColor = ResponseHelper.questionColor;
           $scope.answerCount   = ResponseHelper.answerCount;
           $scope.toggleAnswers = ResponseHelper.toggleAnswers;
           $scope.saveEvidence  = ResponseHelper.saveEvidence;

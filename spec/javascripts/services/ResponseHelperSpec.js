@@ -111,6 +111,34 @@ describe('Service: ResponseHelper', function() {
       });
     });
 
+    describe('#questionColor', function(){
+      it('returns null if question has no score', function() {
+        var question = {};
+        expect(subject.questionColor(question)).toEqual(null);
+      });
+
+      it('returns scored-null when score is present and isConesensus is true', function() {
+        var question = {score: { value: null, evidence: null}};
+        expect(subject.questionColor(question, true)).toEqual("scored-null");
+      });
+
+      it('returns scored-skipped when score is present and isConesensus is false', function() {
+        var question = {score: { value: null, evidence: ''}};
+        expect(subject.questionColor(question, false)).toEqual("scored-skipped");
+      });
+
+      it('returns score value when present', function() {
+        var question = {score: { value: 2, evidence: ''}};
+        expect(subject.questionColor(question, false)).toEqual("scored-2");
+      });
+
+      it('returns score value when present and isConesensus is true', function() {
+        var question = {score: { value: 2, evidence: ''}};
+        expect(subject.questionColor(question, true)).toEqual("scored-2");
+      });
+
+    });
+
     describe('#skipped', function(){
       it('returns false when a question doesnt have an answer', function(){
         var question = {};
