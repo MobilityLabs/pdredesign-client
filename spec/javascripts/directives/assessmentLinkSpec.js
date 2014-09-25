@@ -69,6 +69,20 @@ describe('Directive: assessmentLinks', function() {
     });
   });
 
+  describe('#redirectToCreateConsensus', function() {
+    beforeEach(function(){
+      isolatedScope.modal = {
+        dismiss: function(){}
+      };
+    });
+    it('redirects to create conseusus URL', function() {
+      spyOn($location, 'url');
+
+      isolatedScope.redirectToCreateConsensus();
+      expect($location.url).toHaveBeenCalledWith('/assessments/1/consensus');
+    });
+  });
+
   describe('#popoverContent', function(){
     it('returns district members content', function(){
       spyOn(isolatedScope, 'isNetworkPartner').and.returnValue(false);
