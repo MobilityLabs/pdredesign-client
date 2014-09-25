@@ -110,7 +110,7 @@ describe('Directive: consensus', function() {
     });
 
     it('triggers a consensus update', function(){
-      spyOn(isolatedScope, 'updateConsensus');
+      spyOn(isolatedScope, 'updateConsensus').and.callThrough();
       isolatedScope.updateTeamRole("some_role");
       expect(isolatedScope.updateConsensus).toHaveBeenCalled();
     });
