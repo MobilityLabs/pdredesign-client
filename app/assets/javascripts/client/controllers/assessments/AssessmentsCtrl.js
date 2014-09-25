@@ -63,9 +63,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
               return 1;
           }
         });
-        console.debug(filteredArray);
         return filteredArray;
-
       };
 
 

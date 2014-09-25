@@ -60,27 +60,60 @@ describe('Directive: consensus', function() {
 
   });
 
-  describe('#ConsensusGET', function() {
+  describe('#updateConsensus', function() {
     beforeEach(inject(function($injector) {
       $httpBackend.when('GET', '/v1/assessments/1/consensus/1')
         .respond({
           scores: [score1],
           categories: [1,2,3],
+          team_roles: ['some', 'role'],
           is_completed: true,
           participant_count: 5
         });
 
-      $timeout.flush();
-      $httpBackend.flush();
     }));
 
-    it('gets data on callback and sets scores, data, categories, isReadOnly, and participantCount', function() {
+    it('gets data on callback and sets scores, data,' +
+       ' categories, isReadOnly, and participantCount', function() {
+      isolatedScope.updateConsensus();
+      $httpBackend.flush();
+
       expect(isolatedScope.scores).toEqual([score1]);
       expect(isolatedScope.categories).toEqual([1,2,3]);
       expect(isolatedScope.isReadOnly).toEqual(true);
+      expect(isolatedScope.teamRoles).toEqual(['some', 'role']);
       expect(isolatedScope.participantCount).toEqual(5);
     });
 
+    it('sends the teamRole when its set', function() {
+      $httpBackend.expectGET('/v1/assessments/1/consensus/1?team_role=some_role')
+        .respond({});
+
+      isolatedScope.teamRole = 'some_role';
+      isolatedScope.updateConsensus();
+      $httpBackend.flush();
+    });
+
+  });
+
+  describe('#updateTeamRole', function(){
+    it('updates the $scope.teamRole var', function(){
+      isolatedScope.teamRole = null;
+      isolatedScope.updateTeamRole("some_role");
+      expect(isolatedScope.teamRole).toEqual('some_role');
+    });
+
+    it('updates the $scope.teamRole var to null when empty', function(){
+      isolatedScope.teamRole = "some role";
+      isolatedScope.updateTeamRole("");
+      expect(isolatedScope.teamRole).toEqual(null);
+    });
+
+    it('triggers a consensus update', function(){
+      spyOn(isolatedScope, 'updateConsensus');
+      isolatedScope.updateTeamRole("some_role");
+      expect(isolatedScope.updateConsensus).toHaveBeenCalled();
+    });
   });
 
   describe('#submit_consensus', function() {

@@ -5,7 +5,8 @@ PDRClient.directive('consensus', [
       replace: true,
       scope: {
         assessmentId:  '@',
-        responseId:    '@',},
+        responseId:    '@',
+      },
       templateUrl: 'client/views/directives/response_questions.html',
       controller: [
         '$scope',
@@ -20,6 +21,11 @@ PDRClient.directive('consensus', [
 
           $scope.isConsensus = true;
           $scope.isReadOnly  = true;
+          $scope.teamRole    = null;
+          $scope.teamRoles   = [];
+          $scope.loading     = false;
+
+          $scope.isLoading = function(){ return $scope.loading; }
 
           $scope.toggleCategoryAnswers = function(category) {
             category.toggled = !category.toggled;
@@ -102,18 +108,34 @@ PDRClient.directive('consensus', [
               });
           });
 
-          $timeout(function(){
-            Consensus
-              .get({assessment_id: $scope.assessmentId, id: $scope.responseId})
+          $scope.updateConsensus = function(){
+             return Consensus
+              .get({assessment_id: $scope.assessmentId, id: $scope.responseId, team_role: $scope.teamRole})
               .$promise
               .then(function(data) {
                 $scope.scores     = data.scores;
                 $scope.data       = data.categories;
                 $scope.categories = data.categories;
+                $scope.teamRoles  = data.team_roles;
                 $scope.isReadOnly = data.is_completed || false;
                 $scope.participantCount = data.participant_count;
+                return true;
+              });           
+          };
+
+          $scope.updateTeamRole = function(teamRole) {
+            if(teamRole.trim() == "") teamRole = null;
+            $scope.teamRole = teamRole;
+
+            $scope.loading = true;
+            $scope
+              .updateConsensus()
+              .then(function(){
+                $scope.loading = false;
               });
-          });
+          };
+
+          $timeout(function(){ $scope.updateConsensus() });
 
         }]
     };
