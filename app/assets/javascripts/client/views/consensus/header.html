@@ -4,8 +4,8 @@
       <div class="media-body">
         <h1>{{assessment.name}}</h1>
         <p class='byline'>organized by:
-          <a href=""> {{user.full_name}}</a>
-          on {{user.created_at  | amDateFormat:'MMMM Do, YYYY'}}
+          <a href=""> {{assessment.facilitator.full_name}}</a>
+          on {{assessment.created_at  | amDateFormat:'MMMM Do, YYYY'}}
         </p>
         <h2 class='instructions-header'>Instructions</h2>
 
