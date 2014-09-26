@@ -26,6 +26,7 @@ PDRClient.controller('SettingsCtrl', ['$location', '$anchorScroll', '$scope', '$
 
       $scope.updateUser = function(editedUser) {
         editedUser["organization_ids"] = editedUser.organization_ids;
+
         editedUser
           .$save()
           .then(

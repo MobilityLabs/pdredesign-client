@@ -1,10 +1,10 @@
 PDRClient.directive('organizationSelect', [
   '$q',
-  '$timeout', 
-  'SessionService', 
-  'UrlService', 
-  'Organization', 
-  'User', 
+  '$timeout',
+  'SessionService',
+  'UrlService',
+  'Organization',
+  'User',
   'OrganizationHelper',
   function($q, $timeout, SessionService, UrlService, Organization, User, OrganizationHelper) {
       return {
@@ -17,26 +17,7 @@ PDRClient.directive('organizationSelect', [
         templateUrl: 'client/views/directives/organization_select.html',
         link: function(scope, elm, attrs) {
           scope.organization = {};
-
-          scope.buttonText = function(organization) {
-            if(!organization.name || organization.name.length == 0)
-              return 'Save';
-
-            if(organization.id == null)
-              return 'Create Organization';
-            else if(organization.id == scope.organizationId)
-              return 'Selected';
-            return 'Select ' + organization.name;
-          };
-
-          scope.buttonDisabled = function(organization) {
-            if(scope.organizationId == null)
-              return false;
-            else if(organization.id == scope.organizationId)
-              return true;
-            else
-              return false;
-          };
+          scope.firstLoad = true;
 
           scope.updateUserOrganization = function(organization) {
              scope.organizationId = organization.id;
@@ -68,6 +49,10 @@ PDRClient.directive('organizationSelect', [
           };
 
           scope.performAction = function(organization) {
+            // Prevents success alert when page load
+            if(scope.firstLoad)
+              return scope.firstLoad = false;
+
             if(organization.id == null && organization.name)
               scope.createOrganization(organization);
             else
@@ -80,20 +65,16 @@ PDRClient.directive('organizationSelect', [
                 labelField:  'name',
                 searchField: 'name',
                 maxItems:     1,
-                onChange: function(value) {
-                  if(!value || value.length == 0) {
-                    scope.organization = {};
-                    _.defer(function(){ scope.$apply(); });
-                    return;
-                  }
+                onItemAdd: function(value) {
                   var item = scope.selectizeElement().options[value];
-                  scope.organization.id   = item.new ? null : item.id;
-                  scope.organization.name = item.name;
-
-                  _.defer(function(){ scope.$apply(); });
+                  scope.performAction(item);
+                },
+                onDelete: function(value){
+                  scope.organization.id = null;
+                  scope.updateUserOrganization(scope.organization);
                 },
                 create: function(input, callback) {
-                  callback({new: true, name: input});
+                  callback(scope.performAction({name: input}));
                 },
                 render: {
                   item: function(item, escape) {
@@ -113,6 +94,9 @@ PDRClient.directive('organizationSelect', [
           };
 
           scope.updateOrganizationData = function(value) {
+            if(!value)
+              return scope.firstLoad = false;
+
             Organization
               .get({id: value})
               .$promise
@@ -120,7 +104,6 @@ PDRClient.directive('organizationSelect', [
                 scope.selectizeElement().addOption({
                   name: org.name, id: org.id
                 });
-
                 scope.selectizeElement().setValue(org.name);
               });
           };
@@ -129,6 +112,7 @@ PDRClient.directive('organizationSelect', [
             if(!scope.selectize || !scope.organization) return;
             scope.updateOrganizationData(value);
           });
+
         },
      }
 }]);

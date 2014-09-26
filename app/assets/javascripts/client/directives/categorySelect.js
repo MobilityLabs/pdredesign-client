@@ -36,12 +36,12 @@ PDRClient.directive('categorySelect', [
               .$promise
               .then(function() {
                 $scope.loading = false;
-                $scope.messages = {type: 'success', msg: 'Organization updated'};
+                $scope.messages = {type: 'success', msg: 'Categories updated'};
               });
           };
 
           $scope.updateCategories = function(id) {
-            Organization 
+            Organization
               .get({id: id})
               .$promise
               .then(function(organization) {

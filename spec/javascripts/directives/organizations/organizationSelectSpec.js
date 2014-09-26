@@ -29,33 +29,47 @@ describe('Directive: organizationSelect', function() {
     expect(isolatedScope.organizationId).toEqual(1);
   });
 
-  describe('#buttonDisabled', function() {
-    it('returns true when the current users org is selected', function() {
-      expect(isolatedScope.buttonDisabled({id: 1})).toEqual(true);
-    });  
-
-    it('returns false when the org is not current users', function() {
-      expect(isolatedScope.buttonDisabled({id: 2})).toEqual(false);
+  describe('#firstLoad', function(){
+    it('is set to true by default', function() {
+      expect(isolatedScope.firstLoad).toEqual(true);
     });
 
-    it('returns false when the org is not set', function() {
-      isolatedScope.organizationId = null;
-      expect(isolatedScope.buttonDisabled({id: null})).toEqual(false);
+    it('is set to false when updateOrganizationData has no param', function() {
+      isolatedScope.updateOrganizationData();
+      expect(isolatedScope.firstLoad).toEqual(false);
     });
+
+    it('stays true when updateOrganizationData has valid param', function() {
+      isolatedScope.updateOrganizationData(1);
+      expect(isolatedScope.firstLoad).toEqual(true);
+    });
+
   });
 
   describe('#performAction', function(){
-    it('calls createOrganization when new org', function() {
+    it('sets firstLoad to false after called', function() {
+      expect(isolatedScope.firstLoad).toEqual(true);
+      isolatedScope.performAction({ name: 'test' });
+      expect(isolatedScope.firstLoad).toEqual(false);
+    });
+
+    it('calls nothing if firstLoad has not been set to false', function() {
       spyOn(isolatedScope, 'createOrganization');
       isolatedScope.performAction({ name: 'test' });
+      expect(isolatedScope.createOrganization).not.toHaveBeenCalledWith({name: 'test'});
+    });
 
+    it('calls createOrganization when new org', function() {
+      isolatedScope.firstLoad = false;
+      spyOn(isolatedScope, 'createOrganization');
+      isolatedScope.performAction({ name: 'test' });
       expect(isolatedScope.createOrganization).toHaveBeenCalledWith({name: 'test'});
     });
 
     it('calls updateUserOrganization when existing org', function(){
+      isolatedScope.firstLoad = false;
       spyOn(isolatedScope, 'updateUserOrganization');
       isolatedScope.performAction({ id:1, name: 'test' });
-
       expect(isolatedScope.updateUserOrganization).toHaveBeenCalledWith({id: 1, name: 'test'});
     });
   });
@@ -93,25 +107,5 @@ describe('Directive: organizationSelect', function() {
     });
 
   });
-
-  describe('#buttonText', function() {
-    it('returns save when organization is empty', function(){
-      expect(isolatedScope.buttonText({})).toEqual('Save');
-    });
-
-    it('returns create organization when a new org is selected', function(){
-      expect(isolatedScope.buttonText({name: 'test'})).toEqual('Create Organization');
-    });
-
-    it('returns selected when the current users org is selected', function(){
-      expect(isolatedScope.buttonText({id: 1, name: 'test'})).toEqual('Selected');
-    });
-
-    it('returns select org when an existing org is selected', function(){
-      expect(isolatedScope.buttonText({id: 2, name: 'other'})).toEqual('Select other');
-    });
-  });
-
-
 
 });
