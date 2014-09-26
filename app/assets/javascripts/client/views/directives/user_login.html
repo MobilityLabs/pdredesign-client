@@ -10,7 +10,7 @@
 
     <form ui-keypress="{13:'authenticate(email, password)'}">
     <div class"row">
-      <div class="input col-md-12">
+      <div class="form-group">
         <input autofocus
                id="email"
                class="form-control"
@@ -18,7 +18,7 @@
                placeholder="Email Address"
                ng-model="email"/>
       </div>
-      <div class="input col-md-12">
+      <div class="form-group">
         <input class="form-control"
                id="password"
                type="password"
@@ -36,7 +36,9 @@
             name="user[remember_me]"
             type="checkbox" value="1">
               Remember Me
-          <a href="#/reset">Forgot Password?</a>
+          <div class="row">
+            <a href="#/reset">Forgot Password?</a>
+          </div>
         </label>
       </div>
       <div class="input col-md-12">
