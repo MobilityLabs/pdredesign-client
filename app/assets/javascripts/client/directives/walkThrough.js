@@ -46,8 +46,15 @@ PDRClient.directive('walkThrough', [
       };
 
       scope.close = function() {
+        $("").animate({
+          width: "toggle", 
+          height: "toggle", 
+          left: 1000, 
+          top: 1000}, 5000, function(){
+            scope.modal.dismiss('cancel');
+          });
+
         scope.logWalkThroughView(scope.id);
-        scope.modal.dismiss('cancel');
       };
 
       scope.logWalkThroughView = function(id) {
@@ -63,14 +70,13 @@ PDRClient.directive('walkThrough', [
           scope: scope,
           size: 'lg',
         });
+
+        scope.modal.opened.then(function() {
+          if(!scope.walkThrough) scope.updateWalkThrough(scope.id);
+        });
       };
 
-      scope.modal.opened.then(function() {
-        if(!scope.walkThrough) scope.updateWalkThrough(scope.id);
-      });
-
-      if($state.is('assessments'))
-        scope.updateWalkThrough(scope.id);
+      if($state.is('assessments')) scope.updateWalkThrough(scope.id);
     }
   };
 }]);
