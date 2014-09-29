@@ -52,7 +52,7 @@
                 </ul>
               </span>
               <span>
-               <ul class="tool extra-tool" ng-repeat="tool in category.tools">
+                <ul class="tool extra-tool" ng-repeat="tool in category.tools">
                   <li
                     data-html="true"
                     data-placement="right"
@@ -61,12 +61,12 @@
                     <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
                     {{tool.title}}
                   </li>
-               </ul>
+                </ul>
               </span>
-
-            <add-tool category="category"></add-tool>
-
-          </div>
+              <div class="tool">
+                <add-tool category="category"></add-tool>
+              </div>
+            </div>
 
           </div>
         </div>
