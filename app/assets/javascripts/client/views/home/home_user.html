@@ -36,7 +36,7 @@
 
             <div class="categories" ng-repeat="category in phase.categories">
               <div class="title">{{category.name}}</div>
-              <div class="subcategories" ng-repeat="subcategory in category.subcategories">
+              <span class="subcategories" ng-repeat="subcategory in category.subcategories">
                 {{subcategory.name}}
                 <ul class="tool" ng-repeat="tool in subcategory.tools">
                   <li
@@ -48,21 +48,23 @@
                       <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
                     </span>
                     <span class="tool-title">{{tool.title}}</span>
-
                   </li>
                 </ul>
-              </div>
-              <ul class="tool" ng-repeat="tool in category.tools">
-                <li
-                data-html="true"
-                data-placement="right"
-                data-content="{{popoverContent(tool)}}"
-                data-toggle="tooltip">
-                <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
-                {{tool.title}}
-              </li>
-            </ul>
-            <add-tool category="category"></add-tool>
+              </span>
+              <span>
+               <ul class="tool extra-tool" ng-repeat="tool in category.tools">
+                  <li
+                    data-html="true"
+                    data-placement="right"
+                    data-content="{{popoverContent(tool)}}"
+                    data-toggle="tooltip">
+                    <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
+                    {{tool.title}}
+                  </li>
+               </ul>
+              </span>
+
+            <add-tool ng-if="isNetworkPartner()" category="category"></add-tool>
 
           </div>
 
