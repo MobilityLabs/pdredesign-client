@@ -4,12 +4,18 @@ PDRClient.controller('HomeCtrl', [
   'SessionService',
   '$timeout',
   '$modal',
-    function($scope, Tool, SessionService, $timeout, $modal) {
+  '$state',
+    function($scope, Tool, SessionService, $timeout, $modal, $state) {
       $scope.user   = SessionService.getCurrentUser();
       $scope.tools  = [];
 
       $scope.$watch($scope.tools, function() {
         $scope.setToolTip();
+      });
+
+      $scope.$watch($scope.user, function() {
+        if($state.is('root') && ($scope.user && $scope.user.id))
+          $state.go('home')
       });
 
       $scope.$on('updated_tools', function(){
