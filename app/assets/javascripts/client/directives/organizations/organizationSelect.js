@@ -17,46 +17,55 @@ PDRClient.directive('organizationSelect', [
         templateUrl: 'client/views/directives/organization_select.html',
         link: function(scope, elm, attrs) {
           scope.organization = {};
-          scope.firstLoad = true;
 
-          scope.updateUserOrganization = function(organization) {
-             scope.organizationId = organization.id;
-             User
-               .save({organization_ids: organization.id || null})
-               .$promise
-               .then(function() {
-                scope.messages = {type: 'success', msg: 'Profile updated'};
-               });
+          scope.updateOrganizationId = function(id) {
+            scope.organizationId = id;
+            _.defer(function(){ scope.$apply(); });
           };
 
           scope.createOrganization = function(organization) {
             Organization
               .create({name: organization.name})
               .$promise.then(function(result) {
-                scope.updateOption(result)
-                scope.updateUserOrganization(result);
+                scope.updateOrganizationId(result.id);
+                scope.updateOrganizationObject(result.id);
               });
           };
 
-          scope.updateOption  = function(result) {
+          scope.updateOrganizationObject = function(id) {
+            Organization
+              .get({id: id})
+              .$promise
+              .then(function(org) {
+                scope.replaceOptionsWith(org);
+              });
+          };
+
+          scope.clearOrganization = function() {
+            scope.organization   = {};
+            scope.organizationId = null;
+            _.defer(function(){ scope.$apply(); });
+          }
+
+          scope.replaceOptionsWith = function(result) {
             var selectize = scope.selectizeElement();
             selectize.clear();
             selectize.clearOptions();
-            selectize.addOption({
-              name: result.name,
-              id: result.id });
-            scope.selectizeElement().setValue(result.name);
+            selectize.addOption({ name: result.name, id: result.id });
+            selectize.setValue(result.name);
           };
 
           scope.performAction = function(organization) {
-            // Prevents success alert when page load
-            if(scope.firstLoad)
-              return scope.firstLoad = false;
-
             if(organization.id == null && organization.name)
               scope.createOrganization(organization);
+            else if(organization.id)
+              scope.updateOrganizationId(organization.id);
             else
-              scope.updateUserOrganization(organization);
+              scope.clearOrganization();
+          };
+
+          scope.selectizeElement = function() {
+            return scope.selectize[0] && scope.selectize[0].selectize;
           };
 
           $timeout(function() {
@@ -66,15 +75,14 @@ PDRClient.directive('organizationSelect', [
                 searchField: 'name',
                 maxItems:     1,
                 onItemAdd: function(value) {
-                  var item = scope.selectizeElement().options[value];
-                  scope.performAction(item);
+                  var organization = scope.selectizeElement().options[value];
+                  scope.performAction(organization);
                 },
-                onDelete: function(value){
-                  scope.organization.id = null;
-                  scope.updateUserOrganization(scope.organization);
+                onDelete: function(){
+                  scope.clearOrganization();
                 },
-                create: function(input, callback) {
-                  callback(scope.performAction({name: input}));
+                create: function(name, callback) {
+                  callback(scope.performAction({name: name}));
                 },
                 render: {
                   item: function(item, escape) {
@@ -83,34 +91,16 @@ PDRClient.directive('organizationSelect', [
                 },
                 load: function(query, callback) {
                   if (!query.length) return callback();
-                    return OrganizationHelper.searchOrganization(query, callback);
+
+                  return OrganizationHelper.searchOrganization(query, callback);
                 }
             });
-            scope.updateOrganizationData(scope.organizationId);
+            scope.updateOrganizationObject(scope.organizationId);
           });
 
-          scope.selectizeElement = function() {
-            return scope.selectize[0] && scope.selectize[0].selectize;
-          };
-
-          scope.updateOrganizationData = function(value) {
-            if(!value)
-              return scope.firstLoad = false;
-
-            Organization
-              .get({id: value})
-              .$promise
-              .then(function(org) {
-                scope.selectizeElement().addOption({
-                  name: org.name, id: org.id
-                });
-                scope.selectizeElement().setValue(org.name);
-              });
-          };
-
-          scope.$watch('organizationId', function(value, _oldValue) {
+          scope.$watch('organizationId', function(id, _oldValue) {
             if(!scope.selectize || !scope.organization) return;
-            scope.updateOrganizationData(value);
+            scope.updateOrganizationObject(id);
           });
 
         },

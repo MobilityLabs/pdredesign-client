@@ -3,6 +3,7 @@ PDRClient.controller('SettingsCtrl', ['$location', '$anchorScroll', '$scope', '$
 
       $scope.user    = null;
 
+
       $scope.getUserInfo = function() {
         User.get()
           .$promise

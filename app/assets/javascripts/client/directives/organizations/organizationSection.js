@@ -3,6 +3,7 @@ PDRClient.directive('organizationSection', [
     return {
       restrict: 'E',
       replace: true,
+      transclude: true,
       templateUrl: 'client/views/settings/organization_section.html',
       scope: {
         organizationId: '=',
