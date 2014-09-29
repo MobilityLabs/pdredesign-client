@@ -4,11 +4,12 @@
     <h2>Request Access</h2>
   </div>
   <div class="modal-body">
-    <h3>Select the role you would like to request in this assessment.
+
+    <span class="question-holder">Select the role you would like to request in this assessment.
       <i data-toggle="requestPopover"
         data-content="{{popoverContent()}}" class="fa fa-question question-tip">
       </i>
-    </h3>
+    </span>
 
     <div ng-show="isNetworkPartner()" class="btn-group">
       <span class="btn btn-xs btn-primary" ng-model="accessLevel" btn-radio="'facilitator'">
@@ -34,7 +35,7 @@
 
   <div class='modal-footer'>
     <button ng-click='submitAccessRequest(accessLevel)' class='btn btn-success btn-xs'>
-      <i class="fa fa-check">Done</i>
+      <i class="fa fa-check"></i><span>Done</span>
     </button>
   </div>
 </div>
