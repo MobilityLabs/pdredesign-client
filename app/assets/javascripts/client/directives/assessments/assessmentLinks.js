@@ -115,7 +115,7 @@ PDRClient.directive('assessmentLinks', [
             };
 
             $scope.assessmentLink = function(type, active) {
-              if(typeof type === 'undefined' || active == "false")
+              if(typeof type === 'undefined' || active == "false" || !active)
                 return false;
 
               routes = {
@@ -125,6 +125,7 @@ PDRClient.directive('assessmentLinks', [
                 "consensus":     "/assessments/" + $scope.id + "/consensus",
                 "finish":        "/assessments/" + $scope.id + "/assign",
                 "report":        "/assessments/" + $scope.id + "/report",
+                "response":      "/assessments/" + $scope.id + "/responses",
                 "edit_report":   "/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
                 "show_report":   "/assessments/" + $scope.id + "/consensus/" + $scope.consensusId,
                 "messages":      "/assessments/" + $scope.id + "/dashboard",

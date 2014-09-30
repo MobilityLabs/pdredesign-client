@@ -21,7 +21,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
      views: {
        '': {
          controller: 'ResponseCreateCtrl',
-         templateUrl: ''
+         template: ''
        }
      }
    })

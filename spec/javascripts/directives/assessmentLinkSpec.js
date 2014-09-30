@@ -69,6 +69,19 @@ describe('Directive: assessmentLinks', function() {
     });
   });
 
+  describe('#assessmentLink', function(){
+    it('returns false when a link is not active', function(){
+      expect(isolatedScope.assessmentLink('response', "false")).toEqual(false);
+      expect(isolatedScope.assessmentLink('response', false)).toEqual(false);
+    });
+
+    it('returns a create consensus link', function(){
+      isolatedScope.id  = 42;
+      var route = isolatedScope.assessmentLink('response', true);
+      expect(route).toEqual('/assessments/42/responses');
+    });
+  });
+
   describe('#redirectToCreateConsensus', function() {
     beforeEach(function(){
       isolatedScope.modal = {
@@ -96,6 +109,8 @@ describe('Directive: assessmentLinks', function() {
       expect(isolatedScope.popoverContent()).toEqual('network partner content');
     });
   });
+
+
 
   describe('#submitAccessRequest', function(){
     it('calls AccessRequest#save', function(){

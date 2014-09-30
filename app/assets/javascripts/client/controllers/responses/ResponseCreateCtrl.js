@@ -21,9 +21,9 @@ PDRClient.controller('ResponseCreateCtrl', [
       .save({assessment_id: assessmentId},  {rubric_id: rubric_id})
       .$promise
       .then(function(response){
-        $location.path('/assessments/'+ $scope.assessmentId +'/responses/' + response.id);
+        $location.url('/assessments/'+ $scope.assessmentId +'/responses/' + response.id);
       }, function(data){
-        $location.path('/assessments');
+        $location.url('/assessments');
       });
     };
 
