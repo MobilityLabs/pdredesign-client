@@ -118,18 +118,18 @@ describe('Directive: consensus', function() {
 
   describe('#submit_consensus', function() {
 
-    it('calls function redirectToDashboard()', function(){
-      spyOn(isolatedScope, 'redirectToDashboard');
+    it('calls function redirectToReport()', function(){
+      spyOn(isolatedScope, 'redirectToReport');
       $httpBackend.expectPUT("/v1/assessments/1/consensus/1").respond({});
       $rootScope.$broadcast("submit_consensus");
 
       $httpBackend.flush();
-      expect(isolatedScope.redirectToDashboard).toHaveBeenCalledWith('1');
+      expect(isolatedScope.redirectToReport).toHaveBeenCalledWith('1');
     });
 
-    it('redirects to assessment correct dashboard', function() {
-      isolatedScope.redirectToDashboard(1);
-      expect($location.path()).toEqual('/assessments/1/dashboard')
+    it('redirects to assessment correct report', function() {
+      isolatedScope.redirectToReport(1);
+      expect($location.path()).toEqual('/assessments/1/report')
     });
 
   });

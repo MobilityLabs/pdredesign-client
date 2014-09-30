@@ -95,8 +95,8 @@ PDRClient.directive('consensus', [
             }
           };
 
-          $scope.redirectToDashboard = function(assessmentId) {
-            $location.path("/assessments/" + assessmentId + "/dashboard");
+          $scope.redirectToReport = function(assessmentId) {
+            $location.path("/assessments/" + assessmentId + "/report");
           };
 
           $scope.$on('submit_consensus', function() {
@@ -104,7 +104,7 @@ PDRClient.directive('consensus', [
               .submit({assessment_id: $scope.assessmentId, id: $scope.responseId}, {submit: true})
               .$promise
               .then(function(data){
-                $scope.redirectToDashboard($scope.assessmentId);
+                $scope.redirectToReport($scope.assessmentId);
               });
           });
 
