@@ -12,7 +12,8 @@ PDRClient.directive('startAssessment', [
           'Rubric',
           'Assessment',
           'SessionService',
-          function($scope, $timeout, $location, Rubric, Assessment, SessionService){
+          '$modal',
+          function($scope, $timeout, $location, Rubric, Assessment, SessionService, $modal){
 
           $scope.alerts     = [];
           $scope.assessment = {};
@@ -28,9 +29,16 @@ PDRClient.directive('startAssessment', [
             return "Start a New Assessment";
           };
 
-          $scope.hideModal = function() {
-            $('#startAssessment').modal('hide');
-          }
+          $scope.startAssessmentModal  = function() {
+            $scope.modal = $modal.open({
+              templateUrl: 'client/views/modals/start_assessment.html',
+              scope: $scope
+            });
+          };
+
+          $scope.close = function() {
+            $scope.modal.dismiss('cancel');
+          };
 
           $scope.noDistrict = function() {
             return _.isEmpty($scope.user.district_ids);
