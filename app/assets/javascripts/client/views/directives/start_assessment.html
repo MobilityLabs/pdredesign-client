@@ -1,14 +1,16 @@
 <div>
-  <div class="row start-assessment plus-button">
-      <a href="" data-toggle="modal" data-target="#startAssessment">
-        <div class="col-sm-1 col-md-1">
-          <i class="fa fa-plus"></i>
-        </div>
-        <div class="col-sm-11 col-md-11 heading">
-          <h1>{{text()}}</h1>
-        </div>
-      </a>
+  <div class="row start-assessment plus-button" ng-mouseover="bluehover = true" ng-mouseleave="bluehover = false">
+    <a href="" data-toggle="modal" data-target="#startAssessment">
+      <div class="col-sm-1 col-md-1">
+        <i class="fa fa-plus"></i>
+      </div>
+
+      <div ng-class="{headinghover: bluehover == true}" class="col-sm-11 col-md-11 heading">
+        <h1>{{text()}}</h1>
+      </div>
+    </a>
   </div>
+
   <div class="modal fade" id="startAssessment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -71,4 +73,5 @@
       </div>
     </div>
   </div>
+
 </div>
