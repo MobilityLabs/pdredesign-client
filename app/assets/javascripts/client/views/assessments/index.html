@@ -6,30 +6,31 @@
   </div>
   <div class="col-md-12">
     <div ng-show="isNetworkPartner()">
-      <div class="col-md-4">
-        <district-filter
-          districts="districts"
-          selected-district="selectedDistrict"
+      <div id="assessments-filter">
+        <div class="col-md-4">
+          <district-filter
+            districts="districts"
+            selected-district="selectedDistrict"
+            >
+          </district-filter>
+        </div>
+        <div class="col-md-4">
+          <permission-filter
+            types="permissionTypes"
+            selected-permission="selectedPermission"
+            >
+          </permission-filter>
+        </div>
+
+        <div class="col-md-4">
+          <status-filter
+            statuses="statuses"
+            selected-status="selectedStatus"
           >
-        </district-filter>
-      </div>
-      <div class="col-md-4">
-        <permission-filter
-          types="permissionTypes"
-          selected-permission="selectedPermission"
-          >
-        </permission-filter>
-      </div>
 
-      <div class="col-md-4">
-        <status-filter
-          statuses="statuses"
-          selected-status="selectedStatus"
-        >
-
-        </status-filter>
+          </status-filter>
+        </div>
       </div>
-
     </div>
     <start-assessment></start-assessment>
     <ng-include src="'client/views/assessments/assessment-list.html'" scope="this"></ng-include>
