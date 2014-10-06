@@ -1,9 +1,18 @@
+@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,300,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+
+body {
+  font-family: 'Open Sans', sans-serif;
+};
+
+      
 .pagewrap {
   margin: auto;
 }
 
 h1 {
-  font-weight: 200;
+  font-family: 'Yanone Kaffeesatz', sans-serif, Helvetica, Arial;
+  font-weight: bold;
 }
 
 .left {
