@@ -25,13 +25,26 @@ PDRClient.service('SessionService',
       return false;
     };
 
+    this.syncAndRedirect = function(url) {
+      return this.syncUser().then(function(usr) {
+        return $location.path(url);
+      });
+    };
+
     this.syncUser = function() {
-      return User
+      var deferred = $q.defer();
+
+      User
         .get()
         .$promise
         .then(function(usr) {
           setCurrentUser(usr);
+          deferred.resolve(usr);
+      }, function(){
+        deferred.reject(false);
       }); 
+
+      return deferred.promise;
     };
 
     this.softLogin = function() {

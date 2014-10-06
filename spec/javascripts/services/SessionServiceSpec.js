@@ -1,5 +1,12 @@
 describe('Service: SessionService', function() {
-  var $q, $scope, $httpBackend, $state, SessionService, UrlService, User;
+  var $q,
+      $scope,
+      $httpBackend,
+      $state,
+      $location,
+      SessionService,
+      UrlService,
+      User;
 
   beforeEach(module('PDRClient'));
   beforeEach(function() { localStorage.clear(); });
@@ -9,6 +16,7 @@ describe('Service: SessionService', function() {
     User           = $injector.get('User');
     $q             = $injector.get('$q');
     $httpBackend   = $injector.get('$httpBackend');
+    $location      = $injector.get('$location');
     $scope         = $rootScope.$new();
     $state         = $injector.get('$state');
   }));
@@ -43,6 +51,22 @@ describe('Service: SessionService', function() {
     });
   });
 
+  describe('#syncAndRedirect', function(){
+    it('Syncs the current logged in user from the server and redirects', function(){
+      spyOn(User, 'get').and.callFake(function() {
+        return createSuccessDefer($q, {id: 42});
+      });
+
+      spyOn($location, 'path');
+
+      SessionService.syncAndRedirect('/assessments');
+      $scope.$apply();
+
+      expect($location.path).toHaveBeenCalledWith('/assessments');
+
+    });
+  });
+
   describe('#syncUser', function() {
     it('syncs the user from the server', function() {
       spyOn(User, 'get').and.callFake(function() {
@@ -54,8 +78,30 @@ describe('Service: SessionService', function() {
 
       expect(SessionService.getUserAuthenticated()).toEqual(true);
       expect(SessionService.getCurrentUser().id).toEqual(42);
-
     });
+
+    it('returns a success promise', function(){
+      spyOn(User, 'get').and.callFake(function() {
+        return createSuccessDefer($q, {id: 42});
+      });
+
+      SessionService.syncUser().then(function(data) {
+        expect(data.id).toEqual(42);
+      });
+      $scope.$apply();
+    });
+
+    it('returns a failed promise', function(){
+      spyOn(User, 'get').and.callFake(function() {
+        return createRejectDefer($q, {});
+      });
+
+      SessionService.syncUser().then(null, function(response){
+        expect(response).toEqual(false);
+      });
+      $scope.$apply();
+    });
+
   });
 
   describe('#softLogin', function() {

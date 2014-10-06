@@ -73,8 +73,8 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
           templateUrl: 'client/views/invitation/redeem.html'
         },
         'sidebar': {
-          controller: '',
-          templateUrl: 'client/views/sidebar/sidebar_generic.html'
+          controller: 'SidebarCtrl',
+          templateUrl: 'client/views/sidebar/sidebar_login.html'
         }
       }
     })
