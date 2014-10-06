@@ -64,8 +64,7 @@
                   <div class="col-md-3 answer-title title-{{answer.value}}">
                     {{answerTitle(answer.value)}}
                   </div>
-                  <div class="col-md-8 answer-description">
-                    {{answer.content}}
+                  <div class="col-md-8 answer-description" ng-bind-html="answer.content">
                   </div>
                 </div>
 
