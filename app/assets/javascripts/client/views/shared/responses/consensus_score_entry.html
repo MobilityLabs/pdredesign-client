@@ -5,7 +5,6 @@
     <div class="row">
       <div class="col-md-offset-1 col-md-11 secondary">
         <h4>Notes</h4>
-        <p>Write notes from the discussion, including evidence to support the consensus score and any follow up items.</p>
           <alert class="alert" ng-show="question.isAlert" type="danger"> <p>Add evidence before saving.</p></alert>
         <div ng-show="isReadOnly" ng-bind-html="question.score.evidence">
         </div>
@@ -15,7 +14,7 @@
             class="col-md-12 col-sm-12"
             ng-hide="isReadOnly"
             ng-model="question.score.evidence"
-            placeholder="Write evidence of why you believe this is the correct score for this question. Skip to next question if you're not sure.">
+            placeholder="Write notes from the discussion, including evidence to support the consensus score and any follow up items.">
           </textarea>
         </div>
       </div>
