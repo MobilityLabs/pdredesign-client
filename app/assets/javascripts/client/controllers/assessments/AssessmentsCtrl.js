@@ -27,7 +27,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return 'fa-spinner';
       };
 
-      $scope.orderLinks = function(items) {
+      $scope.orderLinks = function(items, status) {
         if(status == "draft")
           items = _.reject(items, function(item){ return item.title == "Create Consensus"});
 
@@ -74,8 +74,6 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         });
         return filteredArray;
       };
-
-
 
 
       $scope.districtOptions = function(assessments) {

@@ -16,57 +16,102 @@ describe('Controller: AssessmentsCtrl', function() {
       $scope: $scope,
       assessments: {}
     });
-
   }));
 
+  describe('#orderLinks', function(){
+    describe('#draft status', function() {
+      var draftLinks, sortedDraftLinks;
+      beforeEach(inject(function($injector) {
+        draftLinks = {
+          consensus :{title:"Create Consensus"},
+          report :{title:"View Report"},
+          finish :{title:"Finish & Assign"}
+        };
 
-  it('orderLinks sets Dashboard to be first and Report to be last.', function() {
-    var links = {
-      consensus: {
-        title: "Consensus",
-      },
-      report: {
-        title: "Report",
-      },
-      dashboard: {
-        title: "Dashboard",
-      }
-    };
+        sortedDraftLinks = $scope.orderLinks(draftLinks, 'draft');
+      }));
 
-    var sortedLinks = $scope.orderLinks(links);
+      it('removes Create Consensus when in draft status', function() {
+        expect(sortedDraftLinks.length).toEqual(2);
+        expect(sortedDraftLinks[0].title).not.toEqual("Create Consensus");
+        expect(sortedDraftLinks[1].title).not.toEqual("Create Consensus");
+      });
 
-    expect(sortedLinks[0].title).toEqual("Dashboard");
-    expect(sortedLinks[1].title).toEqual("Consensus");
-    expect(sortedLinks[2].title).toEqual("Report");
+      it('sets Finish & Assign first', function() {
+        expect(sortedDraftLinks[0].title).toEqual("Finish & Assign");
+      });
 
-  });
+      it('sets View Report to last', function() {
+        expect(sortedDraftLinks[1].title).toEqual("View Report");
+      });
+    });
 
-  it('orderLinks sets Report to be last.', function() {
-    var links = {
-      report: {
-        title: "Report",
-        active: false,
-        type: "report"
-      },
-      finish: {
-        title: "Finish & Assign",
-        active: true,
-        type: "finish"
-      },
-      consensus: {
-        title: "Consensus",
-        active: true,
-        type: "new_consensus"
-      },
-    };
+    describe('#assessment status', function() {
+      var assessmentLinks, sortedAssessmentLinks;
+      describe('#facilitator', function() {
 
-    var sortedLinks = $scope.orderLinks(links);
+        beforeEach(inject(function($injector) {
+          assessmentLinks = {
+            consensus: { title: "Create Consensus"},
+            report: { title: "View Report"},
+            dashboard: {title: "View Dashboard"}
+          };
 
-    expect(sortedLinks[0].title).toEqual("Consensus");
-    expect(sortedLinks[1].title).toEqual("Finish & Assign");
-    expect(sortedLinks[2].title).toEqual("Report");
+          sortedAssessmentLinks = $scope.orderLinks(assessmentLinks, '');
+        }));
 
+        it('sets View Dashboard first', function() {
+          expect(sortedAssessmentLinks[0].title).toEqual("View Dashboard");
+        });
 
+        it('sets View Report to last', function() {
+          expect(sortedAssessmentLinks[2].title).toEqual("View Report");
+        });
+      });
+
+      describe('#member participant', function() {
+        beforeEach(inject(function($injector) {
+
+          assessmentLinks = {
+            report:{title:"View Report"},
+            action:{title:"Complete Survey"}
+          };
+
+          sortedAssessmentLinks = $scope.orderLinks(assessmentLinks, '');
+        }));
+
+        it('sets Complete Survey first', function() {
+          expect(sortedAssessmentLinks[0].title).toEqual("Complete Survey");
+        });
+
+        it('sets View Report last', function() {
+          expect(sortedAssessmentLinks[1].title).toEqual("View Report");
+        });
+      });
+    });
+
+    describe('#consensus status', function() {
+      var consensusLinks, sortedConsensusLinks;
+
+      beforeEach(inject(function($injector) {
+        consensusLinks = {
+          consensus: { title: "Consensus"},
+          report: { title: "View Report"},
+          dashboard: {title: "View Dashboard"}
+        };
+
+        sortedConsensusLinks = $scope.orderLinks(consensusLinks, '');
+      }));
+
+      it('sets View Dashboard first', function() {
+        expect(sortedConsensusLinks[0].title).toEqual("View Dashboard");
+      });
+
+      it('sets View Report to last', function() {
+        expect(sortedConsensusLinks[2].title).toEqual("View Report");
+      });
+
+    });
   });
 
   describe('#districtOptions', function(){
@@ -98,7 +143,7 @@ describe('Controller: AssessmentsCtrl', function() {
 
   describe('#permissionsFilter', function(){
     it('Organizer should return is_facilitator true', function() {
-       var permission = $scope.permissionsFilter('Organizer');
+      var permission = $scope.permissionsFilter('Organizer');
       expect(permission).toEqual({ is_facilitator : true })
     });
 
