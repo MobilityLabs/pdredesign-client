@@ -28,11 +28,20 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       };
 
       $scope.orderLinks = function(items) {
+        if(status == "draft")
+          items = _.reject(items, function(item){ return item.title == "Create Consensus"});
+
         var filteredArray = [];
         angular.forEach(items, function(item) {
           var title = item.title.toLowerCase();
           switch(true) {
-            case title == "dashboard":
+            case title == "request access":
+              item.order = 0;
+              break;
+            case title == "view dashboard":
+              item.order = 0;
+              break;
+            case title == "complete survey":
               item.order = 0;
               break;
             case title == "consensus":
@@ -65,6 +74,8 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         });
         return filteredArray;
       };
+
+
 
 
       $scope.districtOptions = function(assessments) {
