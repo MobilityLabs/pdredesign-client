@@ -18,9 +18,32 @@ describe('Controller: AssessmentsCtrl', function() {
     });
   }));
 
+  describe('#removeByTitle', function() {
+    it('removes item by title from the list it is passed', function() {
+      var items = {
+        consensus: { title: "Create Consensus"},
+        report :{ title: "View Report"},
+        finish :{ title: "Finish & Assign"}
+      };
+
+      items = $scope.removeByTitle(items, "Create Consensus");
+      expect(items.length).toEqual(2);
+      expect(items[0].title).not.toEqual("Create Consensus");
+      expect(items[1].title).not.toEqual("Create Consensus");
+    });
+  });
+
   describe('#orderLinks', function(){
+    var draftLinks, sortedDraftLinks;
+
     describe('#draft status', function() {
-      var draftLinks, sortedDraftLinks;
+
+      it('calls $scope.removeByTitle() on Create Consensus', function() {
+        spyOn($scope, 'removeByTitle')
+        $scope.orderLinks(draftLinks, 'draft')
+        expect($scope.removeByTitle).toHaveBeenCalled();
+      });
+
       beforeEach(inject(function($injector) {
         draftLinks = {
           consensus :{title:"Create Consensus"},
@@ -30,12 +53,6 @@ describe('Controller: AssessmentsCtrl', function() {
 
         sortedDraftLinks = $scope.orderLinks(draftLinks, 'draft');
       }));
-
-      it('removes Create Consensus when in draft status', function() {
-        expect(sortedDraftLinks.length).toEqual(2);
-        expect(sortedDraftLinks[0].title).not.toEqual("Create Consensus");
-        expect(sortedDraftLinks[1].title).not.toEqual("Create Consensus");
-      });
 
       it('sets Finish & Assign first', function() {
         expect(sortedDraftLinks[0].title).toEqual("Finish & Assign");
@@ -48,15 +65,15 @@ describe('Controller: AssessmentsCtrl', function() {
 
     describe('#assessment status', function() {
       var assessmentLinks, sortedAssessmentLinks;
-      describe('#facilitator', function() {
 
+      describe('#facilitator', function() {
         beforeEach(inject(function($injector) {
+
           assessmentLinks = {
             consensus: { title: "Create Consensus"},
             report: { title: "View Report"},
             dashboard: {title: "View Dashboard"}
           };
-
           sortedAssessmentLinks = $scope.orderLinks(assessmentLinks, '');
         }));
 

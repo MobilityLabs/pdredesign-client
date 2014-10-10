@@ -27,9 +27,15 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return 'fa-spinner';
       };
 
+      $scope.removeByTitle = function(list, title) {
+        return _.reject(list, function(item){
+          return item.title == title
+        });
+      };
+
       $scope.orderLinks = function(items, status) {
         if(status == "draft")
-          items = _.reject(items, function(item){ return item.title == "Create Consensus"});
+          items = $scope.removeByTitle(items, "Create Consensus");
 
         var filteredArray = [];
         angular.forEach(items, function(item) {
