@@ -5,7 +5,8 @@ PDRClient.directive('inviteUser', ['SessionService', 'UrlService', '$timeout',
         replace: false,
         templateUrl: 'client/views/directives/invite_user.html',
         scope: {
-          'assessmentId': '@'
+          'assessmentId': '@',
+          'sendInvite': '@'
         },
         controller: ['$scope', '$modal', 'UserInvitation', function($scope, $modal, UserInvitation) {
 
@@ -24,14 +25,25 @@ PDRClient.directive('inviteUser', ['SessionService', 'UrlService', '$timeout',
               scope: $scope
             });
           };
+          
+          $scope.shouldSendInvite = function() {
+            return $scope.sendInvite == "true" || $scope.sendInvite == true;
+          };
 
-          $scope.sendInvite = function(userObject) {
+          $scope.closeModal = function() {
+            $scope.modalInstance.dismiss('cancel');
+          };
+
+          $scope.createInvitation = function(userObject) {
+            if($scope.shouldSendInvite())
+              userObject["send_invite"] = true;
+
             UserInvitation
               .create({assessment_id: $scope.assessmentId}, userObject)
               .$promise
               .then(function() {
                 $scope.$emit('update_participants');
-                $scope.modalInstance.dismiss('cancel');
+                $scope.closeModal();
               }, function(response){
                 var errors = response.data.errors;
                 angular.forEach(errors, function(error, field) {
