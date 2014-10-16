@@ -21,7 +21,8 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       };
 
       $scope.consensusReportIcon = function(assessment) {
-        if (assessment.consensus && assessment.consensus.is_complete)
+
+        if(assessment.consensus && assessment.consensus.is_completed)
           return 'fa-check';
 
         return 'fa-spinner';

@@ -123,7 +123,7 @@ describe('Controller: AssessmentsCtrl', function() {
   it('#consensusReportIcon returns correct icon', function() {
     var assessment = {
       consensus: {
-        is_complete: true
+        is_completed: true
       }
     };
 
