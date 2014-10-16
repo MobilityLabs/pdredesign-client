@@ -30,18 +30,27 @@
               </p>
             </div>
             <div class="row question-content">
-              <div class="col-md-10">
+              <div class="col-md-9">
                 <p class="question">
                   {{question.headline}}
                 </p>
+                <p class="content">{{question.content}}</p>
               </div>
-              <div class="col-md-1" >
+
+              <div class="col-md-1" ng-hide="isConsensus">
                 <sample-evidence ng-hide="!question.key_question" key-question="question.key_question"></sample-evidence>
               </div>
 
-              <div class="col-md-11">
-                <p class="content">{{question.content}}</p>
+              <div class="col-md-2">
+                <div class="consensus-percentage-bar" ng-show="isConsensus">
+                  <div
+                    class="scored-{{answer.value}} bar bar-{{answer.value}}"
+                    ng-repeat="answer in question.answers"
+                    style="height: {{percentageByResponse(scores, question.id, answer.value, question.answers.length)}}">
+                  </div>
+                </div>
               </div>
+
             </div>
           </div>
           <div class="col-md-12 answers" ng-show="question.answersVisible">

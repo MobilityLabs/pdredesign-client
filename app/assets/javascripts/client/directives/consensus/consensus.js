@@ -19,11 +19,12 @@ PDRClient.directive('consensus', [
         'ResponseHelper',
         function($scope, $timeout, $stateParams, $location, SessionService, Consensus, Score, ResponseHelper) {
 
-          $scope.isConsensus = true;
-          $scope.isReadOnly  = true;
-          $scope.teamRole    = null;
-          $scope.teamRoles   = [];
-          $scope.loading     = false;
+          $scope.isConsensus        = true;
+          $scope.isReadOnly         = true;
+          $scope.teamRole           = null;
+          $scope.teamRoles          = [];
+          $scope.loading            = false;
+          $scope.answerPercentages  = []; 
 
           $scope.isLoading = function(){ return $scope.loading; }
 
@@ -34,12 +35,13 @@ PDRClient.directive('consensus', [
             });
           };
 
-          $scope.questionColor = ResponseHelper.questionColor;
-          $scope.answerCount   = ResponseHelper.answerCount;
-          $scope.toggleAnswers = ResponseHelper.toggleAnswers;
-          $scope.saveEvidence  = ResponseHelper.saveEvidence;
-          $scope.editAnswer    = ResponseHelper.editAnswer;
-          $scope.answerTitle   = ResponseHelper.answerTitle;
+          $scope.questionColor          = ResponseHelper.questionColor;
+          $scope.answerCount            = ResponseHelper.answerCount;
+          $scope.toggleAnswers          = ResponseHelper.toggleAnswers;
+          $scope.saveEvidence           = ResponseHelper.saveEvidence;
+          $scope.editAnswer             = ResponseHelper.editAnswer;
+          $scope.answerTitle            = ResponseHelper.answerTitle;
+          $scope.percentageByResponse   = ResponseHelper.percentageByResponse;
 
           $scope.assignAnswerToQuestion = function (answer, question) {
             switch(true) {
