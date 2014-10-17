@@ -79,5 +79,10 @@ PDRClient.service('ResponseHelper',
       return 'scored-' + question.score.value;
     }
 
+    this.percentageByResponse = function(scores, questionId, answerValue, answers_count){
+      var numberOfAnswers = scope.answerCount(scores, questionId, answerValue);
+      return ((numberOfAnswers*100)/answers_count) + '%';
+    }
+
 
 }]);
