@@ -29,7 +29,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
 
       $scope.removeByTitle = function(list, title) {
         return _.reject(list, function(item){
-          return item.title == title
+          return item.title == title;
         });
       };
 
@@ -42,11 +42,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
           var title = item.title.toLowerCase();
           switch(true) {
             case title == "request access":
-              item.order = 0;
-              break;
             case title == "view dashboard":
-              item.order = 0;
-              break;
             case title == "complete survey":
               item.order = 0;
               break;
