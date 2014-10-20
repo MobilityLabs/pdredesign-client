@@ -142,3 +142,14 @@ PDRClient.directive('consensus', [
         }]
     };
 }]);
+
+PDRClient.filter('scoreFilter', function() {
+  return function(input, questionId) {
+    var scores = [];
+    angular.forEach(input, function(score) {
+      if(score.question_id == questionId) scores.push(score); 
+    });
+
+    return scores;
+  };
+});
