@@ -1,34 +1,6 @@
 <div class="row sidebar">
   <div class="col-md-12 register-sidebar">
     <h3 class="heading">Tell your district about PDredesign</h3>
-
-      <ng-include src="'client/views/shared/errors.html'"> </ng-include>
-      <input
-      ng-model="message.name"
-      class="form-group form-control"
-      placeholder="Their Name*"
-      type="text">
-
-      <input
-      ng-model="message.address"
-      class="form-group form-control"
-      placeholder="Their Address*"
-      type="text">
-
-      <input
-      ng-model="message.sender_name"
-      class="form-group form-control"
-      placeholder="Your Name*"
-      type="text">
-
-      <input
-      ng-model="message.sender_email"
-      class="form-group form-control"
-      placeholder="Your Email Address*"
-      type="text">
-
-      <button ng-click="sendMessage(message)" class="btn btn-primary btn-lg">Send a Message</button>
-
-    </div>
+    <district-message></district-message>
   </div>
 </div>

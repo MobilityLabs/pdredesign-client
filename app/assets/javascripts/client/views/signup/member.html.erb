@@ -6,62 +6,11 @@
         <h2 class="subheading" >PD Readiness Assessment Tool</h2>
       </div>
 
-      <div class="col-md-8 form">
-        <div class="row">
-          <div class="col-md-7 col-sm-6">
-            <ng-include src="'client/views/shared/errors.html'"> </ng-include>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-7 col-sm-6">
-
-            <div class="row name">
-              <div class="col-md-5 first">
-                <input
-                  ng-model="user.first_name"
-                  class="form-group form-control"
-                  placeholder="First Name*"
-                  type="text">
-              </div>
-              <div class="col-md-1 first">
-              </div>
-              <div class="col-md-6">
-                <input
-                  ng-model="user.last_name"
-                  class="form-group form-control"
-                  placeholder="Last Name*"
-                  type="text">
-              </div>
-
-            </div>
-
-            <district-select 
-              multiple="false"
-              districts="user.district_ids">
-            </district-select>
-
-          <input
-              ng-model="user.email"
-              class="form-group form-control"
-              placeholder="E-Mail*"
-              type="text">
-
-            <input
-              ng-model="user.password"
-              class="form-group form-control"
-              placeholder="Password *"
-              type="password">
-
-
-              <input
-              type="button"
-              ng-click="createUser(user)"
-              class="btn btn-devise btn-danger pull-right"
-              name="commit"
-              value="Create PD Account">
-          </div>
-        </div>
+      <div class="col-md-4">
+        <br>
+        <signup></signup>
       </div>
+
     </div>
   </div>
 

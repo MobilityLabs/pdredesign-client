@@ -82,7 +82,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
       url: '/signup',
       views: {
         '': {
-          controller: 'SignupCtrl',
+          controller: '',
           templateUrl: 'client/views/signup/member.html'
         },
         'sidebar': {
@@ -95,25 +95,25 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
       url: '/partners',
       views: {
         '': {
-          controller: 'SignupCtrl',
+          controller: '',
           templateUrl: 'client/views/signup/network_partner.html'
         },
         'sidebar': {
-          controller: 'SignupCtrl',
+          controller: '',
           templateUrl: 'client/views/sidebar/sidebar_login.html'
         }
       }
     })
     .state('signup_partner', {
       url: '/networks',
+      is_network_partner: true,
       views: {
         '': {
           controller: '',
           templateUrl: 'client/views/signup/partner.html'
         },
         'sidebar': {
-          is_network_partner: true,
-          controller: 'SignupCtrl',
+          controller: '',
           templateUrl: 'client/views/sidebar/register.html'
         }
       }
@@ -126,7 +126,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
           templateUrl: 'client/views/signup/educator.html'
         },
         'sidebar': {
-          controller: 'DistrictMessageCtrl',
+          controller: '',
           templateUrl: 'client/views/sidebar/educator.html'
         }
       }
@@ -139,7 +139,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
           templateUrl: 'client/views/signup/administrator.html'
         },
         'sidebar': {
-          controller: 'SignupCtrl',
+          controller: '',
           templateUrl: 'client/views/sidebar/register.html'
         }
       }
