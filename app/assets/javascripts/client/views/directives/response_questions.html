@@ -92,6 +92,15 @@
               >
             </skip-question>
 
+
+            <score-evidence
+              ng-show="isConsensus"
+              question="question"
+              scores="scores"
+            >
+
+            </score-evidence>
+
             <ng-include
               ng-show="isConsensus"
               src="'client/views/shared/responses/evidence.html'" >
