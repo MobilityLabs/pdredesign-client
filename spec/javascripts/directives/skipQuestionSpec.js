@@ -15,7 +15,7 @@ describe('Directive: skipQuestion', function() {
       score: { value: null, evidence: null }
     };
 
-    element = angular.element("<skip-question question='question' response-id=1 assessment-id=2></skip-question>");
+    element = angular.element("<skip-question question='question' editable='true' response-id=1 assessment-id=2></skip-question>");
     $compile(element)($scope);
     $scope.$digest();
 
