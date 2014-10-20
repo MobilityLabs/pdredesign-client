@@ -112,7 +112,9 @@ PDRClient.directive('consensus', [
 
           $scope.updateConsensus = function(){
              return Consensus
-              .get({assessment_id: $scope.assessmentId, id: $scope.responseId, team_role: $scope.teamRole})
+              .get({assessment_id: $scope.assessmentId,
+                    id: $scope.responseId,
+                    team_role: $scope.teamRole})
               .$promise
               .then(function(data) {
                 $scope.scores     = data.scores;
@@ -135,6 +137,18 @@ PDRClient.directive('consensus', [
               .then(function(){
                 $scope.loading = false;
               });
+          };
+
+          $scope.scoreValue = function(score) {
+            if(!score || score <= 0)
+              return "S";
+            return "" + score;
+          };
+
+          $scope.scoreClass = function(score) {
+            if(!score || score <= 0)
+              return "skipped";
+            return "scored-" + score;
           };
 
           $timeout(function(){ $scope.updateConsensus() });

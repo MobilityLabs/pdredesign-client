@@ -34,6 +34,12 @@ describe('Directive: skipQuestion', function() {
     expect(isolatedScope.question.score.value).toEqual(null);
   });
 
+  it('does not skip when editable is false', function(){
+    isolatedScope.question.score.value = 1;
+    isolatedScope.editable = false;
+    expect(isolatedScope.question.score.value).toEqual(1);
+  });
+
   describe('#skipQuestionSaveEvidence', function(){
     it('sets score evidence to an empty string when evidence is null ', function(){
       expect(isolatedScope.question.score.evidence).toEqual(null);

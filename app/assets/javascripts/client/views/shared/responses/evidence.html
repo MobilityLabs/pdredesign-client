@@ -3,8 +3,8 @@
   <div class="evidence-container">
     <div class="evidence" ng-repeat="score in scores | scoreFilter:question.id">
       <div class="row">
-        <div class="col-md-1 score scored-{{score.value}}">
-          <span class="ng-binding">{{score.value}}</span>
+        <div class="col-md-1 score {{scoreClass(score.value)}}">
+          <span class="ng-binding">{{scoreValue(score.value)}}</span>
         </div>
         <div class="col-md-11" ng-bind-html="score.evidence"></div>
       </div>

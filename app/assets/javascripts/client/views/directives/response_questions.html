@@ -48,6 +48,10 @@
                     ng-repeat="answer in question.answers"
                     style="height: {{percentageByResponse(scores, question.id, answer.value, question.answers.length)}}">
                   </div>
+                  <div
+                    class="scored-skipped bar skipped"
+                    style="height: {{percentageByResponse(scores, question.id, null, question.answers.length)}}">
+                  </div>
                 </div>
               </div>
 
@@ -84,12 +88,17 @@
 
               </div>
             </div>
+            <div class="left-score col-md-1" ng-if="isConsensus">
+              <ng-include
+                src="'client/views/shared/responses/score_count.html'">
+              </ng-include>
+            </div>
+
             <skip-question
-              ng-hide="isConsensus"
+              editable="!isConsensus"
               question="question"
               response-id="{{responseId}}"
-              assessment-id="{{assessmentId}}"
-              >
+              assessment-id="{{assessmentId}}">
             </skip-question>
 
             <ng-include
