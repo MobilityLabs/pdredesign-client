@@ -1,10 +1,10 @@
 describe('Directive: consensus', function() {
   var $scope,
       $timeout,
-      $location, 
+      $location,
       $rootScope,
-      $httpBackend, 
-      isolatedScope, 
+      $httpBackend,
+      isolatedScope,
       element;
 
   var score1    = {id: 1, evidence: "hello", value: 1, editMode: null};
@@ -31,7 +31,7 @@ describe('Directive: consensus', function() {
   }));
 
   describe('#scoreFilter', function(){
-    var $filter;
+    var $filter, scores;
 
     beforeEach(inject(function($injector) {
       $filter = $injector.get('$filter');
