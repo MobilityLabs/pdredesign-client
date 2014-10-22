@@ -38,7 +38,7 @@
                   </div>
                   <div class='col-md-4 col-sm-4 col-xs-4'>
                     <div class='status'>
-                      <i class="fa fa-fa {{statusMessageIcon(user.status)}}"></i>{{user.status_human}}
+                      <response-status data-user="user"></response-status>
                       <p class="date">{{user.status_date | amDateFormat:'MMMM Do, YYYY'}}</p>
                     </div>
                   </div>

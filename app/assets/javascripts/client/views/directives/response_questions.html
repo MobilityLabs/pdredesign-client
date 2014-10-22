@@ -45,7 +45,7 @@
                 <div class="consensus-percentage-bar" ng-show="isConsensus">
                   <div
                     class="scored-{{answer.value}} bar bar-{{answer.value}}"
-                    ng-repeat="answer in question.answers"
+                    ng-repeat="answer in question.answers | orderBy:value"
                     style="height: {{percentageByResponse(scores, question.id, answer.value, question.answers.length)}}">
                   </div>
                   <div
