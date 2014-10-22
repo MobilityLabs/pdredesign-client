@@ -5,7 +5,7 @@ PDRClient.directive('scoreEvidence', [
       transclusion: true,
       scope: {
         scores:  '=',
-        question:  '=',
+        questionId:  '@',
       },
       templateUrl: 'client/views/shared/responses/evidence.html',
 

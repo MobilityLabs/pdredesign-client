@@ -12,18 +12,26 @@ describe('Directive: scoreEvidence', function() {
     $compile = $injector.get('$compile');
     $httpBackend = $injector.get('$httpBackend');
     $scope.question = {id: 5};
-    $scope.scores = [{question_id: 1}, {question_id:1}, {question_id:2}];
+    $scope.scores = [{question_id: 5}, {question_id:5}, {question_id:6}];
     $scope.isConsensus = true;
 
-    element = angular.element("<score-evidence question='question' scores='scores'></score-evidence>");
+    element = angular.element("<score-evidence question-id='{{question.id}}' scores='scores'></score-evidence>");
     $compile(element)($scope);
     $scope.$digest();
     isolatedScope = element.isolateScope();
 
   }));
 
-  it('sets question.id correctly', function(){
-    expect(isolatedScope.question.id).toEqual(5);
+  it('sets questionId correctly', function(){
+    expect(isolatedScope.questionId).toEqual('5');
+  });
+
+  it('sets scores correctly', function(){
+    expect(isolatedScope.scores).toEqual($scope.scores);
+  });
+
+  it('displays filter correctly', function(){
+    expect(element.find('.evidence').length).toEqual(2);
   });
 
 });

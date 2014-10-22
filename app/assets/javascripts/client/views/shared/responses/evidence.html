@@ -1,7 +1,7 @@
 <div class="evidence-discussion">
   <h3>Individual Evidence</h3>
   <div class="evidence-container">
-    <div class="evidence" ng-repeat="score in scores | scoreFilter:question.id">
+    <div class="evidence" ng-repeat="score in scores | scoreFilter:questionId">
       <div class="row">
         <div class="col-md-1 score scored-{{score.value}}">
           <span class="ng-binding">{{score.value}}</span>
