@@ -60,10 +60,16 @@
           <div class="col-md-12 answers" ng-show="question.answersVisible">
             <div class="answer" ng-repeat="answer in question.answers" ng-click="assignAnswerToQuestion(answer, question)">
               <div class="left-score col-md-1">
-                <ng-include
-                  ng-show="isConsensus"
-                  src="'client/views/shared/responses/score_count.html'">
-                </ng-include>
+                <score-count
+                  answer="answer"
+                  question="question"
+                  is-read-only="{{isReadOnly}}"
+                  scores="scores"
+                  participant-count="{{participantCount}}"
+                  answer-count="{{answerCount(scores, question.id, answer.value)}}"
+                  >
+                </score-count>
+
               </div>
 
               <div
