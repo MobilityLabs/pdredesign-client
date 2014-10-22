@@ -60,16 +60,17 @@
           <div class="col-md-12 answers" ng-show="question.answersVisible">
             <div class="answer" ng-repeat="answer in question.answers" ng-click="assignAnswerToQuestion(answer, question)">
               <div class="left-score col-md-1">
-                <score-count
-                  answer="answer"
-                  question="question"
-                  is-read-only="{{isReadOnly}}"
-                  scores="scores"
-                  participant-count="{{participantCount}}"
-                  answer-count="{{answerCount(scores, question.id, answer.value)}}"
-                  >
-                </score-count>
-
+                <span ng-show="isConsensus">
+                  <score-count
+                    ng-show="isConsensus"
+                    answer="answer"
+                    question="question"
+                    is-read-only="{{isReadOnly}}"
+                    participant-count="{{participantCount}}"
+                    answer-count="{{answerCount(scores, question.id, answer.value)}}"
+                    >
+                  </score-count>
+                </span>
               </div>
 
               <div
@@ -94,10 +95,17 @@
 
               </div>
             </div>
-            <div class="left-score col-md-1" ng-if="isConsensus">
-              <ng-include
-                src="'client/views/shared/responses/score_count.html'">
-              </ng-include>
+            <div class="left-score col-md-1" ng-class="{hidden: !isConsensus}">
+              <span ng-show="isConsensus">
+                <score-count
+                  answer="answer"
+                  question="question"
+                  is-read-only="{{isReadOnly}}"
+                  participant-count="{{participantCount}}"
+                  answer-count="{{answerCount(scores, question.id, answer.value)}}"
+                  >
+                </score-count>
+              </span>
             </div>
 
             <skip-question

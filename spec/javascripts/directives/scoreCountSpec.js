@@ -1,54 +1,68 @@
-describe('Directive: responseQuestions', function() {
+describe('Directive: scoreCount', function() {
   var $scope,
       element,
       isolatedScope,
-      Response,
       $compile,
       $timeout,
       $httpBackend,
       $q;
-  var score1    = {id: 1, evidence: "hello", value: 1, editMode: null};
-  var question1 = {id: 1, score: score1 };
+
+  var score1    = {id: 1, evidence: 'hello', value: 1, editMode: null};
+  var question1 = {id: 1, score: score1, mode: 2 };
   var answer1   = {id: 1, value: 2};
+  var scores = [{question_id: 1}, {question_id:2}, {question_id:2}];
 
   beforeEach(module('PDRClient'));
 
   beforeEach(inject(function($rootScope, $injector) {
     $scope   = $rootScope.$new();
     $compile = $injector.get('$compile');
-    $timeout = $injector.get("$timeout");
+    $timeout = $injector.get('$timeout');
     $q = $injector.get('$q');
     $httpBackend = $injector.get('$httpBackend');
-    Response = $injector.get('Response');
+    $scope.answer = answer1;
+    $scope.question = question1;
+    $scope.isReadOnly = true;
+    $scope.scores = scores;
+    $scope.participantCount = 3;
+    $scope.answerCount = 2;
 
-    element = angular.element('<response-questions data-assessment-id=1 data-response-id=1></response-questions>');
+    element = angular.element("<score-count "
+                + "answer='answer'"
+                + "question='question'"
+                + "is-read-only='{{isReadOnly}}'"
+                + "participant-count='{{participantCount}}'"
+                + "answer-count='{{answerCount}}'>"
+                + "</score-count>");
+
     $compile(element)($scope);
     $scope.$digest();
     isolatedScope = element.isolateScope();
-
   }));
 
-  it('isConsensus will be false by default ', function() {
-    expect(isolatedScope.isConsensus).toEqual(false);
+  it('sets answer correctly as = binding', function() {
+    expect(isolatedScope.answer).toEqual($scope.answer);
   });
 
-  it('save button is not disabled with evidence present', function() {
-    expect(isolatedScope.invalidEvidence(question1)).toEqual(false)
+  it('sets question correctly as = binding', function() {
+    expect(isolatedScope.question).toEqual($scope.question);
   });
 
-  it('save button is disabled with no evidence', function() {
-    var score2 = {id: 1, evidence: "", value: 1, editMode: null};
-    var question2 = {id: 1, score: score2 };
-    expect(isolatedScope.invalidEvidence(question2)).toEqual(true)
+  it('sets isReadOnly correctly as @ string', function() {
+    expect(isolatedScope.isReadOnly).toEqual('true');
   });
 
-  describe('#ResponseGET', function() {
-    it('gets data on callback and sets categories', function() {
-      $httpBackend.whenGET('/v1/assessments/1/responses/1').respond({categories: [1,2,3]});
-      $timeout.flush();
-      $httpBackend.flush();
-      expect(isolatedScope.categories).toEqual([1,2,3]);
-    });
-
+  it('sets answerCount correctly as @ string', function() {
+    expect(isolatedScope.answerCount).toEqual('2');
   });
+
+  it('sets participantCount correctly as @ string', function() {
+    expect(isolatedScope.participantCount).toEqual('3');
+  });
+
+  it('sets participantCount correctly as @ string', function() {
+    console.log(element)
+    // expect(isolatedScope.participantCount).toEqual('3');
+  });
+
 });

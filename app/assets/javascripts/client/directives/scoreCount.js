@@ -3,24 +3,16 @@ PDRClient.directive('scoreCount', [
       return {
         restrict: 'E',
         replace: true,
+        transclusion: true,
         scope: {
           answer: '=',
           question: '=',
           isReadOnly: '@',
-          scores: '=',
           participantCount: '@',
           answerCount: '@',
         },
         templateUrl: 'client/views/shared/responses/score_count.html',
-        controller: [
-          '$scope',
-          '$rootScope',
-          '$location',
-          '$state',
-          'User',
-          'SessionService',
-          function($scope, $rootScope, $location, $state, User, SessionService) {
-          }],
+
       }
     }
 ]);
