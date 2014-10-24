@@ -35,6 +35,7 @@ angular.module("PDRClient").run(
   function ($rootScope, $state, $location, SessionService) {
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
       $rootScope.showFullWidth = toState.showFullWidth;
+      $rootScope.showFluid     = toState.showFluid;
     });
   }]);
 

@@ -1,72 +1,70 @@
-<div class="header row" id="main-nav">
-  <nav class='navbar navbar-default'>
-    <div class='container'>
-      <div class='row'>
-        <div class='col-md-12'>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
           <div class='navbar-header'>
+          
             <ul class='nav navbar-nav'>
+              <li>
+                <a class='logo' href="#">
+                  <%= image_tag 'pdlogo.png' %>
+                </a>
+              </li>
               <li ng-class="activeClassFor('home')">
-              <a href='#/home'>Home</a>
+                <a href='#/home'>Home</a>
               </li>
-              <li ng-class="activeClassFor('current_state')">
-              <a class='data-toggle' data-toggle='dropdown'>Current State</a>
-              <ul class='dropdown-menu'>
-                <li>
-                <a href='#/assessments'>Readiness Assessment</a>
+              <li ng-class="activeClassFor('current_state')" class="cursor">
+                <a class='data-toggle' data-toggle='dropdown'>Current State</a>
+                <ul class='dropdown-menu'>
+                  <li>
+                    <a href='#/assessments'>Readiness Assessment</a>
+                  </li>
+                </ul>
 
-                </li>
-              </ul>
               </li>
               <li class='disabled'>
-              <a href='#'>Future State</a>
+                <a href='#'>Future State</a>
               </li>
               <li class='disabled'>
-              <a href='#'>Planning</a>
+                <a href='#'>Planning</a>
               </li>
               <li class='disabled'>
-              <a href='#'>Procurement</a>
+                <a href='#'>Procurement</a>
               </li>
               <li class='disabled'>
-              <a href='#'>Implementation</a>
+                <a href='#'>Implementation</a>
               </li>
               <li class='disabled'>
-              <a href='#'>Rollout</a>
+                <a href='#'>Rollout</a>
               </li>
             </ul>
           </div>
-          <ul class='nav navbar-nav navbar-right'>
+          <ul class='nav navbar-nav navbar-right user-menu cursor'>
+            <li class='hidden-xs hidden-sm'>
+              <img alt="{{user.name}}" class="polaroid" height="40" ng-src="{{user.avatar}}">
+            </li>
             <li>
               <a class='data-toggle' data-toggle='dropdown'>
                 <i class='fa fa-caret-down'></i>
-                {{user.full_name}}
+                {{user.first_name}}
               </a>
 
               <ul class='dropdown-menu'>
                 <li>
-                <a href='#/settings'>
-                  <i class='fa fa-gears'></i>
-                  Settings
-                </a>
+                  <a href='#/settings'>
+                    <i class='fa fa-gears'></i>
+                    Settings
+                  </a>
                 </li>
                 <li>
-                <a href='#/logout'>
-                  <i class='fa fa-sign-out'></i>
-                  Sign Out
-                </a>
+                  <a href='#/logout'>
+                    <i class='fa fa-sign-out'></i>
+                    Sign Out
+                  </a>
                 </li>
               </ul>
             </li>
-            <li class='hidden-xs hidden-sm'>
-            <img alt="{{user.name}}" class="img-polaroid" height="40" ng-src="{{user.avatar}}">
-            </li>
-            <li class='hidden-xs hidden-sm'>
-              <a class='logo' href='#/'>
-                <%= image_tag 'logo.png' %>
-              </a>
-            </li>
+
           </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
-</div>
+
+  </div>
+</nav>
+

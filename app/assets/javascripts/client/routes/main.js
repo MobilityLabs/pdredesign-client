@@ -18,7 +18,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
 
     $stateProvider.state('root', {
       url: '/',
-      showFullWidth: true,
+      showFluid: true,
       views: {
         'full-width': {
           controller: 'HomeCtrl',

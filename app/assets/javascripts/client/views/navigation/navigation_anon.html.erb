@@ -1,21 +1,29 @@
-<div class="header anon row" id="main-nav">
-  <nav class='navbar navbar-default'>
-    <div class='container'>
-      <div class='row'>
-        <div class='col-md-12'>
-          <ul class='nav navbar-nav'>
-            <li><a href="#"><%= image_tag 'logo.png' %></a></li>
-          </ul>
-          <ul class='nav navbar-nav lower navbar-right'>
-            <li>
-              <a ng-click="chooseRole()">Get Started</a>
-            </li>
-            <li>
-              <a href="#/login" >Sign In</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="#">
+        <%= image_tag 'pdlogo.png' %>
+      </a>
     </div>
-  </nav>
-</div>
+
+   <button type="button" class="navbar-right navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>  
+      <span class="icon-bar"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-form">
+          <button type="button" class="btn btn-primary btn-sm" ng-click="chooseRole()">Sign Up</button>
+        </li>
+
+        <li>
+          <a href="#/login">Log In</a> 
+        </li>
+       </ul>
+    </div>
+
+  </div>
+</nav>
+

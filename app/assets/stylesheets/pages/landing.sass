@@ -1,54 +1,89 @@
-#landing
-  .landing-image-back
-    background: image-url("landing-home.jpg")
-    background-size: cover
-    min-height: 23em
-    .container
-      .landing-info-holder
-        margin-top: 4em
-        a
-          font-size: 1.5em
+.home-container.container-fluid
+  color: $font-color
+  background-color: #FFF
+  font-size: 1.5em
+  &, .view
+    padding-left: 0
+    padding-right: 0
+  .primary-color
+    color: $primary-color
+  .dark-primary-color
+    color: $dark-primary-color
+  .secondary-color
+    color: $secondary-color
 
-  background-color: #F9F9F7
-  p.info
-    font-size: 2.5em
-  .get-started-btn
-    background-color: #A41D2E
-    border-color: #3D0E14
-.row-body
-  padding-bottom: 5em
-  margin-bottom: 3.125em
-  background-color: #F9F9F7
-  h3
-    font-size: 2.7em
+  section.hero
+    background: linear-gradient(to bottom, $gradient-top 0%, $gradient-bottom 100%), image-url('rose.jpg') no-repeat
+    background-size: auto 100%
+    background-position: center
+    padding-top: 3em
+    padding-bottom: 5em
+    button
+      font-weight: bold
+      font-size: 1em
+      color: $primary-color
+      background-color: $navbar-color
 
-.landing-button-holder
-  margin-top: 3em
-  background-color: #fff
-  border: 1px $border-color solid
-  border-radius: 0.625em
-  min-height: 16em
+    h1, p
+      color: #fff
+  section.body
+    padding-top: 3em
+    padding-bottom: 1em
 
-  h3
-    font-size: 1.6em
+  section.stats
+    padding-top: 3em
+    padding-bottom: 5em
+    .labels
+      font-size: .75em
+      line-height: 2em
+    .legal
+      margin-top: 2em
+      font-size: .4em
+    .graph-container
+      padding-left: 0
+      .explainer
+        font-size: 0.65em
+        text-transform: uppercase
+      .graph
+        border-left: 0.1em solid black
+      .scale
+        font-size: 0.75em
+        .left-10
+          padding-left: 10%
 
-.landing-content
-  background-color: #F9F9F7
-  p
-    font-size: 1.2em
+      .bar
+        height: 1em
+        background-color: $dark-primary-color
+        margin-top: 0.33em
+        &.width-first
+          width: 75%
+        &.width-second
+          width: 60%
+        &.last
+          margin-bottom: 0.33em
+          border-bottom: 0.1em solid black
+  section.path
+    background-color: $navbar-color
+    padding-top: 1em
+    h2
+      padding: 1em inherit
+    .points
+      padding-bottom: 2em
+    p
+      font-size: .9em
+    .points
+      img
+        width: 25%
+    .icons      
+      img
+        width: 100%
 
-.landing-footer
-  background-color: #d5d2c9
-  height: 6.5em
-  .email-holder
-    margin-top: 0.4em
-  span
-    color: #4A5D66
-    font-size: 1.6em
-  .btn
-    font-size: 1em
-    margin-top: 0.3em
-    i
-      color: white
-      font-size: 1.3em
-      margin-right: 0.6em
+  section.action
+    padding-top: 2em
+    padding-bottom: 4em
+
+    button
+      font-size: 1.5em
+      margin-top: 2em
+      background-color: $primary-color 
+      color: #fff

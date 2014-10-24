@@ -1,38 +1,138 @@
-<div id="landing">
-  <div class='landing-image-back'>
-      <div class="row landing-info-holder">
-        <div class="col-md-12 text-center">
-          <%= image_tag "landing-logo.png" %>
-        </div>
-        <div class="col-md-12 text-center">
-          <p class="info">A digital toolkit and community of practice, improving</p>
-          <p class="info">professional development for educators.</p>
-        </div>
-        <div class="col-md-12 text-center">
-          <a ng-click="chooseRole()" class="btn btn-primary get-started-btn">Get Started</a>
-        </div>
+<section class='hero'>
+  <div class='row'>
+    <div class='col-sm-12 text-center'>
+      <h1>PDredesign</h1>
+    </div> 
+  </div> 
+
+  <div class='row'>
+    <div class='col-sm-12 text-center'>
+      <p>A digital toolkit and community of practice</br>
+      dedicated to improving professional</br>
+      development for teachers.</p>
+    </div> 
+  </div> 
+
+  <div class='row'>
+    <div class='col-sm-12 text-center'>
+      <button type='button' class='btn btn-default' ng-click="chooseRole()">Sign Up</button>
+    </div> 
+  </div> 
+
+</section>
+
+<section class='body'>
+  <div class='row'>
+    <div class='col-sm-12 text-center'>
+      <h2 class="secondary-color">Why Redesign PD?</h2>
+    </div> 
+  </div> 
+
+  <div class='row'>
+    <div class='col-sm-12 text-center'>
+      <p class="primary-color">Teachers, more than ever, are looking for relevant, flexible,</br>
+      collaborative PD to meet the needs of students in their</br>
+      classrooms.</p>
+    </div> 
+  </div> 
+</section>
+
+<section class='stats'>
+  <div class='row'>
+    <div class='col-sm-6 col-md-6 text-right labels'>
+      PD is not customized enough to the content I teach<br/>
+      There is not enough continuity between PD sessions<br/>
+      Most PD has little practical application in my classroom<br/>
+    </div>
+    <div class='col-sm-6 col-md-6 graph-container'>
+      <div class="graph">
+        <div class="bar width-first"></div>
+        <div class="bar width-second"></div>
+        <div class="bar width-second last"></div>
       </div>
+      <div class="scale">
+        <span class="left-0">0</span>
+        <span class="left-10">10</span>
+        <span class="left-10">20</span>
+        <span class="left-10">30</span>
+        <span class="left-10">40</span>
+        <span class="left-10">50</span>
+      </div>
+      <span class="explainer dark-primary-color">
+        % Of respondants who labeled topic "Very Important"
+      </span>
+    </div>
+
+  </div> 
+
+  <div class='row'>
+    <div class='col-sm-12 text-center legal dark-primary-color'>
+      Teachers surveyed were asked "in the past 12 months, to what extent have
+      the following factors limited the effectiveness of your PD?" 936 teachers responded<br/>
+      Source: PD teacher survey, February 2014<br/>
+    </div> 
+  </div> 
+</section>
+
+<section class='path'>
+  <div class='row'>
+    <div class='col-sm-12 text-center'>
+      <h2 class="secondary-color">Redesign for continous improvement and sustainable change</h2>
     </div>
   </div>
-  <div>
-  <div class='row landing-content'>
-    <div class="col-md-12">
-      <div class="col-md-6">
-        <h3>What is PDredesign?</h3>
-        <p>PDredesign is the place for meaningful collaboration to reimagine teacher professional development.</p>
-        <p>Join our community of educators and designers committed to continuously improving professional development systems to better support teachers. Alongside leaders from classrooms, schools, charters, districts, and partner organizations across the country, we are building an open digital toolkit and community of practice to support districts to redesign systems that meet the needs of educators and students.</p>
-        <p>Improving professional development for teachers will take all of us working together.</p>
+
+  <div class='row'>
+    <div class='col-sm-12 col-md-4 col-md-offset-2 text-center'>
+      <div class="points">
+        <h3 class="primary-color">Where are we now?</h3>
+        <p>Understand your strengths across the district and identify priorities for growth.</p>
+        <%= image_tag 'landpage-icons-mappin.png', class: 'visible-xs-inline' %>
       </div>
-      <div class="col-md-4 col-md-offset-1">
-        <div class="landing-button-holder text-center">
-          <h3>Learn more about PDredesign</h3>
-          <p><a  href="#/administrators" class="btn btn-primary btn-lg">For Administrators</a></p>
-          <p><a href="#/educators" class="btn btn-primary btn-lg">For Educators</a></p>
-          <p><a href="#/networks" class="btn btn-primary btn-lg">For Partners</a></p>
-        </div>
+      <div class="points">
+        <h3 class="primary-color">Where do we need to grow?</h3>
+        <p>Analyze resources and gaps in priority areas.</p>
+        <%= image_tag 'landpage-icons-tools.png', class: 'visible-xs-inline' %>
       </div>
+      <div class="points">
+        <h3 class="primary-color">How do we reach our goals?</h3>
+        <p>Leverage best practices and tools to make your plan come to life.</p>
+        <%= image_tag 'landpage-icons-playbook.png', class: 'visible-xs-inline'   %>
+      </div>
+      <div class="points">
+        <h3 class="primary-color">Who can help us get there?</h3>
+        <p>Find districts and partners working on solutions.</p>
+        <%= image_tag 'landpage-icons-community.png', class: 'visible-xs-inline'  %>
+      </div>
+
+    </div>
+    <div class='col-sm-12 col-md-3 col-md-offset-1 icons hidden-sm hidden-xs'>
+      <%= image_tag 'path.png' %>
+    </div>
+
+  </div>
+
+</section>
+
+<section class='action'>
+  <div class='row'>
+    <div class='col-sm-12 text-center'>
+      <h2 class="secondary-color">Join PD redesign</h2>
     </div>
   </div>
-    <ng-include src="'client/views/shared/footers/landing_footer.html'"></ng-include>
+
+  <div class='row'>
+    <div class='col-sm-12 text-center'>
+      A digital toolkit and community of practice dedicated to<br/>
+      improving professional development for teachers.
+    </div>
+
+    <div class='row'>
+      <div class='col-sm-12 text-center'>
+        <button type='button' class='btn btn-default' ng-click="chooseRole()">Sign Up</button>
+      </div> 
+    </div> 
+
+
   </div>
-</div>
+
+</section>
