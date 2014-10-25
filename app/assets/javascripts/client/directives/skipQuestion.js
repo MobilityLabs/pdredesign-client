@@ -6,6 +6,7 @@ PDRClient.directive('skipQuestion', [
       scope: {
         question: "=",
         editable: "=",
+        isConsensus: "=",
         responseId: "@",
         assessmentId: "@",
       },
@@ -17,11 +18,12 @@ PDRClient.directive('skipQuestion', [
         function($scope, $timeout, ResponseHelper) {
           $scope.editAnswer = ResponseHelper.editAnswer;
           $scope.skipped    = ResponseHelper.skipped;
+          // $scope.answer = {value: null, evidence: ''};
 
           $scope.skipQuestion = function(question, score) {
+            console.log("HEllo");
             if(!$scope.editable) return;
             question.skipped = true;
-
             var answer = { value: null };
             ResponseHelper.assignAnswerToQuestion($scope, answer, question);
           };

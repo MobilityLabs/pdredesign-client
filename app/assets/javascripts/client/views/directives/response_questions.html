@@ -21,7 +21,7 @@
         <div class="row question-container question-{{question.id}}" ng-repeat="question in category.questions">
           <div class="col-md-12 question-row" ng-click="toggleAnswers(question)">
             <div class="col-md-1 question">
-              <p class="question-id scored-{{question.score.value}}" ng-show="question.loading">
+              <p class="question-id {{questionColor(question)}}" ng-show="question.loading">
                 <i class="fa fa-spinner fa-spin"></i>
               </p>
               <p id="question-{{question.number}}" class="question-id {{questionColor(question, isConsensus)}}" ng-hide="question.loading">
@@ -96,6 +96,7 @@
 
             <skip-question
               editable="!isConsensus"
+              is-consensus="isConsensus"
               question="question"
               response-id="{{responseId}}"
               assessment-id="{{assessmentId}}">

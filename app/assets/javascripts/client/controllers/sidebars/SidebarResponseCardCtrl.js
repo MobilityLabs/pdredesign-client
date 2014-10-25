@@ -21,6 +21,7 @@ PDRClient.controller('SidebarResponseCardCtrl', [
     $scope.responseId   = $stateParams.response_id;
     $scope.questions    = [];
     $scope.assessment   = {};
+    $scope.questionColor = ResponseHelper.questionColor;
 
     $timeout(function(){
       $scope.assessment = Assessment.get({id: $scope.assessmentId});

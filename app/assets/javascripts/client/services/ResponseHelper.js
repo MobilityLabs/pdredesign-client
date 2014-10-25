@@ -39,20 +39,28 @@ PDRClient.service('ResponseHelper',
       score.editMode = false;
     };
 
+
+    // this.scoreEditable = function() {
+
+    // }
+
     this.skipped = function(question) {
-      switch(true) {
-        case !question || !question.score:
-        return false;
-        case question.skipped:
-        case question.score.value == null && question.score.evidence != null:
+      if(!question || !question.score) return null;
+      if(question.score.value == null && question.score.evidence != null)
         return true;
-        default:
-        return false;
-      }
+
+      // switch(true) {
+      //   case !question || !question.score:
+      //   return false;
+      //   case question.skipped:
+      //   case question.score.value == null && question.score.evidence != null:
+      //   return true;
+      //   default:
+      //   return false;
+      // }
     }
 
     this.assignAnswerToQuestion = function(scope, answer, question) {
-
       var params = {response_id: scope.responseId, assessment_id: scope.assessmentId};
       var score  = {question_id: question.id, value: answer.value, evidence: question.score.evidence};
 
@@ -68,14 +76,11 @@ PDRClient.service('ResponseHelper',
         });
     }
 
-    this.questionColor = function(question, isConsensus) {
-      if(!question.score) return null;
-
-      if(!isConsensus) {
-        if (question.score.evidence != null && question.score.value == null)
-          return "scored-skipped";
-      };
-
+    this.questionColor = function(question) {
+      if(!question || !question.score) return null;
+      if(question.score.value == null && question.score.evidence != null) {
+        return 'skipped';
+      }
       return 'scored-' + question.score.value;
     }
 
