@@ -44,20 +44,20 @@ PDRClient.service('ResponseHelper',
 
     // }
 
-    this.skipped = function(question) {
-      if(!question || !question.score) return null;
-      if(question.score.value == null && question.score.evidence != null)
-        return true;
 
-      // switch(true) {
-      //   case !question || !question.score:
-      //   return false;
-      //   case question.skipped:
-      //   case question.score.value == null && question.score.evidence != null:
-      //   return true;
-      //   default:
-      //   return false;
-      // }
+    this.skipped = function(question, answer) {
+      switch(true) {
+        case !question || !question.score:
+        case question.score == null:
+        case question.score.value != null:
+        case question.skipped == false:
+        return false;
+        case question.skipped:
+        case question.score.value == null && question.score.evidence != null:
+        return true;
+        default:
+        return false;
+      }
     }
 
     this.assignAnswerToQuestion = function(scope, answer, question) {
