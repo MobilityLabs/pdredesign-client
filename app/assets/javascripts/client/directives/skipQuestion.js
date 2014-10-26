@@ -19,8 +19,6 @@ PDRClient.directive('skipQuestion', [
         function($scope, $timeout, ResponseHelper) {
           $scope.editAnswer = ResponseHelper.editAnswer;
 
-          // $scope.skipped    = ResponseHelper.skipped;
-
           $scope.answer = {value: null, content: null};
 
           $scope.skipped = function(question) {

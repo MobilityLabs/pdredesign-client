@@ -1,5 +1,5 @@
 <div class="col-md-11 answer-row value-color-skipped"
-  ng-click="skipQuestion(question, question.score)"
+  ng-click="skipQuestion(question)"
   ng-class="{skipped: skipped(question), 'col-md-offset-1': !isConsensus}">
   <div class="answer-info-row">
     <div class="col-md-1 skipped answer-value">
@@ -10,8 +10,8 @@
     </div>
     <div class="col-md-8 answer-description">
       <p ng-show="question.score.value == null && !isConsensus">
-        Saved Evidence:<p  ng-show="question.score.value == null"
-        ng-bind-html="question.score.evidence"></p>
+        Explain Why:<p  ng-show="question.score.value == null"
+        ng-bind-html="question.score.content"></p>
       </p>
     </div>
   </div>
