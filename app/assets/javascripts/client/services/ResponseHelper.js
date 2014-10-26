@@ -39,12 +39,6 @@ PDRClient.service('ResponseHelper',
       score.editMode = false;
     };
 
-
-    // this.scoreEditable = function() {
-
-    // }
-
-
     this.skipped = function(question, answer) {
       switch(true) {
         case !question || !question.score:
