@@ -9,10 +9,11 @@ PDRClient.directive('startAssessment', [
           '$scope',
           '$timeout',
           '$location',
+          '$modal',
           'Rubric',
           'Assessment',
           'SessionService',
-          function($scope, $timeout, $location, Rubric, Assessment, SessionService){
+          function($scope, $timeout, $location, $modal, Rubric, Assessment, SessionService){
 
           $scope.alerts     = [];
           $scope.assessment = {};
@@ -28,8 +29,20 @@ PDRClient.directive('startAssessment', [
             return "Start a New Assessment";
           };
 
-          $scope.hideModal = function() {
-            $('#startAssessment').modal('hide');
+          $scope.openStartAssessmentModal = function() {
+            $scope.modal = $modal.open({
+              templateUrl: 'client/views/modals/start_assessment.html',
+              scope: $scope,
+              resolve: {
+                datePicker: function () {
+                  return $scope.setDatePicker();
+                }
+              },
+            });
+          }
+
+          $scope.close = function(){
+            $scope.modal.dismiss('cancel');
           }
 
           $scope.noDistrict = function() {
@@ -37,7 +50,7 @@ PDRClient.directive('startAssessment', [
           }
 
           $scope.redirectToAssessment = function(assessment) {
-            $scope.hideModal();
+            $scope.close();
             $location.path('assessments/' + assessment.id + '/assign');
           }
 
@@ -71,16 +84,17 @@ PDRClient.directive('startAssessment', [
             $scope.alerts.splice(index, 1);
           };
 
-          $timeout(function() {
-            $scope.datetime = $('.datetime').datetimepicker({
-              pickTime: false,
+          $scope.setDatePicker = function() {
+            $timeout(function() {
+              $scope.datetime = $('.datetime').datetimepicker({
+                pickTime: false,
+              });
+              $scope.datetime.on("dp.change",function (e) {
+                $('#due-date').trigger('change');
+              });
             });
+          }
 
-            $scope.datetime.on("dp.change",function (e) {
-              $('#due-date').trigger('change');
-            });
-
-          });
         }],
       }
     }
