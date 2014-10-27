@@ -14,8 +14,12 @@ describe('Directive: skipQuestion', function() {
       skipped: false,
       score: { value: null, evidence: null }
     };
+    $scope.isReadOnly = false;
+    //Set Post to return .is_completed
 
-    element = angular.element("<skip-question question='question' editable='true' response-id=1 assessment-id=2></skip-question>");
+
+
+    element = angular.element("<skip-question question='question' is-read-only='{{isReadOnly}}' response-id=1 assessment-id=2></skip-question>");
     $compile(element)($scope);
     $scope.$digest();
 
@@ -34,10 +38,8 @@ describe('Directive: skipQuestion', function() {
     expect(isolatedScope.question.score.value).toEqual(null);
   });
 
-  it('does not skip when editable is false', function(){
-    isolatedScope.question.score.value = 1;
-    isolatedScope.editable = false;
-    expect(isolatedScope.question.score.value).toEqual(1);
+  it('sets isReadOnly as a string', function(){
+    expect(isolatedScope.isReadOnly).toEqual('true');
   });
 
   describe('#skipQuestionSaveEvidence', function(){
@@ -55,7 +57,8 @@ describe('Directive: skipQuestion', function() {
   });
 
   describe('#skipQuestion', function(){
-    it('sets question skipped to true', function(){
+    it('sets question skipped to true when is isReadOnly is false', function(){
+      isolatedScope.isReadOnly = false;
       isolatedScope.skipQuestion(isolatedScope.question, isolatedScope.question.score);
       expect(isolatedScope.question.skipped).toEqual(true);
     });
