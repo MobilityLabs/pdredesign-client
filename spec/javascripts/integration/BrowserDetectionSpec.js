@@ -15,7 +15,7 @@ describe('Integration: BrowserDetection', function() {
     expect(subject.isBrowserValid({safari: true, version: "6"})).toEqual(true);
     expect(subject.isBrowserValid({safari: true, version: "5"})).toEqual(false);
 
-    expect(subject.isBrowserValid({msie: true, version: "9"})).toEqual(true);
+    expect(subject.isBrowserValid({msie: true, version: "10"})).toEqual(true);
     expect(subject.isBrowserValid({msie: true, version: "8"})).toEqual(false);
   });
 
@@ -24,10 +24,10 @@ describe('Integration: BrowserDetection', function() {
     BrowserDetector.redirectInvalidBrowser({msie: true, version: "7"});
     expect(BrowserDetector.redirect).toHaveBeenCalled();
   });
-  
+
   it("does not redirect a valid browser", function(){
     spyOn(BrowserDetector, 'redirect');
-    BrowserDetector.redirectInvalidBrowser({msie: true, version: "9"});
+    BrowserDetector.redirectInvalidBrowser({msie: true, version: "10"});
     expect(BrowserDetector.redirect).not.toHaveBeenCalled();
   });
 

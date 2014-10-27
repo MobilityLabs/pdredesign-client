@@ -1,3 +1,5 @@
+//= require bowser.min
+//= require ./browserDetection
 //= require jquery
 //= require underscore
 //= require bootstrap/dropdown
@@ -8,7 +10,6 @@
 //= require bootstrap/affix
 //= require bootstrap/collapse
 //= require chart.min
-//= require bowser.min
 //= require angular
 //= require moment
 //= require angular-resource
@@ -27,7 +28,6 @@
 //= require highcharts
 //= require highcharts/highcharts-more
 //= require selectize
-//= require ./browserDetection
 //= require ./client/PDRClient
 //= require_tree ./client/routes
 //= require_tree ./client/views

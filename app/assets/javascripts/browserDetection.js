@@ -8,7 +8,7 @@ var BrowserDetector = {
       case lib.firefox == true && version < 17.0:
       case lib.chrome  == true && version < 23.0:
       case lib.safari  == true && version < 6:
-      case lib.msie    == true && version < 9:
+      case lib.msie    == true && version < 10:
         validBrowser = false;
         break;
       default:
@@ -18,7 +18,7 @@ var BrowserDetector = {
     return validBrowser;
   },
   redirect: function() {
-    window.location = unsupportedBrowserPage;
+    window.location = this.unsupportedBrowserPage;
   },
   redirectInvalidBrowser: function(lib){
     if(!this.isBrowserValid(lib))
@@ -27,6 +27,4 @@ var BrowserDetector = {
 };
 
 
-(function(){
-  BrowserDetector.redirectInvalidBrowser(bowser);
-})();
+BrowserDetector.redirectInvalidBrowser(bowser);
