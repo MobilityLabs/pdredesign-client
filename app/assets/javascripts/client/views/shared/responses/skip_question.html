@@ -10,12 +10,13 @@
     </div>
     <div class="col-md-8 answer-description">
       <p ng-show="question.score.value == null && editable">
-        Saved Evidence:<p  ng-show="question.score.value == null"
-        ng-bind-html="question.score.evidence"></p>
+        Saved Evidence:
+        <p ng-show="question.score.value == null && editable"
+           ng-bind-html="question.score.evidence"></p>
       </p>
     </div>
   </div>
-  <div class="row score-evidence" ng-show="skipped(question)">
+  <div class="row score-evidence" ng-show="skipped(question) && editable">
     <div class="col-md-2"></div>
     <div class="col-md-9">
       <div ng-hide="question.score.editMode">

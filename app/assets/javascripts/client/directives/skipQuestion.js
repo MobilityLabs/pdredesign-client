@@ -16,7 +16,12 @@ PDRClient.directive('skipQuestion', [
         'ResponseHelper',
         function($scope, $timeout, ResponseHelper) {
           $scope.editAnswer = ResponseHelper.editAnswer;
-          $scope.skipped    = ResponseHelper.skipped;
+          $scope.skipped    = 
+
+          $scope.skipped    = function(question) {
+            if(!$scope.editable) return;
+            return ResponseHelper.skipped(question);
+          };
 
           $scope.skipQuestion = function(question, score) {
             if(!$scope.editable) return;
@@ -27,6 +32,7 @@ PDRClient.directive('skipQuestion', [
           };
 
           $scope.skipQuestionSaveEvidence = function(score){
+            if(!$scope.editable) return;
             if(score.evidence == null)
               score.evidence = '';
             score.editMode = true;
