@@ -16,6 +16,18 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
       }
     });
 
+    $stateProvider.state('faqs', {
+      url: '/faqs',
+      showFullWidth: true,
+      views: {
+        'full-width': {
+          controller: 'FAQsCtrl',
+          templateUrl: 'client/views/faqs/faqs.html'
+        },
+      }
+    });
+
+
     $stateProvider.state('root', {
       url: '/',
       showFluid: true,
