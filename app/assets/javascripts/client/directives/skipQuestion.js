@@ -19,7 +19,6 @@ PDRClient.directive('skipQuestion', [
           $scope.editAnswer = ResponseHelper.editAnswer;
 
           $scope.answer = {value: null, content: null};
-
           $scope.skipped = function(question) {
             switch(true) {
               case !question || !question.score:
@@ -35,7 +34,7 @@ PDRClient.directive('skipQuestion', [
           };
 
           $scope.skipQuestion = function(question) {
-            if($scope.isReadOnly) return;
+            if($scope.isReadOnly == true) return;
             question.skipped = true;
             ResponseHelper.assignAnswerToQuestion($scope, $scope.answer, question);
           };
