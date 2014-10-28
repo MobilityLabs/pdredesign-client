@@ -70,15 +70,16 @@ describe('Directive: startAssessment', function() {
   });
 
   describe('#redirectToAssessment', function() {
-    it('calls scope close', function() {
+    beforeEach(function() {
       spyOn(isolatedScope, 'close');
       isolatedScope.redirectToAssessment(assessment);
+    });
+
+    it('calls scope close', function() {
       expect(isolatedScope.close).toHaveBeenCalled();
     });
 
     it('redirects page to assessment assign', function() {
-      spyOn(isolatedScope, 'close');
-      isolatedScope.redirectToAssessment(assessment);
       expect($location.path()).toEqual('/assessments/1/assign');
     });
   });
@@ -106,9 +107,37 @@ describe('Directive: startAssessment', function() {
 
     it('calls scope success', function() {
       expect(isolatedScope.success).toHaveBeenCalled();
+      console.log(isolatedScope.error);
+
+    });
+  });
+  describe('#failure create', function(){
+    beforeEach(function() {
+      spyOn(isolatedScope, 'redirectToAssessment');
+      spyOn(isolatedScope, 'success');
+      spyOn(isolatedScope, 'error');
+      element.click();
+      $httpBackend.expectPOST('/v1/assessments')
+      .respond(401, {});
+      isolatedScope.create(assessment);
+      isolatedScope.$digest();
+      $httpBackend.flush();
+    });
+
+    it('does not call redirectToAssessment', function() {
+      expect(isolatedScope.redirectToAssessment).not.toHaveBeenCalled();
+    });
+
+    it('does not call scope success', function() {
+      expect(isolatedScope.success).not.toHaveBeenCalled();
+    });
+
+    it('sets error', function() {
+      expect(isolatedScope.error).toHaveBeenCalled();
     });
 
   });
+
 
   describe('#create', function() {
     beforeEach(function() {
