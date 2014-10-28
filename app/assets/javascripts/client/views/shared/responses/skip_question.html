@@ -1,6 +1,6 @@
 <div class="col-md-11 answer-row value-color-skipped"
   ng-click="skipQuestion(question)"
-  ng-class="{skipped: skipped(question), 'col-md-offset-1': !isConsensus}">
+  ng-class="{skipped: wasSkipped(question), 'col-md-offset-1': !isConsensus}">
   <div class="answer-info-row">
     <div class="col-md-1 skipped answer-value">
       <span>S</span>
@@ -9,13 +9,13 @@
       Skip This Question
     </div>
     <div class="col-md-8 answer-description">
-      <p ng-show="question.score.value == null && !isConsensus">
+      <p>
         Explain Why:<p  ng-show="question.score.value == null"
         ng-bind-html="answer.content"></p>
       </p>
     </div>
   </div>
-  <div class="row score-evidence" ng-show="skipped(question)">
+  <div class="row score-evidence" ng-show="wasSkipped(question)">
     <div class="col-md-2"></div>
     <div class="col-md-9">
       <div ng-hide="question.score.editMode">
