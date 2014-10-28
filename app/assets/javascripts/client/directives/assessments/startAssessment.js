@@ -34,7 +34,7 @@ PDRClient.directive('startAssessment', [
               templateUrl: 'client/views/modals/start_assessment.html',
               scope: $scope,
               resolve: {
-                datePicker: function () {
+                setDatePicker: function () {
                   return $scope.setDatePicker();
                 }
               },
