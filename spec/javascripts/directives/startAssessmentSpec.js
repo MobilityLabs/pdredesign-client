@@ -55,10 +55,9 @@ describe('Directive: startAssessment', function() {
     });
 
     it('creates a modal', function() {
-      spyOn(isolatedScope, 'setDatePicker')
-      expect(isolatedScope.modal).toBeUndefined();
+      spyOn($modal, 'open');
       isolatedScope.openStartAssessmentModal();
-      expect(isolatedScope.modal).not.toBeUndefined();
+      expect($modal.open).toHaveBeenCalled();
     });
 
     it('it calls setDatePicker', function() {
@@ -107,8 +106,6 @@ describe('Directive: startAssessment', function() {
 
     it('calls scope success', function() {
       expect(isolatedScope.success).toHaveBeenCalled();
-      console.log(isolatedScope.error);
-
     });
   });
   describe('#failure create', function(){

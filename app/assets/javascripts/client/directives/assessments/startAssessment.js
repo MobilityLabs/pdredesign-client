@@ -30,7 +30,7 @@ PDRClient.directive('startAssessment', [
           };
 
           $scope.openStartAssessmentModal = function() {
-            $scope.modal = $modal.open({
+            $scope.modalInstance = $modal.open({
               templateUrl: 'client/views/modals/start_assessment.html',
               scope: $scope,
               resolve: {
@@ -42,7 +42,7 @@ PDRClient.directive('startAssessment', [
           }
 
           $scope.close = function(){
-            $scope.modal.dismiss('cancel');
+            $scope.modalInstance.dismiss('cancel');
           }
 
           $scope.noDistrict = function() {

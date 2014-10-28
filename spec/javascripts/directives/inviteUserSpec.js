@@ -28,7 +28,7 @@ describe('Directive: InviteUser', function() {
 
     spyOn(isolatedScope, 'closeModal');
   }));
-  
+
   it('shows an invite modal', function() {
     spyOn($modal, 'open');
     isolatedScope.showInviteUserModal();
@@ -61,7 +61,7 @@ describe('Directive: InviteUser', function() {
       expect(isolatedScope.closeModal).toHaveBeenCalled();
     });
   });
-  
+
   it('sets :send_invite when attr is set', function() {
     element = angular.element('<invite-user data-assessment-id=1 send-invite="true"></invite-user>');
     $compile(element)($scope);
@@ -70,7 +70,7 @@ describe('Directive: InviteUser', function() {
     spyOn(scope, 'closeModal');
 
     $httpBackend
-      .expectPOST('/v1/assessments/1/user_invitations', 
+      .expectPOST('/v1/assessments/1/user_invitations',
         {first_name: 'test', send_invite: true}
       ).respond({});
 
