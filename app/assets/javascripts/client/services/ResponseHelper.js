@@ -39,9 +39,12 @@ PDRClient.service('ResponseHelper',
       score.editMode = false;
     };
 
-    this.skipped = function(question) {
+    this.skipped = function(question, answer) {
       switch(true) {
         case !question || !question.score:
+        case question.score == null:
+        case question.score.value != null:
+        case question.skipped == false:
         return false;
         case question.skipped:
         case question.score.value == null && question.score.evidence != null:
@@ -52,7 +55,6 @@ PDRClient.service('ResponseHelper',
     }
 
     this.assignAnswerToQuestion = function(scope, answer, question) {
-
       var params = {response_id: scope.responseId, assessment_id: scope.assessmentId};
       var score  = {question_id: question.id, value: answer.value, evidence: question.score.evidence};
 
@@ -68,14 +70,11 @@ PDRClient.service('ResponseHelper',
         });
     }
 
-    this.questionColor = function(question, isConsensus) {
-      if(!question.score) return null;
-
-      if(!isConsensus) {
-        if (question.score.evidence != null && question.score.value == null)
-          return "scored-skipped";
-      };
-
+    this.questionColor = function(question) {
+      if(!question || !question.score) return null;
+      if(question.score.value == null && question.score.evidence != null) {
+        return 'skipped';
+      }
       return 'scored-' + question.score.value;
     }
 
@@ -83,6 +82,5 @@ PDRClient.service('ResponseHelper',
       var numberOfAnswers = scope.answerCount(scores, questionId, answerValue);
       return ((numberOfAnswers*100)/answers_count) + '%';
     }
-
 
 }]);

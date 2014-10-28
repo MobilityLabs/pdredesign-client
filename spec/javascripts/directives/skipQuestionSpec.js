@@ -14,11 +14,13 @@ describe('Directive: skipQuestion', function() {
       skipped: false,
       score: { value: null, evidence: null }
     };
+    $scope.isReadOnly = false;
+    $scope.iConsensus = true;
 
-    element = angular.element("<skip-question question='question' editable='true' response-id=1 assessment-id=2></skip-question>");
+    element = angular.element("<skip-question question='question' is-consensus='iConsensus' is-read-only='{{isReadOnly}}' response-id=1 assessment-id=2></skip-question>");
     $compile(element)($scope);
     $scope.$digest();
-
+    console.log(element.find('.answer-row'));
     isolatedScope = element.isolateScope();
   }));
 
@@ -34,10 +36,8 @@ describe('Directive: skipQuestion', function() {
     expect(isolatedScope.question.score.value).toEqual(null);
   });
 
-  it('does not skip when editable is false', function(){
-    isolatedScope.question.score.value = 1;
-    isolatedScope.editable = false;
-    expect(isolatedScope.question.score.value).toEqual(1);
+  it('correctly sets isReadOnly correctly', function(){
+    expect(isolatedScope.isReadOnly).toEqual('false');
   });
 
   describe('#skipQuestionSaveEvidence', function(){
@@ -55,11 +55,11 @@ describe('Directive: skipQuestion', function() {
   });
 
   describe('#skipQuestion', function(){
-    it('sets question skipped to true', function(){
+    it('sets question skipped to false when is isReadOnly is true', function(){
+      isolatedScope.isReadOnly = "true";
       isolatedScope.skipQuestion(isolatedScope.question, isolatedScope.question.score);
-      expect(isolatedScope.question.skipped).toEqual(true);
+      expect(isolatedScope.question.skipped).toEqual(false);
     });
-
   });
 
 

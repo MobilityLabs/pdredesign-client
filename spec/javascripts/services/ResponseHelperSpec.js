@@ -122,9 +122,9 @@ describe('Service: ResponseHelper', function() {
         expect(subject.questionColor(question, true)).toEqual("scored-null");
       });
 
-      it('returns scored-skipped when score is present and isConesensus is false', function() {
+      it('returns skipped when score is present', function() {
         var question = {score: { value: null, evidence: ''}};
-        expect(subject.questionColor(question, false)).toEqual("scored-skipped");
+        expect(subject.questionColor(question)).toEqual("skipped");
       });
 
       it('returns score value when present', function() {

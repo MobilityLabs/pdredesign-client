@@ -5,7 +5,8 @@ PDRClient.directive('skipQuestion', [
       replace: true,
       scope: {
         question: "=",
-        editable: "=",
+        isConsensus: "=",
+        isReadOnly: "@",
         responseId: "@",
         assessmentId: "@",
       },
@@ -16,23 +17,30 @@ PDRClient.directive('skipQuestion', [
         'ResponseHelper',
         function($scope, $timeout, ResponseHelper) {
           $scope.editAnswer = ResponseHelper.editAnswer;
-          $scope.skipped    = 
 
-          $scope.skipped    = function(question) {
-            if(!$scope.editable) return;
-            return ResponseHelper.skipped(question);
+          $scope.answer = {value: null, content: null};
+
+          $scope.wasSkipped = function(question) {
+            switch(true) {
+              case !question || !question.score:
+              case question.score == null:
+              case question.score.value != null:
+              case question.skipped == false:
+              return false;
+              case question.skipped:
+              return true;
+              default:
+              return false;
+            }
           };
 
-          $scope.skipQuestion = function(question, score) {
-            if(!$scope.editable) return;
+          $scope.skipQuestion = function(question) {
+            if($scope.isReadOnly == "true") return;
             question.skipped = true;
-
-            var answer = { value: null };
-            ResponseHelper.assignAnswerToQuestion($scope, answer, question);
+            ResponseHelper.assignAnswerToQuestion($scope, $scope.answer, question);
           };
 
           $scope.skipQuestionSaveEvidence = function(score){
-            if(!$scope.editable) return;
             if(score.evidence == null)
               score.evidence = '';
             score.editMode = true;
