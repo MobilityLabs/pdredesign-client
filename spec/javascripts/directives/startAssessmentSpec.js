@@ -115,7 +115,6 @@ describe('Directive: startAssessment', function() {
     beforeEach(function() {
       spyOn(isolatedScope, 'redirectToAssessment');
       spyOn(isolatedScope, 'success');
-      spyOn(isolatedScope, 'error');
       element.click();
       $httpBackend.expectPOST('/v1/assessments')
       .respond(401, {});
@@ -130,10 +129,6 @@ describe('Directive: startAssessment', function() {
 
     it('does not call scope success', function() {
       expect(isolatedScope.success).not.toHaveBeenCalled();
-    });
-
-    it('sets error', function() {
-      expect(isolatedScope.error).toHaveBeenCalled();
     });
 
   });
