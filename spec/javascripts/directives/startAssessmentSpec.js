@@ -130,21 +130,4 @@ describe('Directive: startAssessment', function() {
 
   });
 
-
-  describe('#create', function() {
-    beforeEach(function() {
-      spyOn(Assessment, 'create').and.callFake(function() {
-        return createSuccessDefer($q, assessment);
-      });
-    });
-
-    it('sets assessment due date ', function() {
-      assessment.due_date = null
-      var today = new Date();
-      $("#due-date").val(today);
-      isolatedScope.create(assessment);
-      expect(moment(assessment.due_date).format('dddd')).toEqual(moment(today).format('dddd'));
-    });
-
-  });
 });
