@@ -22,6 +22,7 @@ module PdrClient
     require 'rails-assets-angular-bootstrap'
     require 'rails-assets-angular-moment'
     require 'rails-assets-angular-file-upload'
+    require 'rails-assets-rollbar'
 
     require 'selectize-rails' 
     require 'rails-assets-highcharts'
