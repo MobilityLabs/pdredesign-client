@@ -1,11 +1,12 @@
 describe('Service: ResponseHelper', function() {
-  var subject, scope, $httpBackend;
+  var subject, scope, $httpBackend, $modal;
 
   beforeEach(module('PDRClient'));
 
   beforeEach(inject(function($rootScope, $compile, $timeout, $q, ResponseHelper, $injector) {
     subject = ResponseHelper;
     scope = $rootScope.$new();
+    $modal = $injector.get('$modal');
     $httpBackend = $injector.get('$httpBackend');
 
   }));
@@ -34,6 +35,32 @@ describe('Service: ResponseHelper', function() {
       expect(subject.answerCount(scores, 1, 0)).toEqual(0);
       expect(subject.answerCount(scores, 1, undefined)).toEqual(0);
     });
+  });
+
+  describe('#saveRetry', function() {
+    var score1    = {id: 1, evidence: "hello", value: 1, editMode: null};
+    var question1 = {id: 1, score: score1 };
+    var answer1   = {id: 1, value: 2};
+
+    beforeEach(inject(function($injector, Score) {
+      spyOn($modal, 'open');
+      subject.saveRetry(scope, answer1, question1);
+    }));
+
+    it('calls modal open', function() {
+      expect($modal.open).toHaveBeenCalled();
+    });
+
+    it('sets retryScorePost function to scope' , function() {
+      spyOn(scope, 'retryScorePost');
+      expect(scope.retryScorePost).not.toHaveBeenCalled();
+    });
+
+    it('sets cancel function to scope' , function() {
+      spyOn(scope, 'cancel');
+      expect(scope.cancel).not.toHaveBeenCalled();
+    });
+
   });
 
   describe('#assignAnswerToQuestion', function() {
@@ -65,7 +92,6 @@ describe('Service: ResponseHelper', function() {
         $httpBackend.flush();
     });
 
-
     it('sends the correct Params to Score', function() {
         spyOn(scoreResource, 'save')
         .and.callFake(function(params, score) {
@@ -95,7 +121,14 @@ describe('Service: ResponseHelper', function() {
 
     describe('resolved promise', function(){
       beforeEach(function(){
+        spyOn(subject, 'saveRetry');
         $httpBackend.expectPOST('/v1/assessments/1/responses/1/scores').respond({});
+      });
+
+      it('does not call saveRetry', function() {
+        subject.assignAnswerToQuestion(scope, answer1, question1);
+        $httpBackend.flush();
+        expect(subject.saveRetry).not.toHaveBeenCalled();
       });
 
       it('sets loading to false', function() {
@@ -108,6 +141,19 @@ describe('Service: ResponseHelper', function() {
         subject.assignAnswerToQuestion(scope, answer1, question1);
         $httpBackend.flush();
         expect(question1.score.value).toEqual(2);
+      });
+    });
+
+    describe('401 POST  error', function(){
+      beforeEach(function(){
+        spyOn(subject, 'saveRetry');
+        $httpBackend.expectPOST('/v1/assessments/1/responses/1/scores').respond(401, {});
+      });
+
+      it('calls saveRetry', function() {
+        subject.assignAnswerToQuestion(scope, answer1, question1);
+        $httpBackend.flush();
+        expect(subject.saveRetry).toHaveBeenCalled();
       });
     });
 

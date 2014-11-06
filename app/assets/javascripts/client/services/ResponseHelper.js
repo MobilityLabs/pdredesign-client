@@ -1,7 +1,8 @@
 PDRClient.service('ResponseHelper',
   ['$q',
   'Score',
-  function($q, Score) {
+  '$modal',
+  function($q, Score, $modal) {
     var scope = this;
 
     this.answerCount = function(scores, questionId, answerValue) {
@@ -51,20 +52,40 @@ PDRClient.service('ResponseHelper',
       }
     }
 
-    this.assignAnswerToQuestion = function(scope, answer, question) {
+    this.saveRetry = function(scopeObject, answer, question) {
 
-      var params = {response_id: scope.responseId, assessment_id: scope.assessmentId};
+      scopeObject.cancel = function() {
+        return confirmModal.dismiss('cancel');
+      }
+
+      //scopeObject resubmit function for ng-click in $modal
+      scopeObject.retryScorePost = function() {
+        scopeObject.cancel();
+        return scope.assignAnswerToQuestion(scopeObject, answer, question);
+      }
+
+      var confirmModal = $modal.open({
+        templateUrl: 'client/views/modals/save_retry.html',
+        scope: scopeObject
+      });
+    }
+
+    this.assignAnswerToQuestion = function(scopeObject, answer, question) {
+      var params = {response_id: scopeObject.responseId, assessment_id: scopeObject.assessmentId};
       var score  = {question_id: question.id, value: answer.value, evidence: question.score.evidence};
 
       question.loading = true;
+
       Score
         .save(params, score)
         .$promise
         .then(function(){
-          scope.$emit('response_updated');
+          scopeObject.$emit('response_updated');
           question.loading = false;
           question.isAlert = false;
           question.score.value = answer.value;
+        }, function(){
+            scope.saveRetry(scopeObject, answer, question);
         });
     }
 
