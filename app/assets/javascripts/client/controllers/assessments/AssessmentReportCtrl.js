@@ -1,13 +1,15 @@
 PDRClient.controller('AssessmentReportCtrl', [
   '$scope', 
+  '$http',
   '$timeout', 
   '$anchorScroll',
   '$location', 
-  '$stateParams', 
+  '$stateParams',
   'SessionService', 
   'Assessment', 
-  'Report', 
-  function($scope, $timeout, $anchorScroll, $location, $stateParams, SessionService, Assessment, Report) {
+  'Report',
+  'Consensus',
+  function($scope, $http, $timeout, $anchorScroll, $location, $stateParams, SessionService, Assessment, Report, Consensus) {
 
       $scope.currentUser = SessionService.getCurrentUser();
       $scope.id = $stateParams.id;
@@ -22,7 +24,6 @@ PDRClient.controller('AssessmentReportCtrl', [
       $scope.canEditPriorities = function() {
         return $scope.isFacilitator();
       };
-
 
     }
 ]);

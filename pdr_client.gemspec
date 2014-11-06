@@ -48,6 +48,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency('selectize-rails')
   s.add_dependency('bootstrap3-datetimepicker-rails', '>= 3.1.2')
+  s.add_dependency('wkhtmltopdf-binary', '0.9.9.3')
+  s.add_dependency('pdfkit', '0.6.2')
 
 
   s.add_development_dependency("jasmine")

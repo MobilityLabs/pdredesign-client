@@ -1,3 +1,4 @@
 test:
   override:
     - bundle exec rake jasmine:combust
+    - bundle exec rspec

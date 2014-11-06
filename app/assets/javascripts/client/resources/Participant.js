@@ -8,6 +8,10 @@ PDRClient.factory('Participant', ['$resource', 'UrlService', function($resource,
       delete: {
         method: 'DELETE',
         url: UrlService.url('assessments/:assessment_id/participants/:id')
+      },
+      consensus_report: {
+        method: 'GET',
+        url: UrlService.url('assessments/:assessment_id/consensus/:consensu_id/participants/:participant_id/report')
       }
     });
 }]);

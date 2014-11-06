@@ -10,6 +10,7 @@ PDRClient.directive('consensus', [
       templateUrl: 'client/views/directives/response_questions.html',
       controller: [
         '$scope',
+        '$http',
         '$timeout',
         '$stateParams',
         '$location',
@@ -17,7 +18,7 @@ PDRClient.directive('consensus', [
         'Consensus',
         'Score',
         'ResponseHelper',
-        function($scope, $timeout, $stateParams, $location, SessionService, Consensus, Score, ResponseHelper) {
+        function($scope, $http, $timeout, $stateParams, $location, SessionService, Consensus, Score, ResponseHelper) {
 
           $scope.isConsensus        = true;
           $scope.isReadOnly         = true;

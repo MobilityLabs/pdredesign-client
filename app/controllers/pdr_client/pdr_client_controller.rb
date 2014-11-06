@@ -1,6 +1,4 @@
-class PdrClient::PdrClientController < ActionController::Base
-  layout 'pdr_client/layouts/application'
-
+class PdrClient::PdrClientController < PdrClient::ApplicationController
   def index
   end
 end

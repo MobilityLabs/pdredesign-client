@@ -28,14 +28,9 @@ module PdrClient
     require 'rails-assets-highcharts'
     require 'bootstrap3-datetimepicker-rails'
 
-    initializer "PDRClient.assets.precompile", :group => :all do |app|
-      app.config.angular_templates.ignore_prefix = %w(templates)
-      app.config.assets.precompile += %w(pdr_client.css pdr_client.js)
-    end
+    require 'pdfkit'
+    require 'csv'
+    require 'pdr_client/railtie' if defined?(Rails)
 
-    initializer "public_assets" do |app|
-      config.assets.paths << "#{root}/public"
-      app.middleware.insert_before(::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public")
-    end
   end
 end
