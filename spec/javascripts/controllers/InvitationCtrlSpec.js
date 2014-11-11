@@ -57,8 +57,10 @@ describe('Controller: InvitationCtrl', function() {
     expect($scope.inviteObject.first_name).toEqual('Mike');
   });
 
-  it('Invitation save success callback should set url to /assessments', function() {
-    $httpBackend.expectGET('/v1/invitations').respond({});
+  it('Invitation save success callback should set url to assessment response', function() {
+    $httpBackend
+      .expectGET('/v1/invitations')
+      .respond({});
 
     spyOn(Invitation, 'save')
     .and.callFake(function() {
@@ -72,10 +74,13 @@ describe('Controller: InvitationCtrl', function() {
       deferred.resolve({});
       return deferred.promise;
     });
+
+    $scope.invitedUser.assessment_id = 42;
     $scope.redeemInvite();
 
     $httpBackend.flush();
-    expect(SessionService.syncAndRedirect).toHaveBeenCalledWith('/assessments');
+    expect(SessionService.syncAndRedirect)
+      .toHaveBeenCalledWith('/assessments/42/responses');
   });
 
   it('Invitation save failure callback should set up modal', function() {

@@ -9,10 +9,10 @@ PDRClient.controller('InvitationCtrl', [
       $scope.token        = $stateParams.token;
       $scope.invitedUser  = Invitation.get({token: $scope.token});
       $scope.inviteObject = {}
-      $scope.isError = null;
-      $scope.errors   = null;
-      $scope.showalert = false;
-      $scope.alerts = [];
+      $scope.isError      = null;
+      $scope.errors       = null;
+      $scope.showalert    = false;
+      $scope.alerts       = [];
 
       $scope.showError = function(msg) {
         $scope.alerts.push({type: 'danger', msg: msg});
@@ -47,7 +47,8 @@ PDRClient.controller('InvitationCtrl', [
               .authenticate($scope.inviteObject.email, $scope.inviteObject.password)
               .then(function(){
                 $rootScope.$broadcast('session_updated');
-                SessionService.syncAndRedirect('/assessments');
+                SessionService
+                  .syncAndRedirect('/assessments/' + $scope.invitedUser.assessment_id + '/responses');
               });
           }, function(response){
             $scope.populateErrors(response.data.errors)
