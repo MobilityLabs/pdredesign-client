@@ -58,3 +58,7 @@ angular.module("PDRClient").config(['$tooltipProvider', function($tooltipProvide
     'focus': 'blur',
   });
 }]);
+
+angular.module('PDRClient', []).config(function($sceProvider) {
+  $sceProvider.enabled(false);
+});
