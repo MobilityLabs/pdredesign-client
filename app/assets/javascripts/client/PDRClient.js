@@ -59,6 +59,3 @@ angular.module("PDRClient").config(['$tooltipProvider', function($tooltipProvide
   });
 }]);
 
-angular.module('PDRClient', []).config(function($sceProvider) {
-  $sceProvider.enabled(false);
-});
