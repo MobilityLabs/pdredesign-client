@@ -15,7 +15,7 @@
             </div>
             <div class="col-sm-12 col-md-4">
               <span><h4>Topic:</h4></span>
-              <select id="role-filter" class="form-control" ng-model="selectedTopic">
+              <select id="topic-filter" class="form-control" ng-model="selectedTopic">
                 <option value="" selected>All Topics</option>
                 <option value="{{topic}}" ng-repeat="topic in topics()">
                   {{topic}}
@@ -41,7 +41,7 @@
             </h3>
           </div>
           <div id="question-{{question.id}}">
-            <div 
+            <div
               class="panel-body"
               collapse="!question.visible"
               ng-bind-html="question.answer">
@@ -54,7 +54,7 @@
 
   <div class="row">
     <div class="col-sm-12 text-center">
-      <h3>Is your question not listed here?</h3> 
+      <h3>Is your question not listed here?</h3>
       <a href="mailto:support@mail.pdredesign.org?subject=I%20have%20a%20question"
          class="btn btn-primary">Ask Us a Question</a>
     </div>
