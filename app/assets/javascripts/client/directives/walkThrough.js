@@ -34,6 +34,10 @@ PDRClient.directive('walkThrough', [
         return index+1 == scope.walkThrough.slides.length;
       };
 
+      scope.fetchWalkthrough  = function(id) {
+
+      };
+
       scope.updateWalkThrough = function(id) {
         WalkThrough.get({id: id}) 
           .$promise
@@ -75,8 +79,14 @@ PDRClient.directive('walkThrough', [
           if(!scope.walkThrough) scope.updateWalkThrough(scope.id);
         });
       };
+      
+      scope.conditionalLaunch = function() {
+        if(!$state.is('assessments')) return;
+        scope.showModal(scope.id);
+      };
 
-      if($state.is('assessments')) scope.updateWalkThrough(scope.id);
+      scope.conditionalLaunch();
+
     }
   };
 }]);

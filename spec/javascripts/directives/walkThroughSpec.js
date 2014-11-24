@@ -43,17 +43,30 @@ describe('Directive: walkThrough', function() {
     spyOn(isolatedScope.modal, 'dismiss').and.returnValue(true);
     
     $httpBackend.expectPOST('/v1/walk_throughs/42/viewed').respond({});
-    $httpBackend.expectGET('/v1/walk_throughs/42').respond({});
     isolatedScope.close();
     $httpBackend.flush();
   });
 
-  it('triggers an automatic update on assessments', inject(function($state) {
-    spyOn($state, 'is').and.returnValue(true);
-    spyOn(isolatedScope, 'updateWalkThrough').and.returnValue(true);
+  it('conditionaly launches the modal(when on assessments)',
+    inject(function($state) {
+      spyOn($state, 'is').and.returnValue(true);
+      spyOn(isolatedScope, 'updateWalkThrough').and.returnValue(true);
 
-    expect(isolatedScope.updateWalkThrough).toHaveBeenCalled();
+      isolatedScope.conditionalLaunch();
+
+      expect(isolatedScope.updateWalkThrough).toHaveBeenCalled();
   }));
+
+  it('does not launch the modal(when on assessments)',
+    inject(function($state) {
+      spyOn($state, 'is').and.returnValue(false);
+      spyOn(isolatedScope, 'updateWalkThrough').and.returnValue(true);
+
+      isolatedScope.conditionalLaunch();
+
+      expect(isolatedScope.updateWalkThrough).not.toHaveBeenCalled();
+  }));
+
 
 
 });
