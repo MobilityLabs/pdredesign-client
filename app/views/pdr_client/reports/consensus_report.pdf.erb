@@ -1,113 +1,100 @@
-<style>
-  <%= pdf_css_loader_helper %>
-</style>
+<html class="pdf">
+  <head>
+    <style>
+      <%= pdf_css_loader_helper %>
+    </style>
+  </head>
 
-<div class="row">
-  <div class="col-md-12">
-    <h1><%= @assessment[:name] %></h1>
-    <p class='byline'>Organized By:
-      <%= @assessment[:organized_by] %>
-    </p>
-    <p class='byline'>Organized Date:
-      <%= @assessment[:date] %>
-    </p>
-  </div>
-  
-  <div class="col-md-12 answer-overview-table">
-    <table>
-      <% iterator = 0 %>
-      <% 1..5.times do |row| %>
-        <tr>
-          <% 1..6.times do |column| %>
-            <td><%= "#{@questions[iterator][:number]} [#{question_score_value(@questions[iterator])}]" if @questions[iterator] %></td>
-            <% iterator+=1 %>
-          <% end %>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+  <body class="pdf">
+    <div class="row pdf-container">
+      <div class="report-header">
 
-  <div class="col-md-12 key-table">
-    <table>
-      <% answer_titles.each do |number, category_type| %>
-        <tr>
-          <td><%= "[#{number}]" %></td>
-          <td><%= category_type %></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td>[5]</td>
-        <td>Skipped</td>
-      </tr>
-    </table>
-  </div>
-
-  <% @consensus[:categories].each do |category| %>
-  <!-- Category name section  -->
-  <div class="col-md-12">
-    <p class="category-label">
-      <i class="fa fa-chevron-right"></i>
-      <%= category[:name] %>
-    </p>
-  </div>
-    <!-- Category questions -->
-    <% category[:questions].each do |question| %>
-      <div class="row question-container question-<%= question[:id] %>">
-        <div class="col-md-12 question-row">
-          <div class="question pdf-question-number" >
-            <p class="question-id">
-              <%= question[:number] %>
-            </p>
-          </div>
-          <div class="row question-content pdf-question-content">
-            <div class="col-md-9">
-              <p class="question">
-                <%= question[:headline] %>
-              </p>
-              <p class="content"><%= question[:content] %></p>
-            </div>
-
-          </div>
+        <div class="col-md-12">
+          <h1><%= @assessment[:name] %></h1>
+          <p class='byline'>Organized By:</p>
+          <p class='byline data'><h4><%= @assessment[:organized_by] %></h4></p>
+          <p class='byline'>Organized Date:</p>
+          <p class='byline data'><h4><%= Time.new(@assessment[:date]).strftime("%B %eth, %Y") %></h4></p>
+        </div>
+        
+        <div class="col-md-12 answer-overview-table">
+          <table>
+            <caption>Answer Overview</caption>
+            <% iterator = 0 %>
+            <% 1..5.times do |row| %>
+              <tr>
+                <% 1..6.times do |column| %>
+                  <td><%= "#{@questions[iterator][:number]}" if @questions[iterator] %></td>
+                  <td class="question-value"><%= "[#{question_score_value(@questions[iterator])}]" if @questions[iterator] %></td>
+                  <% iterator+=1 %>
+                <% end %>
+              </tr>
+            <% end %>
+          </table>
         </div>
 
-        <!-- Answers overview -->
-        <div class="col-md-12 answers" >
-          <% question[:answers].each do |answer| %>
-            <div class="answer">
-              <div class="left-score col-md-1" style="width: 10%;float: left;">
-                <span class="score-count scored-<%= answer[:value] %>">
-                <i class="fa fa-heart"></i>
-                <span class="value">
-                  <%= answer_count(@consensus[:scores], question[:id], answer[:value]) %>
-                </span>
-                <span>/<%= @consensus[:participant_count] %></span>
-                </span>
-
-              </div>
-
-              <div
-                class="col-md-11 answer-row value-color-<%= answer[:value] %>">
-                <div class="answer-info-row">
-                  <div class="col-md-1 scored-<%= answer[:value] %> answer-value">
-                    <span><%= answer[:value] %></span>
-                  </div>
-                  <div class="col-md-3 answer-title title-<%= answer[:value] %>">
-                    <%= answer_titles[:"#{answer[:value]}"] %>
-                  </div>
-                  <div class="col-md-8 answer-description">
-                    <%= answer[:content] %>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          <% end %>
+        <div class="col-md-12 key-table">
+          <table>
+            <caption>Key</caption>
+            <% answer_titles.each do |number, category_type| %>
+              <tr>
+                <td class="question-value"><%= "[#{number}]" %></td>
+                <td><%= category_type %></td>
+              </tr>
+            <% end %>
+            <tr>
+              <td class="question-value">[5]</td>
+              <td>Skipped</td>
+            </tr>
+          </table>
         </div>
-
 
       </div>
-    <% end %>
 
-  <% end %>
-</div>
+      <div class="report-content">
+        <% @consensus[:categories].each do |category| %>
+          <!-- Category questions -->
+          <% category[:questions].each do |question| %>
+            <div class="question-answer-container">
+              <div class="question-table-container">
+                <table class="question-table">
+                  <tr>
+                    <td class="number">
+                      <%= question[:number] %>  
+                    </td>
+                    <td class="description">
+                      <h4><%= question[:headline] %></h4>
+                      <%= question[:content] %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!-- Answers overview -->
+              <div class="question-answers-container">
+                <table class="question-answers">
+                  <% question[:answers].each do |answer| %>
+                    <tr>
+                      <td class="score-sumary">
+                        <%= answer_count(@consensus[:scores], question[:id], answer[:value]) %>/<%= @consensus[:participant_count] %>
+                      </td>
+                      <td class="value">
+                        <%= answer[:value] %>
+                      </td>
+                      <td class="value-words">
+                        <%= answer_titles[:"#{answer[:value]}"] %>
+                      </td>
+                      <td class="content">
+                        <%= answer[:content] %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+          <% end %>
+
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>

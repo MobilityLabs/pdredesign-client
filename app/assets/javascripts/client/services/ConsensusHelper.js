@@ -1,9 +1,10 @@
 PDRClient.service('ConsensusHelper',
   ['$q',
   '$http',
+  '$rootScope',
   'Consensus',
   'UrlService',
-  function($q, $http, Consensus, UrlService) {
+  function($q, $http, $rootScope, Consensus, UrlService) {
     var $scope = this;
 
     $scope.downloadAction   = function(data, download_type){
@@ -22,9 +23,12 @@ PDRClient.service('ConsensusHelper',
          target: '_blank',
          download: 'report.'+download_type.file_ext
       })[0].click();
+      $rootScope.$broadcast('success_change');
     };
 
     $scope.consensuToPDF    = function(assessment, responseId, teamRole){
+      $rootScope.$broadcast('start_change');
+
       var consensusData   = Consensus.get({assessment_id: assessment.id,
         id: responseId,
         team_role: teamRole}, function(data){
@@ -48,6 +52,7 @@ PDRClient.service('ConsensusHelper',
     };
 
     $scope.consensuToCSV    = function(assessment, consensus_id){
+      $rootScope.$broadcast('start_change');
       var report_url        = UrlService.url('consensus_report.csv');
 
       Consensus.report({assessment_id: assessment.id, id: consensus_id}, function(report_data){

@@ -5,7 +5,7 @@ module PdrClient
         PDFKit.configure do |config|
           config.default_options = {
             page_size: 'Legal',
-            print_media_type: true
+            print_media_type: false
           }
           config.verbose = false
         end
