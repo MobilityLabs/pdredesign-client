@@ -14,7 +14,7 @@
           <p class='byline'>Organized By:</p>
           <p class='byline data'><h4><%= @assessment[:organized_by] %></h4></p>
           <p class='byline'>Organized Date:</p>
-          <p class='byline data'><h4><%= Time.new(@assessment[:date]).strftime("%B %eth, %Y") %></h4></p>
+          <p class='byline data'><h4><%= Time.zone.parse(@assessment[:date]).strftime("%B %eth, %Y") %></h4></p>
         </div>
         
         <div class="col-md-12 answer-overview-table">
