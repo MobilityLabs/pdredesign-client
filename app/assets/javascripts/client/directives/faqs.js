@@ -13,8 +13,8 @@ PDRClient.directive('faqs', [
       scope.preSelectedUrl = $location.url().replace('/faqs', '');
       scope.categories = [];
 
-      scope.containsObject = function(object) {
-        return scope.preSelectedUrl.indexOf(object) != -1;
+      scope.urlIncludesString = function(string) {
+        return scope.preSelectedUrl.indexOf(string) != -1;
       };
 
       scope.setSelectedRole = function(object) {
@@ -28,7 +28,7 @@ PDRClient.directive('faqs', [
       scope.setOptionFromUrl = function() {
         if(scope.preSelectedUrl.length < 1) return;
 
-        if(scope.containsObject('partner'))
+        if(scope.urlIncludesString('partner'))
           return scope.setSelectedRole('partner');
       };
 
