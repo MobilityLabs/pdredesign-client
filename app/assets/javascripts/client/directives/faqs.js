@@ -9,8 +9,7 @@ PDRClient.directive('faqs', [
     scope: {},
     templateUrl: 'client/views/directives/faqs.html',
     link: function(scope, elm, attrs) {
-
-      scope.preSelectedUrl = $location.url().replace('/faqs', '');
+      scope.preSelectedUrl = $location.url();
       scope.categories = [];
 
       scope.urlIncludesString = function(string) {
@@ -25,11 +24,28 @@ PDRClient.directive('faqs', [
         return scope.selectedTopic = object;
       };
 
-      scope.setOptionFromUrl = function() {
-        if(scope.preSelectedUrl.length < 1) return;
+      scope.checkSelectedRole = function() {
+        switch(true) {
+          case scope.urlIncludesString('partner'):
+            return scope.setSelectedRole('partner');
+          case scope.urlIncludesString('facilitator'):
+            return scope.setSelectedRole('facilitator');
+          case scope.urlIncludesString('all'):
+            return scope.setSelectedRole('all');
+        }
+      };
 
-        if(scope.urlIncludesString('partner'))
-          return scope.setSelectedRole('partner');
+      scope.checkSelectedTopic = function() {
+        if(scope.urlIncludesString('Readiness'))
+          return scope.setSelectedTopic('Readiness Assessment');
+        if(scope.urlIncludesString('general'))
+          return scope.setSelectedTopic('general');
+      };
+
+      scope.setOptionFromUrl = function() {
+        if(scope.preSelectedUrl.length < 7) return;
+        scope.checkSelectedRole();
+        scope.checkSelectedTopic();
       };
 
       scope.updateFAQs = function() {
@@ -60,7 +76,9 @@ PDRClient.directive('faqs', [
       scope.roles = function() {
         return scope.uniq_faq_property(scope.categories, 'role');
       };
+
       scope.setOptionFromUrl();
+
       $timeout(function() {
         scope.updateFAQs();
       });
