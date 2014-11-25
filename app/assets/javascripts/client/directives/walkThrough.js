@@ -16,7 +16,7 @@ PDRClient.directive('walkThrough', [
       autoLaunch: '@',
     },
     link: function(scope, elm, attrs) {
-      scope.walkThrough  = {};
+      scope.walkThrough       = null;
 
       attrs.$observe('id', function(id) {
         scope.id = id;
@@ -35,30 +35,12 @@ PDRClient.directive('walkThrough', [
       };
 
       scope.fetchWalkthrough  = function(id) {
-
-      };
-
-      scope.updateWalkThrough = function(id) {
-        WalkThrough.get({id: id}) 
-          .$promise
-          .then(function(walk_through){
-            scope.walkThrough = walk_through;
-
-            if(scope.autoLaunch && !scope.walkThrough.viewed)
-              scope.showModal();
-          });
+        return WalkThrough.get({id: id}).$promise;
       };
 
       scope.close = function() {
-        $("").animate({
-          width: "toggle", 
-          height: "toggle", 
-          left: 1000, 
-          top: 1000}, 5000, function(){
-            scope.modal.dismiss('cancel');
-          });
-
         scope.logWalkThroughView(scope.id);
+        scope.modal.close('cancel');
       };
 
       scope.logWalkThroughView = function(id) {
@@ -68,6 +50,32 @@ PDRClient.directive('walkThrough', [
         });
       };
 
+      scope.fetchAndLaunch = function(id) {
+        scope.fetchWalkthrough.then(function(walkThrough) {
+          scope.walkThrough = walkThrough;
+
+          scope.showModal(); 
+        });
+      };
+
+      scope.autoLaunchModal = function() {
+        if(!$state.is('assessments')) return;
+        scope.fetchAndLaunch(scope.id);
+      };
+
+
+      scope.updateWalkThrough = function(id, forceShow) {
+        scope.fetchWalkthrough(id)
+          .then(function(walk_through){
+            scope.walkThrough = walk_through;
+
+            if(scope.autoLaunch && !scope.walkThrough.viewed)
+              scope.showModal();
+        });
+      };
+
+      
+
       scope.showModal = function() {
         scope.modal = $modal.open({
           templateUrl: 'client/views/modals/walk_through.html',
@@ -76,16 +84,14 @@ PDRClient.directive('walkThrough', [
         });
 
         scope.modal.opened.then(function() {
-          if(!scope.walkThrough) scope.updateWalkThrough(scope.id);
+          if(!scope.walkThrough) {
+            scope.updateWalkThrough(scope.id, true);
+          };
         });
       };
       
-      scope.conditionalLaunch = function() {
-        if(!$state.is('assessments')) return;
-        scope.showModal(scope.id);
-      };
 
-      scope.conditionalLaunch();
+      //scope.conditionalLaunch();
 
     }
   };

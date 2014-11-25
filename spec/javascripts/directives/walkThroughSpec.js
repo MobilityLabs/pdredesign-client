@@ -3,6 +3,7 @@ describe('Directive: walkThrough', function() {
       $compile,
       $httpBackend,
       $modal,
+      $state,
       element,
       isolatedScope;
 
@@ -12,6 +13,7 @@ describe('Directive: walkThrough', function() {
     $compile     = $injector.get('$compile');
     $httpBackend = $injector.get('$httpBackend');
     $modal       = $injector.get('$modal');
+    $state       = $injector.get('$state');
 
     element = angular.element('<walk-through id="42"></walk-through>');
     $compile(element)($scope);
@@ -26,47 +28,29 @@ describe('Directive: walkThrough', function() {
 
   it('queries the api for an update', function() {
     $httpBackend.expectGET('/v1/walk_throughs/42').respond({});
-    isolatedScope.updateWalkThrough(42);
+    isolatedScope.fetchWalkthrough(42);
     $httpBackend.flush();
   });
 
-  it('opens a new modal', function() {
-    spyOn($modal, 'open').and.callThrough();
-    isolatedScope.showModal();
-
-    expect($modal.open).toHaveBeenCalled();
-  });
-
-  it('sends a view tacking post after close', function() {
-    spyOn($modal, 'open').and.callThrough();
-    isolatedScope.showModal();
-    spyOn(isolatedScope.modal, 'dismiss').and.returnValue(true);
-    
+  it('logs a walkthrough view', function() {
     $httpBackend.expectPOST('/v1/walk_throughs/42/viewed').respond({});
-    isolatedScope.close();
+    isolatedScope.logWalkThroughView(42);
     $httpBackend.flush();
   });
 
-  it('conditionaly launches the modal(when on assessments)',
-    inject(function($state) {
-      spyOn($state, 'is').and.returnValue(true);
-      spyOn(isolatedScope, 'updateWalkThrough').and.returnValue(true);
+  it('#autoLaunchModal calls #fetchAndLaunch when the current state is assessments', function() {
+    spyOn(isolatedScope, 'fetchAndLaunch');
+    spyOn($state, 'is').and.returnValue(true);
+    isolatedScope.autoLaunchModal();
+    expect(isolatedScope.fetchAndLaunch).toHaveBeenCalledWith('42');
+  });
 
-      isolatedScope.conditionalLaunch();
-
-      expect(isolatedScope.updateWalkThrough).toHaveBeenCalled();
-  }));
-
-  it('does not launch the modal(when on assessments)',
-    inject(function($state) {
-      spyOn($state, 'is').and.returnValue(false);
-      spyOn(isolatedScope, 'updateWalkThrough').and.returnValue(true);
-
-      isolatedScope.conditionalLaunch();
-
-      expect(isolatedScope.updateWalkThrough).not.toHaveBeenCalled();
-  }));
-
-
+  describe('#fetchAndLaunch', function() {
+    it('shows the modal when a walkthrough has not been viewed', function(){ 
+      $httpBackend.expectGET('/v1/walk_throughs/42').respond({'viewed': false});
+      spyOn(isolatedScope, 'showModal');
+      expect(isolatedScope.showModal).toHaveBeenCalled();
+    });
+  });
 
 });
