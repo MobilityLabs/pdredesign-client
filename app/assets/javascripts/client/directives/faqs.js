@@ -32,6 +32,8 @@ PDRClient.directive('faqs', [
             return scope.setSelectedRole('facilitator');
           case scope.urlIncludesString('all'):
             return scope.setSelectedRole('all');
+          default:
+            return false;
         }
       };
 
