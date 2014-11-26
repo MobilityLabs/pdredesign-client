@@ -24,9 +24,17 @@ describe('Directive: faqs', function() {
     isolatedScope = element.isolateScope();
   }));
 
-  it('it gets FAQs from the backend endpoitn', function(){
+  it('it gets FAQs from the backend endpoint', function(){
     $httpBackend.expectGET('/v1/faqs').respond([{expected: true}]);
     $timeout.flush();
+  });
+
+  it('#updateFAQs calls filterPlaceHolders on success', function(){
+    spyOn(isolatedScope, 'filterPlaceHolders');
+    $httpBackend.expectGET('/v1/faqs').respond();
+    isolatedScope.updateFAQs();
+    $httpBackend.flush();
+    expect(isolatedScope.filterPlaceHolders).toHaveBeenCalled();
   });
 
   it('#toggleQuestion toggles a targest visibility', function() {
