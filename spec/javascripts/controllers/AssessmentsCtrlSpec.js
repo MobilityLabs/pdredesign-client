@@ -19,6 +19,21 @@ describe('Controller: AssessmentsCtrl', function() {
 
   }));
 
+  describe('#removeByTitle', function() {
+    it('removes item by title from the list it is passed', function() {
+      var items = {
+        consensus: { title: "Create Consensus"},
+        report :{ title: "View Report"},
+        finish :{ title: "Finish & Assign"}
+      };
+
+      items = $scope.removeByTitle(items, "Create Consensus");
+      expect(items.length).toEqual(2);
+      expect(items[0].title).not.toEqual("Create Consensus");
+      expect(items[1].title).not.toEqual("Create Consensus");
+    });
+  });
+
 
   it('orderLinks sets Dashboard to be first and Report to be last.', function() {
     var links = {
