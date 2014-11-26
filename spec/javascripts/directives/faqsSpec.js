@@ -49,6 +49,18 @@ describe('Directive: faqs', function() {
       .toEqual($location.url());
   });
 
+  describe('#urlIncludesString', function(){
+    it('returns false when string is not present in preSelectedUrl', function(){
+      expect(isolatedScope.urlIncludesString('hello'))
+        .toEqual(false);
+    });
+
+    it('returns true when string is present in preSelectedUrl', function(){
+      expect(isolatedScope.urlIncludesString('faq'))
+        .toEqual(true);
+    });
+  });
+
   describe('#setSelectedRole', function(){
     it('sets selectedRole to string param', function() {
       expect(isolatedScope.selectedRole)
