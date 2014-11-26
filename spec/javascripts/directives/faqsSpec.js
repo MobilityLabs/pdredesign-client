@@ -5,7 +5,8 @@ describe('Directive: faqs', function() {
       $compile,
       $timeout,
       $httpBackend,
-      $location;
+      $location,
+      $filter;
 
   beforeEach(module('PDRClient'));
   beforeEach(inject(function($rootScope, $injector) {
@@ -14,6 +15,7 @@ describe('Directive: faqs', function() {
     $timeout = $injector.get('$timeout');
     $httpBackend = $injector.get('$httpBackend');
     $location = $injector.get('$location');
+    $filter = $injector.get('$filter');
     $location.url("/faq");
     element = angular.element("<faqs></faqs>");
     $compile(element)($scope);
@@ -97,9 +99,7 @@ describe('Directive: faqs', function() {
         expect(isolatedScope.setSelectedTopic)
           .not.toHaveBeenCalled();
       });
-
     });
-
   });
 
   describe('checkSelectedTopic', function(){
@@ -143,6 +143,12 @@ describe('Directive: faqs', function() {
       expect(isolatedScope.checkSelectedRole)
         .not.toHaveBeenCalled();
     });
+  });
+
+  it('#propertyFilter calls $location.search', function(){
+    spyOn($location, 'search');
+    $filter('propertyFilter')('role', 'options');
+    expect($location.search).toHaveBeenCalled();
   });
 
 });
