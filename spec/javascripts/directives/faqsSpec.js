@@ -29,6 +29,37 @@ describe('Directive: faqs', function() {
     $timeout.flush();
   });
 
+
+  describe('#filterPlaceHolders', function(){
+    describe('when roles present', function(){
+      beforeEach(function(){
+        isolatedScope.selectedRole = "partner";
+        isolatedScope.selectedTopic = "general";
+        $httpBackend.expectGET('/v1/faqs').respond();
+        $timeout.flush();
+        isolatedScope.filterPlaceHolders();
+      });
+
+      it('sets #role-filter value to the selectedRole', function(){
+        expect(element.find("#role-filter").val())
+          .toEqual("? string:partner ?");
+      });
+
+      it('sets #topic-filter value to the selectedRole', function(){
+        expect(element.find("#topic-filter").val())
+          .toEqual("? string:general ?");
+      });
+    });
+
+    it('sets value to blank string when roles not present', function(){
+      $httpBackend.expectGET('/v1/faqs').respond();
+      $timeout.flush();
+      isolatedScope.filterPlaceHolders();
+      expect(element.find("#topic-filter").val())
+        .toEqual("");
+    });
+  });
+
   it('#updateFAQs calls filterPlaceHolders on success', function(){
     spyOn(isolatedScope, 'filterPlaceHolders');
     $httpBackend.expectGET('/v1/faqs').respond();
