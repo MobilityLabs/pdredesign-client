@@ -50,10 +50,20 @@ PDRClient.directive('faqs', [
         scope.checkSelectedTopic();
       };
 
+      scope.filterPlaceHolders = function() {
+        $timeout(function() {
+          elm.find("#role-filter").val(scope.selectedRole);
+          elm.find("#topic-filter").val(scope.selectedTopic);
+        });
+      };
+
       scope.updateFAQs = function() {
         return FAQ.query(function(data) {
           return scope.categories = data;
-        }).$promise;
+        }).$promise.
+          then(function(data){
+            scope.filterPlaceHolders();
+          });
       };
 
       scope.toggleQuestion = function(target) {
@@ -84,6 +94,7 @@ PDRClient.directive('faqs', [
       $timeout(function() {
         scope.updateFAQs();
       });
+
     },
   }
 }
