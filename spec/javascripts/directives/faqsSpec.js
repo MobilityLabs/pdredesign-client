@@ -166,7 +166,7 @@ describe('Directive: faqs', function() {
     });
   });
 
-  describe('#setOptionFromUrl', function(){
+  describe('#setFilterOptionsFromUrl', function(){
     describe('#preSelectedUrl.length is greater then 7', function(){
       beforeEach(function(){
         isolatedScope.preSelectedUrl = "/faqs?hellohellohello";
@@ -175,13 +175,13 @@ describe('Directive: faqs', function() {
       });
 
       it('calls function checkSelectedRole', function() {
-        isolatedScope.setOptionFromUrl();
+        isolatedScope.setFilterOptionsFromUrl();
         expect(isolatedScope.checkSelectedRole)
           .toHaveBeenCalled();
       });
 
       it('calls function checkSelectedTopic', function() {
-        isolatedScope.setOptionFromUrl();
+        isolatedScope.setFilterOptionsFromUrl();
         expect(isolatedScope.checkSelectedTopic)
           .toHaveBeenCalled();
       });
@@ -190,7 +190,7 @@ describe('Directive: faqs', function() {
     it('does not call function checkSelectedRole if preSelectedUrl.length is less then 7', function() {
       spyOn(isolatedScope, 'checkSelectedRole');
       isolatedScope.preSelectedUrl = "/faqs";
-      isolatedScope.setOptionFromUrl();
+      isolatedScope.setFilterOptionsFromUrl();
       expect(isolatedScope.checkSelectedRole)
         .not.toHaveBeenCalled();
     });

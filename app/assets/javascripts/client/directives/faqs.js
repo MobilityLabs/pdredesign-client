@@ -44,7 +44,7 @@ PDRClient.directive('faqs', [
           return scope.setSelectedTopic('general');
       };
 
-      scope.setOptionFromUrl = function() {
+      scope.setFilterOptionsFromUrl = function() {
         if(scope.preSelectedUrl.length < 7) return;
         scope.checkSelectedRole();
         scope.checkSelectedTopic();
@@ -89,7 +89,7 @@ PDRClient.directive('faqs', [
         return scope.uniq_faq_property(scope.categories, 'role');
       };
 
-      scope.setOptionFromUrl();
+      scope.setFilterOptionsFromUrl();
 
       $timeout(function() {
         scope.updateFAQs();
