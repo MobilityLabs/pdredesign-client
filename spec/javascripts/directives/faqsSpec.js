@@ -137,7 +137,7 @@ describe('Directive: faqs', function() {
     });
 
     it('does not call function checkSelectedRole if preSelectedUrl.length is less then 7', function() {
-      spyOn(isolatedScope, 'checkSelectedRole')
+      spyOn(isolatedScope, 'checkSelectedRole');
       isolatedScope.preSelectedUrl = "/faqs";
       isolatedScope.setOptionFromUrl();
       expect(isolatedScope.checkSelectedRole)
