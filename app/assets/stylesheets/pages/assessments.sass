@@ -15,7 +15,11 @@
       .stat
         font-weight: bold
     .name
+      height: 1em
       margin-top: 0
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
     .overview
       height: 100%
       padding: 0
@@ -24,7 +28,7 @@
       *
         color: #fff
       .type
-        font-size: 1.1em
+        font-size: 0.8em
         font-family: $heading-font-family
       .status
         padding-top: .5em
@@ -52,7 +56,8 @@
 
 
   .details
-    height: 100%
+    // Commented out the below becasue it wasn't allowing divs height to resize. I have observed no adverse effects in removing it. 
+    // height: 100% 
     background-color: #f7f9fa
     &.active
       cursor: hand
@@ -67,3 +72,22 @@
       text-align: right
     .avatar
       height: 100%
+/* no-gutters Class Rules */
+.row.no-gutters 
+  margin-right: 0
+  margin-left: 0
+
+.row.no-gutters [class^="col-"], .row.no-gutters [class*=" col-"]
+  padding-right: 0
+  padding-left: 0
+
+/* no-gutters-first-last Class Rules */
+// added this spefically to target the "participant/completed/meeting" group. Left padding was stacking from parent col div giving it twice the [adding necessary.
+.no-gutter-left
+  padding-left: 0
+  margin-left: 0
+
+
+
+
+
