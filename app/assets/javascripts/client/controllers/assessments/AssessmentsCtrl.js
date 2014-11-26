@@ -40,6 +40,8 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
           var title = item.title.toLowerCase();
           switch(true) {
             case title == "dashboard":
+            case title == "view dashboard":
+            case title == "vote now":
               item.order = 0;
               break;
             case title == "consensus":
