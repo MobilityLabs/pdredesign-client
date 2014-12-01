@@ -5,9 +5,9 @@
           <div class="row filter-container">
             <div class="col-sm-12 col-md-4">
               <span><h4>Role:</h4></span>
-              <select id="role-filter" class="form-control" ng-model="selectedRole">
-                <option value="" selected>All Roles</option>
-                <option value="{{role}}" ng-repeat="role in roles()">
+              <select id="role-filter" class="form-control" ng-model="selectedRole" ng-change="updatedSelection()">
+                <option value="">All Roles</option>
+                <option value="{{role}}" ng-selected="selectedRole == role" ng-repeat="role in roles()">
                   {{role}}
                 </option>
 
@@ -15,9 +15,9 @@
             </div>
             <div class="col-sm-12 col-md-4">
               <span><h4>Topic:</h4></span>
-              <select id="role-filter" class="form-control" ng-model="selectedTopic">
-                <option value="" selected>All Topics</option>
-                <option value="{{topic}}" ng-repeat="topic in topics()">
+              <select id="topic-filter" class="form-control" ng-model="selectedTopic" ng-change="updatedSelection()">
+                <option value="">All Topics</option>
+                <option value="{{topic}}" ng-selected="selectedTopic == topic" ng-repeat="topic in topics()">
                   {{topic}}
                 </option>
 

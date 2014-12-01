@@ -1,14 +1,25 @@
 PDRClient.directive('faqs', [
   '$timeout',
+  '$state',
   'FAQ',
-  function($timeout, FAQ) {
+  function($timeout, $state, FAQ) {
   return {
     restrict: 'E',
     replace: true,
-    scope: {},
+    scope: {
+      selectedTopic: '@topic',
+      selectedRole: '@role',
+    },
     templateUrl: 'client/views/directives/faqs.html',
     link: function(scope, elm, attrs) {
       scope.categories = [];
+
+      scope.updatedSelection = function() {
+        $state.transitionTo('faqs', {
+          topic: scope.selectedTopic,
+          role:  scope.selectedRole
+        });
+      };
 
       scope.updateFAQs = function() {
         return FAQ.query(function(data) {

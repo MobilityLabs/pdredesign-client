@@ -4,6 +4,7 @@ describe('Directive: faqs', function() {
       $scope,
       $compile,
       $timeout,
+      $state,
       $httpBackend;
 
   beforeEach(module('PDRClient'));
@@ -11,6 +12,7 @@ describe('Directive: faqs', function() {
     $scope   = $rootScope.$new({});
     $compile = $injector.get('$compile');
     $timeout = $injector.get('$timeout');
+    $state   = $injector.get('$state');
     $httpBackend = $injector.get('$httpBackend');
 
     element = angular.element("<faqs></faqs>");
@@ -19,6 +21,27 @@ describe('Directive: faqs', function() {
 
     isolatedScope = element.isolateScope();
   }));
+
+  it('sets the topic and subject of the faq', function(){ 
+    element = angular.element("<faqs topic='topic' role='role'></faqs>");
+    $compile(element)($scope);
+    $scope.$digest();
+    isolatedScope = element.isolateScope();
+
+    expect(isolatedScope.selectedTopic).toEqual('topic');
+    expect(isolatedScope.selectedRole).toEqual('role');
+  });
+
+  it('updates the location when the topic is changed', function() {
+    spyOn($state, 'transitionTo');
+    isolatedScope.selectedTopic = 'newTopic';
+    isolatedScope.selectedRole  = 'newRole';
+    isolatedScope.updatedSelection(); 
+  
+    expect($state.transitionTo)
+      .toHaveBeenCalledWith('faqs', {role: 'newRole', topic: 'newTopic'});
+
+  });
 
   it('it gets FAQs from the backend endpoitn', function(){
     $httpBackend.expectGET('/v1/faqs').respond([{expected: true}]);
