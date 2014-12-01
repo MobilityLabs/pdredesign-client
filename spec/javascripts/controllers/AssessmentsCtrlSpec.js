@@ -26,18 +26,18 @@ describe('Controller: AssessmentsCtrl', function() {
         title: "Consensus",
       },
       report: {
-        title: "Report",
+        title: "View Report",
       },
       dashboard: {
-        title: "Dashboard",
+        title: "View Dashboard",
       }
     };
 
     var sortedLinks = $scope.orderLinks(links);
 
-    expect(sortedLinks[0].title).toEqual("Dashboard");
+    expect(sortedLinks[0].title).toEqual("View Dashboard");
     expect(sortedLinks[1].title).toEqual("Consensus");
-    expect(sortedLinks[2].title).toEqual("Report");
+    expect(sortedLinks[2].title).toEqual("View Report");
 
   });
 
@@ -54,7 +54,7 @@ describe('Controller: AssessmentsCtrl', function() {
         type: "finish"
       },
       consensus: {
-        title: "Consensus",
+        title: "Create Consensus",
         active: true,
         type: "new_consensus"
       },
@@ -62,7 +62,7 @@ describe('Controller: AssessmentsCtrl', function() {
 
     var sortedLinks = $scope.orderLinks(links);
 
-    expect(sortedLinks[0].title).toEqual("Consensus");
+    expect(sortedLinks[0].title).toEqual("Create Consensus");
     expect(sortedLinks[1].title).toEqual("Finish & Assign");
     expect(sortedLinks[2].title).toEqual("Report");
 

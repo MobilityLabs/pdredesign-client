@@ -33,9 +33,10 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         angular.forEach(items, function(item) {
           var title = item.title.toLowerCase();
           switch(true) {
-            case title == "dashboard":
+            case title == "view dashboard":
               item.order = 0;
               break;
+            case title == "create consensus":
             case title == "consensus":
               item.order = 1;
               break;
