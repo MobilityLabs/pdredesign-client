@@ -25,7 +25,7 @@
 
       </div>
 
-      <div class='col-md-9 col-xs-7 details'
+      <div class='col-md-8 col-xs-7 details'
         ng-class="activeAssessmentLink(assessment)"
         ng-click="gotoLocation(responseLink(assessment))">
         <div class='row no-gutters'>
@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <div class='col-md-2 col-xs-3 links'>
+      <div class='col-md-3 col-xs-3 links'>
         <div class="repeat" ng-repeat="link in orderLinks(assessment.links)">
           <assessment-links
           data-title="{{link.title}}"
