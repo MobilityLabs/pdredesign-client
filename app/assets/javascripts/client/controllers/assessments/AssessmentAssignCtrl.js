@@ -48,7 +48,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
         if (assessment.message == null || assessment.message == '') {
           $scope.alertError = true;
           return;
-        };
+        }
 
         if (confirm("Are you sure you want to send out the assessment and invite all your participants?")) {
           $scope.alertError = false;
@@ -64,7 +64,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
         if(assessment.name == '') {
           $scope.error("Assessment needs a name!");
           return;
-        };
+        }
 
        assessment.district_id = $scope.district.id;
 
@@ -107,7 +107,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
           .query({assessment_id: $scope.id})
           .$promise
           .then(function(data){
-            $scope.participants = data
+            $scope.participants = data;
           }, function() {
             $scope.error('Could not update participants list');
           });
@@ -117,7 +117,7 @@ PDRClient.controller('AssessmentAssignCtrl', [
         }, function() {
             $scope.error('Could not update participants list');
         });
-      };
+      }
 
       $scope.removeParticipant = function(user) {
         Participant
@@ -125,7 +125,6 @@ PDRClient.controller('AssessmentAssignCtrl', [
           .$promise
           .then(function(){ updateParticipantsList(); });
       };
-
 
       $scope.formattedDate = function(date) {
         return moment(date).format("ll");

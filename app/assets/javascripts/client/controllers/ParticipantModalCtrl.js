@@ -3,7 +3,7 @@ PDRClient.controller('ParticipantModalCtrl', ['$scope', 'SessionService', 'Asses
 
       $scope.animate = function(user){
         user.hide = "no";
-      }
+      };
 
     }
 ]);

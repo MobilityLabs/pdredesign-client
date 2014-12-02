@@ -16,7 +16,7 @@ PDRClient.controller('AssessmentDashboardCtrl', [
       });
 
       $scope.updateParticipantsList = function() {
-        $scope.invitableParticipants = Participant.all({assessment_id: $scope.id})
+        $scope.invitableParticipants = Participant.all({assessment_id: $scope.id});
       };
 
       $scope.updateAssessment = function() {
@@ -47,10 +47,10 @@ PDRClient.controller('AssessmentDashboardCtrl', [
       };
 
       $scope.addParticipant = function(user) {
-        Participant.save({assessment_id: $scope.id}, {user_id: user.id, send_invite: true})
+        Participant.save({assessment_id: $scope.id}, {user_id: user.id, send_invite: true});
         $scope.updateParticipantsList();
         $scope.updateAssessment();
-      }
+      };
 
       $scope.updateAssessment();
       $scope.updateParticipantsList();
@@ -65,7 +65,7 @@ PDRClient.controller('AssessmentDashboardCtrl', [
           default:
             return 'General Message';
         }
-      }
+      };
 
       $scope.messageIcon = function(category) {
         switch(category) {
@@ -76,7 +76,7 @@ PDRClient.controller('AssessmentDashboardCtrl', [
           default:
             return 'fa-envelope-o';
         }
-      }
+      };
 
     }
 ]);

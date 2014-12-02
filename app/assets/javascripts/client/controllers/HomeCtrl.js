@@ -15,7 +15,7 @@ PDRClient.controller('HomeCtrl', [
 
       $scope.$watch($scope.user, function() {
         if($state.is('root') && ($scope.user && $scope.user.id))
-          $state.go('home')
+          $state.go('home');
       });
 
       $scope.$on('updated_tools', function(){
@@ -24,7 +24,7 @@ PDRClient.controller('HomeCtrl', [
 
       $scope.isNetworkPartner = function() {
         return SessionService.isNetworkPartner();
-      }
+      };
 
       $scope.chooseRole  = function() {
         $scope.modal = $modal.open({
@@ -80,10 +80,10 @@ PDRClient.controller('HomeCtrl', [
         if(!tool.url)
           output += $scope.emptyTool();
         else
-          output += "<div class='col-md-3 pull-right'><a href='" + tool.url + "' class='btn btn-primary'>Go</a></div></div>" + "</div>"
+          output += "<div class='col-md-3 pull-right'><a href='" + tool.url + "' class='btn btn-primary'>Go</a></div></div>" + "</div>";
 
         output += "</p>" + "</div></div>";
         return output;
-      }
+      };
     }
 ]);

@@ -32,11 +32,11 @@ PDRClient.controller('SettingsCtrl', ['$location', '$anchorScroll', '$scope', '$
           .$save()
           .then(
             function(data) {
-              $scope.success = "Your profile has been updated"
+              $scope.success = "Your profile has been updated";
               SessionService.syncUser();
             },
             function(response) {
-              $scope.errors  = response.data.errors
+              $scope.errors  = response.data.errors;
             }
           );
       };
