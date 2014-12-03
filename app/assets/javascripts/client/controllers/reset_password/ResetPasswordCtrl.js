@@ -1,11 +1,13 @@
 PDRClient.controller('ResetPasswordCtrl', [
   '$scope',
+  '$rootScope',
   '$timeout',
   '$resource',
   '$stateParams',
   '$location',
   'UrlService',
-    function($scope, $timeout, $resource, $stateParams, $location, UrlService) {
+  'SessionService',
+    function($scope, $rootScope, $timeout, $resource, $stateParams, $location, UrlService, SessionService) {
       $scope.token  = $stateParams.token;
       $scope.alerts = [];
 
@@ -27,8 +29,15 @@ PDRClient.controller('ResetPasswordCtrl', [
           .save({email: email})
           .$promise
           .then(function() {
-            $scope.success("Reset email will be sent to the associated account");
+            $scope.success("Reset email will be sent to the associated account"); 
           });
+      };
+
+      $scope.syncUser = function(){
+        SessionService.syncUser().then(function(usr) {
+          $location.path('/');
+          $rootScope.$broadcast('session_updated');
+        });
       };
 
       $scope.resetPassword = function(password, password_confirm) {
@@ -37,13 +46,13 @@ PDRClient.controller('ResetPasswordCtrl', [
           return;
         }
 
-        var Password = $resource(UrlService.url('user/reset'));
+        var Password = $resource(UrlService.url('user/reset'))
         Password
           .save({password: password, token: $scope.token})
           .$promise
           .then(function(){
             $scope.success("Password reset successfully");
-            $location.url('/');
+            $scope.syncUser();
           }, function(response) {
             var errors = response.data.errors;
             angular.forEach(errors, function(error, key) {
@@ -53,7 +62,7 @@ PDRClient.controller('ResetPasswordCtrl', [
               });
            });
 
-
+              
           });
 
       };
