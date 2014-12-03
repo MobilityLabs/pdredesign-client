@@ -20,7 +20,7 @@ PDRClient.directive('assessmentPriority', [
 
             $scope.roundedAverage = function(score) {
               return parseFloat(score).toFixed(2);
-            }
+            };
 
             $scope.updateCategories = function() {
               $scope.loading = true;
@@ -64,6 +64,6 @@ PDRClient.directive('assessmentPriority', [
               });
             };
         }],
-      }
+      };
     }
 ]);

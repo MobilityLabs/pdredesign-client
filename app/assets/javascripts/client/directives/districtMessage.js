@@ -26,6 +26,6 @@ PDRClient.directive('districtMessage', [
               );
           };
         }],
-    }
+    };
   }
 ]);

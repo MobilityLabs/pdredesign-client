@@ -4,7 +4,7 @@ PDRClient.directive('assessmentChart', [
         restrict: 'E',
         replace: true,
         scope: {
-          assessmentId: '@',  
+          assessmentId: '@',
           editable: '@',
         },
         templateUrl: 'client/views/directives/assessment_chart.html',
@@ -107,6 +107,6 @@ PDRClient.directive('assessmentChart', [
             });
 
         }],
-      }
+      };
     }
 ]);

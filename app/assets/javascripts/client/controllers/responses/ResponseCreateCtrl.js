@@ -1,11 +1,11 @@
 PDRClient.controller('ResponseCreateCtrl', [
-  '$modal', 
-  '$timeout', 
-  '$scope', 
-  '$location', 
-  '$stateParams', 
-  'SessionService', 
-  'Response', 
+  '$modal',
+  '$timeout',
+  '$scope',
+  '$location',
+  '$stateParams',
+  'SessionService',
+  'Response',
   'Assessment',
   function($modal, $timeout, $scope, $location, $stateParams, SessionService, Response, Assessment) {
     $scope.isError  = null;
@@ -31,7 +31,7 @@ PDRClient.controller('ResponseCreateCtrl', [
       $scope.getAssessment()
         .$promise
         .then(function(assessment){
-          $scope.createResponse($scope.assessmentId, assessment.rubric_id)
+          $scope.createResponse($scope.assessmentId, assessment.rubric_id);
         });
     });
   }

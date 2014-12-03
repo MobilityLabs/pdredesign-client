@@ -30,16 +30,16 @@ PDRClient.directive('startAssessment', [
 
           $scope.hideModal = function() {
             $('#startAssessment').modal('hide');
-          }
+          };
 
           $scope.noDistrict = function() {
             return _.isEmpty($scope.user.district_ids);
-          }
+          };
 
           $scope.redirectToAssessment = function(assessment) {
             $scope.hideModal();
             $location.path('assessments/' + assessment.id + '/assign');
-          }
+          };
 
           $scope.create  = function(assessment) {
             assessment.due_date     = moment($("#due-date").val()).toISOString();
@@ -57,7 +57,7 @@ PDRClient.directive('startAssessment', [
                   $scope.error(field + " : " + error);
                 });
               });
-          }
+          };
 
           $scope.success = function(message) {
             $scope.alerts.push({type: 'success', msg: message });
@@ -82,6 +82,6 @@ PDRClient.directive('startAssessment', [
 
           });
         }],
-      }
+      };
     }
 ]);

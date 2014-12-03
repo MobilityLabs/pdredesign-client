@@ -10,7 +10,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
           templateUrl: 'client/views/access/grant.html'
         },
       }
-    })
+    });
   }
 ]);
 

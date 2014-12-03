@@ -38,7 +38,7 @@ PDRClient.directive('responseQuestions', [
 
           $scope.invalidEvidence = function (question) {
             return question.score.evidence == null ||  question.score.evidence  == '';
-          }
+          };
 
           $scope.assignAnswerToQuestion = function (answer, question) {
             question.skipped = false;
@@ -46,7 +46,7 @@ PDRClient.directive('responseQuestions', [
             if($scope.invalidEvidence(question)) return;
 
             ResponseHelper.assignAnswerToQuestion($scope, answer, question);
-          }
+          };
 
           $scope.$on('submit_response', function() {
             Response
@@ -69,5 +69,5 @@ PDRClient.directive('responseQuestions', [
           });
 
         }]
-    }
+    };
 }]);

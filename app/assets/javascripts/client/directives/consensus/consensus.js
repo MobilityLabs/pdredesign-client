@@ -25,9 +25,9 @@ PDRClient.directive('consensus', [
           $scope.teamRole           = null;
           $scope.teamRoles          = [];
           $scope.loading            = false;
-          $scope.answerPercentages  = []; 
+          $scope.answerPercentages  = [];
 
-          $scope.isLoading = function(){ return $scope.loading; }
+          $scope.isLoading = function(){ return $scope.loading; };
 
           $scope.toggleCategoryAnswers = function(category) {
             category.toggled = !category.toggled;
@@ -55,7 +55,7 @@ PDRClient.directive('consensus', [
             }
 
             ResponseHelper.assignAnswerToQuestion($scope, answer, question);
-          }
+          };
 
           $scope.viewModes = [{label: "Category"}, {label: "Variance"}];
           $scope.viewMode  = $scope.viewModes[0];
@@ -125,7 +125,7 @@ PDRClient.directive('consensus', [
                 $scope.isReadOnly = data.is_completed || false;
                 $scope.participantCount = data.participant_count;
                 return true;
-              });           
+              });
           };
 
           $scope.updateTeamRole = function(teamRole) {
@@ -152,7 +152,7 @@ PDRClient.directive('consensus', [
             return "scored-" + score;
           };
 
-          $timeout(function(){ $scope.updateConsensus() });
+          $timeout(function(){ $scope.updateConsensus(); });
 
         }]
     };
@@ -162,7 +162,7 @@ PDRClient.filter('scoreFilter', function() {
   return function(input, questionId) {
     var scores = [];
     angular.forEach(input, function(score) {
-      if(score.question_id == questionId) scores.push(score); 
+      if(score.question_id == questionId) scores.push(score);
     });
 
     return scores;

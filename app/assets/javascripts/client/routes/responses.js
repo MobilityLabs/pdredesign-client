@@ -24,7 +24,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
          template: ''
        }
      }
-   })
+   });
 
   }
 ]);

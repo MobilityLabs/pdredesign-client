@@ -9,7 +9,7 @@ PDRClient.directive('manageParticipants', ['SessionService', 'Assessment', '$tim
           'sendInvite': '@'
         },
         controller: ['$scope', '$modal', 'Participant', function($scope, $modal, Participant) {
-          
+
           $scope.participants = [];
 
           $scope.showAddParticipants = function() {
@@ -22,7 +22,7 @@ PDRClient.directive('manageParticipants', ['SessionService', 'Assessment', '$tim
             });
           };
 
-          $scope.hideModal = function() { 
+          $scope.hideModal = function() {
             $scope.modalInstance.dismiss('cancel');
           };
 
@@ -45,5 +45,5 @@ PDRClient.directive('manageParticipants', ['SessionService', 'Assessment', '$tim
           };
 
         }],
-     }
+     };
 }]);

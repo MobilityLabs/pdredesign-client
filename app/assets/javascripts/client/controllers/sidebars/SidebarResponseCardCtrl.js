@@ -83,10 +83,10 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       window.questions = $scope.questions;
       window.scope     = $scope;
       return $scope.questions.length - $scope.answeredQuestions();
-    }
+    };
 
     $scope.scrollTo = function(questionId) {
-      $location.hash("question-" + questionId)
+      $location.hash("question-" + questionId);
       $anchorScroll();
     };
 
@@ -118,7 +118,7 @@ PDRClient.controller('SidebarResponseCardCtrl', [
         templateUrl: 'client/views/modals/response_submit_modal.html',
         scope: $scope
       });
-    }
+    };
 
     $scope.cancel = function () {
       $scope.modalInstance.dismiss('cancel');
@@ -132,7 +132,7 @@ PDRClient.controller('SidebarResponseCardCtrl', [
       $scope.modalInstance.dismiss('cancel');
       $rootScope.$broadcast('submit_response');
       $rootScope.$broadcast('submit_consensus');
-    }
+    };
 
   }
 ]);

@@ -45,7 +45,7 @@ PDRClient.directive('organizationSelect', [
             scope.organization   = {};
             scope.organizationId = null;
             _.defer(function(){ scope.$apply(); });
-          }
+          };
 
           scope.replaceOptionsWith = function(result) {
             var selectize = scope.selectizeElement();
@@ -104,5 +104,5 @@ PDRClient.directive('organizationSelect', [
           });
 
         },
-     }
+     };
 }]);

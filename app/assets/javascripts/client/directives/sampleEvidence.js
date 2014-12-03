@@ -28,5 +28,5 @@ PDRClient.directive("sampleEvidence", ['$timeout', function ($timeout) {
           });
         });
       }
-  }
-}])
+  };
+}]);

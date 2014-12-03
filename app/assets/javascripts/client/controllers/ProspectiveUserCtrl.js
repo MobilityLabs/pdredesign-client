@@ -16,9 +16,9 @@ PDRClient.controller('ProspectiveUserCtrl', ['$scope', 'ProspectiveUser',
             },
             function(response) {
               $scope.prospectiveUser = {};
-              $scope.errors  = response.data.errors
+              $scope.errors  = response.data.errors;
             }
           );
-      }
+      };
     }
 ]);

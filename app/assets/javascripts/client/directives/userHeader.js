@@ -9,6 +9,6 @@ PDRClient.directive('userHeader', ['SessionService',
           scope.user      = SessionService.getCurrentUser();
           scope.firstName = scope.user.first_name;
         }
-      }
+      };
     }
 ]);

@@ -70,7 +70,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
          templateUrl: 'client/views/sidebar/sidebar_generic.html'
        }
      }
-   })
+   });
 
   }
 ]);

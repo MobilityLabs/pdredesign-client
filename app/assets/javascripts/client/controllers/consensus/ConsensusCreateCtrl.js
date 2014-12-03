@@ -1,10 +1,10 @@
 PDRClient.controller('ConsensusCreateCtrl', [
   '$modal',
   '$scope',
-  '$timeout', 
-  '$location', 
-  'SessionService', 
-  'Consensus', 
+  '$timeout',
+  '$location',
+  'SessionService',
+  'Consensus',
   '$stateParams',
   function($modal, $scope, $timeout, $location, SessionService, Consensus, $stateParams) {
     $scope.isError  = null;
@@ -17,7 +17,7 @@ PDRClient.controller('ConsensusCreateCtrl', [
         .create({assessment_id: $scope.assessmentId}, {})
         .$promise
         .then(function(response){
-          $location.path('/assessments/'+ $scope.assessmentId +'/consensus/' + response.id)
+          $location.path('/assessments/'+ $scope.assessmentId +'/consensus/' + response.id);
       }, function(data){
 
         $scope.isError = true;

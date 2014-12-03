@@ -40,7 +40,7 @@ PDRClient.directive('assessmentLinks', [
                   "finish": "pencil",
                   "messages": "envelope",
                   "report": "file-text-o",
-              }
+              };
               return icons[type];
             };
 
@@ -86,7 +86,7 @@ PDRClient.directive('assessmentLinks', [
 
             $scope.close = function() {
               $scope.modal.dismiss('cancel');
-            }
+            };
 
             $scope.redirectToCreateConsensus = function() {
               $scope.close();
@@ -145,6 +145,6 @@ PDRClient.directive('assessmentLinks', [
 
         }],
 
-      }
+      };
     }
 ]);

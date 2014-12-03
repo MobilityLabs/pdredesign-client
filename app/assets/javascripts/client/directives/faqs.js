@@ -32,7 +32,7 @@ PDRClient.directive('faqs', [
       };
 
       scope.uniq_faq_property = function(target, field) {
-        var uniq = [];  
+        var uniq = [];
         angular.forEach(target, function(category){
           angular.forEach(category.questions, function(question){
             uniq.push(question[field]);
@@ -55,7 +55,7 @@ PDRClient.directive('faqs', [
       });
 
     },
-  }
+  };
 }
 ]);
 

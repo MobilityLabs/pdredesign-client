@@ -22,12 +22,12 @@ PDRClient.controller('ResetPasswordCtrl', [
       };
 
       $scope.requestReset = function(email) {
-        var Request = $resource(UrlService.url('user/request_reset'))
+        var Request = $resource(UrlService.url('user/request_reset'));
         Request
           .save({email: email})
           .$promise
           .then(function() {
-            $scope.success("Reset email will be sent to the associated account"); 
+            $scope.success("Reset email will be sent to the associated account");
           });
       };
 
@@ -37,12 +37,12 @@ PDRClient.controller('ResetPasswordCtrl', [
           return;
         }
 
-        var Password = $resource(UrlService.url('user/reset'))
+        var Password = $resource(UrlService.url('user/reset'));
         Password
           .save({password: password, token: $scope.token})
           .$promise
           .then(function(){
-            $scope.success("Password reset successfully"); 
+            $scope.success("Password reset successfully");
             $location.url('/');
           }, function(response) {
             var errors = response.data.errors;
@@ -53,7 +53,7 @@ PDRClient.controller('ResetPasswordCtrl', [
               });
            });
 
-              
+
           });
 
       };

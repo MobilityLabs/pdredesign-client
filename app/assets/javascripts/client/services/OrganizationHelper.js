@@ -8,7 +8,7 @@ PDRClient.service('OrganizationHelper',
      return Organization.search({query: querySearch})
       .$promise.then(
         function success (data) {
-          return callback(data.results)
+          return callback(data.results);
         },
         function error (response) {
           return response.errors;

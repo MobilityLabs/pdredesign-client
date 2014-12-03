@@ -17,10 +17,10 @@ PDRClient.service('SessionService',
       localStorage.setItem('user', stringy);
     }
 
-    this.userRole = function() { return user && user.role }
+    this.userRole = function() { return user && user.role; };
 
-    this.isNetworkPartner = function() { 
-      if(service.userRole() == "network_partner") 
+    this.isNetworkPartner = function() {
+      if(service.userRole() == "network_partner")
         return true;
       return false;
     };
@@ -42,29 +42,29 @@ PDRClient.service('SessionService',
           deferred.resolve(usr);
       }, function(){
         deferred.reject(false);
-      }); 
+      });
 
       return deferred.promise;
     };
 
     this.softLogin = function() {
-      var localUser = localStorage.getItem('user');   
+      var localUser = localStorage.getItem('user');
       if(localUser !== null && typeof localUser !== 'undefined'){
         object = JSON.parse(localUser);
         setCurrentUser(object);
         this.syncUser();
       }
-    }
+    };
 
     this.softLogin();
 
     this.getUserAuthenticated = function() {
       return userIsAuthenticated;
-    }
+    };
 
     this.getCurrentUser = function() {
       return user;
-    }
+    };
 
     this.clear = function() {
       user = null;
@@ -104,7 +104,7 @@ PDRClient.service('SessionService',
       });
 
       return deferred.promise;
-    }
+    };
 
     this.setUserTemplate = function(scope, loggedInTemplate, loggedOutTemplate) {
       if(service.getUserAuthenticated()) {
@@ -112,6 +112,6 @@ PDRClient.service('SessionService',
       } else {
         scope.template = loggedOutTemplate;
       }
-    }
+    };
 
 }]);

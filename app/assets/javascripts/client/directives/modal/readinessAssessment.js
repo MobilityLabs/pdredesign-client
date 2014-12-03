@@ -18,8 +18,8 @@ PDRClient.directive('readinessAssessmentModal', ['$modal',
 
           $scope.close = function() {
             $scope.modal.dismiss('cancel');
-          }
+          };
 
         }],
-     }
+     };
 }]);

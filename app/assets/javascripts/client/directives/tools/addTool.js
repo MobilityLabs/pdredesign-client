@@ -28,7 +28,7 @@ PDRClient.directive('addTool', [
 
             $scope.hideModal = function() {
               $scope.modalInstance.dismiss('cancel');
-            }
+            };
 
             $scope.create  = function(tool) {
               tool.tool_category_id = $scope.category.id;
@@ -45,7 +45,7 @@ PDRClient.directive('addTool', [
                     $scope.error(field + " : " + error);
                   });
                 });
-            }
+            };
 
             $scope.success = function(message) {
               $scope.alerts.push({type: 'success', msg: message });
@@ -60,6 +60,6 @@ PDRClient.directive('addTool', [
             };
 
         }],
-      }
+      };
     }
 ]);

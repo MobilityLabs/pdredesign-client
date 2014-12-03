@@ -32,8 +32,8 @@ PDRClient.directive('userLogin', ['SessionService',
                 }, function() {
                   $scope.showError();
                 });
-            }
+            };
           }],
-      }
+      };
     }
 ]);

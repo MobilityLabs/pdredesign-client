@@ -36,7 +36,7 @@ PDRClient.directive('districtSelect', ['UrlService', '$timeout',
                 }
               });
             }
-          }); 
+          });
 
           return selectize;
         };
@@ -71,6 +71,6 @@ PDRClient.directive('districtSelect', ['UrlService', '$timeout',
           });
         });
       },
-    }
+    };
   }
 ]);

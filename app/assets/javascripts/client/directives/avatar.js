@@ -23,9 +23,9 @@ PDRClient.directive('avatar', [
         $timeout(function() {
           if ($scope.tooltip == "true") {
             $scope.elm.find("img").tooltip();
-          };
+          }
         });
       }],
-  }
+  };
 }
 ]);

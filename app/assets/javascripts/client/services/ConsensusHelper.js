@@ -14,7 +14,7 @@ PDRClient.service('ConsensusHelper',
         var blob  = new Blob([data], {type: download_type.mime_type});
         var url   = URL.createObjectURL(blob);
       }else{
-        var url   = 'data:application/csv;charset=utf-8,' + encodeURI(data)
+        var url   = 'data:application/csv;charset=utf-8,' + encodeURI(data);
       }
 
       var link = angular.element('<a/>');
@@ -34,7 +34,7 @@ PDRClient.service('ConsensusHelper',
         team_role: teamRole}, function(data){
           var params = {
             assessment: {
-              name:         assessment.name, 
+              name:         assessment.name,
               organized_by: assessment.facilitator.full_name,
               date:         assessment.created_at
             },

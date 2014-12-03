@@ -33,7 +33,7 @@ PDRClient.directive('signup', [
             };
 
             $scope.createUser = function(user) {
-              $scope.setRole(user)
+              $scope.setRole(user);
 
               $scope.success = null;
               $scope.errors  = null;
@@ -51,6 +51,6 @@ PDRClient.directive('signup', [
             };
 
           }],
-      }
+      };
     }
 ]);

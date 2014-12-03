@@ -108,7 +108,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         if(date != null)
           return moment(date).format("Do MMM YYYY");
 
-        return "TBD"
+        return "TBD";
       };
 
       $scope.backgroundColor = function(assessment) {
@@ -147,7 +147,7 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         if(_.isEmpty(assessment.responses) && !assessment.is_participant)
           return true;
         return false;
-      }
+      };
 
       $scope.percentBackgroundColor = function(percent) {
         switch(true) {
@@ -162,6 +162,6 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
           default:
             return '#884541';
         }
-      }
+      };
     }
 ]);

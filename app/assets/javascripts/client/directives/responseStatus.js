@@ -14,17 +14,17 @@ PDRClient.directive('responseStatus', [
         'UrlService',
         function($scope, $timeout, $http, UrlService) {
           $scope.endpoint = function(){
-            return UrlService.url('assessments/' + 
-              $scope.user.assessment_id + 
-              '/participants/' + 
-              $scope.user.id + 
-              '/mail')
+            return UrlService.url('assessments/' +
+              $scope.user.assessment_id +
+              '/participants/' +
+              $scope.user.id +
+              '/mail');
           };
 
           $scope.sendEmail = function() {
             $scope.getEmailBody().then(function(response){
               var body = escape(response.data);
-              var link = "mailto:" + $scope.user.email + "?subject=Invitation&body=" + body; 
+              var link = "mailto:" + $scope.user.email + "?subject=Invitation&body=" + body;
               $scope.triggerMailTo(link);
             });
           };
@@ -39,7 +39,7 @@ PDRClient.directive('responseStatus', [
 
           $scope.getEmailBody = function() {
             return $http({method: "GET", url: $scope.endpoint()})
-              .success(function(response){ 
+              .success(function(response){
                 return response;
               }
             );

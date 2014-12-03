@@ -25,7 +25,7 @@ PDRClient.directive('inviteUser', ['SessionService', 'UrlService', '$timeout',
               scope: $scope
             });
           };
-          
+
           $scope.shouldSendInvite = function() {
             return $scope.sendInvite == "true" || $scope.sendInvite == true;
           };
@@ -54,5 +54,5 @@ PDRClient.directive('inviteUser', ['SessionService', 'UrlService', '$timeout',
           };
 
         }],
-     }
+     };
 }]);
