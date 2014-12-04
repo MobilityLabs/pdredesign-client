@@ -7,14 +7,6 @@ module PdrClient
         app.config.assets.precompile += %w(pdr_client.css pdr_client.js)
       end
 
-      initializer "public_assets" do |app|
-        config.assets.paths << "#{Rails.root}/public"
-        app.middleware.insert_before(
-          ::ActionDispatch::Static,
-          ::ActionDispatch::Static,
-          "#{Rails.root}/public"
-        )
-      end
     end
   end
 end

@@ -1,5 +1,5 @@
 var BrowserDetector = {
-  unsupportedBrowserPage: "outdated_browsers/browser_unsupported",
+  unsupportedBrowserPage: "/outdated_browsers/browser_unsupported.html",
   isBrowserValid: function(lib) {
     var validBrowser = true;
     var version      = parseFloat(lib.version);

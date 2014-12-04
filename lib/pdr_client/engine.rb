@@ -32,5 +32,14 @@ module PdrClient
     require 'csv'
     require 'pdr_client/railtie' if defined?(Rails)
 
+    initializer "public_assets" do |app|
+      config.assets.paths << "#{root}/public"
+      app.middleware.insert_before(
+          ::ActionDispatch::Static,
+          ::ActionDispatch::Static,
+          "#{root}/public"
+          )
+    end
+
   end
 end
