@@ -19,6 +19,19 @@ PDRClient.controller('ResetPasswordCtrl', [
         $scope.alerts.push({type: 'danger', msg: message });
       };
 
+      $scope.getErrorFromResponse = function(response_error){
+        if( typeof response_error === 'string' ) {
+          $scope.error(response_error);
+        }else{
+          angular.forEach(response_error, function(error, key) {
+            angular.forEach(error, function(e) {
+              var message = key + ": " + e;
+              $scope.error(message);
+            });
+          });
+        }
+      };
+
       $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
       };
@@ -29,7 +42,9 @@ PDRClient.controller('ResetPasswordCtrl', [
           .save({email: email})
           .$promise
           .then(function() {
-            $scope.success("Reset email will be sent to the associated account"); 
+            $scope.success("Reset email will be sent to the associated account");
+          }, function(response){
+            $scope.getErrorFromResponse(response.data.errors);
           });
       };
 
@@ -54,17 +69,8 @@ PDRClient.controller('ResetPasswordCtrl', [
             $scope.success("Password reset successfully");
             $scope.syncUser();
           }, function(response) {
-            var errors = response.data.errors;
-            angular.forEach(errors, function(error, key) {
-              angular.forEach(error, function(e) {
-                var message = key + ": " + e;
-                $scope.error(message);
-              });
+            $scope.getErrorFromResponse(response.data.errors);
            });
-
-              
-          });
-
       };
 
     }
