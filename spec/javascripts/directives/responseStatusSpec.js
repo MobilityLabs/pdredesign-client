@@ -14,7 +14,7 @@ describe('Directive: ResponseStatus', function() {
     
     $scope.user = {
       assessment_id: 1, 
-      id: 1, 
+      participant_id: 1, 
       status: 'invited', 
       email: 'user@example.com'
     };

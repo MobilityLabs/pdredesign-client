@@ -17,7 +17,7 @@ PDRClient.directive('responseStatus', [
             return UrlService.url('assessments/' +
               $scope.user.assessment_id +
               '/participants/' +
-              $scope.user.id +
+              $scope.user.participant_id +
               '/mail');
           };
 
@@ -30,7 +30,7 @@ PDRClient.directive('responseStatus', [
           };
 
           $scope.triggerMailTo = function(link) {
-            window.location.href = link;
+            window.top.location = link;
           };
 
           $scope.showMailLink = function() {
