@@ -22,12 +22,17 @@
         <div class="col-md-12 main-content" ui-view="full-width" ng-show="showFullWidth">
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-9 main-content" ng-hide="showFullWidth">
-          <%= yield %>
-        </div>
-        <div class="col-md-3 pull-right">
-          <%= render 'pdr_client/layouts/partials/sidebar' %>
+      <div id="hide-hidden-offcanvas">
+        <div class="row row-offcanvas row-offcanvas-right">
+          <div class="col-md-9 col-xs-12 col-sm-12 main-content" ng-hide="showFullWidth">
+            <p class="pull-right visible-xs visible-sm">
+              <button type="button" class="btn btn-primary" ng-click="toggleOffCanvas()">Toggle nav</button>
+            </p>
+            <%= yield %>
+          </div>
+          <div class="col-md-3 col-xs-12 col-sm-6 pull-right sidebar-offcanvas">
+            <%= render 'pdr_client/layouts/partials/sidebar' %>
+          </div>
         </div>
       </div>
     </div>
