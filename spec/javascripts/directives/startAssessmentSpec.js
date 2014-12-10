@@ -22,7 +22,7 @@ describe('Directive: startAssessment', function() {
     $scope         = $rootScope.$new();
 
     setupSession(SessionService);
-    
+
     element = angular.element('<start-assessment></start-assessment>');
 
     $compile(element)($scope);
@@ -32,10 +32,22 @@ describe('Directive: startAssessment', function() {
 
   }));
 
-  describe('#text', function() {
-    it('returns Start a New Assessment when a user is a district user', function() {
+  describe('#isNetworkPartner', function() {
+    it('returns false when a user is a district user', function() {
       spyOn(SessionService, 'isNetworkPartner').and.returnValue(false);
-      expect(isolatedScope.text()).toEqual('Start a New Assessment');
+      expect(isolatedScope.isNetworkPartner()).toEqual(false);
+    });
+
+    it('returns true when a user is a network partner', function() {
+      spyOn(SessionService, 'isNetworkPartner').and.returnValue(true);
+      expect(isolatedScope.isNetworkPartner()).toEqual(true);
+    });
+  });
+
+  describe('#text', function() {
+    it('returns Facilitate New Assessment when a user is a district user', function() {
+      spyOn(SessionService, 'isNetworkPartner').and.returnValue(false);
+      expect(isolatedScope.text()).toEqual('Facilitate New Assessment');
     });
 
     it('returns Recommend Assessment when a user is a network Partner', function() {
@@ -55,7 +67,7 @@ describe('Directive: startAssessment', function() {
       isolatedScope.district = { id: 55 };
 
       isolatedScope.create(assessment);
-      expect(assessment.district_id).toEqual(55);  
+      expect(assessment.district_id).toEqual(55);
     });
 
     it('sets assessment due date ', function() {

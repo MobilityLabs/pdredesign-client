@@ -25,7 +25,11 @@ PDRClient.directive('startAssessment', [
           $scope.text = function(){
             if(SessionService.isNetworkPartner())
               return "Recommend Assessment";
-            return "Start a New Assessment";
+            return "Facilitate New Assessment";
+          };
+
+          $scope.isNetworkPartner = function(){
+            return SessionService.isNetworkPartner();
           };
 
           $scope.hideModal = function() {
