@@ -59,3 +59,10 @@ angular.module("PDRClient").config(['$tooltipProvider', function($tooltipProvide
   });
 }]);
 
+angular.module("PDRClient").run(
+  ['$rootScope',
+  function ($rootScope) {
+    $rootScope.toggleOffCanvas = function() {
+      $('.row-offcanvas').toggleClass('active');
+    };
+}]);
