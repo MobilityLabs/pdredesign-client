@@ -5,6 +5,7 @@ PDRClient.directive('signup', [
         replace: true,
         scope: {
           isNetworkPartner: '@',
+          isAdministrator: '@',
         },
         templateUrl: 'client/views/directives/signup.html',
         controller: [

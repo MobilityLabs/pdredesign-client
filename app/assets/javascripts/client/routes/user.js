@@ -133,6 +133,7 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
     })
     .state('signup_administrator', {
       url: '/administrators',
+      is_administrator: true,
       views: {
         '': {
           controller: '',
