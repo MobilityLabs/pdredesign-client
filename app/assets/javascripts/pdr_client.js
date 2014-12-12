@@ -27,6 +27,7 @@
 //= require angular-file-upload
 //= require bootstrap-datetimepicker
 //= require jquery.tablednd
+//= require jquery.placeholder.js
 //= require highcharts
 //= require highcharts/highcharts-more
 //= require selectize
