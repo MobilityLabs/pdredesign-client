@@ -28,7 +28,7 @@ PDRClient.directive('assessmentLinks', [
             $scope.linkIcon = function(type){
               icons = {
                   "response": "check",
-                  "request_access": "eye",
+                  "request_access": "unlock-alt",
                   "pending": "spinner",
                   "dashboard": "dashboard",
                   "consensus": "group",
@@ -115,7 +115,7 @@ PDRClient.directive('assessmentLinks', [
             };
 
             $scope.assessmentLink = function(type, active) {
-              if(typeof type === 'undefined' || active == "false" || !active)
+              if(typeof type === 'undefined')
                 return false;
 
               routes = {
@@ -134,13 +134,6 @@ PDRClient.directive('assessmentLinks', [
               };
 
               return routes[type];
-            };
-
-            $scope.linkActive = function(link){
-              if(link == "true")
-                return "active";
-              else
-                return "disabled";
             };
 
         }],

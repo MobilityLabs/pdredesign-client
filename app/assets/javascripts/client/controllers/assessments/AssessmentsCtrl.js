@@ -28,12 +28,20 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return 'fa-spinner';
       };
 
+      $scope.draftStatusIcon = function(assessment) {
+        if (assessment.owner)
+          return "fa-eye-slash";
+        if (assessment.has_access)
+          return "fa-minus-circle";
+        return "fa-eye";
+      };
+
       $scope.orderLinks = function(items) {
         var filteredArray = [];
         angular.forEach(items, function(item) {
           var title = item.title.toLowerCase();
           switch(true) {
-            case title == "dashboard":
+            case title == "view dashboard":
               item.order = 0;
               break;
             case title == "consensus":
@@ -66,7 +74,6 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         });
         return filteredArray;
       };
-
 
       $scope.districtOptions = function(assessments) {
 
@@ -111,14 +118,6 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return "TBD";
       };
 
-      $scope.backgroundColor = function(assessment) {
-        if(assessment.status == "draft")
-          return '#b1bbbf';
-        else if(assessment.status == "assessment")
-          return $scope.percentBackgroundColor(assessment.percent_completed);
-        return "#4e5e66";
-      };
-
       $scope.gotoLocation = function(location) {
         if(location)
           $location.url(location);
@@ -149,19 +148,5 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
         return false;
       };
 
-      $scope.percentBackgroundColor = function(percent) {
-        switch(true) {
-          case percent < 20:
-            return '#f7bcb9';
-          case percent  < 40:
-            return '#f29b95';
-          case percent < 60:
-            return '#ee7972';
-          case percent < 80:
-            return '#046262';
-          default:
-            return '#884541';
-        }
-      };
     }
 ]);

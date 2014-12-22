@@ -29,13 +29,13 @@ describe('Controller: AssessmentsCtrl', function() {
         title: "Report",
       },
       dashboard: {
-        title: "Dashboard",
+        title: "View Dashboard",
       }
     };
 
     var sortedLinks = $scope.orderLinks(links);
 
-    expect(sortedLinks[0].title).toEqual("Dashboard");
+    expect(sortedLinks[0].title).toEqual("View Dashboard");
     expect(sortedLinks[1].title).toEqual("Consensus");
     expect(sortedLinks[2].title).toEqual("Report");
 

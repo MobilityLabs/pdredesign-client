@@ -70,9 +70,8 @@ describe('Directive: assessmentLinks', function() {
   });
 
   describe('#assessmentLink', function(){
-    it('returns false when a link is not active', function(){
-      expect(isolatedScope.assessmentLink('response', "false")).toEqual(false);
-      expect(isolatedScope.assessmentLink('response', false)).toEqual(false);
+    it('returns request_access when request_access is param', function(){
+      expect(isolatedScope.assessmentLink('request_access')).toEqual('request_access');
     });
 
     it('returns a create consensus link', function(){
@@ -99,13 +98,13 @@ describe('Directive: assessmentLinks', function() {
   describe('#popoverContent', function(){
     it('returns district members content', function(){
       spyOn(isolatedScope, 'isNetworkPartner').and.returnValue(false);
-      isolatedScope.districtMemberPopoverContent = "district member content"; 
+      isolatedScope.districtMemberPopoverContent = "district member content";
       expect(isolatedScope.popoverContent()).toEqual('district member content');
     });
 
     it('returns network partner content', function(){
       spyOn(isolatedScope, 'isNetworkPartner').and.returnValue(true);
-      isolatedScope.networkPartnerPopoverContent = "network partner content"; 
+      isolatedScope.networkPartnerPopoverContent = "network partner content";
       expect(isolatedScope.popoverContent()).toEqual('network partner content');
     });
   });
@@ -127,17 +126,10 @@ describe('Directive: assessmentLinks', function() {
     });
   });
 
-  describe('#linkActive', function(){
-    it('returns active when true', function(){
-      expect(isolatedScope.linkActive("true")).toEqual("active");
-      expect(isolatedScope.linkActive("something")).toEqual("disabled");
-    });
-  });
-
   it('hides the link if the link is null', function(){
      expect(element.find('div.link').hasClass('ng-hide'))
       .toBe(false);
-      
+
     isolatedScope.title = null;
     isolatedScope.$digest();
 
