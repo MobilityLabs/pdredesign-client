@@ -44,6 +44,7 @@ Gem::Specification.new do |s|
   s.add_dependency('rails-assets-angular-ui-utils')
   s.add_dependency('rails-assets-angular-file-upload')
   s.add_dependency('rails-assets-rollbar')
+  s.add_dependency('rails-assets-angular-shims-placeholder')
   s.add_dependency('redactor-rails')
 
   s.add_dependency('selectize-rails')

@@ -15,6 +15,7 @@ PDRClient.directive('avatar', [
     },
     templateUrl: 'client/views/directives/avatar.html',
     link: function(scope, elm, attrs) {
+      scope.ngWidth = {'width': scope.width};
       scope.title  = "<p class='name'>" + scope.name + "</p><p class='role'>" + scope.role + "</p>";
       scope.elm    = elm;
     },

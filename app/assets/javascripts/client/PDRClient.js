@@ -6,6 +6,7 @@ PDRClient = angular.module("PDRClient", [
   'angular-redactor',
   'angularMoment',
   'angularFileUpload',
+  'ng.shims.placeholder',
   'ui.utils',
   'ui.router',
   'ui.bootstrap']);
@@ -58,4 +59,3 @@ angular.module("PDRClient").config(['$tooltipProvider', function($tooltipProvide
     'focus': 'blur',
   });
 }]);
-

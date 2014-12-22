@@ -13,6 +13,9 @@
     color: $secondary-color
 
   section.hero
+    // background-color set for IE9
+    // linear-gradient is ignored by IE9
+    background-color: rgba(12, 105, 159, 0.9)
     background: linear-gradient(to bottom, $gradient-top 0%, $gradient-bottom 100%), image-url('rose.jpg') no-repeat
     background-size: auto 100%
     background-position: center
@@ -39,7 +42,7 @@
     img
       width: 100%
       max-width: 35em
-      
+
   section.path
     background-color: $navbar-color
     padding-top: 1em
@@ -52,7 +55,7 @@
     .points
       img
         width: 25%
-    .icons      
+    .icons
       img
         width: 100%
 
@@ -63,5 +66,5 @@
     button
       font-size: 1.5em
       margin-top: 2em
-      background-color: $primary-color 
+      background-color: $primary-color
       color: #fff

@@ -23,8 +23,9 @@ module PdrClient
     require 'rails-assets-angular-moment'
     require 'rails-assets-angular-file-upload'
     require 'rails-assets-rollbar'
+    require 'rails-assets-angular-shims-placeholder'
 
-    require 'selectize-rails' 
+    require 'selectize-rails'
     require 'rails-assets-highcharts'
     require 'bootstrap3-datetimepicker-rails'
 
