@@ -4,17 +4,20 @@ PDRClient.controller('ConsensusShowCtrl', [
     '$timeout',
     'SessionService',
     'Assessment',
+    'Consensus',
     'ConsensusHelper',
     '$stateParams',
-    function($scope, $http, $timeout, SessionService, Assessment, ConsensusHelper, $stateParams) {
+    'consensus',
+    function($scope, $http, $timeout, SessionService, Assessment, Consensus, ConsensusHelper, $stateParams, consensus) {
       $scope.user = SessionService.getCurrentUser();
 
       $scope.assessmentId = $stateParams.assessment_id;
       $scope.responseId   = $stateParams.response_id;
       $scope.assessment   = Assessment.get({id: $scope.assessmentId});
+      $scope.consensus    = consensus
       
       $scope.exportToPDF  = function(){
-        ConsensusHelper.consensuToPDF($scope.assessment, $scope.responseId, $scope.teamRole);
+        ConsensusHelper.consensuToPDF($scope.assessmentId, $scope.responseId);
       };
 
       $scope.exportToCSV  = function(){

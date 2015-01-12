@@ -7,6 +7,11 @@ require 'rspec/rails'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+# These are classess and modules defined in PdrServer that are needed when the rspec are running
+
+module ApplicationHelper;end
+module ScoreQuery;end
+
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true

@@ -26,48 +26,33 @@ PDRClient.service('ConsensusHelper',
       $rootScope.$broadcast('success_change');
     };
 
-    $scope.consensuToPDF    = function(assessment, responseId, teamRole){
+    $scope.consensuToPDF    = function(assessmentId, consensusId){
       $rootScope.$broadcast('start_change');
+      var params = {
+        assessment_id: assessmentId
+      };
 
-      var consensusData   = Consensus.get({assessment_id: assessment.id,
-        id: responseId,
-        team_role: teamRole}, function(data){
-          var params = {
-            assessment: {
-              name:         assessment.name,
-              organized_by: assessment.facilitator.full_name,
-              date:         assessment.created_at
-            },
-            consensus: data
-          };
-
-          $http.post(UrlService.url('consensus_report.pdf'), params, {responseType: "arraybuffer"}).
-            success(function(data, status, headers, config){
-              $scope.downloadAction(data, {
-                mime_type: 'application/pdf',
-                file_ext:  'pdf'
-              });
-            });
+      $http.post(UrlService.url('assessments/'+assessmentId+'/reports/consensus_report.pdf'), {}, {responseType: "arraybuffer"}).
+        success(function(data, status, headers, config){
+          $scope.downloadAction(data, {
+            mime_type: 'application/pdf',
+            file_ext:  'pdf'
+          });
         });
     };
 
     $scope.consensuToCSV    = function(assessment, consensus_id){
       $rootScope.$broadcast('start_change');
-      var report_url        = UrlService.url('consensus_report.csv');
+      var report_url        = UrlService.url('assessments/'+assessment.id+'/reports/consensus_report.csv');
 
-      Consensus.report({assessment_id: assessment.id, id: consensus_id}, function(report_data){
-        var params = {
-          consensus: report_data
-        };
-
-        $http.post(report_url, params).
-          success(function(data, status, headers, config){
-            $scope.downloadAction(data, {
-                mime_type: 'application/csv',
-                file_ext:  'csv'
-              });
-          });
-      });
+      $http.post(report_url, {}).
+        success(function(data, status, headers, config){
+          $scope.downloadAction(data, {
+              mime_type: 'application/csv',
+              file_ext:  'csv'
+            });
+        });
+      
     };
 
   }]);
