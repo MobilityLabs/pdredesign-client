@@ -93,6 +93,10 @@ PDRClient.controller('AssessmentDashboardSidebarCtrl', [
 
       $scope.meetingMonthName = function() {
         return moment($scope.assessment.meeting_date).format("MMM");
+      };     
+
+      $scope.consensusStarted = function() {
+        return $scope.assessment.status == 'consensus';
       };
 
     }

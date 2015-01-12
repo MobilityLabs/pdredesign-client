@@ -83,4 +83,16 @@ describe('Controller: AssessmentDashboardSidebarCtrl', function() {
     });
   });
 
+  describe('#consensusStarted', function(){
+    it('returns false if status is assessment', function(){
+      $scope.assessment.status = 'assessment';
+      expect($scope.consensusStarted()).toEqual(false);
+    });
+    
+    it('returns true if status is consensus', function(){
+      $scope.assessment.status = 'consensus';
+      expect($scope.consensusStarted()).toEqual(true);
+    });
+  });
+
 });

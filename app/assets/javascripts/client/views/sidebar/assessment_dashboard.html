@@ -38,9 +38,9 @@
         <a ng-click="createConsensus()" href="" >Create Consensus</a>
         <a ng-click="newReminder()" href="">Send Reminder</a>
       </span>
-
       <span ng-show="postMeetingDate()">
-        <a href="#/assessments/{{assessment.id}}/consensus/{{assessment.consensus.id}}">View Consensus</a>
+        <a ng-show="consensusStarted()" href="#/assessments/{{assessment.id}}/consensus/{{assessment.consensus.id}}">View Consensus</a>
+        <a ng-hide="consensusStarted()" ng-click="createConsensus()" href="" >Create Consensus</a>
       </span>
 
       <span ng-show="reportPresent()">
