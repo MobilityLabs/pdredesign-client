@@ -16,19 +16,7 @@ PDRClient.controller('NavigationCtrl', ['$scope', '$rootScope', 'SessionService'
           return 'active';
         return '';
       };
-
-      $scope.chooseRole  = function() {
-        $scope.modal = $modal.open({
-          templateUrl: 'client/views/modals/choose_role.html',
-          scope: $scope,
-          size: 'md'
-        });
-      };
-
-      $scope.close = function() {
-        $scope.modal.dismiss('cancel');
-      };
-
+      
       $scope.$watch(function () { return $location.url(); }, function (url) {
         switch(url) {
           case '/assessments':
