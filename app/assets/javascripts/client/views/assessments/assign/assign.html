@@ -132,16 +132,13 @@
                     data-width="57"
                     data-has-tooltip="true"
                     data-name="{{assessment.facilitator.full_name}}"
-                    data-avatar="{{assessment.facilitator.avatar}}"
-
                     data-role="{{assessment.facilitator.team_role}}">
                  </avatar>
 
                   <div class='media-body'>
                     <p class='media-heading'>
                       <span class='name'>{{assessment.user_name}}</span>
-                      {{user.full_name}}
-                      has invited you to participate in {{assessment.name}}
+                      <b>{{user.full_name}}</b> has invited you to participate in {{assessment.name}} for {{assessment.district_name}}.
                     </p>
                     <customalert  ng-show='alertError' data-message="{{messageError}}" data-type='error'>
 
