@@ -23,14 +23,16 @@ PDRClient.service('ConsensusHelper',
          target: '_blank',
          download: 'report.'+download_type.file_ext
       })[0].click();
-      $rootScope.$broadcast('success_change');
+      $rootScope.$broadcast('stop_building_export_file');
     };
 
     $scope.consensuToPDF    = function(assessmentId, consensusId){
-      $rootScope.$broadcast('start_change');
+      var wait_message = "This may take a few moments...Thank you for your patience. If the PDF does not download, please contact us at support@mail.pdredesign.org.";
       var params = {
         assessment_id: assessmentId
       };
+
+      $rootScope.$broadcast('building_export_file', {format: 'PDF'});
 
       $http.post(UrlService.url('assessments/'+assessmentId+'/reports/consensus_report.pdf'), {}, {responseType: "arraybuffer"}).
         success(function(data, status, headers, config){
@@ -42,7 +44,7 @@ PDRClient.service('ConsensusHelper',
     };
 
     $scope.consensuToCSV    = function(assessment, consensus_id){
-      $rootScope.$broadcast('start_change');
+      $rootScope.$broadcast('building_export_file', {format: 'CSV'});
       var report_url        = UrlService.url('assessments/'+assessment.id+'/reports/consensus_report.csv');
 
       $http.post(report_url, {}).
