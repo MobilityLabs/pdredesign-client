@@ -29,11 +29,11 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       };
 
       $scope.draftStatusIcon = function(assessment) {
-        if (assessment.owner)
-          return "fa-eye-slash";
-        if (assessment.has_access)
+        if (assessment.has_access){
+          return "fa-eye";  
+        }else{
           return "fa-minus-circle";
-        return "fa-eye";
+        }
       };
 
       $scope.orderLinks = function(items) {
