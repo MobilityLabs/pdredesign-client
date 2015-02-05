@@ -1,6 +1,7 @@
 module PdrClient
   module ReportsHelper
     extend ActionView::Helpers::SanitizeHelper::ClassMethods
+    include UsersHelper
 
     COL_SEP   = ','
     QUOTE_SEP = '"'
