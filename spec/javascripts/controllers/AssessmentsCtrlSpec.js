@@ -62,9 +62,9 @@ describe('Controller: AssessmentsCtrl', function() {
 
     var sortedLinks = $scope.orderLinks(links);
 
-    expect(sortedLinks[0].title).toEqual("Consensus");
-    expect(sortedLinks[1].title).toEqual("Finish & Assign");
-    expect(sortedLinks[2].title).toEqual("Report");
+    expect(sortedLinks[0].title).toEqual("Finish & Assign");
+    expect(sortedLinks[1].title).toEqual("Report");
+    expect(sortedLinks[2].title).toEqual("Consensus");
 
 
   });

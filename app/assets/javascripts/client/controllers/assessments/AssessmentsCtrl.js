@@ -29,29 +29,32 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
       };
 
       $scope.draftStatusIcon = function(assessment) {
-        if (assessment.owner)
-          return "fa-eye-slash";
-        if (assessment.has_access)
+        if (assessment.has_access){
+          return "fa-eye";  
+        }else{
           return "fa-minus-circle";
-        return "fa-eye";
+        }
       };
 
       $scope.orderLinks = function(items) {
         var filteredArray = [];
+        console.log();
         angular.forEach(items, function(item) {
           var title = item.title.toLowerCase();
           switch(true) {
-            case title == "view dashboard":
+            case title == "complete survey":
               item.order = 0;
-              break;
-            case title == "consensus":
+            case title == "view dashboard":
               item.order = 1;
               break;
-            case title == "finish & assign":
+            case title == "view consensus":
               item.order = 2;
               break;
-            default:
+            case title == "finish & assign":
               item.order = 3;
+              break;
+            default:
+              item.order = 4;
               break;
           }
           filteredArray.push(item);
