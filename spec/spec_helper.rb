@@ -5,7 +5,6 @@ ENV["RAILS_ENV"] ||= 'test'
 
 module ApplicationHelper;end
 module ScoreQuery;end
-module UsersHelper;end
 
 require 'combustion'
 
