@@ -100,12 +100,9 @@ PDRClient.service('ResponseHelper',
       return 'scored-' + question.score.value;
     };
 
-    this.percentageByResponse = function(scores, questionId, answerValue, totalAnswersInQuestion){
-      var possibleAnswers = totalAnswersInQuestion + 1; //this +1 is the Skip question possible answer.
+    this.percentageByResponse = function(scores, questionId, answerValue, totalParticipants){
       var numberOfAnswers = scope.answerCount(scores, questionId, answerValue);
-      return ((numberOfAnswers*100)/possibleAnswers) + '%';
-      
+      return ((numberOfAnswers*100)/totalParticipants) + '%';
     };
-
 
 }]);

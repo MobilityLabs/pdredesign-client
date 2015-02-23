@@ -46,11 +46,11 @@
                   <div
                     class="scored-{{answer.value}} bar bar-{{answer.value}}"
                     ng-repeat="answer in question.answers | orderBy:value"
-                    ng-style="{height: '{{percentageByResponse(scores, question.id, answer.value, question.answers.length)}}'}">
+                    ng-style="{height: '{{percentageByResponse(scores, question.id, answer.value, participantCount)}}'}">
                   </div>
                   <div
                     class="scored-skipped bar skipped"
-                    ng-style="{height: '{{percentageByResponse(scores, question.id, answer.value, question.answers.length)}}'}">
+                    ng-style="{height: '{{percentageByResponse(scores, question.id, answer.value, participantCount)}}'}">
                   </div>
                 </div>
               </div>
