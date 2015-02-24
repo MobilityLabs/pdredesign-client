@@ -147,10 +147,13 @@
                 </div>
 
                 <div class='form-group'>
-                  <textarea redactor ng-model="assessment.message"></textarea>
+                  <textarea placeholder="Add a note (optional)" redactor ng-model="assessment.message"></textarea>
                 </div>
 
                 <h3>Please complete this assessment by {{formattedDate(assessment.due_date)}}.</h3>
+                <p>
+                  PDredesign is a community of educators and designers committed to continuously improving professional development systems to better support teachers. Alongside leaders from classrooms, schools, charters, districts, and partner organizations across the country, we are building an open digital toolkit and community of practice to support districts to redesign systems that meet the needs of educators and students.
+                </p>
                 <button class="btn btn-primary" name="commit" type="submit" id='assign_assessment' ng-click='assignAndSave(assessment)'>
                   <i class='fa fa-spinner fa-spin' ng-show="saving"></i>
                   <i class='fa fa-envelope-o'></i> Send
