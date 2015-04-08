@@ -38,7 +38,6 @@ PDRClient.controller('AssessmentsCtrl', ['$scope', '$location', 'SessionService'
 
       $scope.orderLinks = function(items) {
         var filteredArray = [];
-        console.log();
         angular.forEach(items, function(item) {
           var title = item.title.toLowerCase();
           switch(true) {
