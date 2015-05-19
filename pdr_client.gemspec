@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency('rails-assets-jquery')
   s.add_dependency('rails-assets-underscore')
   s.add_dependency('rails-assets-highcharts', '= 3.0.10')
-  s.add_dependency('rails-assets-angular')
+  s.add_dependency('rails-assets-angular', '~> 1.2.0')
   s.add_dependency('rails-assets-angular-route')
   s.add_dependency('rails-assets-angular-sanitize')
   s.add_dependency('rails-assets-angular-resource')
