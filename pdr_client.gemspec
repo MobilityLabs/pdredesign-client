@@ -42,13 +42,13 @@ Gem::Specification.new do |s|
   s.add_dependency('rails-assets-angular-bootstrap')
   s.add_dependency('rails-assets-angular-moment')
   s.add_dependency('rails-assets-angular-ui-utils')
-  s.add_dependency('rails-assets-angular-file-upload')
+  s.add_dependency('rails-assets-angular-file-upload', '~> 1.1.5')
   s.add_dependency('rails-assets-rollbar')
   s.add_dependency('rails-assets-angular-shims-placeholder')
   s.add_dependency('redactor-rails')
 
   s.add_dependency('selectize-rails')
-  s.add_dependency('bootstrap3-datetimepicker-rails', '>= 3.1.2')
+  s.add_dependency('bootstrap3-datetimepicker-rails', '~> 3.1.0')
   s.add_dependency('wkhtmltopdf-binary', '0.9.9.3')
   s.add_dependency('pdfkit', '0.6.2')
 
