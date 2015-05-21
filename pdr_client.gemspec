@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency('font-awesome-rails')
   s.add_dependency('bootstrap-sass')
   s.add_dependency('haml')
-  s.add_dependency('angular-rails-templates', '~> 0.1.3')
+  s.add_dependency('angular-rails-templates', '= 0.1.3')
 
   s.add_dependency('rails-assets-moment')
   s.add_dependency('rails-assets-jquery')
