@@ -3,8 +3,11 @@ PDRClient.controller('GrantAccessCtrl', ['$scope', '$stateParams', '$state', 'Ac
       Access
         .save({token: $stateParams.token, action: 'grant'}, null)
         .$promise
-        .then(function(){
-          $state.go('assessments');
+        .then(function(data){
+          $state.go('assessment_dashboard', {
+            id: data.assessment_id,
+            showModal: true
+          });
         });
     }
 ]);

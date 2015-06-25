@@ -1,30 +1,8 @@
-<div class="modal-header">
-  <h3 class="modal-title">Add to Assessment</h3>
-</div>
-
-<div class='row row-participant-headers-modal edit_modal_table_head'>
-  <div class='col-md-1 col-sm-1' style="margin-left: 9px;">&nbsp;</div>
-  <div class='col-md-4 col-sm-4'>Name</div>
-  <div class='col-md-4 col-sm-4'>Email Address</div>
-</div>
-<div id="participantModalholder">
-  <div class="participantholder">
-    <div ng-repeat="user in participants">
-      <div ng-class="{addParticipantAnimation: user.hide == 'yes' }" class='row row-participant-add'>
-        <div class='col-md-1 col-sm-1'>
-          <img alt="" class="img-polaroid pull-right" ng-src="{{user.avatar}}" width="47"></div>
-          <div class='col-md-4 col-sm-4'>
-            <p class='name'>{{user.full_name}}</p>
-          </div>
-          <div class='col-md-4 col-sm-4'>
-            <p class='info'>{{user.email }}</p>
-          </div>
-          <div class='col-md-3 col-sm-3 text-center'>
-            <div class="btn btn-primary pull-right add_to_assessment_button" ng-click="addParticipant(user)">Add to Assessment</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+<my-tabs modaltitle="Manage Participants">
+  <my-pane title="Manage Permission Level" badge={{numberOfRequests}}>
+    <ng-include src="'client/views/assessments/permissions/manage_permission.html'"> </ng-include>
+  </my-pane>
+  <my-pane title="Add To Assessment">
+    <ng-include src="'client/views/assessments/permissions/add_to_assessment.html'"> </ng-include>
+  </my-pane>
+</my-tabs>

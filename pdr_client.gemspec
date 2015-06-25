@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
   s.add_dependency('font-awesome-rails')
   s.add_dependency('bootstrap-sass')
   s.add_dependency('haml')
-  s.add_dependency('angular-rails-templates', '= 0.1.3')
 
   s.add_dependency('rails-assets-moment')
   s.add_dependency('rails-assets-jquery')
@@ -46,6 +45,8 @@ Gem::Specification.new do |s|
   s.add_dependency('rails-assets-rollbar')
   s.add_dependency('rails-assets-angular-shims-placeholder')
   s.add_dependency('redactor-rails')
+
+  s.add_dependency('angular-rails-templates', '= 0.1.3')
 
   s.add_dependency('selectize-rails')
   s.add_dependency('bootstrap3-datetimepicker-rails', '~> 3.1.0')

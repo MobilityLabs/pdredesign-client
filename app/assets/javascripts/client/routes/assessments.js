@@ -21,6 +21,9 @@ PDRClient.config(['$stateProvider', '$urlRouterProvider',
    .state('assessment_dashboard', {
      url: '/assessments/:id/dashboard',
      authenticate: true,
+     params: {
+       showModal: false,
+     },
      views: {
        '': {
          controller: 'AssessmentDashboardCtrl',

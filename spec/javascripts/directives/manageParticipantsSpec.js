@@ -43,7 +43,7 @@ describe('Directive: manageParticipants', function() {
   it('calls update with the correct assessment id', function(){
     spyOn(Participant, 'all');
 
-    isolatedScope.updateParticipants(); 
+    isolatedScope.updateParticipants();
     expect(Participant.all).toHaveBeenCalledWith({assessment_id: '1'});
   });
 
@@ -56,7 +56,7 @@ describe('Directive: manageParticipants', function() {
       return {$promise: deferred.promise};
     });
 
-    isolatedScope.addParticipant({id: 8}); 
+    isolatedScope.addParticipant({id: 8});
   });
 
   it('sends :send_invite when attribute is set', function() {
@@ -76,7 +76,7 @@ describe('Directive: manageParticipants', function() {
     scope = e.isolateScope();
     scope.$digest();
 
-    scope.addParticipant({id: 8}); 
+    scope.addParticipant({id: 8});
     expect(Participant.save).toHaveBeenCalled();
   });
 
@@ -89,8 +89,38 @@ describe('Directive: manageParticipants', function() {
         return {$promise: deferred.promise};
       });
 
-    isolatedScope.addParticipant({id: 8}); 
+    isolatedScope.addParticipant({id: 8});
     expect(Participant.save).toHaveBeenCalled();
+  });
+
+
+  describe('#humanPermissionName', function(){
+    it('it converts an empty string to None', function() {
+      expect(isolatedScope.humanPermissionName("")).toEqual("None");
+    });
+
+    it('returns the string as itself', function() {
+      expect(isolatedScope.humanPermissionName("Human")).toEqual("Human");
+    });
+  });
+
+
+  describe('#performPermissionsAction', function(){
+    it('calls the given function', function(){
+      this.performExample = function(){ }
+
+      spyOn(this, 'performExample').and.callFake(function() {
+        var deferred = $q.defer();
+        deferred.resolve(true);
+
+        return {$promise: deferred.promise};
+
+      });
+
+      var output = isolatedScope.performPermissionsAction(this.performExample);
+      expect(this.performExample).toHaveBeenCalled();
+
+    });
   });
 
 });

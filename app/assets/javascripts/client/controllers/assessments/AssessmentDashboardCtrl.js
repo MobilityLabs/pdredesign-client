@@ -8,6 +8,8 @@ PDRClient.controller('AssessmentDashboardCtrl', [
   'Participant',
     function($modal, $scope, $timeout, $stateParams, SessionService, Assessment, Participant) {
       $scope.id = $stateParams.id;
+
+      $scope.showModal = $stateParams.showModal || false;
       $scope.currentUser = SessionService.getCurrentUser();
 
       $scope.$on('update_participants', function() {

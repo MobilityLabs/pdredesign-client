@@ -23,7 +23,6 @@
 //= require angular-redactor
 //= require angular-bootstrap
 //= require angular-moment
-//= require angular-rails-templates
 //= require angular-file-upload
 //= require angular-shims-placeholder
 //= require bootstrap-datetimepicker
@@ -33,5 +32,6 @@
 //= require selectize
 //= require ./client/PDRClient
 //= require_tree ./client/routes
+//= require angular-rails-templates
 //= require_tree ./client/views
 //= require_tree ./client

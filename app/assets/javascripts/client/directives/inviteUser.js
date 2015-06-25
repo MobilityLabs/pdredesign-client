@@ -6,10 +6,10 @@ PDRClient.directive('inviteUser', ['SessionService', 'UrlService', '$timeout',
         templateUrl: 'client/views/directives/invite_user.html',
         scope: {
           'assessmentId': '@',
-          'sendInvite': '@'
+          'sendInvite': '@',
+          'role': '@'
         },
         controller: ['$scope', '$modal', 'UserInvitation', function($scope, $modal, UserInvitation) {
-
           $scope.alerts  = [];
           $scope.addAlert = function(message) {
             $scope.alerts.push({type: 'danger', msg: message});

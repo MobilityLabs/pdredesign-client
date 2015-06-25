@@ -47,10 +47,10 @@
           </div>
         </div>
         <div class='col-md-12 header'>
-          <manage-participants data-send-invite="true" data-assessment-id="{{assessment.id}}">
+          <manage-participants auto-show="{{showModal}}" data-send-invite="true" data-assessment-id="{{assessment.id}}" data-number-of-requests="{{assessment.number_of_requests}}" ng-if="assessment">
           </manage-participants>
-          
-          <invite-user data-send-invite="true" data-assessment-id="{{assessment.id}}">
+
+          <invite-user data-send-invite="true" data-assessment-id="{{assessment.id}}" data-role="participant">
           </invite-user>
         </div>
 

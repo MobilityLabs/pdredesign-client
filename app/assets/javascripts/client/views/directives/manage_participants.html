@@ -4,7 +4,11 @@
       <i class="fa fa-plus"></i>
     </div>
     <div class="col-sm-11 col-md-11 heading">
-      <h1>Add Participants</h1>
+      <h1>Manage Participants
+        <span class="label-as-badge label label-primary" ng-if="numberOfRequests > 0">
+          {{numberOfRequests}}
+        </span>
+      </h1>
     </div>
   </a>
 </div>
