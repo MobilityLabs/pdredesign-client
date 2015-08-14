@@ -8,7 +8,7 @@ var BrowserDetector = {
       case lib.firefox == true && version < 17.0:
       case lib.chrome  == true && version < 23.0:
       case lib.safari  == true && version < 6:
-      case lib.msie    == true && version < 9:
+      case lib.msie    == true && version <= 9:
         validBrowser = false;
         break;
       default:
