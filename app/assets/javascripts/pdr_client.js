@@ -1,8 +1,8 @@
 //= require bowser.min
 //= require ./browserDetection
 //= require jquery
-//= require ./rollbarConfig
-//= require rollbar/dist/rollbar.snippet
+// require ./rollbarConfig
+// require rollbar/dist/rollbar.snippet
 //= require underscore
 //= require bootstrap/dropdown
 //= require bootstrap/alert

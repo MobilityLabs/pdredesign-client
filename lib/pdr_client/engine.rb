@@ -1,3 +1,4 @@
+require 'bundler/setup'
 require 'rails' unless defined?(Rails)
 require 'action_view' unless defined?(ActionView)
 
