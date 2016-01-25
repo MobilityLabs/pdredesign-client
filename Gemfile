@@ -6,7 +6,7 @@ group :test do
   gem 'activerecord'
   gem 'actionmailer'
   gem 'actionpack'
-  gem 'sprockets'
-  gem 'combustion'
+  gem 'sprockets', '~> 2.12.3'
+  gem 'combustion', '~> 0.5.4'
   gem 'rspec-rails'
 end

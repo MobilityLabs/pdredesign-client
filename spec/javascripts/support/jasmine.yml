@@ -11,8 +11,8 @@
 #   - dist/**/*.js
 #
 src_files:
- - http://localhost:3000/assets/pdr_client.js
  - spec/vendor/angular-mocks.js
+ - http://localhost:9191/assets/pdr_client.js
 
 # stylesheets
 #
