@@ -1,5 +1,4 @@
 <div class="home-controller">
-  <user-header></user-header>
     <div class="row">
       <div class="col-md-12">
         <h1>Where to start?</h1>
@@ -15,59 +14,6 @@
                 <h1>Add Districts</h1>
               </div>
             </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <h1>PD System Redesign Tool Kit</h1>
-        Learn more about the tools currently under development as part of the PDredesign process.
-
-        <div class="row toolkits">
-          <div class="col-md-4 toolkit" ng-repeat="phase in tools">
-            <div class="row title title-{{$index}}">
-              {{phase.title}}
-              <div class="triangle-right"></div>
-            </div>
-            <div class="goal">Goal: {{phase.description}}</div>
-
-            <div class="categories" ng-repeat="category in phase.categories">
-              <div class="title">{{category.name}}</div>
-              <span class="subcategories" ng-repeat="subcategory in category.subcategories">
-                {{subcategory.name}}
-                <ul class="tool" ng-repeat="tool in subcategory.tools">
-                  <li
-                    data-html="true"
-                    data-placement="right"
-                    data-content="{{popoverContent(tool)}}"
-                    data-toggle="tooltip">
-                    <span class="tool-check">
-                      <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
-                    </span>
-                    <span class="tool-title">{{tool.title}}</span>
-                  </li>
-                </ul>
-              </span>
-              <span>
-               <ul class="tool extra-tool" ng-repeat="tool in category.tools">
-                  <li
-                    data-html="true"
-                    data-placement="right"
-                    data-content="{{popoverContent(tool)}}"
-                    data-toggle="tooltip">
-                    <i class="fa fa-check" ng-class="{active: tool.url, inactive: !tool.url}"></i>
-                    {{tool.title}}
-                  </li>
-               </ul>
-              </span>
-              <div class="tool">
-                <add-tool category="category"></add-tool>
-              </div>
-          </div>
-
           </div>
         </div>
 
