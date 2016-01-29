@@ -4,12 +4,17 @@
       <div class="col-md-12">
         <h1>Where to start?</h1>
         You can use any of the tools or resources in the process. We recommend you start with the Readiness Assessment.
-        <start-assessment></start-assessment>
+        <div class="light">
+          <start-assessment></start-assessment>
+        </div>
         <div ng-if="isNetworkPartner()">
-          <div class="row add-district plus-button">
+          <div class="row add-district plus-button light">
             <a href="#/settings">
               <div class="col-sm-1 col-md-1">
-                <i class="fa fa-plus"></i>
+                <span class="fa-stack fa-lg fa-2x">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-plus fa-stack-1x"></i>
+                </span>
               </div>
               <div class="col-sm-11 col-md-11 heading">
                 <h1>Add Districts</h1>
